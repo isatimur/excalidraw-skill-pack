@@ -19,3 +19,6 @@ build/
 .changeset/*-*.md
 !.changeset/README.md
 !.changeset/config.json
+playwright-report/
+test-results/
+.uv/
