@@ -1,0 +1,38 @@
+{
+  "name": "@excalidraw-skill-pack/core",
+  "version": "0.0.0",
+  "description": "Core methodology, schemas, and bundled default-sketchy theme for excalidraw-skill-pack.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./skill": "./SKILL.md",
+    "./theme-schema": "./theme.schema.json",
+    "./themes/default-sketchy": "./themes/default-sketchy/theme.json"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "element-templates.md",
+    "json-schema.md",
+    "theme.schema.json",
+    "themes/default-sketchy"
+  ],
+  "bin": {
+    "validate-theme": "./dist/validate-theme.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "ajv": "^8.12.0"
+  },
+  "devDependencies": {
+    "vitest": "^1.5.0"
+  }
+}
