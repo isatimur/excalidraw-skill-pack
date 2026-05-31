@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://excalidraw-skill-pack.dev/theme.schema.json",
+  "title": "Excalidraw Skill Pack Theme Manifest",
+  "type": "object",
+  "required": ["name", "version"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "kebab-case theme identifier; the package suffix" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[A-Za-z0-9.-]+)?$", "description": "semver" },
+    "extends": { "type": "string", "description": "Parent theme name." },
+    "description": { "type": "string" },
+    "preview": { "type": "string", "description": "Path or URL to preview PNG." },
+    "homepage": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "author": { "type": ["string", "object"] },
+    "roles": {
+      "type": "object",
+      "description": "Semantic color roles. Used by apply_theme to remap across themes.",
+      "additionalProperties": false,
+      "properties": {
+        "ink": { "type": "string", "description": "primary text/stroke" },
+        "paper": { "type": "string", "description": "main background" },
+        "accent": { "type": "string", "description": "primary brand accent" },
+        "accent_alt": { "type": "string" },
+        "evidence_bg": { "type": "string", "description": "evidence artifact background" },
+        "evidence_text": { "type": "string" },
+        "muted": { "type": "string", "description": "secondary text/grid" },
+        "warning": { "type": "string" },
+        "danger": { "type": "string" }
+      }
+    }
+  }
+}
