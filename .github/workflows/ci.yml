@@ -28,3 +28,32 @@ jobs:
       - uses: astral-sh/setup-uv@v3
       - run: uvx ruff check packages/renderer-python
       - run: uvx ruff format --check packages/renderer-python
+
+  test-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install chromium --with-deps
+      - run: pnpm test
+
+  test-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - working-directory: packages/renderer-python
+        run: |
+          uv sync
+          uv run playwright install chromium --with-deps
+          uv run pytest
