@@ -1,0 +1,25 @@
+{
+  "name": "excalidraw-skill-pack",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Universal skill pack: make your AI agent argue visually.",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@8.9.2",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
