@@ -1,0 +1,11 @@
+{
+  "fontFamily": 1,
+  "fontFamilyName": "Virgil",
+  "fontSize": {
+    "small": 16,
+    "medium": 20,
+    "large": 28,
+    "heading": 36
+  },
+  "italicPolicy": "sparingly"
+}
