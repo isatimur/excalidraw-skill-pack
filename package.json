@@ -4,6 +4,7 @@
   "private": true,
   "description": "Universal skill pack: make your AI agent argue visually.",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "pnpm -r build",
     "test": "pnpm -r test",
@@ -16,7 +17,11 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
     "@types/node": "^20.0.0",
-    "typescript": "^5.4.0"
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "eslint": "^10.4.1",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^8.60.0"
   },
   "packageManager": "pnpm@8.9.2",
   "engines": {
