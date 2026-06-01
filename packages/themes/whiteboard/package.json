@@ -1,0 +1,22 @@
+{
+  "name": "@excalidraw-skill-pack/theme-whiteboard",
+  "version": "0.1.0",
+  "description": "Low-fi, bright, intentionally sketchy. For workshops and ideation sessions.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./theme.json",
+  "files": [
+    "theme.json",
+    "palette.json",
+    "palette.md",
+    "typography.json",
+    "elements/",
+    "layouts/",
+    "preview.png",
+    "README.md"
+  ],
+  "keywords": ["excalidraw", "excalidraw-skill-pack", "theme", "ai-agent", "diagrams"],
+  "publishConfig": {
+    "access": "public"
+  }
+}

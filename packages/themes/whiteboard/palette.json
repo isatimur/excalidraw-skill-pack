@@ -1,0 +1,11 @@
+{
+  "ink": "#1A1A1A",
+  "paper": "#FFFFFF",
+  "accent": "#FFB400",
+  "accent_alt": "#FF5252",
+  "evidence_bg": "#FFFCEE",
+  "evidence_text": "#1A1A1A",
+  "muted": "#999999",
+  "warning": "#FF8800",
+  "danger": "#E53935"
+}

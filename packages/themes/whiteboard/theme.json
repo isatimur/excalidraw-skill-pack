@@ -1,0 +1,20 @@
+{
+  "name": "whiteboard",
+  "version": "0.1.0",
+  "extends": "default-sketchy",
+  "description": "Low-fi, bright, intentionally sketchy. For workshops and ideation sessions.",
+  "license": "MIT",
+  "author": "Timur Isachenko",
+  "preview": "preview.png",
+  "roles": {
+    "ink": "#1A1A1A",
+    "paper": "#FFFFFF",
+    "accent": "#FFB400",
+    "accent_alt": "#FF5252",
+    "evidence_bg": "#FFFCEE",
+    "evidence_text": "#1A1A1A",
+    "muted": "#999999",
+    "warning": "#FF8800",
+    "danger": "#E53935"
+  }
+}
