@@ -1,6 +1,19 @@
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 
+export interface DiscoveredTheme {
+  name: string;
+  version: string;
+  source: "bundled" | "npm";
+  manifest: ThemeManifest;
+  themeDir: string;
+}
+
+export interface DiscoveryOptions {
+  bundledThemesDir?: string;
+  nodeModulesRoot?: string;
+}
+
 export interface ThemeManifest {
   name: string;
   version: string;
@@ -113,6 +126,58 @@ function mergeThemes(
     layouts: { ...(parent.layouts ?? {}), ...(child.layouts ?? {}) },
     paletteMarkdown: child.paletteMarkdown || parent.paletteMarkdown || ""
   };
+}
+
+export async function discoverInstalledThemes(
+  opts: DiscoveryOptions = {}
+): Promise<DiscoveredTheme[]> {
+  const results: DiscoveredTheme[] = [];
+
+  if (opts.bundledThemesDir) {
+    const entries = await readDirSafe(opts.bundledThemesDir);
+    for (const entry of entries) {
+      const themeDir = join(opts.bundledThemesDir, entry);
+      const manifestPath = join(themeDir, "theme.json");
+      try {
+        const manifest = await readJson<ThemeManifest>(manifestPath);
+        results.push({
+          name: manifest.name,
+          version: manifest.version,
+          source: "bundled",
+          manifest,
+          themeDir
+        });
+      } catch {
+        // skip non-theme directories
+      }
+    }
+  }
+
+  if (opts.nodeModulesRoot) {
+    const scopeDir = join(opts.nodeModulesRoot, "node_modules", "@excalidraw-skill-pack");
+    const pkgEntries = await readDirSafe(scopeDir);
+    for (const pkgName of pkgEntries) {
+      if (!pkgName.startsWith("theme-")) continue;
+      const pkgDir = join(scopeDir, pkgName);
+      const themeDir = join(pkgDir, "theme");
+      const manifestPath = join(themeDir, "theme.json");
+      try {
+        const manifest = await readJson<ThemeManifest>(manifestPath);
+        const pkgJson = await readJson<{ version?: string }>(join(pkgDir, "package.json")).catch(() => ({}) as { version?: string });
+        results.push({
+          name: manifest.name,
+          version: pkgJson.version ?? manifest.version,
+          source: "npm",
+          manifest,
+          themeDir
+        });
+      } catch {
+        // skip packages without a valid theme
+      }
+    }
+  }
+
+  return results;
 }
 
 export async function loadTheme(
