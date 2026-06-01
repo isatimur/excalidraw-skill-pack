@@ -57,3 +57,22 @@ jobs:
           uv sync
           uv run playwright install chromium --with-deps
           uv run pytest
+
+  validate-themes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @excalidraw-skill-pack/core build
+      - name: Validate every theme
+        run: |
+          for t in packages/themes/*/; do
+            node packages/core/dist/validate-theme.js "$t/theme.json"
+          done
