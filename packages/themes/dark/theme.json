@@ -1,0 +1,20 @@
+{
+  "name": "dark",
+  "version": "0.1.0",
+  "extends": "default-sketchy",
+  "description": "Inverted contrast, neutral. For presentations and dev tools.",
+  "license": "MIT",
+  "author": "Timur Isachenko",
+  "preview": "preview.png",
+  "roles": {
+    "ink": "#E7E5E4",
+    "paper": "#18181B",
+    "accent": "#22C55E",
+    "accent_alt": "#F472B6",
+    "evidence_bg": "#0A0A0A",
+    "evidence_text": "#E7E5E4",
+    "muted": "#71717A",
+    "warning": "#F59E0B",
+    "danger": "#EF4444"
+  }
+}
