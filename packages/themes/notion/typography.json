@@ -1,0 +1,11 @@
+{
+  "fontFamily": 2,
+  "fontFamilyName": "Helvetica",
+  "fontSize": {
+    "small": 14,
+    "medium": 18,
+    "large": 24,
+    "heading": 32
+  },
+  "italicPolicy": "sparingly"
+}

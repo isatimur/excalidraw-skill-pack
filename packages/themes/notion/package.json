@@ -1,0 +1,22 @@
+{
+  "name": "@excalidraw-skill-pack/theme-notion",
+  "version": "0.1.0",
+  "description": "Rounded, soft, off-white. Matches Notion&#39;s docs aesthetic.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./theme.json",
+  "files": [
+    "theme.json",
+    "palette.json",
+    "palette.md",
+    "typography.json",
+    "elements/",
+    "layouts/",
+    "preview.png",
+    "README.md"
+  ],
+  "keywords": ["excalidraw", "excalidraw-skill-pack", "theme", "ai-agent", "diagrams"],
+  "publishConfig": {
+    "access": "public"
+  }
+}
