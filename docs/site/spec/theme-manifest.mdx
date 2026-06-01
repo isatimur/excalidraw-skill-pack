@@ -1,0 +1,130 @@
+---
+title: "Theme manifest spec"
+description: "Reference for theme.json + the surrounding theme package layout."
+---
+
+## Files in a theme package
+
+| File | Required | Purpose |
+|---|---|---|
+| `theme.json` | yes | Manifest: name, version, extends, roles |
+| `palette.json` | yes | Color tokens — machine-readable, used by the renderer |
+| `palette.md` | yes | Color tokens — agent-readable; explains *when* to use each |
+| `typography.json` | no | Font family, sizes, italic policy |
+| `elements/*.json` | no | Per-element-type style overrides (`box.json`, `callout.json`, `arrow.json`) |
+| `layouts/*.md` | no | Composition presets (`chapter-card.md`, `flow-pipeline.md`, …) |
+| `preview.png` | recommended | Renders in registry cards and README |
+
+---
+
+## `theme.json` schema
+
+Source of truth: [`packages/core/theme.schema.json`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/core/theme.schema.json).
+
+Minimal example:
+
+```json
+{
+  "name": "my-brand",
+  "version": "0.1.0",
+  "description": "Brand theme for ACME Co.",
+  "extends": "default-sketchy"
+}
+```
+
+Full example:
+
+```json
+{
+  "name": "my-brand",
+  "version": "1.2.0",
+  "description": "Brand theme for ACME Co.",
+  "extends": "default-sketchy",
+  "author": "Jane Doe <jane@acme.com>",
+  "homepage": "https://github.com/acme/excalidraw-theme-my-brand",
+  "license": "MIT",
+  "preview": "preview.png",
+  "roles": {
+    "ink":          "#1a1a1a",
+    "paper":        "#fff8f3",
+    "accent":       "#ff5722",
+    "accent_alt":   "#ffa000",
+    "evidence_bg":  "#f5f5f5",
+    "evidence_text":"#212121",
+    "muted":        "#9e9e9e"
+  }
+}
+```
+
+### Required fields
+
+| Field | Type | Constraint |
+|---|---|---|
+| `name` | string | kebab-case; must match the npm package suffix after `theme-` |
+| `version` | string | semver |
+
+### Optional fields
+
+| Field | Type | Description |
+|---|---|---|
+| `extends` | string | Parent theme name. Inherits palette, typography, elements, layouts. |
+| `description` | string | One-sentence pitch. Shown in registry cards. |
+| `preview` | string | Relative path or URL to a preview PNG. |
+| `homepage` | string | URL to the theme's repository or docs. |
+| `license` | string | SPDX identifier (e.g. `"MIT"`). |
+| `author` | string | `"Name <email>"` format. |
+| `roles` | object | Semantic color map (see below). |
+
+---
+
+## Roles
+
+The role table is the contract between themes for `apply_theme` (re-skinning). Every theme should define at least the four core roles: `ink`, `paper`, `accent`, `muted`.
+
+| Role | Meaning | Required |
+|---|---|---|
+| `ink` | Primary text and strokes | yes |
+| `paper` | Main background | yes |
+| `accent` | The argument color — **one per diagram** | yes |
+| `muted` | Secondary text, grid lines, dividers | yes |
+| `accent_alt` | Secondary accent for comparisons (two-argument diagrams only) | no |
+| `evidence_bg` | Background of evidence artifact boxes | no |
+| `evidence_text` | Text inside evidence artifact boxes | no |
+| `warning` | Soft warning state (rare) | no |
+| `danger` | Hard error state (rare) | no |
+
+Themes that don't define a role fall back to `default-sketchy`'s value for that role during `apply_theme`. This means a minimal theme only needs to define the 4 core roles.
+
+---
+
+## Inheritance
+
+```json
+{ "name": "my-brand", "extends": "default-sketchy" }
+```
+
+Resolution at load time merges per layer in this order (child wins):
+
+1. `palette.json` — deep-merged key by key
+2. `typography.json` — deep-merged key by key
+3. `elements/*.json` — file-level replacement (full file wins; no deep-merge)
+4. `layouts/*.md` — file-level replacement
+
+A child theme that ships `elements/box.json` fully replaces the parent's `elements/box.json`. A child that does not ship `elements/callout.json` inherits the parent's `callout.json` unchanged.
+
+---
+
+## Versioning
+
+Themes use independent semver, separate from the core package version.
+
+| Change type | Bump | Example |
+|---|---|---|
+| Typo fix in `palette.md`, no color value changed | PATCH | `0.1.0` → `0.1.1` |
+| Add a new role to `palette.json` | MINOR | `0.1.0` → `0.2.0` |
+| Add a layout file or element override | MINOR | `0.1.0` → `0.2.0` |
+| Change an existing role's hex value | MAJOR | `0.1.0` → `1.0.0` |
+| Change typography in a way that shifts line breaks | MAJOR | `0.1.0` → `1.0.0` |
+| Remove an inherited layout or element file | MAJOR | `0.1.0` → `1.0.0` |
+
+Major bumps that change color values or typography are **breaking** because existing rendered PNGs will no longer match re-renders at the new version. Pin theme versions in CI golden-image pipelines when this matters.
