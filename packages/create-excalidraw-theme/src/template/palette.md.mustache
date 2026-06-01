@@ -1,0 +1,19 @@
+# {{slug}} palette
+
+> Override the colors here. The MCP server splices this file into the AI agent's system prompt at call time.
+
+| Role | Hex | Use for |
+|---|---|---|
+| `ink` | `#1e1e1e` | Primary text and strokes. Every stroke that isn't the accent. |
+| `paper` | `#ffffff` | Backgrounds. Element-background defaults. |
+| `accent` | `#1971c2` | Primary brand accent — emphasis, callouts, the one element you want the eye on. |
+| `accent_alt` | `#e8590c` | Secondary accent — use sparingly. |
+| `evidence_bg` | `#1e1e1e` | Evidence artifact backgrounds (code snippets, JSON examples). |
+| `evidence_text` | `#d4d4d4` | Text inside evidence artifacts. |
+| `muted` | `#868e96` | Secondary text, grid lines, subtle dividers. |
+
+## Editorial rules
+
+- One `accent` per diagram, ideally. Two means you have two competing arguments.
+- Evidence artifacts always pair `evidence_bg` with `evidence_text` — never mix.
+- `accent_alt` is for when you must compare two things side-by-side; otherwise leave it out.
