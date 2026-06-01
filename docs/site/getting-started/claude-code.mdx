@@ -1,0 +1,48 @@
+---
+title: "Claude Code"
+description: "Install excalidraw-skill-pack in Claude Code in one command."
+---
+
+## Install
+
+<CodeGroup>
+```bash One command
+npx @excalidraw-skill-pack/install claude-code
+```
+
+```bash Lite (skill only, no MCP)
+npx @excalidraw-skill-pack/install claude-code --lite
+```
+</CodeGroup>
+
+This writes:
+- `~/.claude/skills/excalidraw-diagram/SKILL.md` — the methodology
+- `~/.claude/skills/excalidraw-diagram/themes/default-sketchy/` — bundled theme
+- `~/.claude/mcp.json` — registers `@excalidraw-skill-pack/mcp-server` (full mode only)
+
+Restart Claude Code to load the skill.
+
+## Use
+
+In any conversation, type:
+
+> "Make me a diagram of the post-meeting redaction pipeline. Use the stripe-press theme."
+
+The skill auto-loads, the agent drafts JSON, the MCP server renders to PNG.
+
+## Switch themes
+
+Per project:
+
+```bash
+echo '{ "theme": "stripe-press" }' > .excalidraw-skill-pack.json
+```
+
+Per call: tell the agent `"...use the notion theme."`
+
+## Uninstall
+
+```bash
+rm -rf ~/.claude/skills/excalidraw-diagram
+# and remove the excalidraw-skill-pack entry from ~/.claude/mcp.json
+```

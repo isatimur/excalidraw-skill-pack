@@ -1,0 +1,26 @@
+---
+title: "Cursor"
+description: "Install excalidraw-skill-pack in Cursor as a rule + MCP server."
+---
+
+## Install
+
+```bash
+npx @excalidraw-skill-pack/install cursor
+```
+
+Writes `.cursor/rules/excalidraw.mdc` and `.cursor/mcp.json`. The MDC rule auto-activates when editing `.excalidraw` files.
+
+## Use
+
+Open Cursor, ask the agent: "Generate an Excalidraw diagram for our auth flow."
+
+The agent has the methodology in context (via the MDC rule) and can call `render_diagram` via the MCP server to produce PNGs.
+
+## Theme per project
+
+```bash
+THEME=stripe-press npx @excalidraw-skill-pack/install cursor
+```
+
+(Reinstall to swap themes; the MDC rule embeds the active theme's palette.)

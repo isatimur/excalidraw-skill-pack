@@ -1,0 +1,24 @@
+---
+title: "Gemini CLI"
+description: "Install excalidraw-skill-pack as a Gemini CLI extension."
+---
+
+## Install
+
+```bash
+npx @excalidraw-skill-pack/install gemini-cli
+```
+
+Writes `~/.gemini/extensions/excalidraw-skill-pack/extension.json`, which Gemini auto-loads on next session.
+
+## Use
+
+```bash
+gemini "Sketch the data flow for our event ingest. Use the whiteboard theme."
+```
+
+## Uninstall
+
+```bash
+rm -rf ~/.gemini/extensions/excalidraw-skill-pack
+```

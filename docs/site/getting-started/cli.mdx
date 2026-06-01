@@ -1,0 +1,43 @@
+---
+title: "Raw CLI / any MCP agent"
+description: "Use excalidraw-render directly, or wire the MCP server into your own agent."
+---
+
+## Renderer (Node)
+
+```bash
+npx excalidraw-render diagram.excalidraw --theme stripe-press --output out.png --scale 2 --width 1920
+```
+
+## Renderer (Python)
+
+```bash
+pipx install excalidraw-render
+playwright install chromium
+excalidraw-render diagram.excalidraw --theme stripe-press --output out.png --scale 2
+```
+
+Identical CLI surface; identical output bytes (within 1px tolerance).
+
+## MCP server
+
+```bash
+npx @excalidraw-skill-pack/mcp-server
+```
+
+Transport: stdio. Tools: `generate_diagram_prompt`, `render_diagram`, `audit_diagram`, `list_themes`, `apply_theme`.
+
+## Claude Desktop
+
+Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "excalidraw-skill-pack": {
+      "command": "npx",
+      "args": ["@excalidraw-skill-pack/mcp-server"]
+    }
+  }
+}
+```

@@ -1,0 +1,24 @@
+---
+title: "Codex CLI"
+description: "Install excalidraw-skill-pack in Codex CLI as a skill + MCP server."
+---
+
+## Install
+
+```bash
+npx @excalidraw-skill-pack/install codex
+```
+
+Writes `~/.codex/skills/excalidraw-diagram/` and registers MCP in `~/.codex/mcp.json`.
+
+## Use
+
+```bash
+codex chat "Diagram the order pipeline. Theme: dark."
+```
+
+## Uninstall
+
+```bash
+rm -rf ~/.codex/skills/excalidraw-diagram
+```
