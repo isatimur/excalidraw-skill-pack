@@ -62,7 +62,11 @@ def render_to_png(json_str: str, *, theme: str, scale: int, width: int) -> bytes
             page.wait_for_function("window.__moduleReady === true", timeout=30000)
             result = page.evaluate(f"window.renderDiagram({json_str})")
             if not result or not result.get("success"):
-                error_msg = result.get("error", "Unknown render error") if result else "renderDiagram returned null"
+                error_msg = (
+                    result.get("error", "Unknown render error")
+                    if result
+                    else "renderDiagram returned null"
+                )
                 browser.close()
                 raise RuntimeError(f"Render failed: {error_msg}")
             page.wait_for_function("window.__renderComplete === true", timeout=15000)

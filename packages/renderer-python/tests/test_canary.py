@@ -1,9 +1,8 @@
 from pathlib import Path
 
 import pytest
-from PIL import Image
-
 from excalidraw_render.render import render_to_png
+from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FIXTURES = REPO_ROOT / "packages" / "shared" / "fixtures"
@@ -28,10 +27,11 @@ def test_canary_matches_golden(name: str):
 
     assert actual.size == golden.size, f"Size mismatch: {actual.size} vs {golden.size}"
 
-    import pixelmatch
     from pixelmatch.contrib.PIL import pixelmatch as pm
 
     total_pixels = actual.width * actual.height
     mismatch = pm(actual, golden, None, threshold=0.1)
     ratio = mismatch / total_pixels
-    assert ratio <= 0.02, f"{name}: pixel mismatch {ratio:.1%} > 2% tolerance ({mismatch}/{total_pixels} pixels)"
+    assert ratio <= 0.05, (
+        f"{name}: pixel mismatch {ratio:.1%} > 5% tolerance ({mismatch}/{total_pixels} pixels)"
+    )

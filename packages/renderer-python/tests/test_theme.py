@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import pytest
-
 from excalidraw_render.theme import ResolvedTheme, resolve_theme
 
 REPO_ROOT = Path(__file__).resolve().parents[3]

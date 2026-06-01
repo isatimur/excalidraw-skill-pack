@@ -1,9 +1,8 @@
 from io import BytesIO
 from pathlib import Path
 
-from PIL import Image
-
 from excalidraw_render.render import render_to_png
+from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FIXTURE = REPO_ROOT / "packages" / "shared" / "fixtures" / "05-inline-figure.excalidraw"

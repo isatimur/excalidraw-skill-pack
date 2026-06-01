@@ -10,14 +10,21 @@ def test_cli_renders_to_output_path(tmp_path):
     out = tmp_path / "out.png"
     result = subprocess.run(
         [
-            sys.executable, "-m", "excalidraw_render",
+            sys.executable,
+            "-m",
+            "excalidraw_render",
             str(FIXTURE),
-            "--theme", "default-sketchy",
-            "--output", str(out),
-            "--scale", "1",
-            "--width", "800",
+            "--theme",
+            "default-sketchy",
+            "--output",
+            str(out),
+            "--scale",
+            "1",
+            "--width",
+            "800",
         ],
-        capture_output=True, text=True,
+        capture_output=True,
+        text=True,
     )
     assert result.returncode == 0, result.stderr
     assert out.exists()
