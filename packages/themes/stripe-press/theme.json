@@ -1,0 +1,20 @@
+{
+  "name": "stripe-press",
+  "version": "0.1.0",
+  "extends": "default-sketchy",
+  "description": "Editorial / book-grade. Cream paper, ink-brown strokes, editorial sans/serif. Proven on 64 diagrams.",
+  "license": "MIT",
+  "author": "Timur Isachenko",
+  "preview": "preview.png",
+  "roles": {
+    "ink": "#2A2622",
+    "paper": "#F4EDE0",
+    "accent": "#B8472A",
+    "accent_alt": "#3B6A8A",
+    "evidence_bg": "#2A2622",
+    "evidence_text": "#F4EDE0",
+    "muted": "#7A6F5F",
+    "warning": "#D49E2C",
+    "danger": "#A03D2E"
+  }
+}

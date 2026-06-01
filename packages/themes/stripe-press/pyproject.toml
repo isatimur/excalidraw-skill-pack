@@ -1,0 +1,24 @@
+[project]
+name = "excalidraw-skill-pack-theme-stripe-press"
+version = "0.1.0"
+description = "Editorial &#x2F; book-grade. Cream paper, ink-brown strokes, editorial sans&#x2F;serif. Proven on 64 diagrams."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "Timur Isachenko" }]
+keywords = ["excalidraw", "excalidraw-skill-pack", "theme", "ai-agent", "diagrams"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/excalidraw_skill_pack_theme_stripe_press"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"theme.json" = "excalidraw_skill_pack_theme_stripe_press/theme.json"
+"palette.json" = "excalidraw_skill_pack_theme_stripe_press/palette.json"
+"palette.md" = "excalidraw_skill_pack_theme_stripe_press/palette.md"
+"typography.json" = "excalidraw_skill_pack_theme_stripe_press/typography.json"
+"elements" = "excalidraw_skill_pack_theme_stripe_press/elements"
+"layouts" = "excalidraw_skill_pack_theme_stripe_press/layouts"

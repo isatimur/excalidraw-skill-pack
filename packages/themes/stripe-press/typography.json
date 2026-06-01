@@ -1,0 +1,11 @@
+{
+  "fontFamily": 2,
+  "fontFamilyName": "Helvetica",
+  "fontSize": {
+    "small": 14,
+    "medium": 18,
+    "large": 26,
+    "heading": 34
+  },
+  "italicPolicy": "headings_and_takeaways"
+}

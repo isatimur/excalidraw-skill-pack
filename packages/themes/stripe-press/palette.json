@@ -1,0 +1,17 @@
+{
+  "ink": "#2A2622",
+  "paper": "#F4EDE0",
+  "accent": "#B8472A",
+  "accent_alt": "#3B6A8A",
+  "evidence_bg": "#2A2622",
+  "evidence_text": "#F4EDE0",
+  "muted": "#7A6F5F",
+  "warning": "#D49E2C",
+  "danger": "#A03D2E",
+  "syntax": {
+    "string": "#9AC79B",
+    "keyword": "#D49E2C",
+    "number": "#6FA4C9",
+    "comment": "#7A6F5F"
+  }
+}
