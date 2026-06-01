@@ -68,6 +68,22 @@ importers:
         specifier: ^1.5.0
         version: 1.6.1(@types/node@20.19.41)
 
+  packages/install:
+    dependencies:
+      commander:
+        specifier: ^12.0.0
+        version: 12.1.0
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.41
+      typescript:
+        specifier: ^5.4.0
+        version: 5.9.3
+      vitest:
+        specifier: ^1.5.0
+        version: 1.6.1(@types/node@20.19.41)
+
   packages/mcp-server:
     dependencies:
       '@excalidraw-skill-pack/core':
