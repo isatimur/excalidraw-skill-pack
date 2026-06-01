@@ -1,0 +1,16 @@
+---
+description: Generate Excalidraw diagrams that argue visually. Use the @excalidraw-skill-pack methodology.
+globs:
+  - "*.excalidraw"
+alwaysApply: false
+---
+
+# excalidraw-skill-pack methodology
+
+{{SKILL_BODY}}
+
+---
+
+## Active theme palette
+
+{{PALETTE_MD}}
