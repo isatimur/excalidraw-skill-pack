@@ -1,0 +1,32 @@
+name: Bug report
+description: Something doesn't work
+labels: [bug]
+body:
+  - type: dropdown
+    id: adapter
+    attributes:
+      label: Adapter
+      options:
+        - Claude Code
+        - Cursor
+        - Codex
+        - Gemini CLI
+        - Raw CLI (excalidraw-render)
+        - MCP server (other agent)
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: Version, description: "Output of `excalidraw-render --version` or the npm package version" }
+    validations: { required: true }
+  - type: textarea
+    id: repro
+    attributes: { label: Reproduction, description: "Steps to reproduce. Include the .excalidraw file if relevant." }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected behavior }
+    validations: { required: true }
+  - type: textarea
+    id: actual
+    attributes: { label: What actually happened, description: "Error output, screenshot, or rendered PNG" }
+    validations: { required: true }

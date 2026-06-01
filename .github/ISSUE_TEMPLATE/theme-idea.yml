@@ -1,0 +1,21 @@
+name: Theme idea
+description: Suggest a new theme — for yourself to build or for someone else to pick up
+labels: [theme]
+body:
+  - type: input
+    id: name
+    attributes: { label: Theme name (kebab-case) }
+    validations: { required: true }
+  - type: textarea
+    id: rationale
+    attributes: { label: Why this theme, description: "Who's it for, what existing brand does it match, what mood" }
+    validations: { required: true }
+  - type: input
+    id: palette
+    attributes: { label: Rough palette (4-7 hex codes) }
+  - type: checkboxes
+    attributes:
+      label: Are you building it?
+      options:
+        - label: "Yes, I'll publish it as a community theme"
+        - label: "No, I'm suggesting it for someone else"
