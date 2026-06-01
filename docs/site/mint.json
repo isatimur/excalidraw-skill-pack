@@ -1,0 +1,59 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "excalidraw-skill-pack",
+  "logo": {
+    "light": "/images/logo.svg",
+    "dark": "/images/logo.svg",
+    "href": "https://excalidraw-skill-pack.dev"
+  },
+  "favicon": "/images/logo.svg",
+  "colors": {
+    "primary": "#B8472A",
+    "light": "#E47C5F",
+    "dark": "#8B3320",
+    "background": { "light": "#F4EDE0", "dark": "#18181B" }
+  },
+  "topbarLinks": [
+    { "name": "GitHub", "url": "https://github.com/isatimur/excalidraw-skill-pack" }
+  ],
+  "topbarCtaButton": {
+    "name": "Install",
+    "url": "/getting-started/claude-code"
+  },
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": ["introduction"]
+    },
+    {
+      "group": "Install",
+      "pages": [
+        "getting-started/claude-code",
+        "getting-started/cursor",
+        "getting-started/codex",
+        "getting-started/gemini-cli",
+        "getting-started/cli"
+      ]
+    },
+    {
+      "group": "Themes",
+      "pages": ["themes/index", "themes/create"]
+    },
+    {
+      "group": "Examples",
+      "pages": ["examples/index"]
+    },
+    {
+      "group": "MCP",
+      "pages": ["mcp/tool-reference"]
+    },
+    {
+      "group": "Spec",
+      "pages": ["spec/theme-manifest"]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/isatimur",
+    "github": "https://github.com/isatimur/excalidraw-skill-pack"
+  }
+}
