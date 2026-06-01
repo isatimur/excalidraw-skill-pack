@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve, basename, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { Command } from "commander";
 import { renderToPng } from "./render.js";
 
