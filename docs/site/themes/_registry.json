@@ -1,0 +1,9 @@
+{
+  "updated": "2026-05-28T00:00:00Z",
+  "themes": [
+    { "name": "stripe-press", "npm": { "name": "@excalidraw-skill-pack/theme-stripe-press", "version": "0.1.0" }, "pypi": { "name": "excalidraw-skill-pack-theme-stripe-press", "version": "0.1.0" }, "description": "Editorial / book-grade. Proven on 64 diagrams.", "source": "monorepo" },
+    { "name": "notion", "npm": { "name": "@excalidraw-skill-pack/theme-notion", "version": "0.1.0" }, "pypi": { "name": "excalidraw-skill-pack-theme-notion", "version": "0.1.0" }, "description": "Rounded, off-white, soft.", "source": "monorepo" },
+    { "name": "whiteboard", "npm": { "name": "@excalidraw-skill-pack/theme-whiteboard", "version": "0.1.0" }, "pypi": { "name": "excalidraw-skill-pack-theme-whiteboard", "version": "0.1.0" }, "description": "Low-fi, bright, sketchy.", "source": "monorepo" },
+    { "name": "dark", "npm": { "name": "@excalidraw-skill-pack/theme-dark", "version": "0.1.0" }, "pypi": { "name": "excalidraw-skill-pack-theme-dark", "version": "0.1.0" }, "description": "Inverted contrast, neutral.", "source": "monorepo" }
+  ]
+}

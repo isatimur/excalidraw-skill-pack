@@ -1,0 +1,39 @@
+---
+title: "Themes registry"
+description: "Every published excalidraw-skill-pack theme. Rebuilt nightly from npm + PyPI."
+---
+
+import registry from "./_registry.json";
+
+<Note>Last updated: {registry.updated}</Note>
+
+## Bundled
+
+- **default-sketchy** — ships inside `@excalidraw-skill-pack/core`. Always available.
+
+## Curated (monorepo-published)
+
+<CardGroup cols={2}>
+  {registry.themes.filter(t => t.source === "monorepo").map((t) => (
+    <Card key={t.name} title={t.name} href={`https://www.npmjs.com/package/${t.npm?.name}`}>
+      {t.description}
+      <br />
+      <code>npm i -g {t.npm?.name}</code>
+    </Card>
+  ))}
+</CardGroup>
+
+## Community
+
+<CardGroup cols={2}>
+  {registry.themes.filter(t => t.source === "community").map((t) => (
+    <Card key={t.name} title={t.name} href={`https://www.npmjs.com/package/${t.npm?.name}`}>
+      {t.description ?? "—"}
+      <br />
+      {t.npm && <code>npm i -g {t.npm.name}</code>}
+      {t.pypi && <><br /><code>pip install {t.pypi.name}</code></>}
+    </Card>
+  ))}
+</CardGroup>
+
+[Author your own →](/themes/create)
