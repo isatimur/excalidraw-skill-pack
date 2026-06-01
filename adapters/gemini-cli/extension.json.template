@@ -1,0 +1,15 @@
+{
+  "name": "excalidraw-skill-pack",
+  "version": "0.1.0",
+  "description": "Make your AI agent argue visually.",
+  "contextFiles": [
+    "{{CORE_DIR}}/SKILL.md",
+    "{{CORE_DIR}}/element-templates.md"
+  ],
+  "mcpServers": {
+    "excalidraw-skill-pack": {
+      "command": "npx",
+      "args": ["@excalidraw-skill-pack/mcp-server"]
+    }
+  }
+}
