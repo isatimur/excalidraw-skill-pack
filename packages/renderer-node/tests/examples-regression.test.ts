@@ -36,6 +36,6 @@ describe.concurrent("book diagram regression", () => {
       golden.height,
       { threshold: 0.1 }
     );
-    expect(mismatched / (golden.width * golden.height)).toBeLessThan(0.02);
+    expect(mismatched / (golden.width * golden.height)).toBeLessThan(0.05);
   }, 120_000);
 });

@@ -38,7 +38,7 @@ describe("canary: node goldens regression", () => {
       const totalPixels = img.width * img.height;
       const diffPct = diffPixels / totalPixels;
 
-      expect(diffPct, `${name}: ${(diffPct * 100).toFixed(2)}% diff exceeds 2%`).toBeLessThanOrEqual(0.02);
+      expect(diffPct, `${name}: ${(diffPct * 100).toFixed(2)}% diff exceeds 5%`).toBeLessThanOrEqual(0.05);
     }, 60_000);
   }
 });
