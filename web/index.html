@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>excalidraw-skill-pack — Make your AI agent argue visually</title>
+<meta name="description" content="Universal skill pack for Excalidraw diagrams across Claude Code, Cursor, Codex, Gemini CLI, and any MCP-compatible agent." />
+<meta property="og:title" content="excalidraw-skill-pack" />
+<meta property="og:description" content="Make your AI agent argue visually." />
+<meta property="og:image" content="/images/themes/stripe-press.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232A2622'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-style='italic' fill='%23F4EDE0'%3Ee%3C/text%3E%3C/svg%3E" />
+<style>
+:root {
+  --ink: #2A2622;
+  --paper: #F4EDE0;
+  --accent: #B8472A;
+  --accent-alt: #3B6A8A;
+  --muted: #7A6F5F;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif; line-height: 1.6; }
+body { padding: 4rem 1.5rem; max-width: 960px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 4rem; }
+.eyebrow { font-family: "JetBrains Mono", "Menlo", monospace; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 400; font-style: italic; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1.5rem; }
+.tag { font-size: 1.2rem; color: var(--muted); max-width: 32rem; margin: 0 auto 2rem; }
+.cta { display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.cta a { display: inline-block; padding: 0.75rem 1.4rem; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.15s; }
+.cta a:hover { background: var(--ink); color: var(--paper); }
+.cta a.primary { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.cta a.primary:hover { background: #8B3320; border-color: #8B3320; }
+
+section { margin: 5rem 0; }
+section h2 { font-family: Georgia, serif; font-size: 1.7rem; font-style: italic; font-weight: 400; margin-bottom: 1.5rem; }
+section p { margin-bottom: 1rem; color: var(--ink); }
+
+.installs { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1.5rem; align-items: center; font-family: "JetBrains Mono", Menlo, monospace; font-size: 0.85rem; padding: 1.5rem; background: rgba(0,0,0,0.04); border-left: 3px solid var(--accent); }
+.installs .label { color: var(--muted); text-transform: none; }
+.installs code { background: transparent; word-break: break-all; }
+
+.themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.theme { text-align: center; }
+.theme img { width: 100%; height: 140px; object-fit: cover; border: 1px solid rgba(0,0,0,0.1); background: white; }
+.theme .name { font-family: "JetBrains Mono", Menlo, monospace; font-size: 0.75rem; margin-top: 0.5rem; color: var(--muted); }
+
+ul.methodology { list-style: none; padding: 0; }
+ul.methodology li { padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; gap: 1rem; }
+ul.methodology li::before { content: "→"; color: var(--accent); font-weight: bold; }
+
+footer { text-align: center; margin-top: 6rem; color: var(--muted); font-size: 0.85rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+footer a { color: var(--muted); }
+
+@media (max-width: 600px) {
+  .installs { grid-template-columns: 1fr; gap: 0.25rem 0; }
+  .installs .label { margin-top: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">AI Agent Skill Pack · v0.1.0</div>
+  <h1>Make your AI agent argue visually.</h1>
+  <p class="tag">Universal Excalidraw skill for Claude Code, Cursor, Codex, Gemini CLI, and any MCP-compatible agent. 14-diagram proof gallery. 5 themes. MIT.</p>
+  <div class="cta">
+    <a href="https://github.com/isatimur/excalidraw-skill-pack" class="primary">GitHub →</a>
+    <a href="#install">Install</a>
+    <a href="#themes">Themes</a>
+  </div>
+</header>
+
+<section id="install">
+  <h2>Install</h2>
+  <div class="installs">
+    <span class="label">Claude Code</span><code>npx @excalidraw-skill-pack/install claude-code</code>
+    <span class="label">Cursor</span><code>npx @excalidraw-skill-pack/install cursor</code>
+    <span class="label">Codex</span><code>npx @excalidraw-skill-pack/install codex</code>
+    <span class="label">Gemini CLI</span><code>npx @excalidraw-skill-pack/install gemini-cli</code>
+    <span class="label">Any MCP agent</span><code>npx @excalidraw-skill-pack/mcp-server</code>
+    <span class="label">Renderer (Node)</span><code>npx excalidraw-render diagram.excalidraw --theme stripe-press</code>
+    <span class="label">Renderer (Python)</span><code>pipx install excalidraw-render</code>
+  </div>
+</section>
+
+<section id="themes">
+  <h2>Themes</h2>
+  <p>Five themes ship in v0.1. Author a new one in 20 lines of JSON + <code>npm publish</code>.</p>
+  <div class="themes">
+    <div class="theme"><img src="/images/themes/default-sketchy.png" alt="default-sketchy" /><div class="name">default-sketchy</div></div>
+    <div class="theme"><img src="/images/themes/stripe-press.png" alt="stripe-press" /><div class="name">stripe-press</div></div>
+    <div class="theme"><img src="/images/themes/notion.png" alt="notion" /><div class="name">notion</div></div>
+    <div class="theme"><img src="/images/themes/whiteboard.png" alt="whiteboard" /><div class="name">whiteboard</div></div>
+    <div class="theme"><img src="/images/themes/dark.png" alt="dark" /><div class="name">dark</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>The methodology</h2>
+  <p>Diagrams are arguments. The shape should BE the meaning.</p>
+  <ul class="methodology">
+    <li><span><strong>Isomorphism test.</strong> Would the structure alone communicate the concept?</span></li>
+    <li><span><strong>Evidence artifacts.</strong> Real code, actual API names, concrete formats — not placeholder text.</span></li>
+    <li><span><strong>One accent per diagram.</strong> Two means a competing argument; split it.</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Proof</h2>
+  <p>14 diagrams in <a href="https://fromcopilottocolleague.com">From Copilot to Colleague</a> were generated with this methodology. Browse them at <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">/examples/book</a>.</p>
+</section>
+
+<footer>
+  MIT · <a href="https://github.com/isatimur/excalidraw-skill-pack">github.com/isatimur/excalidraw-skill-pack</a> · made by <a href="https://github.com/isatimur">@isatimur</a>
+</footer>
+
+</body>
+</html>
