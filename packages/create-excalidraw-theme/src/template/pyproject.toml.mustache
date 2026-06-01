@@ -1,0 +1,24 @@
+[project]
+name = "excalidraw-skill-pack-theme-{{slug}}"
+version = "0.1.0"
+description = "{{description}}"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "{{author}}" }]
+keywords = ["excalidraw", "excalidraw-skill-pack", "theme", "ai-agent", "diagrams"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/excalidraw_skill_pack_theme_{{slug_underscored}}"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"theme.json" = "excalidraw_skill_pack_theme_{{slug_underscored}}/theme.json"
+"palette.json" = "excalidraw_skill_pack_theme_{{slug_underscored}}/palette.json"
+"palette.md" = "excalidraw_skill_pack_theme_{{slug_underscored}}/palette.md"
+"typography.json" = "excalidraw_skill_pack_theme_{{slug_underscored}}/typography.json"
+"elements" = "excalidraw_skill_pack_theme_{{slug_underscored}}/elements"
+"layouts" = "excalidraw_skill_pack_theme_{{slug_underscored}}/layouts"
