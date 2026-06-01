@@ -1,0 +1,211 @@
+---
+title: "MCP tool reference"
+description: "The 5 tools exposed by @excalidraw-skill-pack/mcp-server."
+---
+
+## Connection
+
+Transport: stdio. Spawn with:
+
+```bash
+npx @excalidraw-skill-pack/mcp-server
+```
+
+Add to `claude_desktop_config.json` or your agent's MCP config:
+
+```json
+{
+  "mcpServers": {
+    "excalidraw-skill-pack": {
+      "command": "npx",
+      "args": ["@excalidraw-skill-pack/mcp-server"]
+    }
+  }
+}
+```
+
+---
+
+## Tools
+
+### `generate_diagram_prompt`
+
+Returns SKILL.md + active theme palette + selected layout as a structured prompt payload. **Does not call an LLM** — the calling agent's model drafts the JSON using the returned context.
+
+**Input:**
+
+```json
+{
+  "theme": "stripe-press",
+  "style_template": "concept-card",
+  "intent": "Show me the post-meeting redaction pipeline"
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `theme` | string | no | Theme name. Defaults to `default-sketchy`. |
+| `style_template` | string | no | Layout preset name (e.g. `concept-card`, `flow-pipeline`). |
+| `intent` | string | yes | What the diagram should communicate. Injected into the methodology prompt. |
+
+**Returns:**
+
+```json
+{
+  "theme": "stripe-press",
+  "intent": "Show me the post-meeting redaction pipeline",
+  "skill": "## Diagrams ARGUE...\n\n### Isomorphism Test...",
+  "palette_markdown": "| Role | Hex | Use for |\n|---|---|---|\n| `ink` | ...",
+  "layout": "# concept-card\n\nA single concept rendered as a self-contained card...",
+  "typography": {
+    "fontFamily": "Virgil",
+    "bodySize": 16,
+    "captionSize": 12,
+    "italic": "evidence-only"
+  },
+  "element_defaults": {
+    "strokeWidth": 2,
+    "roughness": 1,
+    "fillStyle": "solid"
+  }
+}
+```
+
+---
+
+### `render_diagram`
+
+Render Excalidraw JSON to PNG. Runs Excalidraw headless in Chromium via Playwright.
+
+**Input:**
+
+```json
+{
+  "json": "{...excalidraw json...}",
+  "theme": "stripe-press",
+  "scale": 2,
+  "width": 1920
+}
+```
+
+| Field | Type | Required | Default | Description |
+|---|---|---|---|---|
+| `json` | string | yes | — | Excalidraw JSON (the `elements` + `appState` object). |
+| `theme` | string | no | `default-sketchy` | Theme to apply before rendering. |
+| `scale` | number | no | `2` | Device pixel ratio. |
+| `width` | number | no | `1920` | Canvas width in CSS pixels. |
+
+**Returns:**
+
+```json
+{
+  "png_base64": "iVBORw0KGgoAAAANSUhEUgAAB...",
+  "width": 1920,
+  "height": 1080
+}
+```
+
+---
+
+### `audit_diagram`
+
+Validate Excalidraw JSON against the schema and the methodology's design rules. Returns severity-tagged issues. Use before `render_diagram` if you want to surface problems early.
+
+**Input:**
+
+```json
+{
+  "json": "{...excalidraw json...}",
+  "theme": "stripe-press"
+}
+```
+
+**Returns:**
+
+```json
+{
+  "issues": [
+    {
+      "severity": "error",
+      "message": "elements[] is empty — nothing to render",
+      "path": "/elements"
+    },
+    {
+      "severity": "warning",
+      "message": "More than one accent color in use — diagram may have competing arguments",
+      "path": "/elements/3/strokeColor"
+    },
+    {
+      "severity": "info",
+      "message": "No evidence artifact found — consider adding a concrete code or data snippet",
+      "path": "/elements"
+    }
+  ]
+}
+```
+
+Severities: `error` (blocks render), `warning` (renders but violates methodology), `info` (suggestion).
+
+---
+
+### `list_themes`
+
+Discover all themes available in the current environment: bundled, npm-installed, and PyPI-installed.
+
+**Input:** none (empty object `{}`).
+
+**Returns:**
+
+```json
+{
+  "themes": [
+    { "name": "default-sketchy", "version": "0.1.0", "source": "bundled" },
+    { "name": "stripe-press",    "version": "0.1.0", "source": "npm" },
+    { "name": "notion",          "version": "0.1.0", "source": "npm" },
+    { "name": "whiteboard",      "version": "0.1.0", "source": "npm" },
+    { "name": "dark",            "version": "0.1.0", "source": "npm" }
+  ]
+}
+```
+
+`source` values: `bundled` (ships with core), `npm`, `pypi`.
+
+---
+
+### `apply_theme`
+
+Re-skin an existing diagram by remapping colors from the source theme's role table to the target theme's role table. Optionally renders the result to PNG.
+
+**Input:**
+
+```json
+{
+  "json": "{...excalidraw json...}",
+  "target_theme": "dark",
+  "render": true
+}
+```
+
+| Field | Type | Required | Default | Description |
+|---|---|---|---|---|
+| `json` | string | yes | — | Source Excalidraw JSON. |
+| `target_theme` | string | yes | — | Theme to re-skin to. |
+| `render` | boolean | no | `false` | If `true`, also render to PNG and include `png_base64`. |
+
+**Returns:**
+
+```json
+{
+  "json": "{...transformed excalidraw json...}",
+  "mapping": {
+    "#1e1e1e": "#E7E5E4",
+    "#ffffff": "#18181B",
+    "#B8472A": "#E47C5F"
+  },
+  "png_base64": "iVBORw0KGgoAAAANSUhEUgAAB..."
+}
+```
+
+`mapping` shows which source hex values were replaced and what they became. `png_base64` is only present when `render: true`.
+
+Colors not found in the source theme's role table are passed through unchanged.
