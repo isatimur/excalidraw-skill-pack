@@ -1,0 +1,45 @@
+name: Adapter Install Matrix
+
+on:
+  pull_request:
+    paths:
+      - "adapters/**"
+      - "packages/install/**"
+      - "packages/core/**"
+      - ".github/workflows/adapter-install-matrix.yml"
+
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        adapter: [claude-code, cursor, codex, gemini-cli]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Link core globally
+        run: |
+          cd packages/core && npm link
+      - name: Run adapter install
+        run: |
+          mkdir -p test-env
+          cd test-env
+          bash ../adapters/${{ matrix.adapter }}/install.sh
+      - name: Verify install succeeded
+        run: |
+          case "${{ matrix.adapter }}" in
+            claude-code) test -f "$HOME/.claude/skills/excalidraw-diagram/SKILL.md" ;;
+            cursor) test -f "test-env/.cursor/rules/excalidraw.mdc" ;;
+            codex) test -f "$HOME/.codex/skills/excalidraw-diagram/SKILL.md" ;;
+            gemini-cli) test -f "$HOME/.gemini/extensions/excalidraw-skill-pack/extension.json" ;;
+          esac
