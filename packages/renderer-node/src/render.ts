@@ -64,7 +64,12 @@ export async function renderToPng(json: string, opts: RenderOptions = {}): Promi
     await page.waitForFunction("window.__moduleReady === true", { timeout: 30000 });
 
     const result = await page.evaluate(
-      (jsonStr) => (window as unknown as { renderDiagram: (s: string) => Promise<{ success: boolean; error?: string }> }).renderDiagram(jsonStr),
+      (jsonStr) =>
+        (
+          globalThis as unknown as {
+            renderDiagram: (s: string) => Promise<{ success: boolean; error?: string }>;
+          }
+        ).renderDiagram(jsonStr),
       json
     );
 
