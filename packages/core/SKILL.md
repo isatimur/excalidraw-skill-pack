@@ -21,7 +21,7 @@ To author a new theme: `npx create-excalidraw-theme my-brand`. See `docs.excalid
 
 ## Core Philosophy
 
-**Diagrams should ARGUE, not DISPLAY.**
+**Diagrams ARGUE, not DISPLAY.**
 
 A diagram isn't formatted text. It's a visual argument that shows relationships, causality, and flow that words alone can't express. The shape should BE the meaning.
 
