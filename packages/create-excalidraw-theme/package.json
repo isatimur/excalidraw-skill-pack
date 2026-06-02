@@ -1,5 +1,5 @@
 {
-  "name": "create-excalidraw-theme",
+  "name": "@excalidraw-skill-pack/create-theme",
   "version": "0.1.0",
   "description": "Scaffold a new excalidraw-skill-pack theme package (npm + PyPI mirror).",
   "license": "MIT",

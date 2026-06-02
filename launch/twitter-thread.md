@@ -34,7 +34,7 @@ The book argument lives in the diagrams. The diagrams live in version control. S
 [theme grid image]
 
 Anyone can publish a custom theme:
-`npx create-excalidraw-theme my-brand`
+`npx @excalidraw-skill-pack/create-theme my-brand`
 `npm publish`
 
 3 minutes from "I want my brand colors" to "shipped on npm."

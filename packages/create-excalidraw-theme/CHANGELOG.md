@@ -1,4 +1,4 @@
-# create-excalidraw-theme
+# @excalidraw-skill-pack/create-theme
 
 ## 0.1.0
 

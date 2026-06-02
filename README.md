@@ -41,7 +41,7 @@
 Five themes ship in v0.1. Authoring a new theme is 20 lines of JSON + `npm publish`:
 
 ```bash
-npx create-excalidraw-theme my-brand
+npx @excalidraw-skill-pack/create-theme my-brand
 cd theme-my-brand && npm publish --access public
 ```
 

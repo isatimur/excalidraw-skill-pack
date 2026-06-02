@@ -3,7 +3,7 @@
 Scaffold a new excalidraw-skill-pack theme — npm package + PyPI mirror.
 
 ```bash
-npx create-excalidraw-theme my-brand
+npx @excalidraw-skill-pack/create-theme my-brand
 cd theme-my-brand
 npm publish --access public
 # and the PyPI mirror:

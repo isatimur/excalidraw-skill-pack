@@ -8,7 +8,7 @@ After enough of my friends asked "how did you do that?", I extracted it into a u
 - **Any MCP-compatible agent** — stdio MCP server, 5 tools (generate prompt, render, audit, list themes, apply theme)
 - **Renderer-only** — `npx @excalidraw-skill-pack/render` or `pipx install excalidraw-skill-pack-render` for CI/batch use
 
-The interesting bit is the **theme ecosystem**: each theme is a standalone npm + PyPI package (`@excalidraw-skill-pack/theme-stripe-press`, etc.), so anyone can publish a custom brand theme without PR-ing the main repo. We ship with 5: `default-sketchy`, `stripe-press` (the book's look), `notion`, `whiteboard`, `dark`. `npx create-excalidraw-theme my-brand` scaffolds a new one in 3 minutes.
+The interesting bit is the **theme ecosystem**: each theme is a standalone npm + PyPI package (`@excalidraw-skill-pack/theme-stripe-press`, etc.), so anyone can publish a custom brand theme without PR-ing the main repo. We ship with 5: `default-sketchy`, `stripe-press` (the book's look), `notion`, `whiteboard`, `dark`. `npx @excalidraw-skill-pack/create-theme my-brand` scaffolds a new one in 3 minutes.
 
 There's an `apply_theme` MCP tool that re-skins any existing `.excalidraw` to a different theme via role-based color remapping — useful for "give me the same diagram in our brand palette."
 
