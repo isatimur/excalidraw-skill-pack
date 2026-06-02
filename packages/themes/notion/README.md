@@ -2,7 +2,7 @@
 
 > Rounded, soft, off-white. Matches Notion&#39;s docs aesthetic.
 
-Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.dev).
+Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.vercel.app).
 
 ## Install
 

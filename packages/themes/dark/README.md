@@ -2,7 +2,7 @@
 
 > Inverted contrast, neutral. For presentations and dev tools.
 
-Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.dev).
+Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.vercel.app).
 
 ## Install
 

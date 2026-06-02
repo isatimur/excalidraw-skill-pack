@@ -65,6 +65,6 @@ rm -rf ~/.claude/skills/excalidraw-diagram
 
 ## What's next
 
-The 64-diagram gallery at [excalidraw-skill-pack.dev/examples](https://excalidraw-skill-pack.dev/examples) shows the range of what the methodology produces. Every diagram there was generated with the same skill you just installed — for the book *From Copilot to Colleague*.
+The 14-diagram gallery at [excalidraw-skill-pack.vercel.app/examples](https://excalidraw-skill-pack.vercel.app/examples) shows the range of what the methodology produces. Every diagram there was generated with the same skill you just installed — for the book *From Copilot to Colleague*.
 
 If you build something, share it. If the diagram comes back wrong on the first try, look at the isomorphism test first — usually the prompt is describing content rather than structure.

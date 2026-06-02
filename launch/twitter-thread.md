@@ -4,7 +4,7 @@
 
 One command install for Claude Code, Cursor, Codex, Gemini CLI, or any MCP-compatible agent.
 
-Demo + 64-diagram gallery: https://excalidraw-skill-pack.dev
+Demo + 14-diagram gallery: https://excalidraw-skill-pack.vercel.app
 
 [hero GIF]
 
@@ -16,7 +16,7 @@ The agent reads this. So do you.
 
 [methodology snippet image]
 
-3/ Proof: 64 diagrams in my book *From Copilot to Colleague* (https://fromcopilottocolleague.com) were generated with this skill.
+3/ Proof: 14 diagrams in my book *From Copilot to Colleague* (https://fromcopilottocolleague.com) were generated with this skill.
 
 The book argument lives in the diagrams. The diagrams live in version control. Same workflow as the manuscript.
 

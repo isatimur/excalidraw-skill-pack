@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://excalidraw-skill-pack.dev"><img src="https://img.shields.io/badge/docs-excalidraw--skill--pack.dev-B8472A" alt="docs" /></a>
-  <a href="https://www.npmjs.com/package/excalidraw-render"><img src="https://img.shields.io/npm/v/excalidraw-render?label=excalidraw-render" alt="npm" /></a>
-  <a href="https://pypi.org/project/excalidraw-render/"><img src="https://img.shields.io/pypi/v/excalidraw-render?label=PyPI" alt="pypi" /></a>
+  <a href="https://excalidraw-skill-pack.vercel.app"><img src="https://img.shields.io/badge/docs-excalidraw--skill--pack.dev-B8472A" alt="docs" /></a>
+  <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Frender?label=npm%20render" alt="npm" /></a>
+  <a href="https://pypi.org/project/excalidraw-skill-pack-render/"><img src="https://img.shields.io/pypi/v/excalidraw-skill-pack-render?label=PyPI" alt="pypi" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/isatimur/excalidraw-skill-pack" alt="license" /></a>
 </p>
 
@@ -45,11 +45,26 @@ npx @excalidraw-skill-pack/create-theme my-brand
 cd theme-my-brand && npm publish --access public
 ```
 
-[Browse the theme registry →](https://excalidraw-skill-pack.dev/themes)
+[Browse the theme registry →](https://excalidraw-skill-pack.vercel.app/themes)
+
+## Published packages (v0.1)
+
+| Channel | Package | Purpose |
+|---|---|---|
+| npm | [`@excalidraw-skill-pack/core`](https://www.npmjs.com/package/@excalidraw-skill-pack/core) | Methodology + bundled `default-sketchy` theme + schemas |
+| npm | [`@excalidraw-skill-pack/render`](https://www.npmjs.com/package/@excalidraw-skill-pack/render) | Node renderer (`excalidraw-render` CLI) |
+| npm | [`@excalidraw-skill-pack/mcp-server`](https://www.npmjs.com/package/@excalidraw-skill-pack/mcp-server) | stdio MCP server with 5 tools |
+| npm | [`@excalidraw-skill-pack/install`](https://www.npmjs.com/package/@excalidraw-skill-pack/install) | One-command adapter installer |
+| npm | [`@excalidraw-skill-pack/create-theme`](https://www.npmjs.com/package/@excalidraw-skill-pack/create-theme) | Scaffolder for new theme packages |
+| npm | [`@excalidraw-skill-pack/theme-stripe-press`](https://www.npmjs.com/package/@excalidraw-skill-pack/theme-stripe-press) | Editorial / book-grade |
+| npm | [`@excalidraw-skill-pack/theme-notion`](https://www.npmjs.com/package/@excalidraw-skill-pack/theme-notion) | Rounded, off-white |
+| npm | [`@excalidraw-skill-pack/theme-whiteboard`](https://www.npmjs.com/package/@excalidraw-skill-pack/theme-whiteboard) | Low-fi, bright, sketchy |
+| npm | [`@excalidraw-skill-pack/theme-dark`](https://www.npmjs.com/package/@excalidraw-skill-pack/theme-dark) | Inverted contrast |
+| PyPI | [`excalidraw-skill-pack-render`](https://pypi.org/project/excalidraw-skill-pack-render/) | Python renderer (`excalidraw-render` CLI) |
 
 ## Proof
 
-64 diagrams in [*From Copilot to Colleague*](https://fromcopilottocolleague.com) were generated with this methodology. [See the gallery →](https://excalidraw-skill-pack.dev/examples)
+14 diagrams in [*From Copilot to Colleague*](https://fromcopilottocolleague.com) were generated with this methodology. Browse them at [/examples/book](https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book).
 
 ## Methodology
 
@@ -59,7 +74,7 @@ Diagrams are arguments. The shape should BE the meaning.
 - **Evidence artifacts:** real code snippets, actual API names, concrete formats — not placeholder text.
 - **One accent per diagram.** Two means a competing argument; split it.
 
-Read the [full methodology](https://excalidraw-skill-pack.dev/spec/theme-manifest) (it's also what the AI agent reads).
+Read the [full methodology](https://excalidraw-skill-pack.vercel.app/spec/theme-manifest) (it's also what the AI agent reads).
 
 ## License
 

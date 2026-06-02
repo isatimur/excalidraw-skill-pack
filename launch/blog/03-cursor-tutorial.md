@@ -62,6 +62,6 @@ Your theme appears in the registry within 24 hours. Reinstall with `THEME=my-bra
 
 ## What's next
 
-The [excalidraw-skill-pack.dev/examples](https://excalidraw-skill-pack.dev/examples) gallery shows 64 diagrams generated with this methodology — for the book *From Copilot to Colleague*. Good reference for what "diagrams that argue" looks like across diagram types: flows, stacks, relationship maps, concept cards.
+The [excalidraw-skill-pack.vercel.app/examples](https://excalidraw-skill-pack.vercel.app/examples) gallery shows 14 diagrams generated with this methodology — for the book *From Copilot to Colleague*. Good reference for what "diagrams that argue" looks like across diagram types: flows, stacks, relationship maps, concept cards.
 
-The [MCP tool reference](https://excalidraw-skill-pack.dev/mcp/tool-reference) documents all 5 tools if you want to call them directly from Cursor's tool-use interface.
+The [MCP tool reference](https://excalidraw-skill-pack.vercel.app/mcp/tool-reference) documents all 5 tools if you want to call them directly from Cursor's tool-use interface.

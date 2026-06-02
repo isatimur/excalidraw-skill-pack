@@ -1,8 +1,8 @@
 # @excalidraw-skill-pack/theme-stripe-press
 
-> Editorial &#x2F; book-grade. Cream paper, ink-brown strokes, editorial sans&#x2F;serif. Proven on 64 diagrams.
+> Editorial &#x2F; book-grade. Cream paper, ink-brown strokes, editorial sans&#x2F;serif. Proven on 14 diagrams.
 
-Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.dev).
+Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.vercel.app).
 
 ## Install
 

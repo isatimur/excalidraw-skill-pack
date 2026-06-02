@@ -79,4 +79,4 @@ The three tools aren't competing for the same use case. Most teams need all thre
 ---
 
 Try excalidraw-skill-pack: `npx @excalidraw-skill-pack/install claude-code`
-Gallery of 64 diagrams made with the methodology: https://excalidraw-skill-pack.dev/examples
+Gallery of 14 diagrams made with the methodology: https://excalidraw-skill-pack.vercel.app/examples

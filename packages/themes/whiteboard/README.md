@@ -2,7 +2,7 @@
 
 > Low-fi, bright, intentionally sketchy. For workshops and ideation sessions.
 
-Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.dev).
+Theme package for [excalidraw-skill-pack](https://excalidraw-skill-pack.vercel.app).
 
 ## Install
 

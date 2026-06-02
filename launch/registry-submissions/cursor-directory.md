@@ -35,6 +35,6 @@ cd theme-my-brand && npm publish --access public
 
 **Repository:** https://github.com/isatimur/excalidraw-skill-pack
 
-**Homepage:** https://excalidraw-skill-pack.dev
+**Homepage:** https://excalidraw-skill-pack.vercel.app
 
 **License:** MIT

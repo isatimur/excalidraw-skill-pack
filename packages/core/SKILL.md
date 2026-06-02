@@ -15,7 +15,7 @@ Generate `.excalidraw` JSON files that **argue visually**, not just display info
 
 The active theme is resolved per call (`--theme` flag), per project (`.excalidraw-skill-pack.json`), or globally (`~/.excalidraw-skill-pack/config.json`). The MCP server's `generate_diagram_prompt` tool splices the active theme's `palette.md` and any requested `layouts/<template>.md` into the agent's system prompt at call time.
 
-To author a new theme: `npx create-excalidraw-theme my-brand`. See `docs.excalidraw-skill-pack.dev/themes/create`.
+To author a new theme: `npx @excalidraw-skill-pack/create-theme my-brand`. See `excalidraw-skill-pack.vercel.app/themes/create`.
 
 ---
 

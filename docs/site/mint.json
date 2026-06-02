@@ -4,7 +4,7 @@
   "logo": {
     "light": "/images/logo.svg",
     "dark": "/images/logo.svg",
-    "href": "https://excalidraw-skill-pack.dev"
+    "href": "https://excalidraw-skill-pack.vercel.app"
   },
   "favicon": "/images/logo.svg",
   "colors": {

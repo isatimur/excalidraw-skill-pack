@@ -4,7 +4,7 @@
 
 **Description:**
 
-A universal skill pack that teaches Claude / Cursor / Codex / Gemini how to draft Excalidraw diagrams that pass the isomorphism test (the shape IS the meaning). Ships with 5 themes, a renderer in both Node + Python, an MCP server with 5 tools, and a one-command installer per agent. The proof: 64 diagrams in a published book were generated with this methodology.
+A universal skill pack that teaches Claude / Cursor / Codex / Gemini how to draft Excalidraw diagrams that pass the isomorphism test (the shape IS the meaning). Ships with 5 themes, a renderer in both Node + Python, an MCP server with 5 tools, and a one-command installer per agent. The proof: 14 diagrams in a published book were generated with this methodology.
 
 **First comment (maker comment):**
 
