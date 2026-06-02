@@ -26,6 +26,12 @@ jobs:
             *) echo "unknown package: $PKG_NAME"; exit 1 ;;
           esac
           echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+      - name: Materialize symlinked shared assets
+        if: steps.pkg.outputs.dir == 'packages/renderer-python'
+        run: |
+          TEMPLATE=packages/renderer-python/src/excalidraw_render/render_template.html
+          rm -f "$TEMPLATE"
+          cp packages/shared/render_template.html "$TEMPLATE"
       - name: Build
         working-directory: ${{ steps.pkg.outputs.dir }}
         run: uv build
