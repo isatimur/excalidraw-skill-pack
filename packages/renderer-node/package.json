@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-skill-pack/render",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Render Excalidraw JSON to PNG. Node binding for excalidraw-skill-pack.",
   "license": "MIT",
   "type": "module",
@@ -12,7 +12,10 @@
   "exports": {
     ".": "./dist/index.js"
   },
-  "files": ["dist", "src/render_template.html"],
+  "files": [
+    "dist",
+    "src/render_template.html"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json && cp src/render_template.html dist/render_template.html",
     "test": "vitest run",
@@ -33,5 +36,7 @@
     "typescript": "^5.4.0",
     "vitest": "^1.5.0"
   },
-  "engines": { "node": ">=20.0.0" }
+  "engines": {
+    "node": ">=20.0.0"
+  }
 }

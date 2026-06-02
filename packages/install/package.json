@@ -1,22 +1,30 @@
 {
   "name": "@excalidraw-skill-pack/install",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "One-command installer for excalidraw-skill-pack adapters.",
   "license": "MIT",
   "type": "module",
-  "bin": { "excalidraw-skill-pack-install": "./dist/index.js" },
-  "files": ["dist"],
+  "bin": {
+    "excalidraw-skill-pack-install": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
     "lint": "eslint src",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
-  "dependencies": { "commander": "^12.0.0" },
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.4.0",
     "vitest": "^1.5.0"
   },
-  "engines": { "node": ">=20.0.0" }
+  "engines": {
+    "node": ">=20.0.0"
+  }
 }

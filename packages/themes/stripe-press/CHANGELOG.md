@@ -1,0 +1,7 @@
+# @excalidraw-skill-pack/theme-stripe-press
+
+## 0.2.0
+
+### Minor Changes
+
+- 5f01c19: Initial release of 4 themes (stripe-press, notion, whiteboard, dark) and the create-excalidraw-theme scaffolder.

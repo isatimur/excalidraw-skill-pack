@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-skill-pack/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Core methodology, schemas, and bundled default-sketchy theme for excalidraw-skill-pack.",
   "license": "MIT",
   "type": "module",
