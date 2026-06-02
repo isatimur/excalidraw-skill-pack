@@ -5,13 +5,13 @@ No adapter to install — the CLI is the renderer.
 ## Node
 
 ```bash
-npx excalidraw-render diagram.excalidraw --theme stripe-press --output out.png --scale 2
+npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press --output out.png --scale 2
 ```
 
 ## Python
 
 ```bash
-pipx install excalidraw-render
+pipx install excalidraw-skill-pack-render
 playwright install chromium
 excalidraw-render diagram.excalidraw --theme stripe-press --output out.png --scale 2
 ```

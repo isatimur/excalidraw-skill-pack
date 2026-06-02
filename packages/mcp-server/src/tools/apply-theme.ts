@@ -88,7 +88,7 @@ export const applyThemeTool: ToolDefinition = {
     };
 
     if (shouldRender) {
-      const { renderToPng } = await import("excalidraw-render");
+      const { renderToPng } = await import("@excalidraw-skill-pack/render");
       const { PNG } = await import("pngjs");
       const buf = await renderToPng(transformedJson, {});
       const png = PNG.sync.read(buf);

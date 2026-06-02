@@ -15,7 +15,7 @@ pip install excalidraw-skill-pack-theme-stripe-press
 ## Use
 
 ```bash
-npx excalidraw-render diagram.excalidraw --theme stripe-press
+npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press
 ```
 
 Or set in `.excalidraw-skill-pack.json`:

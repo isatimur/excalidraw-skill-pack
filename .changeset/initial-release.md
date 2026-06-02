@@ -1,6 +1,6 @@
 ---
 "@excalidraw-skill-pack/core": minor
-"excalidraw-render": minor
+"@excalidraw-skill-pack/render": minor
 "@excalidraw-skill-pack/mcp-server": minor
 ---
 

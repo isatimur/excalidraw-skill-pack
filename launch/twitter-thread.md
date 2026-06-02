@@ -53,7 +53,7 @@ Your agent's own model drafts the JSON. We never call an LLM ourselves.
 
 Means: model-agnostic, no API key, no cost to us, no rate limits.
 
-8/ Renderer is dual-language — Node (`npx excalidraw-render`) and Python (`pipx install excalidraw-render`).
+8/ Renderer is dual-language — Node (`npx @excalidraw-skill-pack/render`) and Python (`pipx install excalidraw-skill-pack-render`).
 
 Same CLI. Same output. Use whichever fits your CI / scripts.
 

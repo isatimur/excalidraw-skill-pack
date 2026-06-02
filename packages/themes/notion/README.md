@@ -15,7 +15,7 @@ pip install excalidraw-skill-pack-theme-notion
 ## Use
 
 ```bash
-npx excalidraw-render diagram.excalidraw --theme notion
+npx @excalidraw-skill-pack/render diagram.excalidraw --theme notion
 ```
 
 Or set in `.excalidraw-skill-pack.json`:

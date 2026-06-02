@@ -5,7 +5,7 @@ Node.js renderer for Excalidraw JSON → PNG, using Playwright + Chromium.
 ## Install
 
 ```bash
-npm install excalidraw-render
+npm install @excalidraw-skill-pack/render
 ```
 
 ## Usage

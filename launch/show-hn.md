@@ -6,7 +6,7 @@ After enough of my friends asked "how did you do that?", I extracted it into a u
 
 - **Claude Code, Cursor, Codex, Gemini CLI** — one-command install per agent
 - **Any MCP-compatible agent** — stdio MCP server, 5 tools (generate prompt, render, audit, list themes, apply theme)
-- **Renderer-only** — `npx excalidraw-render` or `pipx install excalidraw-render` for CI/batch use
+- **Renderer-only** — `npx @excalidraw-skill-pack/render` or `pipx install excalidraw-skill-pack-render` for CI/batch use
 
 The interesting bit is the **theme ecosystem**: each theme is a standalone npm + PyPI package (`@excalidraw-skill-pack/theme-stripe-press`, etc.), so anyone can publish a custom brand theme without PR-ing the main repo. We ship with 5: `default-sketchy`, `stripe-press` (the book's look), `notion`, `whiteboard`, `dark`. `npx create-excalidraw-theme my-brand` scaffolds a new one in 3 minutes.
 

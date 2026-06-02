@@ -15,7 +15,7 @@ pip install excalidraw-skill-pack-theme-dark
 ## Use
 
 ```bash
-npx excalidraw-render diagram.excalidraw --theme dark
+npx @excalidraw-skill-pack/render diagram.excalidraw --theme dark
 ```
 
 Or set in `.excalidraw-skill-pack.json`:

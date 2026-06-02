@@ -5,7 +5,7 @@ Python binding for rendering Excalidraw JSON to PNG, part of excalidraw-skill-pa
 ## Install
 
 ```bash
-pip install excalidraw-render
+pip install excalidraw-skill-pack-render
 playwright install chromium
 ```
 

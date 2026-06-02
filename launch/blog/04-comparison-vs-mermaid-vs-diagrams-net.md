@@ -47,7 +47,7 @@ excalidraw-skill-pack is a methodology + theme ecosystem for generating Excalidr
 - You want AI-native diagram generation. The methodology is what the agent reads — isomorphism test, evidence artifacts, one accent per diagram. The agent produces structured, meaningful JSON rather than random Excalidraw elements.
 - You want theming across a team or product. Themes are standalone packages. Publish once; every agent on the team uses the same visual language.
 - You want diagrams version-controlled as readable JSON. Excalidraw's format is clean enough to diff; the source is the artifact.
-- You want to render in CI or scripts. The dual-language renderer (`npx excalidraw-render` / `pipx install excalidraw-render`) works headlessly in any pipeline.
+- You want to render in CI or scripts. The dual-language renderer (`npx @excalidraw-skill-pack/render` / `pipx install excalidraw-skill-pack-render`) works headlessly in any pipeline.
 - You want diagrams that argue. The methodology teaches the agent to make shapes carry meaning, not just arrange labels.
 
 **excalidraw-skill-pack loses when:**

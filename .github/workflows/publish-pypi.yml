@@ -3,7 +3,7 @@ name: Publish PyPI
 on:
   push:
     tags:
-      - "excalidraw-render@*"
+      - "excalidraw-skill-pack-render@*"
       - "excalidraw-skill-pack-*@*"
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
           TAG="${GITHUB_REF#refs/tags/}"
           PKG_NAME="${TAG%@*}"
           case "$PKG_NAME" in
-            excalidraw-render) DIR="packages/renderer-python" ;;
+            excalidraw-skill-pack-render) DIR="packages/renderer-python" ;;
             excalidraw-skill-pack-*) DIR="packages/themes/${PKG_NAME#excalidraw-skill-pack-theme-}" ;;
             *) echo "unknown package: $PKG_NAME"; exit 1 ;;
           esac

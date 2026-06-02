@@ -1,5 +1,5 @@
 {
-  "name": "excalidraw-render",
+  "name": "@excalidraw-skill-pack/render",
   "version": "0.0.0",
   "description": "Render Excalidraw JSON to PNG. Node binding for excalidraw-skill-pack.",
   "license": "MIT",
@@ -7,7 +7,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "excalidraw-render": "./dist/cli.js"
+    "@excalidraw-skill-pack/render": "./dist/cli.js"
   },
   "exports": {
     ".": "./dist/index.js"

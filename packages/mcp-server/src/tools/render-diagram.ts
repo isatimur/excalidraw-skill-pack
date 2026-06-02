@@ -1,5 +1,5 @@
 import { PNG } from "pngjs";
-import { renderToPng } from "excalidraw-render";
+import { renderToPng } from "@excalidraw-skill-pack/render";
 import type { ToolDefinition } from "../server.js";
 
 function parsePngDimensions(buf: Buffer): { width: number; height: number } {

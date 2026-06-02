@@ -25,8 +25,8 @@
 | Codex | `npx @excalidraw-skill-pack/install codex` |
 | Gemini CLI | `npx @excalidraw-skill-pack/install gemini-cli` |
 | Any MCP agent | `npx @excalidraw-skill-pack/mcp-server` |
-| Renderer only (Node) | `npx excalidraw-render diagram.excalidraw --theme stripe-press` |
-| Renderer only (Python) | `pipx install excalidraw-render && excalidraw-render diagram.excalidraw --theme stripe-press` |
+| Renderer only (Node) | `npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press` |
+| Renderer only (Python) | `pipx install excalidraw-skill-pack-render && excalidraw-render diagram.excalidraw --theme stripe-press` |
 
 ## Themes
 
