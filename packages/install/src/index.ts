@@ -1,9 +1,19 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
+import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
 import { Command } from "commander";
+
+const require = createRequire(import.meta.url);
+
+function resolveCoreDir(): string {
+  // core ships './skill' in its exports map; resolving package.json directly
+  // would hit ERR_PACKAGE_PATH_NOT_EXPORTED.
+  const skillPath = require.resolve("@excalidraw-skill-pack/core/skill");
+  return dirname(skillPath);
+}
 
 const KNOWN_ADAPTERS = ["claude-code", "cursor", "codex", "gemini-cli"] as const;
 type Adapter = (typeof KNOWN_ADAPTERS)[number];
@@ -49,6 +59,7 @@ function run(): void {
       }
 
       const mode = opts.lite ? "lite" : "full";
+      const env = { ...process.env, ESP_CORE_DIR: resolveCoreDir() };
 
       let result: ReturnType<typeof spawnSync>;
 
@@ -56,10 +67,10 @@ function run(): void {
         result = spawnSync(
           "powershell",
           ["-ExecutionPolicy", "Bypass", "-File", script, "-Mode", mode],
-          { stdio: "inherit" },
+          { stdio: "inherit", env },
         );
       } else {
-        result = spawnSync("bash", [script, mode], { stdio: "inherit" });
+        result = spawnSync("bash", [script, mode], { stdio: "inherit", env });
       }
 
       if (result.status !== 0) {

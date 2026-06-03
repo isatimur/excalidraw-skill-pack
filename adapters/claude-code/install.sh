@@ -4,13 +4,16 @@ set -euo pipefail
 MODE="${1:-full}"  # full | lite
 TARGET="${HOME}/.claude/skills/excalidraw-diagram"
 
-CORE_PKG_DIR=$(node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))" 2>/dev/null || true)
-if [ -z "$CORE_PKG_DIR" ]; then
-  echo "Installing @excalidraw-skill-pack/core globally..."
-  npm install -g @excalidraw-skill-pack/core
-  CORE_PKG_DIR=$(node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))")
+if [ -n "${ESP_CORE_DIR:-}" ] && [ -f "$ESP_CORE_DIR/SKILL.md" ]; then
+  CORE_DIR="$ESP_CORE_DIR"
+else
+  CORE_PKG_DIR=$(node -e "console.log(require.resolve('@excalidraw-skill-pack/core/skill'))" 2>/dev/null || true)
+  if [ -z "$CORE_PKG_DIR" ]; then
+    echo "ERROR: cannot locate @excalidraw-skill-pack/core. Run via 'npx @excalidraw-skill-pack/install' or install core globally first." >&2
+    exit 1
+  fi
+  CORE_DIR=$(dirname "$CORE_PKG_DIR")
 fi
-CORE_DIR=$(dirname "$CORE_PKG_DIR")
 
 mkdir -p "$TARGET/references"
 cp "$CORE_DIR/SKILL.md" "$TARGET/SKILL.md"

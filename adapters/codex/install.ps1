@@ -2,13 +2,17 @@ param([string]$Mode = "full")
 
 $Target = "$env:USERPROFILE\.codex\skills\excalidraw-diagram"
 
-try { $CorePkgPath = node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))" 2>$null } catch {}
+if ($env:ESP_CORE_DIR -and (Test-Path "$env:ESP_CORE_DIR/SKILL.md")) {
+  $CoreDir = $env:ESP_CORE_DIR
+} else {
+  try { $CorePkgPath = node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))" 2>$null } catch {}
 if (-not $CorePkgPath) {
   Write-Output "Installing @excalidraw-skill-pack/core globally..."
   npm install -g "@excalidraw-skill-pack/core"
   $CorePkgPath = node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))"
 }
 $CoreDir = Split-Path $CorePkgPath
+}
 
 New-Item -ItemType Directory -Force -Path "$Target\references" | Out-Null
 Copy-Item "$CoreDir\SKILL.md" "$Target\SKILL.md"

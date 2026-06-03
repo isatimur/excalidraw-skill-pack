@@ -4,7 +4,7 @@ set -euo pipefail
 MODE="${1:-full}"
 THEME="${THEME:-default-sketchy}"
 
-CORE_PKG_DIR=$(node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))" 2>/dev/null || true)
+CORE_PKG_DIR=$(node -e "console.log(require.resolve('@excalidraw-skill-pack/core/skill'))" 2>/dev/null || true)
 if [ -z "$CORE_PKG_DIR" ]; then
   npm install -g @excalidraw-skill-pack/core
   CORE_PKG_DIR=$(node -e "console.log(require.resolve('@excalidraw-skill-pack/core/package.json'))")
