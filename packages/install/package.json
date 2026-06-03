@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-skill-pack/install",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One-command installer for excalidraw-skill-pack adapters.",
   "license": "MIT",
   "type": "module",
@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && mkdir -p dist/adapters && cp -R ../../adapters/. dist/adapters/",
     "test": "vitest run",
     "lint": "eslint src",
     "typecheck": "tsc -p tsconfig.json --noEmit"

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
 import { Command } from "commander";
@@ -19,9 +20,13 @@ export function resolveAdapterScript(
     throw new Error(`Unknown adapter: "${adapter}". Valid adapters: ${KNOWN_ADAPTERS.join(", ")}`);
   }
 
-  const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
+  const here = dirname(fileURLToPath(import.meta.url));
   const ext = platform === "win32" ? "install.ps1" : "install.sh";
-  return join(root, "adapters", adapter, ext);
+  // Published layout: dist/adapters/<name>/install.{sh,ps1} (copied at build time).
+  // Monorepo layout (dev/tests): <repo>/adapters/<name>/install.{sh,ps1}.
+  return existsSync(join(here, "adapters", adapter, ext))
+    ? join(here, "adapters", adapter, ext)
+    : join(here, "..", "..", "..", "adapters", adapter, ext);
 }
 
 function run(): void {
@@ -43,17 +48,18 @@ function run(): void {
         process.exit(1);
       }
 
-      const env = { ...process.env, ...(opts.lite ? { LITE: "1" } : {}) };
+      const mode = opts.lite ? "lite" : "full";
 
       let result: ReturnType<typeof spawnSync>;
 
       if (platform === "win32") {
-        result = spawnSync("powershell", ["-ExecutionPolicy", "Bypass", "-File", script], {
-          stdio: "inherit",
-          env,
-        });
+        result = spawnSync(
+          "powershell",
+          ["-ExecutionPolicy", "Bypass", "-File", script, "-Mode", mode],
+          { stdio: "inherit" },
+        );
       } else {
-        result = spawnSync("bash", [script], { stdio: "inherit", env });
+        result = spawnSync("bash", [script, mode], { stdio: "inherit" });
       }
 
       if (result.status !== 0) {
