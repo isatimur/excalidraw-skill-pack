@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-skill-pack/install",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "One-command installer for excalidraw-skill-pack adapters.",
   "license": "MIT",
   "type": "module",
