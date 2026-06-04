@@ -13,7 +13,7 @@ MCP server exposing excalidraw-skill-pack tools to any MCP-compatible AI agent.
 ## Usage
 
 ```bash
-npx excalidraw-skill-pack-mcp
+npx @excalidraw-skill-pack/mcp-server
 ```
 
 Add to your MCP client config:

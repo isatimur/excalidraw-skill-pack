@@ -1,4 +1,4 @@
-# How I made 64 diagrams for an AI book with one skill
+# How I made 14 diagrams for an AI book with one skill
 
 Last winter I started writing a book about modern AI engineering, *From Copilot to Colleague*. It's 10 chapters about how the engineer's role changes when the editor itself can reason. By chapter 3 I knew I needed a lot of diagrams — flows, layered stacks, relationship maps, evidence artifacts. By chapter 5 I had 30. By the final chapter, 64.
 

@@ -13,7 +13,7 @@ npm install @excalidraw-skill-pack/render
 ### Library
 
 ```typescript
-import { renderToPng } from "excalidraw-render";
+import { renderToPng } from "@excalidraw-skill-pack/render";
 import { readFile, writeFile } from "node:fs/promises";
 
 const json = await readFile("diagram.excalidraw", "utf-8");

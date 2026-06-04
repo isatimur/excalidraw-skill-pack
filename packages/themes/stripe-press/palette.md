@@ -21,4 +21,4 @@
 
 ## Proof
 
-This palette renders the 64 diagrams in *From Copilot to Colleague* (fromcopilottocolleague.com).
+This palette renders the 14 diagrams in *From Copilot to Colleague* (fromcopilottocolleague.com).

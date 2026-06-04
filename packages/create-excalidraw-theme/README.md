@@ -1,4 +1,4 @@
-# create-excalidraw-theme
+# @excalidraw-skill-pack/create-theme
 
 Scaffold a new excalidraw-skill-pack theme — npm package + PyPI mirror.
 

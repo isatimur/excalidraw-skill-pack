@@ -54,7 +54,7 @@ Per call, just tell Claude: "Use the notion theme." The MCP server reads the pro
 
 Five themes ship with v0.1: `default-sketchy`, `stripe-press` (editorial / book-grade), `notion` (rounded, off-white), `whiteboard` (low-fi, workshop-style), `dark` (inverted contrast). Each theme's palette is written in both JSON (for the renderer) and Markdown (for the agent — explaining *when* to use each color).
 
-To publish your own brand theme: `npx create-excalidraw-theme my-brand && npm publish --access public`. It shows up in the registry within 24 hours.
+To publish your own brand theme: `npx @excalidraw-skill-pack/create-theme my-brand && npm publish --access public`. It shows up in the registry within 24 hours.
 
 ## Uninstall
 

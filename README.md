@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://excalidraw-skill-pack.vercel.app"><img src="https://img.shields.io/badge/docs-excalidraw--skill--pack.dev-B8472A" alt="docs" /></a>
+  <a href="https://excalidraw-skill-pack.vercel.app"><img src="https://img.shields.io/badge/docs-excalidraw--skill--pack.vercel.app-B8472A" alt="docs" /></a>
   <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Frender?label=npm%20render" alt="npm" /></a>
   <a href="https://pypi.org/project/excalidraw-skill-pack-render/"><img src="https://img.shields.io/pypi/v/excalidraw-skill-pack-render?label=PyPI" alt="pypi" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/isatimur/excalidraw-skill-pack" alt="license" /></a>

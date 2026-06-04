@@ -52,7 +52,7 @@ Five themes ship in v0.1: `default-sketchy`, `stripe-press` (editorial / book-gr
 To author your own:
 
 ```bash
-npx create-excalidraw-theme my-brand
+npx @excalidraw-skill-pack/create-theme my-brand
 cd theme-my-brand
 # edit palette.json and palette.md
 npm publish --access public

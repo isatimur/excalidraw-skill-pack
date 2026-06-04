@@ -27,7 +27,7 @@ THEME=stripe-press npx @excalidraw-skill-pack/install cursor
 Anyone can publish a custom brand theme as a standalone npm package (`@excalidraw-skill-pack/theme-<name>`). Author one in 3 minutes:
 
 ```bash
-npx create-excalidraw-theme my-brand
+npx @excalidraw-skill-pack/create-theme my-brand
 cd theme-my-brand && npm publish --access public
 ```
 
