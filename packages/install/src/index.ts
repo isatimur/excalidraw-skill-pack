@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, realpathSync } from "node:fs";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
@@ -81,11 +81,15 @@ function run(): void {
   program.parse();
 }
 
-const isMain =
-  typeof process !== "undefined" &&
-  process.argv[1] != null &&
-  fileURLToPath(import.meta.url) === process.argv[1];
+function isInvokedAsCli(): boolean {
+  if (typeof process === "undefined" || process.argv[1] == null) return false;
+  try {
+    return realpathSync(fileURLToPath(import.meta.url)) === realpathSync(process.argv[1]);
+  } catch {
+    return false;
+  }
+}
 
-if (isMain) {
+if (isInvokedAsCli()) {
   run();
 }

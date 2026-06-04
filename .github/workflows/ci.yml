@@ -43,7 +43,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm -r build
-      - run: pnpm --filter excalidraw-render exec playwright install chromium --with-deps
+      - run: pnpm --filter @excalidraw-skill-pack/render exec playwright install chromium --with-deps
       - run: pnpm test
 
   test-python:
