@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/site/images/hero-demo.gif" alt="Make your AI agent argue visually" width="800" />
+  <img src="docs/site/images/hero.png" alt="Make your AI agent argue visually" width="800" />
 </p>
 
 <h1 align="center">excalidraw-skill-pack</h1>
