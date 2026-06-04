@@ -1,41 +1,4 @@
 {
-  "updated": "2026-06-02T11:31:25Z",
-  "themes": [
-    {
-      "name": "stripe-press",
-      "npm": {
-        "name": "@excalidraw-skill-pack/theme-stripe-press",
-        "version": "0.2.0"
-      },
-      "description": "Editorial / book-grade. Cream paper, ink-brown strokes. Proven on 14 diagrams.",
-      "source": "monorepo"
-    },
-    {
-      "name": "notion",
-      "npm": {
-        "name": "@excalidraw-skill-pack/theme-notion",
-        "version": "0.2.0"
-      },
-      "description": "Rounded, off-white, soft. Matches Notion's docs aesthetic.",
-      "source": "monorepo"
-    },
-    {
-      "name": "whiteboard",
-      "npm": {
-        "name": "@excalidraw-skill-pack/theme-whiteboard",
-        "version": "0.2.0"
-      },
-      "description": "Low-fi, bright, intentionally sketchy. For workshops.",
-      "source": "monorepo"
-    },
-    {
-      "name": "dark",
-      "npm": {
-        "name": "@excalidraw-skill-pack/theme-dark",
-        "version": "0.2.0"
-      },
-      "description": "Inverted contrast, neutral. For presentations and dev tools.",
-      "source": "monorepo"
-    }
-  ]
+  "updated": "2026-06-04T16:09:22.680Z",
+  "themes": []
 }
