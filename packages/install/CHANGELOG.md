@@ -1,5 +1,11 @@
 # @excalidraw-skill-pack/install
 
+## 0.1.6
+
+### Patch Changes
+
+- Copilot adapter now uses sentinel sections (`<!-- BEGIN excalidraw-skill-pack -->`) so multiple skill packs can coexist in the same `.github/copilot-instructions.md` without overwriting each other.
+
 ## 0.1.5
 
 ### Patch Changes
