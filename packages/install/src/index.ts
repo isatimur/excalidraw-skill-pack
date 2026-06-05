@@ -15,7 +15,7 @@ function resolveCoreDir(): string {
   return dirname(skillPath);
 }
 
-const KNOWN_ADAPTERS = ["claude-code", "cursor", "codex", "gemini-cli"] as const;
+const KNOWN_ADAPTERS = ["claude-code", "cursor", "copilot", "codex", "gemini-cli"] as const;
 type Adapter = (typeof KNOWN_ADAPTERS)[number];
 
 function isKnownAdapter(name: string): name is Adapter {

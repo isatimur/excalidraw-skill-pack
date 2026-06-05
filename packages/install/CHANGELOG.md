@@ -1,5 +1,11 @@
 # @excalidraw-skill-pack/install
 
+## 0.1.5
+
+### Patch Changes
+
+- Add GitHub Copilot adapter: `npx @excalidraw-skill-pack/install copilot` writes `.github/copilot-instructions.md` in the current project and optionally registers the MCP server in `.vscode/mcp.json`.
+
 ## 0.1.0
 
 ### Minor Changes
