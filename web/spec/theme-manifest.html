@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Theme manifest spec - excalidraw-skill-pack</title>
+<meta name="description" content="Reference for theme.json and the surrounding Excalidraw skill pack theme package layout." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232A2622'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-style='italic' fill='%23F4EDE0'%3Ee%3C/text%3E%3C/svg%3E" />
+<style>
+:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:920px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
+nav, .eyebrow { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
+h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; line-height:1.1; }
+h1 { font-size:clamp(2.2rem,6vw,4rem); margin:1.5rem 0; }
+h2 { font-size:1.8rem; margin:3rem 0 1rem; }
+a { color:var(--accent); }
+code, pre { font-family:"JetBrains Mono",Menlo,monospace; }
+pre { overflow:auto; padding:1rem; background:rgba(0,0,0,.06); border-left:3px solid var(--accent); }
+table { width:100%; border-collapse:collapse; margin:1rem 0 2rem; }
+th,td { text-align:left; vertical-align:top; padding:.65rem; border-bottom:1px solid rgba(0,0,0,.12); }
+th { font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+</style>
+</head>
+<body>
+<nav><a href="/">Home</a><a href="/themes">Themes</a><a href="/themes/create">Create theme</a><a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a></nav>
+<p class="eyebrow">Spec</p>
+<h1>Theme manifest spec</h1>
+<p>The theme contract keeps generated Excalidraw diagrams portable across agents, renderers, and brand styles. A theme is both machine-readable tokens and agent-readable instructions.</p>
+
+<h2>Files in a theme package</h2>
+<table>
+<tr><th>File</th><th>Required</th><th>Purpose</th></tr>
+<tr><td><code>theme.json</code></td><td>yes</td><td>Manifest: name, version, inheritance, metadata, semantic roles.</td></tr>
+<tr><td><code>palette.json</code></td><td>yes</td><td>Machine-readable color tokens used by renderers and MCP tools.</td></tr>
+<tr><td><code>palette.md</code></td><td>yes</td><td>Agent-readable guidance explaining when to use each token.</td></tr>
+<tr><td><code>typography.json</code></td><td>no</td><td>Font family, sizes, line height, and emphasis policy.</td></tr>
+<tr><td><code>elements/*.json</code></td><td>no</td><td>Per-element defaults such as box, arrow, and callout styles.</td></tr>
+<tr><td><code>layouts/*.md</code></td><td>no</td><td>Composition presets such as concept cards, pipelines, and layered stacks.</td></tr>
+<tr><td><code>preview.png</code></td><td>recommended</td><td>Preview image for registries and docs.</td></tr>
+</table>
+
+<h2>Minimal manifest</h2>
+<pre><code>{
+  "name": "my-brand",
+  "version": "0.1.0",
+  "description": "Brand theme for ACME Co.",
+  "extends": "default-sketchy"
+}</code></pre>
+
+<h2>Full manifest</h2>
+<pre><code>{
+  "name": "my-brand",
+  "version": "1.2.0",
+  "description": "Brand theme for ACME Co.",
+  "extends": "default-sketchy",
+  "author": "Jane Doe &lt;jane@acme.com&gt;",
+  "homepage": "https://github.com/acme/excalidraw-theme-my-brand",
+  "license": "MIT",
+  "preview": "preview.png",
+  "roles": {
+    "ink": "#1a1a1a",
+    "paper": "#fff8f3",
+    "accent": "#ff5722",
+    "accent_alt": "#ffa000",
+    "evidence_bg": "#f5f5f5",
+    "evidence_text": "#212121",
+    "muted": "#9e9e9e"
+  }
+}</code></pre>
+
+<h2>Required fields</h2>
+<table>
+<tr><th>Field</th><th>Type</th><th>Constraint</th></tr>
+<tr><td><code>name</code></td><td>string</td><td>kebab-case; should match the npm package suffix after <code>theme-</code>.</td></tr>
+<tr><td><code>version</code></td><td>string</td><td>semver.</td></tr>
+</table>
+
+<h2>Semantic roles</h2>
+<table>
+<tr><th>Role</th><th>Meaning</th><th>Required</th></tr>
+<tr><td><code>ink</code></td><td>Primary text and strokes.</td><td>yes</td></tr>
+<tr><td><code>paper</code></td><td>Main background.</td><td>yes</td></tr>
+<tr><td><code>accent</code></td><td>The argument color. Use one accent per diagram.</td><td>yes</td></tr>
+<tr><td><code>muted</code></td><td>Secondary text, grid lines, dividers.</td><td>yes</td></tr>
+<tr><td><code>accent_alt</code></td><td>Secondary accent for explicit comparison diagrams.</td><td>no</td></tr>
+<tr><td><code>evidence_bg</code></td><td>Background for code, JSON, and concrete evidence artifact boxes.</td><td>no</td></tr>
+<tr><td><code>evidence_text</code></td><td>Text inside evidence artifacts.</td><td>no</td></tr>
+<tr><td><code>warning</code></td><td>Soft warning state.</td><td>no</td></tr>
+<tr><td><code>danger</code></td><td>Hard error state.</td><td>no</td></tr>
+</table>
+
+<h2>Inheritance</h2>
+<p>A child theme can extend <code>default-sketchy</code> or another theme. Resolution merges in this order, with child values winning:</p>
+<ol>
+<li><code>palette.json</code> deep-merged key by key.</li>
+<li><code>typography.json</code> deep-merged key by key.</li>
+<li><code>elements/*.json</code> replaced file by file.</li>
+<li><code>layouts/*.md</code> replaced file by file.</li>
+</ol>
+
+<h2>Versioning</h2>
+<table>
+<tr><th>Change</th><th>Bump</th></tr>
+<tr><td>Typo fix in <code>palette.md</code>, no token value changed.</td><td>PATCH</td></tr>
+<tr><td>Add a semantic role, layout, or element override.</td><td>MINOR</td></tr>
+<tr><td>Change existing colors or typography in a way that shifts renders.</td><td>MAJOR</td></tr>
+</table>
+<p>Pin theme versions in CI golden-image pipelines when exact render reproducibility matters.</p>
+</body>
+</html>

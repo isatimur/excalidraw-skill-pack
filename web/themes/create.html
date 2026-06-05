@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Create a theme - excalidraw-skill-pack</title>
+<meta name="description" content="Create a custom Excalidraw skill pack theme." />
+<style>
+:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:880px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
+nav { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
+h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
+h1 { font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; }
+a { color:var(--accent); }
+code, pre { font-family:"JetBrains Mono",Menlo,monospace; }
+pre { overflow:auto; padding:1rem; background:rgba(0,0,0,.06); border-left:3px solid var(--accent); }
+li { margin:.5rem 0; }
+</style>
+</head>
+<body>
+<nav><a href="/">Home</a><a href="/themes">Themes</a><a href="/spec/theme-manifest">Spec</a><a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a></nav>
+<h1>Create a custom theme</h1>
+<p>A theme package lets an agent create diagrams in your brand without rewriting the skill. Keep colors semantic, not decorative: roles like <code>ink</code>, <code>paper</code>, <code>accent</code>, and <code>evidence_bg</code> tell the agent what each color means.</p>
+
+<h2>Scaffold</h2>
+<pre><code>npx @excalidraw-skill-pack/create-theme my-brand
+cd theme-my-brand
+npm publish --access public</code></pre>
+
+<h2>What to edit</h2>
+<ol>
+<li><code>theme.json</code>: name, version, description, roles, and inheritance.</li>
+<li><code>palette.json</code>: machine-readable tokens for tools and renderers.</li>
+<li><code>palette.md</code>: agent-readable rules for when each token should be used.</li>
+<li><code>typography.json</code>: optional font and scale rules.</li>
+<li><code>elements/*.json</code>: optional per-element overrides.</li>
+<li><code>layouts/*.md</code>: optional reusable composition patterns.</li>
+</ol>
+
+<h2>Quality bar</h2>
+<ul>
+<li>One accent should carry the main argument.</li>
+<li>Evidence artifacts need readable foreground/background contrast.</li>
+<li>Typography changes are breaking if they shift line breaks in existing diagrams.</li>
+<li>Render a preview PNG before publishing.</li>
+</ul>
+
+<p>Full contract: <a href="/spec/theme-manifest">theme manifest spec</a>.</p>
+</body>
+</html>

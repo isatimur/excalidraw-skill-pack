@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-skill-pack/render",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Render Excalidraw JSON to PNG. Node binding for excalidraw-skill-pack.",
   "license": "MIT",
   "type": "module",

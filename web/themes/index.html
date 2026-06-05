@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Themes - excalidraw-skill-pack</title>
+<meta name="description" content="Built-in Excalidraw themes for excalidraw-skill-pack." />
+<style>
+:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
+nav, .name { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
+h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
+h1 { font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; }
+a { color:var(--accent); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin:2rem 0; }
+.card { border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.25); padding:1rem; }
+.card img { width:100%; height:150px; object-fit:cover; background:white; border:1px solid rgba(0,0,0,.08); }
+.name { margin:.75rem 0 .25rem; }
+code { font-family:"JetBrains Mono",Menlo,monospace; }
+</style>
+</head>
+<body>
+<nav><a href="/">Home</a><a href="/themes/create">Create theme</a><a href="/spec/theme-manifest">Spec</a><a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a></nav>
+<h1>Themes</h1>
+<p>Themes are portable visual systems for Excalidraw diagrams: palette tokens, typography, element defaults, and optional layout instructions. Agents use the same theme contract that renderers use.</p>
+<div class="grid">
+  <div class="card"><img src="/images/themes/default-sketchy.png" alt="default-sketchy preview" /><div class="name">default-sketchy</div><p>Bundled baseline theme. Friendly, general-purpose, and portable.</p></div>
+  <div class="card"><img src="/images/themes/stripe-press.png" alt="stripe-press preview" /><div class="name">stripe-press</div><p>Editorial and book-grade. Strong for explainers and polished essays.</p></div>
+  <div class="card"><img src="/images/themes/notion.png" alt="notion preview" /><div class="name">notion</div><p>Rounded, off-white, workspace-style diagrams.</p></div>
+  <div class="card"><img src="/images/themes/whiteboard.png" alt="whiteboard preview" /><div class="name">whiteboard</div><p>Low-fi and bright. Useful for brainstorming and collaborative sketches.</p></div>
+  <div class="card"><img src="/images/themes/dark.png" alt="dark preview" /><div class="name">dark</div><p>Inverted contrast for dark docs, talks, and technical dashboards.</p></div>
+</div>
+<h2>Use a theme</h2>
+<p>Render with Node:</p>
+<pre><code>npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press</code></pre>
+<p>Create a custom theme with <a href="/themes/create">the theme scaffolder</a>, or read the <a href="/spec/theme-manifest">theme manifest spec</a>.</p>
+</body>
+</html>

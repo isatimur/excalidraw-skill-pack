@@ -180,3 +180,58 @@ Copy-paste JSON templates for each Excalidraw element type. The `strokeColor` an
 ```
 
 For curves: use 3+ points in `points` array.
+
+## Decision Diamond
+```json
+{
+  "type": "diamond",
+  "id": "decision1",
+  "x": 100, "y": 100, "width": 140, "height": 100,
+  "strokeColor": "<decision stroke from palette>",
+  "backgroundColor": "<decision fill from palette>",
+  "fillStyle": "solid",
+  "strokeWidth": 2,
+  "strokeStyle": "solid",
+  "roughness": 0,
+  "opacity": 100,
+  "angle": 0,
+  "seed": 88888,
+  "version": 1,
+  "versionNonce": 99999,
+  "isDeleted": false,
+  "groupIds": [],
+  "boundElements": [{"id": "decision_text", "type": "text"}],
+  "link": null,
+  "locked": false
+}
+```
+
+## Evidence Artifact Box
+Use for concrete code, JSON, event names, API calls, or sample data. Pull colors from the active theme's evidence roles.
+
+```json
+{
+  "type": "rectangle",
+  "id": "evidence_box",
+  "x": 100, "y": 100, "width": 360, "height": 140,
+  "strokeColor": "<evidence border from palette>",
+  "backgroundColor": "<evidence_bg from palette>",
+  "fillStyle": "solid",
+  "strokeWidth": 1,
+  "strokeStyle": "solid",
+  "roughness": 0,
+  "opacity": 100,
+  "angle": 0,
+  "seed": 10101,
+  "version": 1,
+  "versionNonce": 20202,
+  "isDeleted": false,
+  "groupIds": [],
+  "boundElements": null,
+  "link": null,
+  "locked": false,
+  "roundness": {"type": 3}
+}
+```
+
+Pair the box with free-floating monospace text (`fontFamily: 3`) placed inside it. Do not bind long code text to the box; bound text is best for short labels.

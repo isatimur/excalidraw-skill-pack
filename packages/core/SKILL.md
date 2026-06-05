@@ -7,7 +7,20 @@ description: Create Excalidraw diagram JSON files that make visual arguments. Us
 
 Generate `.excalidraw` JSON files that **argue visually**, not just display information.
 
-**Setup:** If the user asks you to set up this skill (renderer, dependencies, etc.), see `README.md` for instructions.
+**Setup:** If the user asks you to set up this skill (renderer, dependencies, etc.), use the installed adapter docs or the project README.
+
+## Output Contract
+
+When you create or edit a diagram:
+
+1. Produce a valid `.excalidraw` JSON file, not a prose-only answer.
+2. Use this envelope: `type`, `version`, `source`, `elements`, `appState`, and `files`.
+3. If the user names an output path, write there. Otherwise use `./diagram.excalidraw`.
+4. Prefer the active theme for all color, typography, element, and layout decisions.
+5. Render and inspect the PNG when a renderer is available. Fix visible defects before stopping.
+6. In the final response, report the `.excalidraw` path, rendered image path if created, theme used, and any validation caveats.
+
+Do not add nonstandard Excalidraw properties such as `label`. Labels are text elements. For shape labels, bind a text element to the container with `containerId`, and keep the text element immediately after its container in `elements`.
 
 ## Customization
 
@@ -15,7 +28,7 @@ Generate `.excalidraw` JSON files that **argue visually**, not just display info
 
 The active theme is resolved per call (`--theme` flag), per project (`.excalidraw-skill-pack.json`), or globally (`~/.excalidraw-skill-pack/config.json`). The MCP server's `generate_diagram_prompt` tool splices the active theme's `palette.md` and any requested `layouts/<template>.md` into the agent's system prompt at call time.
 
-To author a new theme: `npx @excalidraw-skill-pack/create-theme my-brand`. See `excalidraw-skill-pack.vercel.app/themes/create`.
+To author a new theme: `npx @excalidraw-skill-pack/create-theme my-brand`. See `https://excalidraw-skill-pack.vercel.app/themes/create`.
 
 ---
 
@@ -204,6 +217,27 @@ Only now create the Excalidraw elements. **See below for how to handle large dia
 
 ### Step 6: Render & Validate (MANDATORY)
 After generating the JSON, you MUST run the render-view-fix loop until the diagram looks right. This is not optional — see the **Render & Validate** section below for the full process.
+
+### Step 7: Report the Artifact
+Return the file path and what changed. Do not paste the full JSON unless the user asked for it.
+
+---
+
+## Excalidraw Correctness Contract
+
+Every generated element must be complete enough for Excalidraw and the renderer to load without repair:
+
+- Include `id`, `type`, `x`, `y`, `width`, `height`, `angle`, `strokeColor`, `backgroundColor`, `fillStyle`, `strokeWidth`, `strokeStyle`, `roughness`, `opacity`, `seed`, `version`, `versionNonce`, `isDeleted`, `groupIds`, `boundElements`, `link`, and `locked` where applicable.
+- Text elements include `text`, `originalText`, `fontSize`, `fontFamily`, `textAlign`, `verticalAlign`, `containerId`, and `lineHeight`.
+- Bound shape labels use `boundElements` on the shape and `containerId` on the text. The text element follows the shape immediately.
+- Arrows use `points`, `startBinding`, `endBinding`, `startArrowhead`, and `endArrowhead`. Use `focus`/`gap` bindings, not ad hoc endpoint guesses.
+- Use descriptive, stable IDs such as `ingest_box`, `eval_loop_arrow`, `artifact_code_text`.
+- Use unique numeric `seed` and `versionNonce` values. For multi-section diagrams, namespace seeds by section.
+- Keep `opacity: 100`; use color, stroke width, scale, and spacing for hierarchy.
+- Use `roughness: 0` for polished technical diagrams and `roughness: 1` only for intentionally sketchy/whiteboard diagrams.
+- Keep text readable at export size. Minimum body text is 16px; prefer 18-24px for labels.
+
+See `element-templates.md` and `json-schema.md` for copy-paste structures.
 
 ---
 
