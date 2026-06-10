@@ -1,20 +1,22 @@
 # Product Hunt — excalidraw-skill-pack
 
-**Tagline:** Make your AI agent argue visually.
+**Tagline:** Diagrams that argue, not boxes that label.
 
 **Description:**
 
-A universal skill pack that teaches Claude / Cursor / Codex / Gemini how to draft Excalidraw diagrams that pass the isomorphism test (the shape IS the meaning). Ships with 5 themes, a renderer in both Node + Python, an MCP server with 5 tools, and a one-command installer per agent. The proof: 14 diagrams in a published book were generated with this methodology.
+The diagram-*quality* layer for AI agents. Most Excalidraw generators — including Excalidraw's own official MCP — solve plumbing: emit valid JSON, render a canvas. This one ships the *methodology*: the isomorphism test (the shape IS the meaning), evidence artifacts (real API names, actual data, never placeholders), multi-zoom architecture, and a render-view-fix loop where the agent looks at the PNG and fixes itself. Works in Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, and any MCP agent. 5 publishable themes, a Node + Python renderer, model-agnostic by design. The proof: 77 diagrams in a published technical book were drawn with it.
 
 **First comment (maker comment):**
 
-I'm Timur. I wrote a book about modern AI engineering (*From Copilot to Colleague*) and needed to render dozens of diagrams without manually opening Excalidraw 64 times. I built a Claude Code skill that does it from JSON — but then realized every AI-agent platform deserves the same skill, plus a way for anyone to author their own brand theme. So I extracted the skill, made it polyglot (npm + PyPI), added an MCP server, and split themes into standalone packages.
+I'm Timur. I wrote a book about modern AI engineering (*From Copilot to Colleague*) and needed real diagrams — not the boxes-and-arrows you get when you tell an LLM "draw the architecture." So I built a Claude Code skill that teaches the agent a *methodology* instead of just "make valid Excalidraw JSON." It drew 77 diagrams for the book, all from JSON, all in version control next to the manuscript.
 
-The interesting design call: the MCP server returns *methodology*, not generated content. Your agent's own model does the drafting. That keeps it model-agnostic (works with Claude, GPT, Gemini equally) and we don't pay for any inference.
+People kept asking "is this just another Excalidraw MCP?" — so let me answer it up front. The official one (and the community ones) are great at plumbing. None of them decide what to draw or why; you still get a labeled grid. This is the layer above: taste, encoded as rules the agent reads before it draws. You can even run it *alongside* the official MCP.
 
-Try it: `npx @excalidraw-skill-pack/install claude-code` or `npx @excalidraw-skill-pack/mcp-server`. Tell it what you want diagrammed. Done.
+One design call I like: the MCP server returns methodology, not generated content. Your agent's own model does the drafting — so it's model-agnostic (Claude, GPT, Gemini all work), needs no API key, and costs me nothing to run.
+
+Try it: `npx @excalidraw-skill-pack/install claude-code` (or `copilot`, `cursor`, `codex`, `gemini-cli`), then tell it what to diagram. MIT.
 
 **Galleries / images:**
 - Hero demo GIF (15s)
 - 5-theme grid
-- 4 sample diagrams from the book
+- 4 sample diagrams from the book (before/after vs. a generic prompt-to-diagram tool)

@@ -1,6 +1,6 @@
-# How I made 14 diagrams for an AI book with one skill
+# How I made 77 diagrams for an AI book with one skill
 
-Last winter I started writing a book about modern AI engineering, *From Copilot to Colleague*. It's 10 chapters about how the engineer's role changes when the editor itself can reason. By chapter 3 I knew I needed a lot of diagrams — flows, layered stacks, relationship maps, evidence artifacts. By chapter 5 I had 30. By the final chapter, 64.
+Last winter I started writing a book about modern AI engineering, *From Copilot to Colleague*. It's 10 chapters about how the engineer's role changes when the editor itself can reason. By chapter 3 I knew I needed a lot of diagrams — flows, layered stacks, relationship maps, evidence artifacts. By chapter 5 I had 30. By the time the book shipped, 77.
 
 I made all of them with the same Claude Code skill I just open-sourced as `excalidraw-skill-pack`.
 
@@ -50,7 +50,7 @@ If you use Claude Code:
 npx @excalidraw-skill-pack/install claude-code
 ```
 
-For Cursor, Codex, Gemini CLI — same pattern, swap the adapter name. For any MCP-compatible agent: `npx @excalidraw-skill-pack/mcp-server`.
+For Cursor, GitHub Copilot, Codex, Gemini CLI — same pattern, swap the adapter name. For any MCP-compatible agent: `npx @excalidraw-skill-pack/mcp-server`.
 
 ## What this is for
 
