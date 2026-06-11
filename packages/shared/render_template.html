@@ -15,16 +15,29 @@
   <script type="module">
     import { exportToSvg, convertToExcalidrawElements } from "https://esm.sh/@excalidraw/excalidraw@0.18.0";
 
+    // Resolve any supported input document to fully-qualified Excalidraw elements:
+    //   type: "mermaid"             → parse Mermaid → skeleton → full elements
+    //   type: "excalidraw-skeleton" → hydrate skeleton → full elements
+    //   (default / "excalidraw")    → use elements as-is
+    // Mermaid is a heavy dependency, so it is imported dynamically only when needed.
+    async function resolveToFull(data) {
+      if (data.type === "mermaid") {
+        const { parseMermaidToExcalidraw } = await import("https://esm.sh/@excalidraw/mermaid-to-excalidraw@1.1.3");
+        const def = data.definition || data.mermaid || "";
+        const { elements, files } = await parseMermaidToExcalidraw(def, data.mermaidConfig || {});
+        return { elements: convertToExcalidrawElements(elements), files: files || {} };
+      }
+      if (data.type === "excalidraw-skeleton") {
+        return { elements: convertToExcalidrawElements(data.elements || []), files: data.files || {} };
+      }
+      return { elements: data.elements || [], files: data.files || {} };
+    }
+
     window.renderDiagram = async function(jsonData) {
       try {
         const data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
-        // Skeleton input: hydrate minimal element skeletons into fully-qualified
-        // Excalidraw elements (auto-fills id/seed/versionNonce/bindings).
-        const elements = data.type === "excalidraw-skeleton"
-          ? convertToExcalidrawElements(data.elements || [])
-          : (data.elements || []);
+        const { elements, files } = await resolveToFull(data);
         const appState = data.appState || {};
-        const files = data.files || {};
 
         // Force white background in appState
         appState.viewBackgroundColor = appState.viewBackgroundColor || "#ffffff";
@@ -54,18 +67,18 @@
       }
     };
 
-    // Hydrate a skeleton document into a full, Excalidraw-openable .excalidraw
-    // document (full elements with generated id/seed/versionNonce/bindings).
-    window.hydrateSkeleton = function(jsonData) {
+    // Hydrate a skeleton or Mermaid document into a full, Excalidraw-openable
+    // .excalidraw document (full elements with generated id/seed/versionNonce).
+    window.hydrateSkeleton = async function(jsonData) {
       const data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
-      const elements = convertToExcalidrawElements(data.elements || []);
+      const { elements, files } = await resolveToFull(data);
       return JSON.stringify({
         type: "excalidraw",
         version: 2,
         source: "https://github.com/isatimur/excalidraw-skill-pack",
         elements: elements,
         appState: data.appState || { viewBackgroundColor: "#ffffff", gridSize: 20 },
-        files: data.files || {},
+        files: files,
       });
     };
 

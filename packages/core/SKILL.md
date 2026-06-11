@@ -495,6 +495,25 @@ Without coordinates (`x:0, y:0`), the arrow renders detached at the origin.
 
 **Frames** (native section boundaries): `{ "type": "frame", "name": "Backend", "children": ["id1", "id2"] }`.
 
+### Mermaid fast-path (structured diagrams)
+
+For **rigid, structured** diagrams — flowcharts, sequence diagrams, class diagrams — don't hand-author elements at all. Write Mermaid and let the renderer convert it:
+
+```json
+{
+  "type": "mermaid",
+  "definition": "flowchart LR\n  A[Client] -->|request| B(API)\n  B --> C{Auth?}\n  C -->|yes| D[(DB)]\n  C -->|no| E[Reject]"
+}
+```
+
+The renderer parses it with `@excalidraw/mermaid-to-excalidraw`, hydrates to full elements, and renders in the active theme's hand-drawn style. `hydrate` works on Mermaid docs too, producing an editable `.excalidraw`.
+
+**When to use which:**
+- **Mermaid** — the structure is the whole point (a flow, a sequence, a class hierarchy) and Mermaid's auto-layout is good enough. Cheapest possible authoring.
+- **Skeleton / full elements** — a *visual argument*: evidence artifacts, multi-zoom, deliberate composition, free-floating text, anything Mermaid's rigid layout can't express. This is where the methodology earns its keep.
+
+Only flowchart/sequence/class are natively supported; other Mermaid types fall back to an image. If a Mermaid diagram comes out looking like a generic labeled grid, that's the signal to switch to the skeleton format and *argue*.
+
 ### Hydrating to an openable file
 
 A skeleton file does **not** open directly in Excalidraw (it expects fully-qualified elements). The renderer reads skeletons fine, but to produce an editable/shareable `.excalidraw`:

@@ -1,0 +1,4 @@
+{
+  "type": "mermaid",
+  "definition": "flowchart LR\n  A[Client] -->|request| B(API)\n  B --> C{Auth?}\n  C -->|yes| D[(DB)]\n  C -->|no| E[Reject]"
+}

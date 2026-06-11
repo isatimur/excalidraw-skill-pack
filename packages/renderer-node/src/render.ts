@@ -64,10 +64,10 @@ export async function renderToPng(json: string, opts: RenderOptions = {}): Promi
 
   let vpW: number;
   let vpH: number;
-  if (data.type === "excalidraw-skeleton") {
-    // Skeleton elements have no final geometry until they're hydrated in the
-    // browser, so the bounding box can't be computed node-side. Use a generous
-    // viewport — the SVG-element screenshot captures the true rendered size.
+  if (data.type === "excalidraw-skeleton" || data.type === "mermaid") {
+    // Skeleton/Mermaid documents have no final geometry until they're resolved
+    // in the browser, so the bounding box can't be computed node-side. Use a
+    // generous viewport — the SVG-element screenshot captures the true size.
     vpW = width;
     vpH = 2400;
   } else {
