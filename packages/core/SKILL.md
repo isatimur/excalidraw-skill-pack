@@ -243,7 +243,9 @@ See `element-templates.md` and `json-schema.md` for copy-paste structures.
 
 ## Large / Comprehensive Diagram Strategy
 
-**For comprehensive or technical diagrams, you MUST build the JSON one section at a time.** Do NOT attempt to generate the entire file in a single pass. This is a hard constraint — Claude Code has a ~32,000 token output limit per response, and a comprehensive diagram easily exceeds that in one shot. Even if it didn't, generating everything at once leads to worse quality. Section-by-section is better in every way.
+**For comprehensive or technical diagrams, build the JSON one section at a time.** Do NOT attempt to generate the entire file in a single pass. Claude Code has a ~32,000 token output limit per response, and generating everything at once also leads to worse quality. Section-by-section is better.
+
+Authoring in the **skeleton format** (see below) cuts per-element output by roughly half — no `seed`, `versionNonce`, `boundElements`, `containerId`, or separate bound-text elements to emit — so far more fits in one pass. Use skeletons by default; still split genuinely large diagrams into sections.
 
 ### The Section-by-Section Workflow
 
@@ -458,7 +460,58 @@ Settings: `fontSize: 16`, `fontFamily: 3`, `textAlign: "center"`, `verticalAlign
 
 ---
 
+## Authoring Format: Skeleton (recommended) vs Full Elements
+
+There are two ways to write a diagram. **Default to the skeleton format** — it is dramatically less verbose and eliminates a whole class of malformed-JSON defects.
+
+### Skeleton format (preferred)
+
+Set `"type": "excalidraw-skeleton"` and write the *minimum* per element. The renderer hydrates it via Excalidraw's `convertToExcalidrawElements`, which auto-generates `id`, `seed`, `versionNonce`, `boundElements`, `containerId`, the bound text-label elements, and arrow point geometry.
+
+```json
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    { "type": "rectangle", "id": "ingest", "x": 100, "y": 100, "width": 160, "height": 80,
+      "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "roughness": 0,
+      "label": { "text": "Ingest" } },
+    { "type": "ellipse", "id": "store", "x": 480, "y": 110, "width": 140, "height": 80,
+      "label": { "text": "Store" } },
+    { "type": "arrow", "x": 270, "y": 140, "width": 200, "height": 0,
+      "start": { "id": "ingest" }, "end": { "id": "store" }, "label": { "text": "writes" } }
+  ]
+}
+```
+
+What you still provide:
+- `type`, `x`, `y`, and (for shapes) `width`/`height`.
+- `label: { text }` for a bound text label — no separate text element, no `containerId` wiring.
+- All style props you'd normally set (`strokeColor`, `backgroundColor`, `fillStyle`, `strokeWidth`, `strokeStyle`, `roughness`, `fontSize`, `fontFamily`, `opacity`) — pull these from the active theme exactly as before. The skeleton only removes *boilerplate*, not styling control.
+
+**Arrow binding — the one gotcha:** a bound arrow still needs approximate geometry. Give it `x`/`y` (a point near the source) and `width`/`height` (the delta toward the target), then:
+- bind to **existing** elements with `"start": { "id": "..." }` / `"end": { "id": "..." }`, or
+- **auto-create** new endpoint shapes with `"start": { "type": "rectangle" }` / `"end": { "type": "ellipse" }`.
+Without coordinates (`x:0, y:0`), the arrow renders detached at the origin.
+
+**Frames** (native section boundaries): `{ "type": "frame", "name": "Backend", "children": ["id1", "id2"] }`.
+
+### Hydrating to an openable file
+
+A skeleton file does **not** open directly in Excalidraw (it expects fully-qualified elements). The renderer reads skeletons fine, but to produce an editable/shareable `.excalidraw`:
+
+```bash
+excalidraw-render hydrate diagram.excalidraw -o diagram.full.excalidraw
+```
+
+Draft as a skeleton → render + iterate (fast, cheap) → hydrate to a full file for the final deliverable.
+
+### Full-element format
+
+Hand-write fully-qualified elements (the **Excalidraw Correctness Contract** above governs this path) only when you need control the skeleton can't express — exact `seed` reproducibility, custom multi-waypoint arrow `points`, or hand-tuned geometry. For everything else, skeleton wins.
+
 ## JSON Structure
+
+Full-element envelope (what `hydrate` produces and what the full-element path uses):
 
 ```json
 {

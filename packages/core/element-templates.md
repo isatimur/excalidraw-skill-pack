@@ -2,6 +2,25 @@
 
 Copy-paste JSON templates for each Excalidraw element type. The `strokeColor` and `backgroundColor` values are placeholders — always pull actual colors from `color-palette.md` based on the element's semantic purpose.
 
+## Skeleton format (preferred — far less boilerplate)
+
+Wrap elements in `{ "type": "excalidraw-skeleton", "elements": [...] }`. The renderer hydrates these into full elements (auto-generating `id`, `seed`, `versionNonce`, `boundElements`, `containerId`, bound text labels, and arrow points). Set style props per the theme; omit all boilerplate. See `SKILL.md` → *Authoring Format* for the rules and the arrow-binding gotcha.
+
+```json
+{ "type": "rectangle", "id": "ingest", "x": 100, "y": 100, "width": 160, "height": 80,
+  "strokeColor": "#1e1e1e", "backgroundColor": "#ffffff", "roughness": 0,
+  "label": { "text": "Ingest" } }
+```
+```json
+{ "type": "arrow", "x": 270, "y": 140, "width": 200, "height": 0,
+  "start": { "id": "ingest" }, "end": { "id": "store" }, "label": { "text": "writes" } }
+```
+```json
+{ "type": "frame", "name": "Backend", "children": ["api_box", "db_box"] }
+```
+
+The fully-qualified templates below are for the full-element path (`"type": "excalidraw"`), used when you need control the skeleton can't express (exact `seed`, custom multi-waypoint arrow `points`).
+
 ## Free-Floating Text (no container)
 ```json
 {

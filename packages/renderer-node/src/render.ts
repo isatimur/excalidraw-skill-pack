@@ -40,15 +40,43 @@ function computeBoundingBox(elements: Array<Record<string, unknown>>): [number, 
   return [minX, minY, maxX, maxY];
 }
 
+export async function hydrateSkeleton(json: string): Promise<string> {
+  const templatePath = join(dirname(fileURLToPath(import.meta.url)), "render_template.html");
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const page = await browser.newPage();
+    await page.goto(`file://${templatePath}`);
+    await page.waitForFunction("window.__moduleReady === true", { timeout: 30000 });
+    return await page.evaluate(
+      (jsonStr) =>
+        (globalThis as unknown as { hydrateSkeleton: (s: string) => string }).hydrateSkeleton(jsonStr),
+      json
+    );
+  } finally {
+    await browser.close();
+  }
+}
+
 export async function renderToPng(json: string, opts: RenderOptions = {}): Promise<Buffer> {
   const { scale = 2, width = 1200 } = opts;
 
-  const data = JSON.parse(json) as { elements?: Array<Record<string, unknown>> };
-  const elements = (data.elements ?? []).filter((e) => !e["isDeleted"]);
-  const [minX, minY, maxX, maxY] = computeBoundingBox(elements);
-  const padding = 80;
-  const vpW = Math.min(Math.round(maxX - minX + padding * 2), width);
-  const vpH = Math.max(Math.round(maxY - minY + padding * 2), 600);
+  const data = JSON.parse(json) as { type?: string; elements?: Array<Record<string, unknown>> };
+
+  let vpW: number;
+  let vpH: number;
+  if (data.type === "excalidraw-skeleton") {
+    // Skeleton elements have no final geometry until they're hydrated in the
+    // browser, so the bounding box can't be computed node-side. Use a generous
+    // viewport — the SVG-element screenshot captures the true rendered size.
+    vpW = width;
+    vpH = 2400;
+  } else {
+    const elements = (data.elements ?? []).filter((e) => !e["isDeleted"]);
+    const [minX, minY, maxX, maxY] = computeBoundingBox(elements);
+    const padding = 80;
+    vpW = Math.min(Math.round(maxX - minX + padding * 2), width);
+    vpH = Math.max(Math.round(maxY - minY + padding * 2), 600);
+  }
 
   const templatePath = join(dirname(fileURLToPath(import.meta.url)), "render_template.html");
   const templateUrl = `file://${templatePath}`;

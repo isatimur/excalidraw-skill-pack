@@ -13,12 +13,16 @@
   <div id="root"></div>
 
   <script type="module">
-    import { exportToSvg } from "https://esm.sh/@excalidraw/excalidraw@0.18.0";
+    import { exportToSvg, convertToExcalidrawElements } from "https://esm.sh/@excalidraw/excalidraw@0.18.0";
 
     window.renderDiagram = async function(jsonData) {
       try {
         const data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
-        const elements = data.elements || [];
+        // Skeleton input: hydrate minimal element skeletons into fully-qualified
+        // Excalidraw elements (auto-fills id/seed/versionNonce/bindings).
+        const elements = data.type === "excalidraw-skeleton"
+          ? convertToExcalidrawElements(data.elements || [])
+          : (data.elements || []);
         const appState = data.appState || {};
         const files = data.files || {};
 
@@ -48,6 +52,21 @@
         window.__renderError = err.message;
         return { success: false, error: err.message };
       }
+    };
+
+    // Hydrate a skeleton document into a full, Excalidraw-openable .excalidraw
+    // document (full elements with generated id/seed/versionNonce/bindings).
+    window.hydrateSkeleton = function(jsonData) {
+      const data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
+      const elements = convertToExcalidrawElements(data.elements || []);
+      return JSON.stringify({
+        type: "excalidraw",
+        version: 2,
+        source: "https://github.com/isatimur/excalidraw-skill-pack",
+        elements: elements,
+        appState: data.appState || { viewBackgroundColor: "#ffffff", gridSize: 20 },
+        files: data.files || {},
+      });
     };
 
     // Signal that the module is loaded and ready
