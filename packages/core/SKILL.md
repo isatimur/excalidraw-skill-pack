@@ -558,11 +558,18 @@ You cannot judge a diagram from JSON alone. After generating or editing the Exca
 
 ### How to Render
 
+Use the installed renderer (any of these — whichever the environment provides):
+
 ```bash
-cd ~/.claude/skills/excalidraw-diagram/references && uv run python render_excalidraw.py <path-to-file.excalidraw>
+# Node CLI (npm)
+npx @excalidraw-skill-pack/render <path-to-file.excalidraw> --theme <theme>
+# or, if installed: excalidraw-render <path-to-file.excalidraw> --theme <theme>
+
+# Python CLI (PyPI)
+excalidraw-render <path-to-file.excalidraw> --theme <theme>
 ```
 
-This outputs a PNG next to the `.excalidraw` file. Then use the **Read tool** on the PNG to actually view it.
+If you're in an MCP-enabled agent, call the `render_diagram` tool instead. All paths accept full `.excalidraw`, `excalidraw-skeleton`, and `mermaid` documents and write a PNG next to the file. Then use the **Read tool** on the PNG to actually view it.
 
 ### The Loop
 
@@ -609,11 +616,13 @@ The loop is done when:
 - You'd be comfortable showing it to someone without caveats
 
 ### First-Time Setup
-If the render script hasn't been set up yet:
+The renderer drives headless Chromium via Playwright. If a render fails because the browser isn't installed:
 ```bash
-cd ~/.claude/skills/excalidraw-diagram/references
-uv sync
-uv run playwright install chromium
+# Node renderer
+npx playwright install chromium
+# Python renderer
+excalidraw-render --help   # the package installs Playwright; if missing:
+python -m playwright install chromium
 ```
 
 ---
