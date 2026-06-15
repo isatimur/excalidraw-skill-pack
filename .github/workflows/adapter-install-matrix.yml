@@ -27,10 +27,11 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - name: Link core globally
-        run: |
-          cd packages/core && npm link
       - name: Run adapter install
+        # Mirror how @excalidraw-skill-pack/install invokes the adapter scripts:
+        # resolve core and hand it to the script via ESP_CORE_DIR.
+        env:
+          ESP_CORE_DIR: ${{ github.workspace }}/packages/core
         run: |
           mkdir -p test-env
           cd test-env
