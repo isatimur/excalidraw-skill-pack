@@ -3,6 +3,24 @@
   "version": "0.1.1",
   "description": "Scaffold a new excalidraw-skill-pack theme package (npm + PyPI mirror).",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app/themes/create",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git",
+    "directory": "packages/create-excalidraw-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
+  "keywords": [
+    "excalidraw",
+    "theme",
+    "scaffold",
+    "generator",
+    "diagrams",
+    "ai-agent"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "bin": {

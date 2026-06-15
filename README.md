@@ -21,7 +21,8 @@
 
 | For | Command |
 |---|---|
-| Claude Code | `npx @excalidraw-skill-pack/install claude-code` |
+| Claude Code (plugin) | `/plugin marketplace add isatimur/excalidraw-skill-pack` then `/plugin install excalidraw-skill-pack` |
+| Claude Code (script) | `npx @excalidraw-skill-pack/install claude-code` |
 | Cursor | `npx @excalidraw-skill-pack/install cursor` |
 | GitHub Copilot | `npx @excalidraw-skill-pack/install copilot` |
 | Codex | `npx @excalidraw-skill-pack/install codex` |

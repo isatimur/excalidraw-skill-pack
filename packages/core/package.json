@@ -3,6 +3,27 @@
   "version": "0.2.0",
   "description": "Core methodology, schemas, and bundled default-sketchy theme for excalidraw-skill-pack.",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
+  "keywords": [
+    "excalidraw",
+    "diagrams",
+    "ai-agent",
+    "claude",
+    "mcp",
+    "skill",
+    "methodology",
+    "visualization",
+    "diagram-as-code"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

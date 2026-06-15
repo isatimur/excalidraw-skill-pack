@@ -4,6 +4,25 @@
   "private": true,
   "description": "Universal skill pack: make your AI agent argue visually.",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
+  "keywords": [
+    "excalidraw",
+    "diagrams",
+    "ai-agent",
+    "claude-code",
+    "mcp",
+    "cursor",
+    "visualization",
+    "diagram-as-code"
+  ],
   "type": "module",
   "scripts": {
     "build": "pnpm -r build",
@@ -13,7 +32,9 @@
     "changeset": "changeset",
     "version": "changeset version",
     "release": "pnpm build && changeset publish",
-    "sync-versions": "tsx tools/sync-versions.ts"
+    "sync-versions": "tsx tools/sync-versions.ts",
+    "sync-skill": "node tools/sync-skill.mjs",
+    "check:skill-sync": "node tools/sync-skill.mjs --check"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",

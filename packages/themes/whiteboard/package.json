@@ -3,6 +3,16 @@
   "version": "0.2.0",
   "description": "Low-fi, bright, intentionally sketchy. For workshops and ideation sessions.",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app/themes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git",
+    "directory": "packages/themes/whiteboard"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
   "type": "module",
   "main": "./theme.json",
   "files": [
@@ -20,7 +30,10 @@
     "excalidraw-skill-pack",
     "theme",
     "ai-agent",
-    "diagrams"
+    "diagrams",
+    "visualization",
+    "branding",
+    "whiteboard"
   ],
   "publishConfig": {
     "access": "public"

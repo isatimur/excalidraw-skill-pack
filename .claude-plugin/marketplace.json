@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "excalidraw-skill-pack",
+  "owner": {
+    "name": "Timur Isachenko",
+    "url": "https://github.com/isatimur"
+  },
+  "description": "The diagram-quality layer for AI agents — an opinionated Excalidraw methodology, themes, and renderer.",
+  "plugins": [
+    {
+      "name": "excalidraw-skill-pack",
+      "source": "./",
+      "description": "Diagrams that argue, not boxes that label. Bundles the excalidraw-diagram skill and the MCP server (5 tools).",
+      "homepage": "https://excalidraw-skill-pack.vercel.app",
+      "license": "MIT",
+      "keywords": ["excalidraw", "diagrams", "ai-agent", "mcp", "visualization"]
+    }
+  ]
+}

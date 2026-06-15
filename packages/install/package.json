@@ -3,6 +3,26 @@
   "version": "0.1.7",
   "description": "One-command installer for excalidraw-skill-pack adapters.",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git",
+    "directory": "packages/install"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
+  "keywords": [
+    "excalidraw",
+    "installer",
+    "claude-code",
+    "cursor",
+    "copilot",
+    "codex",
+    "gemini",
+    "ai-agent"
+  ],
   "type": "module",
   "bin": {
     "excalidraw-skill-pack-install": "./dist/index.js"

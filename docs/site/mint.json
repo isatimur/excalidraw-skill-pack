@@ -28,6 +28,7 @@
     {
       "group": "Install",
       "pages": [
+        "getting-started/plugin",
         "getting-started/claude-code",
         "getting-started/cursor",
         "getting-started/codex",

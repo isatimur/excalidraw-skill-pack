@@ -3,6 +3,26 @@
   "version": "0.1.2",
   "description": "MCP server exposing excalidraw-skill-pack tools to any MCP-compatible AI agent.",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git",
+    "directory": "packages/mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "excalidraw",
+    "diagrams",
+    "ai-agent",
+    "claude",
+    "cursor",
+    "visualization"
+  ],
   "type": "module",
   "main": "./dist/server.js",
   "bin": {
