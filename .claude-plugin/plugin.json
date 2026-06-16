@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "excalidraw-skill-pack",
+  "displayName": "Excalidraw Skill Pack",
+  "version": "0.1.0",
+  "description": "Diagrams that argue, not boxes that label. An opinionated Excalidraw methodology plus themes and a renderer that turn 'draw me a diagram' into figures that teach.",
+  "author": {
+    "name": "Timur Isachenko",
+    "url": "https://github.com/isatimur"
+  },
+  "homepage": "https://excalidraw-skill-pack.vercel.app",
+  "repository": "https://github.com/isatimur/excalidraw-skill-pack",
+  "license": "MIT",
+  "keywords": [
+    "excalidraw",
+    "diagrams",
+    "ai-agent",
+    "mcp",
+    "visualization",
+    "diagram-as-code",
+    "themes"
+  ],
+  "mcpServers": {
+    "excalidraw-skill-pack": {
+      "command": "npx",
+      "args": ["-y", "@excalidraw-skill-pack/mcp-server"]
+    }
+  }
+}

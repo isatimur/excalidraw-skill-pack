@@ -44,13 +44,20 @@ The book is the proof artifact. The skill is the public good. What you get with 
 
 ## Install for your agent
 
-If you use Claude Code:
+If you use Claude Code, install it as a plugin:
+
+```text
+/plugin marketplace add isatimur/excalidraw-skill-pack
+/plugin install excalidraw-skill-pack
+```
+
+Or use the one-command script (also works for Cursor, GitHub Copilot, Codex, Gemini CLI — swap the adapter name):
 
 ```bash
 npx @excalidraw-skill-pack/install claude-code
 ```
 
-For Cursor, GitHub Copilot, Codex, Gemini CLI — same pattern, swap the adapter name. For any MCP-compatible agent: `npx @excalidraw-skill-pack/mcp-server`.
+For any MCP-compatible agent: `npx @excalidraw-skill-pack/mcp-server`.
 
 ## What this is for
 

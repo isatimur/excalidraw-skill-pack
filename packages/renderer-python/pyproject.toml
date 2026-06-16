@@ -6,9 +6,24 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [{ name = "Timur Isachenko" }]
+keywords = ["excalidraw", "render", "png", "diagrams", "ai-agent", "visualization", "playwright", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Libraries",
+]
 dependencies = [
     "playwright>=1.40.0"
 ]
+
+[project.urls]
+Homepage = "https://excalidraw-skill-pack.vercel.app"
+Repository = "https://github.com/isatimur/excalidraw-skill-pack"
+Documentation = "https://excalidraw-skill-pack.vercel.app"
+"Bug Tracker" = "https://github.com/isatimur/excalidraw-skill-pack/issues"
 
 [project.scripts]
 excalidraw-render = "excalidraw_render.cli:main"

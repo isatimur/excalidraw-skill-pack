@@ -6,7 +6,20 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [{ name = "Timur Isachenko" }]
-keywords = ["excalidraw", "excalidraw-skill-pack", "theme", "ai-agent", "diagrams"]
+keywords = ["excalidraw", "excalidraw-skill-pack", "theme", "ai-agent", "diagrams", "visualization", "branding", "dark"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics",
+]
+
+[project.urls]
+Homepage = "https://excalidraw-skill-pack.vercel.app/themes"
+Repository = "https://github.com/isatimur/excalidraw-skill-pack"
+Documentation = "https://excalidraw-skill-pack.vercel.app"
+"Bug Tracker" = "https://github.com/isatimur/excalidraw-skill-pack/issues"
 
 [build-system]
 requires = ["hatchling"]

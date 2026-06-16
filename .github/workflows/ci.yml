@@ -21,6 +21,8 @@ jobs:
       - run: pnpm -r build
       - run: pnpm lint
       - run: pnpm typecheck
+      - name: Plugin skill in sync with core SKILL.md
+        run: pnpm check:skill-sync
 
   python-lint:
     runs-on: ubuntu-latest

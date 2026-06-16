@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.isatimur/excalidraw-skill-pack",
+  "description": "The diagram-quality layer for AI agents: an opinionated Excalidraw methodology plus themes that turn 'draw me a diagram' into figures that argue visually. Five MCP tools (generate_diagram_prompt, render_diagram, apply_theme, list_themes, audit_diagram).",
+  "version": "0.1.2",
+  "repository": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@excalidraw-skill-pack/mcp-server",
+      "version": "0.1.2",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

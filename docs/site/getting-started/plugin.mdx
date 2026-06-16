@@ -1,0 +1,46 @@
+---
+title: "Claude Code Plugin"
+description: "Install excalidraw-skill-pack as a native Claude Code plugin — skill + MCP server, one command."
+---
+
+The fastest way to get excalidraw-skill-pack into Claude Code is as a plugin. It bundles
+the `excalidraw-diagram` skill and the MCP server (5 tools) together, and updates with a
+single command.
+
+## Install
+
+Add the marketplace, then install the plugin:
+
+```text
+/plugin marketplace add isatimur/excalidraw-skill-pack
+/plugin install excalidraw-skill-pack
+```
+
+That's it. The plugin:
+- Loads the `excalidraw-diagram` skill (the full methodology the agent reads).
+- Registers the `@excalidraw-skill-pack/mcp-server` MCP server (run via `npx`, fetched from npm on first use), exposing `generate_diagram_prompt`, `render_diagram`, `apply_theme`, `list_themes`, and `audit_diagram`.
+
+<Note>
+Prefer not to use the plugin marketplace? The script installer still works:
+`npx @excalidraw-skill-pack/install claude-code`. See the [Claude Code](/getting-started/claude-code) page.
+</Note>
+
+## Use
+
+In any conversation:
+
+> "Make me a diagram of the post-meeting redaction pipeline. Use the stripe-press theme."
+
+The skill auto-loads, the agent drafts JSON, and the MCP server renders it to PNG.
+
+## Update
+
+```text
+/plugin marketplace update excalidraw-skill-pack
+```
+
+## Uninstall
+
+```text
+/plugin uninstall excalidraw-skill-pack
+```

@@ -1,8 +1,18 @@
 {
   "name": "@excalidraw-skill-pack/theme-stripe-press",
   "version": "0.2.1",
-  "description": "Editorial &#x2F; book-grade. Cream paper, ink-brown strokes, editorial sans&#x2F;serif. Proven on 64 diagrams.",
+  "description": "Editorial &#x2F; book-grade. Cream paper, ink-brown strokes, editorial sans&#x2F;serif. Proven on 77 diagrams.",
   "license": "MIT",
+  "author": "Timur Isachenko",
+  "homepage": "https://excalidraw-skill-pack.vercel.app/themes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isatimur/excalidraw-skill-pack.git",
+    "directory": "packages/themes/stripe-press"
+  },
+  "bugs": {
+    "url": "https://github.com/isatimur/excalidraw-skill-pack/issues"
+  },
   "type": "module",
   "main": "./theme.json",
   "files": [
