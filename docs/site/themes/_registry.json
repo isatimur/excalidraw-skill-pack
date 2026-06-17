@@ -1,4 +1,14 @@
 {
-  "updated": "2026-06-16T13:24:39.830Z",
-  "themes": []
+  "updated": "2026-06-17T12:46:54.772Z",
+  "themes": [
+    {
+      "name": "whiteboard",
+      "npm": {
+        "name": "@excalidraw-skill-pack/theme-whiteboard",
+        "version": "0.2.0"
+      },
+      "description": "Low-fi, bright, intentionally sketchy. For workshops and ideation sessions.",
+      "source": "monorepo"
+    }
+  ]
 }
