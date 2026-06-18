@@ -58,6 +58,15 @@ Active theme is resolved in priority order: `--theme` flag → project `.excalid
 
 The renderer tests are the load-bearing safety net. `renderer-node/tests/`: `parity.test.ts` (Node vs Python output), `canary.test.ts`, `examples-regression.test.ts` (fixtures vs `golden/`), plus `test_canary.py` on the Python side. They diff PNGs with `pixelmatch`. **Any change to render logic or `render_template.html` must be mirrored in both renderers and re-baseline the golden images deliberately.**
 
+### Container build (Glama MCP registry)
+
+`Dockerfile` builds the image the Glama registry runs to inspect the server. Two non-obvious requirements, both of which silently break the build if missed:
+
+- It must `COPY tsconfig.base.json` — every package extends it, and without it `tsc` falls back to an ES3 target (fails with errors like `Property 'replaceAll' does not exist`).
+- It must `COPY packages/shared` — `renderer-node/src/render_template.html` is a symlink into `shared/`, so omitting it dangles the symlink and the renderer build fails.
+
+The Dockerfile sets `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` and builds only `--filter @excalidraw-skill-pack/mcp-server...`: the registry only needs the server to start and enumerate tools (the MCP server imports `render` lazily, so tool inspection needs no browser). `glama.json` at the repo root claims maintainership for the registry listing.
+
 ## Conventions
 
 - ESM only (`"type": "module"`), TS `strict` + `noUncheckedIndexedAccess` + `noImplicitOverride` (see `tsconfig.base.json`). Each package has its own `tsconfig.json` extending the base.
