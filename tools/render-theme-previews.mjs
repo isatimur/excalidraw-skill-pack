@@ -7,7 +7,7 @@ const PUB_THEMES = join(ROOT, "packages", "themes");
 const FIXTURES = join(ROOT, "packages", "shared", "fixtures");
 const OUT = join(ROOT, "docs", "site", "images", "themes");
 
-const { renderToPng } = await import(join(ROOT, "packages", "renderer-node", "dist", "index.js"));
+const { renderMany } = await import(join(ROOT, "packages", "renderer-node", "dist", "index.js"));
 
 const PREVIEWS = [
   { theme: "default-sketchy", fixture: "03-concept-card.excalidraw", dir: CORE_THEMES },
@@ -46,11 +46,16 @@ async function reskin(json, themesDir, targetName) {
   return JSON.stringify(payload);
 }
 
+const items = [];
 for (const { theme, fixture, dir } of PREVIEWS) {
   const src = await readFile(join(FIXTURES, fixture), "utf-8");
   const reskinned = await reskin(src, dir, theme);
-  const png = await renderToPng(reskinned, { theme, scale: 2, width: 1200 });
-  const out = join(OUT, `${theme}.png`);
-  await writeFile(out, png);
-  console.log(`wrote ${out} (${png.length} bytes)`);
+  items.push({ theme, json: reskinned, opts: { theme, scale: 2, width: 1200 } });
+}
+
+const pngs = await renderMany(items.map(({ json, opts }) => ({ json, opts })));
+for (let i = 0; i < items.length; i++) {
+  const out = join(OUT, `${items[i].theme}.png`);
+  await writeFile(out, pngs[i]);
+  console.log(`wrote ${out} (${pngs[i].length} bytes)`);
 }

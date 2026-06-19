@@ -1,12 +1,19 @@
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { chromium } from "playwright";
+import { chromium, type Browser } from "playwright";
 
 export interface RenderOptions {
   theme?: string;
   scale?: number;
   width?: number;
 }
+
+export interface BatchItem {
+  json: string;
+  opts?: RenderOptions;
+}
+
+const TEMPLATE_URL = `file://${join(dirname(fileURLToPath(import.meta.url)), "render_template.html")}`;
 
 function computeBoundingBox(elements: Array<Record<string, unknown>>): [number, number, number, number] {
   let minX = Infinity;
@@ -40,82 +47,140 @@ function computeBoundingBox(elements: Array<Record<string, unknown>>): [number, 
   return [minX, minY, maxX, maxY];
 }
 
-export async function hydrateSkeleton(json: string): Promise<string> {
-  const templatePath = join(dirname(fileURLToPath(import.meta.url)), "render_template.html");
-  const browser = await chromium.launch({ headless: true });
-  try {
-    const page = await browser.newPage();
-    await page.goto(`file://${templatePath}`);
-    await page.waitForFunction("window.__moduleReady === true", { timeout: 30000 });
-    return await page.evaluate(
-      (jsonStr) =>
-        (globalThis as unknown as { hydrateSkeleton: (s: string) => string }).hydrateSkeleton(jsonStr),
-      json
-    );
-  } finally {
-    await browser.close();
-  }
-}
-
-export async function renderToPng(json: string, opts: RenderOptions = {}): Promise<Buffer> {
-  const { scale = 2, width = 1200 } = opts;
-
+function viewportFor(json: string, width: number): { width: number; height: number } {
   const data = JSON.parse(json) as { type?: string; elements?: Array<Record<string, unknown>> };
 
-  let vpW: number;
-  let vpH: number;
   if (data.type === "excalidraw-skeleton" || data.type === "mermaid") {
     // Skeleton/Mermaid documents have no final geometry until they're resolved
     // in the browser, so the bounding box can't be computed node-side. Use a
     // generous viewport — the SVG-element screenshot captures the true size.
-    vpW = width;
-    vpH = 2400;
-  } else {
-    const elements = (data.elements ?? []).filter((e) => !e["isDeleted"]);
-    const [minX, minY, maxX, maxY] = computeBoundingBox(elements);
-    const padding = 80;
-    vpW = Math.min(Math.round(maxX - minX + padding * 2), width);
-    vpH = Math.max(Math.round(maxY - minY + padding * 2), 600);
+    return { width, height: 2400 };
   }
 
-  const templatePath = join(dirname(fileURLToPath(import.meta.url)), "render_template.html");
-  const templateUrl = `file://${templatePath}`;
+  const elements = (data.elements ?? []).filter((e) => !e["isDeleted"]);
+  const [minX, minY, maxX, maxY] = computeBoundingBox(elements);
+  const padding = 80;
+  return {
+    width: Math.min(Math.round(maxX - minX + padding * 2), width),
+    height: Math.max(Math.round(maxY - minY + padding * 2), 600),
+  };
+}
 
-  const browser = await chromium.launch({ headless: true });
-  try {
+/**
+ * Owns a single headless Chromium instance and reuses it across renders.
+ * Browser launch dominates render cost; each diagram still gets its own
+ * context sized to its bounding box, so output is identical to a one-shot
+ * render. Call `close()` when done, or use `renderToPng`/`renderMany` which
+ * manage the lifecycle for you.
+ */
+export class Renderer {
+  private browser: Browser | null = null;
+
+  private async getBrowser(): Promise<Browser> {
+    if (!this.browser) {
+      this.browser = await chromium.launch({ headless: true });
+    }
+    return this.browser;
+  }
+
+  async render(json: string, opts: RenderOptions = {}): Promise<Buffer> {
+    const { scale = 2, width = 1200 } = opts;
+    const { width: vpW, height: vpH } = viewportFor(json, width);
+
+    const browser = await this.getBrowser();
     const context = await browser.newContext({
       viewport: { width: vpW, height: vpH },
       deviceScaleFactor: scale,
     });
-    const page = await context.newPage();
-    await page.goto(templateUrl);
-    await page.waitForFunction("window.__moduleReady === true", { timeout: 30000 });
+    try {
+      const page = await context.newPage();
+      await page.goto(TEMPLATE_URL);
+      await page.waitForFunction("window.__moduleReady === true", { timeout: 30000 });
 
-    const result = await page.evaluate(
-      (jsonStr) =>
-        (
-          globalThis as unknown as {
-            renderDiagram: (s: string) => Promise<{ success: boolean; error?: string }>;
-          }
-        ).renderDiagram(jsonStr),
-      json
-    );
+      const result = await page.evaluate(
+        (jsonStr) =>
+          (
+            globalThis as unknown as {
+              renderDiagram: (s: string) => Promise<{ success: boolean; error?: string }>;
+            }
+          ).renderDiagram(jsonStr),
+        json
+      );
 
-    if (!result || !result.success) {
-      throw new Error(`Render failed: ${result?.error ?? "renderDiagram returned null"}`);
+      if (!result || !result.success) {
+        throw new Error(`Render failed: ${result?.error ?? "renderDiagram returned null"}`);
+      }
+
+      await page.waitForFunction("window.__renderComplete === true", { timeout: 15000 });
+
+      const svgEl = await page.$("#root svg");
+      if (!svgEl) {
+        throw new Error("No SVG element found after render");
+      }
+
+      const png = await svgEl.screenshot({ type: "png" });
+      return Buffer.from(png);
+    } finally {
+      await context.close();
     }
+  }
 
-    await page.waitForFunction("window.__renderComplete === true", { timeout: 15000 });
-
-    const svgEl = await page.$("#root svg");
-    if (!svgEl) {
-      throw new Error("No SVG element found after render");
+  async hydrate(json: string): Promise<string> {
+    const browser = await this.getBrowser();
+    const page = await browser.newPage();
+    try {
+      await page.goto(TEMPLATE_URL);
+      await page.waitForFunction("window.__moduleReady === true", { timeout: 30000 });
+      return await page.evaluate(
+        (jsonStr) =>
+          (globalThis as unknown as { hydrateSkeleton: (s: string) => string }).hydrateSkeleton(jsonStr),
+        json
+      );
+    } finally {
+      await page.close();
     }
+  }
 
-    const png = await svgEl.screenshot({ type: "png" });
-    await context.close();
-    return Buffer.from(png);
+  async close(): Promise<void> {
+    if (this.browser) {
+      await this.browser.close();
+      this.browser = null;
+    }
+  }
+}
+
+export async function renderToPng(json: string, opts: RenderOptions = {}): Promise<Buffer> {
+  const renderer = new Renderer();
+  try {
+    return await renderer.render(json, opts);
   } finally {
-    await browser.close();
+    await renderer.close();
+  }
+}
+
+export async function hydrateSkeleton(json: string): Promise<string> {
+  const renderer = new Renderer();
+  try {
+    return await renderer.hydrate(json);
+  } finally {
+    await renderer.close();
+  }
+}
+
+/**
+ * Render many diagrams reusing one browser. The expensive Chromium launch
+ * happens once instead of once per diagram. Results are returned in input
+ * order.
+ */
+export async function renderMany(items: BatchItem[]): Promise<Buffer[]> {
+  const renderer = new Renderer();
+  try {
+    const out: Buffer[] = [];
+    for (const item of items) {
+      out.push(await renderer.render(item.json, item.opts));
+    }
+    return out;
+  } finally {
+    await renderer.close();
   }
 }

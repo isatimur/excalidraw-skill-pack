@@ -19,4 +19,12 @@ describe("excalidraw-render CLI", () => {
     expect(existsSync(out)).toBe(true);
     expect(statSync(out).size).toBeGreaterThan(5000);
   }, 60_000);
+
+  it("renders multiple inputs into an output directory in one browser session", async () => {
+    const tmp = mkdtempSync(join(tmpdir(), "esp-"));
+    await exec("node", [CLI, FIXTURE, FIXTURE, "--theme", "default-sketchy", "--output", tmp, "--scale", "1", "--width", "800"]);
+    const out = join(tmp, "05-inline-figure.png");
+    expect(existsSync(out)).toBe(true);
+    expect(statSync(out).size).toBeGreaterThan(5000);
+  }, 90_000);
 });
