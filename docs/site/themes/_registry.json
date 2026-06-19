@@ -1,6 +1,15 @@
 {
-  "updated": "2026-06-18T12:18:50.408Z",
+  "updated": "2026-06-19T12:42:19.414Z",
   "themes": [
+    {
+      "name": "stripe-press",
+      "npm": {
+        "name": "@excalidraw-skill-pack/theme-stripe-press",
+        "version": "0.2.1"
+      },
+      "description": "Editorial &#x2F; book-grade. Cream paper, ink-brown strokes, editorial sans&#x2F;serif. Proven on 64 diagrams.",
+      "source": "monorepo"
+    },
     {
       "name": "whiteboard",
       "npm": {
