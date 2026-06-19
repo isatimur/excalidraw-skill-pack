@@ -32,7 +32,7 @@ export function listToolDefinitions(): ToolDefinition[] {
 
 export async function main() {
   const server = new Server(
-    { name: "excalidraw-skill-pack", version: "0.0.0" },
+    { name: "excalidraw-skill-pack", version: "0.1.2" },
     { capabilities: { tools: {} } }
   );
 
