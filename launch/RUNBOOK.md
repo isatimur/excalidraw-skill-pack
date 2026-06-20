@@ -13,21 +13,27 @@ your accounts — this runbook makes each step copy-paste.
 
 ## Pre-flight (do before T+0)
 
-- [ ] **Ship the metadata release.** Merge the discoverability PR, then let the Changesets
-      "Version Packages" PR merge so npm republishes with the new `keywords`/`repository`/
-      `homepage`. Confirm with `npm view @excalidraw-skill-pack/core keywords`. *(npm/PyPI
-      search must work before launch or the launch traffic finds nothing.)*
-- [ ] **Bump + tag PyPI packages** so the new classifiers/urls ship (tag-triggered
-      `publish-pypi` workflow). Run `pnpm sync-versions` if npm/PyPI versions drift.
+- [x] **Ship the metadata release.** ✅ **Live on npm** (2026-06-20): all 9 packages
+      published with `keywords`/`repository`/`homepage` — `core@0.2.1`, `render@0.3.0`
+      (batch API), `mcp-server@0.1.3`, `install@0.1.8`, `create-theme@0.1.2`, 4 themes
+      (`0.2.1`/`0.2.2`). Verify any time: `npm view @excalidraw-skill-pack/core keywords`.
+- [x] **PyPI packages published.** ✅ **Live on PyPI** (2026-06-20): `excalidraw-skill-pack-render@0.2.0`
+      (batch API + classifiers/urls) and the 4 themes' first publish at `0.1.0`
+      (`-theme-dark/-notion/-whiteboard/-stripe-press`).
+- [x] **`server.json` synced** to the published `@excalidraw-skill-pack/mcp-server@0.1.3`. ✅
 - [ ] **Test the plugin locally** (see verification below). It must install cleanly from a
-      fresh clone before you advertise `/plugin marketplace add`.
-- [ ] **Set `server.json` version** to the latest published `@excalidraw-skill-pack/mcp-server`
-      version right before submitting to MCP registries.
+      fresh clone before you advertise `/plugin marketplace add`. *(Your action — needs a
+      Claude Code session in a scratch dir.)*
 - [ ] **Upload the GitHub social preview**: repo → Settings → Social preview →
-      `docs/site/images/hero.png`. *(Can't be scripted.)*
+      `docs/site/images/hero.png`. *(Can't be scripted — GitHub UI.)*
 - [ ] **Produce the 3 missing visual assets** (blockers for Product Hunt):
       hero GIF (agent → JSON → render loop), the 5-theme grid, a before/after
       (labeled-boxes vs. arguing diagram).
+
+> **Status (2026-06-20):** All repo-side + publishing pre-flight is done — both registries
+> are live and search-indexable, and the release pipeline is fixed/self-healing. The three
+> open items above all require your accounts/UI (plugin smoke-test, social-preview upload,
+> visual assets). Every submission payload below is copy-paste-ready against the live packages.
 
 ---
 
@@ -52,8 +58,10 @@ your accounts — this runbook makes each step copy-paste.
 
 ## Submission tracker
 
-Open these once the metadata release is live. The **awesome-list PRs are the highest-value
-items** — they compound (evergreen discovery). Lead each with the book proof.
+The metadata release is **live** (npm + PyPI), so these are ready to open now. The
+**awesome-list PRs are the highest-value items** — they compound (evergreen discovery).
+Lead each with the book proof. Every payload below installs cleanly against the published
+packages (`npx @excalidraw-skill-pack/mcp-server`, `npx @excalidraw-skill-pack/install <agent>`).
 
 | # | Channel | Where | Payload | Type | Status | Date |
 |---|---------|-------|---------|------|--------|------|
