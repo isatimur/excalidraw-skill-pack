@@ -1,6 +1,6 @@
 [project]
 name = "excalidraw-skill-pack-render"
-version = "0.1.0"
+version = "0.2.0"
 description = "Render Excalidraw JSON to PNG. Python binding for excalidraw-skill-pack."
 readme = "README.md"
 license = "MIT"
