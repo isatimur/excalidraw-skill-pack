@@ -1,5 +1,18 @@
 # @excalidraw-skill-pack/render
 
+## 0.3.0
+
+### Minor Changes
+
+- 77d63f2: feat(render): batch rendering that reuses one Chromium instance. Adds the `Renderer` class, `renderMany()`, and `hydrateSkeleton` to the public API, and the CLI now accepts multiple input files (rendering them in a single browser session, with `-o` as an output directory). `renderToPng` is unchanged and output is byte-identical — browser launch, previously paid per render, now happens once per batch.
+
+### Patch Changes
+
+- 5186be0: chore: add discoverability metadata (keywords, repository, homepage, bugs, author) to all published packages so they surface in npm search and link back to the repo/docs.
+- Updated dependencies [5186be0]
+- Updated dependencies [34be389]
+  - @excalidraw-skill-pack/core@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

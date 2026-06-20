@@ -1,5 +1,14 @@
 # @excalidraw-skill-pack/install
 
+## 0.1.8
+
+### Patch Changes
+
+- 5186be0: chore: add discoverability metadata (keywords, repository, homepage, bugs, author) to all published packages so they surface in npm search and link back to the repo/docs.
+- Updated dependencies [5186be0]
+- Updated dependencies [34be389]
+  - @excalidraw-skill-pack/core@0.2.1
+
 ## 0.1.7
 
 ### Patch Changes

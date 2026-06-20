@@ -1,5 +1,16 @@
 # @excalidraw-skill-pack/mcp-server
 
+## 0.1.3
+
+### Patch Changes
+
+- 5186be0: chore: add discoverability metadata (keywords, repository, homepage, bugs, author) to all published packages so they surface in npm search and link back to the repo/docs.
+- Updated dependencies [5186be0]
+- Updated dependencies [77d63f2]
+- Updated dependencies [34be389]
+  - @excalidraw-skill-pack/core@0.2.1
+  - @excalidraw-skill-pack/render@0.3.0
+
 ## 0.1.2
 
 ### Patch Changes
