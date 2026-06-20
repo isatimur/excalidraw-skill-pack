@@ -30,7 +30,7 @@
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
     "changeset": "changeset",
-    "version": "changeset version",
+    "version": "changeset version && pnpm install --lockfile-only",
     "release": "pnpm build && changeset publish",
     "sync-versions": "tsx tools/sync-versions.ts",
     "sync-skill": "node tools/sync-skill.mjs",
