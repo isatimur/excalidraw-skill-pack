@@ -1,5 +1,12 @@
 # @excalidraw-skill-pack/core
 
+## 0.2.1
+
+### Patch Changes
+
+- 5186be0: chore: add discoverability metadata (keywords, repository, homepage, bugs, author) to all published packages so they surface in npm search and link back to the repo/docs.
+- 34be389: docs(skill): make SKILL.md accurate across agents. Generalize the section-by-section guidance away from a Claude-Code-specific "~32,000 token" output limit (this skill runs on Cursor, Copilot, Codex, and Gemini too), and fix the render section — `excalidraw-render` is the Python CLI command; the Node renderer runs via `npx @excalidraw-skill-pack/render`.
+
 ## 0.2.0
 
 ### Minor Changes

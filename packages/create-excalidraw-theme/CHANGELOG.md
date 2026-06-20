@@ -1,5 +1,11 @@
 # @excalidraw-skill-pack/create-theme
 
+## 0.1.2
+
+### Patch Changes
+
+- 5186be0: chore: add discoverability metadata (keywords, repository, homepage, bugs, author) to all published packages so they surface in npm search and link back to the repo/docs.
+
 ## 0.1.1
 
 ### Patch Changes
