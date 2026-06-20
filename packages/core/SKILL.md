@@ -243,7 +243,7 @@ See `element-templates.md` and `json-schema.md` for copy-paste structures.
 
 ## Large / Comprehensive Diagram Strategy
 
-**For comprehensive or technical diagrams, build the JSON one section at a time.** Do NOT attempt to generate the entire file in a single pass. Claude Code has a ~32,000 token output limit per response, and generating everything at once also leads to worse quality. Section-by-section is better.
+**For comprehensive or technical diagrams, build the JSON one section at a time.** Do NOT attempt to generate the entire file in a single pass. Every agent has a bounded output budget per response, and a large diagram will exceed it and truncate; generating everything at once also leads to worse quality. Section-by-section is better.
 
 Authoring in the **skeleton format** (see below) cuts per-element output by roughly half — no `seed`, `versionNonce`, `boundElements`, `containerId`, or separate bound-text elements to emit — so far more fits in one pass. Use skeletons by default; still split genuinely large diagrams into sections.
 
@@ -563,9 +563,8 @@ Use the installed renderer (any of these — whichever the environment provides)
 ```bash
 # Node CLI (npm)
 npx @excalidraw-skill-pack/render <path-to-file.excalidraw> --theme <theme>
-# or, if installed: excalidraw-render <path-to-file.excalidraw> --theme <theme>
 
-# Python CLI (PyPI)
+# Python CLI (PyPI) — installs the `excalidraw-render` command
 excalidraw-render <path-to-file.excalidraw> --theme <theme>
 ```
 
