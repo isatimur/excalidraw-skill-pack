@@ -28,7 +28,9 @@ your accounts — this runbook makes each step copy-paste.
       `docs/site/images/hero.png`. *(Can't be scripted — GitHub UI.)*
 - [ ] **Produce the 3 missing visual assets** (blockers for Product Hunt):
       hero GIF (agent → JSON → render loop), the 5-theme grid, a before/after
-      (labeled-boxes vs. arguing diagram).
+      (labeled-boxes vs. arguing diagram). **Full storyboards + fastest-path commands:
+      [`visual-assets.md`](visual-assets.md)** (the theme grid is a one-line `magick montage`
+      of the existing previews; the before/after reuses a rendered book diagram).
 
 > **Status (2026-06-20):** All repo-side + publishing pre-flight is done — both registries
 > are live and search-indexable, and the release pipeline is fixed/self-healing. The three
