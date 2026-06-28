@@ -1,23 +1,33 @@
 {
-  "updated": "2026-06-27T10:54:07.074Z",
+  "updated": "2026-06-28T11:01:33.911Z",
   "themes": [
     {
       "name": "dark",
+      "npm": {
+        "name": "@excalidraw-skill-pack/theme-dark",
+        "version": "0.2.1"
+      },
+      "description": "Inverted contrast, neutral. For presentations and dev tools.",
+      "homepage": "https://excalidraw-skill-pack.vercel.app/themes",
+      "source": "monorepo",
       "pypi": {
         "name": "excalidraw-skill-pack-theme-dark",
         "version": "0.1.0"
-      },
-      "description": "Inverted contrast, neutral. For presentations and dev tools.",
-      "source": "monorepo"
+      }
     },
     {
       "name": "notion",
+      "npm": {
+        "name": "@excalidraw-skill-pack/theme-notion",
+        "version": "0.2.1"
+      },
+      "description": "Rounded, soft, off-white. Matches Notion&#39;s docs aesthetic.",
+      "homepage": "https://excalidraw-skill-pack.vercel.app/themes",
+      "source": "monorepo",
       "pypi": {
         "name": "excalidraw-skill-pack-theme-notion",
         "version": "0.1.0"
-      },
-      "description": "Rounded, soft, off-white. Matches Notion&#39;s docs aesthetic.",
-      "source": "monorepo"
+      }
     },
     {
       "name": "stripe-press",
