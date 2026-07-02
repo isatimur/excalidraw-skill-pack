@@ -1,3 +1,4 @@
+<!-- TODO: replace/augment the static hero PNG with a 5-10s animated demo (prompt → rendered diagram). Highest-leverage missing asset. -->
 <p align="center">
   <img src="docs/site/images/hero.png" alt="Make your AI agent argue visually" width="800" />
 </p>
@@ -11,6 +12,8 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/isatimur/excalidraw-skill-pack/stargazers"><img src="https://img.shields.io/github/stars/isatimur/excalidraw-skill-pack?style=social" alt="GitHub stars" /></a>
+  <a href="https://github.com/isatimur/excalidraw-skill-pack/actions/workflows/ci.yml"><img src="https://github.com/isatimur/excalidraw-skill-pack/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://excalidraw-skill-pack.vercel.app"><img src="https://img.shields.io/badge/docs-excalidraw--skill--pack.vercel.app-B8472A" alt="docs" /></a>
   <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Frender?label=npm%20render" alt="npm" /></a>
   <a href="https://pypi.org/project/excalidraw-skill-pack-render/"><img src="https://img.shields.io/pypi/v/excalidraw-skill-pack-render?label=PyPI" alt="pypi" /></a>
@@ -27,6 +30,7 @@
 | GitHub Copilot | `npx @excalidraw-skill-pack/install copilot` |
 | Codex | `npx @excalidraw-skill-pack/install codex` |
 | Gemini CLI | `npx @excalidraw-skill-pack/install gemini-cli` |
+| Any agent (skills.sh) | `npx skills add isatimur/excalidraw-skill-pack` |
 | Any MCP agent | `npx @excalidraw-skill-pack/mcp-server` |
 | Renderer only (Node) | `npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press` |
 | Renderer only (Python) | `pipx install excalidraw-skill-pack-render && excalidraw-render diagram.excalidraw --theme stripe-press` |
@@ -76,6 +80,14 @@ cd theme-my-brand && npm publish --access public
 ## Proof
 
 This skill drew **77 diagrams** for the published technical book [*From Copilot to Colleague*](https://fromcopilottocolleague.com) — argument spines, chapter openers, concept figures, and inline explainers, all from the methodology in this repo. No other Excalidraw generator can point at a corpus like that. A curated set — the book's argument spine plus all ten chapter openers — ships as source `.excalidraw` files in [`examples/book`](https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book); the full 77 are live across [fromcopilottocolleague.com](https://fromcopilottocolleague.com).
+
+<p align="center">
+  <a href="examples/book/01-book-argument-spine.png"><img src="examples/book/01-book-argument-spine.png" alt="Book argument spine" width="240" /></a>
+  <a href="examples/book/02-autoresearch-machine.png"><img src="examples/book/02-autoresearch-machine.png" alt="Autoresearch machine" width="240" /></a>
+  <a href="examples/book/05-chapter1-the-shift.png"><img src="examples/book/05-chapter1-the-shift.png" alt="Chapter 1 — the shift" width="240" /></a>
+  <a href="examples/book/08-chapter4-evals.png"><img src="examples/book/08-chapter4-evals.png" alt="Chapter 4 — evals" width="240" /></a>
+</p>
+<p align="center"><sub>Real figures from the book — the argument spine, a concept machine, and two chapter openers. <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">All source files →</a></sub></p>
 
 ## Methodology
 
