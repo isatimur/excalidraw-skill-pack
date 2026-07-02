@@ -1,6 +1,11 @@
 ---
 name: excalidraw-diagram
-description: Create Excalidraw diagram JSON files that make visual arguments. Use when the user wants to visualize workflows, architectures, or concepts.
+description: Create Excalidraw diagrams as `.excalidraw` JSON that make a visual argument — not just labeled boxes. Use when the user wants to draw, sketch, visualize, or diagram a system architecture, software design, workflow, flowchart, sequence, data flow, state machine, pipeline, org chart, mind map, concept map, network topology, or process — in a hand-drawn, sketchy whiteboard style. Produces valid, themeable `.excalidraw` files that render to PNG and open in Excalidraw, Obsidian, or VS Code. Triggers on phrases like "make a diagram", "draw the architecture", "visualize this", "excalidraw", "flowchart", "system design diagram", "sketch this out", or "whiteboard it".
+license: MIT
+metadata:
+  homepage: https://excalidraw-skill-pack.vercel.app
+  repository: https://github.com/isatimur/excalidraw-skill-pack
+  keywords: [excalidraw, diagram, flowchart, architecture-diagram, system-design, visualization, whiteboard, sketch, diagram-as-code, mind-map]
 ---
 
 # Excalidraw Diagram Creator
