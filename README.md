@@ -1,6 +1,7 @@
-<!-- TODO: replace/augment the static hero PNG with a 5-10s animated demo (prompt → rendered diagram). Highest-leverage missing asset. -->
 <p align="center">
-  <img src="docs/site/images/hero.png" alt="Make your AI agent argue visually" width="800" />
+  <img src="docs/site/images/demo.gif" alt="Real architecture diagrams the pack rendered for a published book — cycling to show they argue, not just label" width="820" />
+  <br/>
+  <em>Real figures the pack rendered for a published engineering book — diagrams that make an argument, not boxes that label.</em>
 </p>
 
 <h1 align="center">excalidraw-skill-pack</h1>
