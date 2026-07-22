@@ -63,6 +63,62 @@ footer a { color: var(--muted); }
   .installs .label { margin-top: 0.5rem; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "excalidraw-skill-pack",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "description": "Open-source Claude Code skill + MCP server that gives AI agents an opinionated Excalidraw methodology and themes, so they draw diagrams that make an argument instead of boxes that label. Rendered 77 figures for a published engineering book.",
+      "url": "https://excalidraw-skill-pack.vercel.app",
+      "downloadUrl": "https://github.com/isatimur/excalidraw-skill-pack",
+      "softwareVersion": "0.1.4",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": {
+        "@type": "Person",
+        "name": "Timur Isachenko"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is excalidraw-skill-pack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Claude Code skill (and MCP server) that encodes an opinionated Excalidraw methodology, a theme system, and a renderer, so an AI agent draws diagrams that argue \u2014 with hierarchy, direction, and grouping \u2014 instead of labeled boxes. MIT licensed, works in Claude Code, Cursor, Codex, and Gemini CLI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I install excalidraw-skill-pack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run '/plugin marketplace add isatimur/excalidraw-skill-pack' in Claude Code, then '/plugin install'. It also installs into Cursor, Codex, and Gemini CLI, and publishes MCP-server packages on npm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is it different from the official Excalidraw MCP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The official Excalidraw MCP is the primitive layer (raw element CRUD: create, move, connect). excalidraw-skill-pack is the quality layer on top \u2014 the methodology that decides which elements, where, and why, plus reproducible golden-fixture rendering."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
