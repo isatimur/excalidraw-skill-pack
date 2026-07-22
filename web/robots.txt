@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://excalidraw-skill-pack.vercel.app/sitemap.xml
