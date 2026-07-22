@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>excalidraw-skill-pack vs the official Excalidraw MCP</title>
+<meta name="description" content="An honest comparison: the official Excalidraw MCP is the primitive element layer; excalidraw-skill-pack is the diagram-quality methodology on top. When to choose each." />
+<link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/" />
+<meta property="og:title" content="excalidraw-skill-pack vs the official Excalidraw MCP" />
+<meta property="og:description" content="The official MCP draws elements. This decides which elements, where, and why. When to choose each." />
+<meta property="og:image" content="https://raw.githubusercontent.com/isatimur/excalidraw-skill-pack/main/docs/site/images/demo.gif" />
+<style>
+:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
+nav, .kicker { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
+h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
+h1 { font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.12; margin:.6rem 0 1rem; }
+h2 { font-size:1.5rem; margin:2.4rem 0 .8rem; }
+a { color:var(--accent); }
+table { border-collapse:collapse; width:100%; margin:1.5rem 0; font-size:.95rem; }
+th,td { border:1px solid rgba(0,0,0,.14); padding:.7rem .9rem; text-align:left; vertical-align:top; }
+th { font-family:"JetBrains Mono",Menlo,monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:rgba(255,255,255,.35); }
+code { font-family:"JetBrains Mono",Menlo,monospace; background:rgba(255,255,255,.4); padding:.1rem .3rem; }
+.cta { display:inline-block; margin-top:.5rem; border:1px solid var(--accent); padding:.55rem 1rem; text-decoration:none; }
+.muted { color:var(--muted); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"WebPage","name":"excalidraw-skill-pack vs the official Excalidraw MCP","url":"https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/"},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Should I use excalidraw-skill-pack or the official Excalidraw MCP?","acceptedAnswer":{"@type":"Answer","text":"They operate at different layers. The official Excalidraw MCP is the primitive layer: it creates, moves, and connects individual elements. excalidraw-skill-pack is the methodology layer on top: it decides which elements, where, and why, so the diagram makes an argument. Use the official MCP when you want direct element control; use excalidraw-skill-pack when you want the agent to produce a good diagram without you art-directing it. They can coexist."}},
+    {"@type":"Question","name":"Can I use both together?","acceptedAnswer":{"@type":"Answer","text":"Yes. The official MCP is the hands; excalidraw-skill-pack is the taste. The skill pack's methodology can guide element-level operations, and its renderer produces reproducible PNGs from the result."}}
+  ]}
+]}
+</script>
+</head>
+<body>
+<nav><a href="/">Home</a><a href="/themes/">Themes</a><a href="/spec/theme-manifest">Spec</a><a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a></nav>
+<p class="kicker">Comparison</p>
+<h1>excalidraw-skill-pack vs the official Excalidraw MCP</h1>
+<p>Both let an AI agent work with Excalidraw. They solve different problems, and the honest answer to "which should I use" is "probably both, for different reasons." Here's the distinction.</p>
+
+<h2>The one-line difference</h2>
+<p>The <strong>official Excalidraw MCP</strong> is the <em>primitive layer</em> — raw element CRUD: create a rectangle, move it, connect two shapes. <strong>excalidraw-skill-pack</strong> is the <em>quality layer</em> on top — the opinionated methodology that decides <em>which</em> elements, <em>where</em>, and <em>why</em>, so the result argues instead of labels.</p>
+
+<table>
+<thead><tr><th></th><th>Official Excalidraw MCP</th><th>excalidraw-skill-pack</th></tr></thead>
+<tbody>
+<tr><th>What it is</th><td>An MCP server for element-level Excalidraw operations</td><td>A skill + MCP server encoding diagram methodology, themes, and a renderer</td></tr>
+<tr><th>You control</th><td>Individual elements, directly</td><td>The intent; the methodology handles layout</td></tr>
+<tr><th>Layout quality</th><td>Whatever you or the agent place</td><td>Heuristics enforce hierarchy, direction, grouping</td></tr>
+<tr><th>Themes</th><td>—</td><td>Swappable, publishable theme packages</td></tr>
+<tr><th>Reproducible render</th><td>—</td><td>Golden-fixture PNG rendering (Node + Python parity)</td></tr>
+<tr><th>Best for</th><td>Direct, fine-grained element control</td><td>"Draw me a good diagram" without art-directing it</td></tr>
+<tr><th>License</th><td>Open source</td><td>MIT</td></tr>
+</tbody>
+</table>
+
+<h2>When to choose the official MCP</h2>
+<p>You want to place and wire specific elements yourself, you're building your own higher-level tooling on top of Excalidraw primitives, or you don't want an opinion imposed on layout. It's the right primitive.</p>
+
+<h2>When to choose excalidraw-skill-pack</h2>
+<p>You want to ask an agent for an architecture, protocol, or state-machine diagram and get back a figure that teaches — with a visual hierarchy and a flow your eye can follow — instead of labeled boxes. It rendered 77 figures for a published engineering book, which is the honest test of whether the methodology holds up.</p>
+
+<h2>Can you use both?</h2>
+<p>Yes — think of the official MCP as the hands and this as the taste. Install excalidraw-skill-pack in one line:</p>
+<p><code>/plugin marketplace add isatimur/excalidraw-skill-pack</code></p>
+<p><a class="cta" href="https://github.com/isatimur/excalidraw-skill-pack">View on GitHub →</a></p>
+<p class="muted" style="margin-top:2.5rem;font-size:.85rem;">MIT licensed. Works in Claude Code, Cursor, Codex, and Gemini CLI.</p>
+</body>
+</html>
