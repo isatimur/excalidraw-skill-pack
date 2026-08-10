@@ -12,55 +12,271 @@
 <meta property="og:url" content="https://excalidraw-skill-pack.vercel.app" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://excalidraw-skill-pack.vercel.app/images/hero.png" />
+<link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232A2622'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-style='italic' fill='%23F4EDE0'%3Ee%3C/text%3E%3C/svg%3E" />
 <style>
 :root {
   --ink: #2A2622;
   --paper: #F4EDE0;
+  --paper-deep: #EBE3D4;
   --accent: #B8472A;
+  --accent-deep: #8B3320;
   --accent-alt: #3B6A8A;
-  --muted: #7A6F5F;
+  --muted: #6E6356;
+  --line: rgba(42, 38, 34, 0.12);
+  --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --body: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", serif;
+  --mono: "IBM Plex Mono", "Menlo", monospace;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif; line-height: 1.6; }
-body { padding: 4rem 1.5rem; max-width: 960px; margin: 0 auto; }
-header { text-align: center; margin-bottom: 4rem; }
-.eyebrow { font-family: "JetBrains Mono", "Menlo", monospace; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 400; font-style: italic; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1.5rem; }
-.tag { font-size: 1.2rem; color: var(--muted); max-width: 32rem; margin: 0 auto 2rem; }
-.badges { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin: 0 0 1.5rem; }
-.badges img { height: 20px; vertical-align: middle; }
-.cta { display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-.cta a { display: inline-block; padding: 0.75rem 1.4rem; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.15s; }
+html { background: var(--paper); }
+html.has-motion [data-motion-text],
+html.has-motion [data-reveal],
+html.has-motion [data-reveal-item],
+html.has-motion [data-image-reveal] { visibility: hidden; }
+body {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(184, 71, 42, 0.08), transparent 55%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+.site-nav .brand { color: var(--ink); text-decoration: none; font-weight: 500; }
+.site-nav .links { display: flex; flex-wrap: wrap; gap: 0.85rem 1.1rem; }
+.site-nav .links a { color: var(--muted); text-decoration: none; }
+.site-nav .links a:hover { color: var(--ink); }
+
+.hero {
+  position: relative;
+  min-height: min(100vh, 920px);
+  display: grid;
+  align-items: end;
+  padding: 2rem 0 0;
+}
+.hero-plane {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-plane img {
+  width: 100%;
+  height: 115%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  opacity: 0.42;
+  filter: saturate(0.85) contrast(1.05);
+}
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(244, 237, 224, 0.55) 0%, rgba(244, 237, 224, 0.82) 42%, var(--paper) 88%),
+    linear-gradient(90deg, rgba(244, 237, 224, 0.75) 0%, transparent 55%);
+}
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 3.5rem;
+}
+.brand-mark {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.35rem;
+}
+h1 {
+  font-family: var(--display);
+  font-size: clamp(2.75rem, 7.2vw, 5.4rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  max-width: 11ch;
+  margin-bottom: 1.35rem;
+}
+.motion-line-mask,
+.motion-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.motion-line,
+.motion-word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+.tag {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--muted);
+  max-width: 36rem;
+  margin-bottom: 1.75rem;
+}
+.cta {
+  display: inline-flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.cta a {
+  display: inline-block;
+  padding: 0.8rem 1.35rem;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
 .cta a:hover { background: var(--ink); color: var(--paper); }
-.cta a.primary { background: var(--accent); color: var(--paper); border-color: var(--accent); }
-.cta a.primary:hover { background: #8B3320; border-color: #8B3320; }
+.cta a.primary {
+  background: var(--accent);
+  color: var(--paper);
+  border-color: var(--accent);
+}
+.cta a.primary:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
 
-section { margin: 5rem 0; }
-section h2 { font-family: Georgia, serif; font-size: 1.7rem; font-style: italic; font-weight: 400; margin-bottom: 1.5rem; }
-section p { margin-bottom: 1rem; color: var(--ink); }
+.shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+section { margin: 5.5rem 0; }
+section h2 {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.1rem;
+}
+section p { margin-bottom: 1rem; max-width: 62ch; }
 
-.installs { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1.5rem; align-items: center; font-family: "JetBrains Mono", Menlo, monospace; font-size: 0.85rem; padding: 1.5rem; background: rgba(0,0,0,0.04); border-left: 3px solid var(--accent); }
-.installs .label { color: var(--muted); text-transform: none; }
-.installs code { background: transparent; word-break: break-all; }
+.installs {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.55rem 1.35rem;
+  align-items: baseline;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  padding: 1.35rem 1.4rem;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid var(--line);
+}
+.installs .label { color: var(--muted); }
+.installs code { background: transparent; word-break: break-all; color: var(--ink); }
 .installs code a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--muted); }
 .installs code a:hover { color: var(--accent); border-color: var(--accent); }
 
-.themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-.theme { text-align: center; }
-.theme img { width: 100%; height: 140px; object-fit: cover; border: 1px solid rgba(0,0,0,0.1); background: white; }
-.theme .name { font-family: "JetBrains Mono", Menlo, monospace; font-size: 0.75rem; margin-top: 0.5rem; color: var(--muted); }
+.themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+.theme { text-align: left; }
+.theme img {
+  width: 100%;
+  height: 132px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: #fff;
+  display: block;
+}
+.theme .name {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  margin-top: 0.55rem;
+  color: var(--muted);
+}
 
-ul.methodology { list-style: none; padding: 0; }
-ul.methodology li { padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; gap: 1rem; }
-ul.methodology li::before { content: "→"; color: var(--accent); font-weight: bold; }
+ul.methodology { list-style: none; padding: 0; max-width: 48rem; }
+ul.methodology li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+}
+ul.methodology li::before {
+  content: "→";
+  color: var(--accent);
+  font-family: var(--mono);
+  font-weight: 500;
+}
 
-footer { text-align: center; margin-top: 6rem; color: var(--muted); font-size: 0.85rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+.proof-band {
+  margin: 4rem -1.5rem;
+  padding: 0;
+}
+.proof-band figure {
+  margin: 0;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: #fff;
+}
+.proof-band img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.proof-band figcaption {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 1.35rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+footer {
+  text-align: left;
+  margin-top: 4rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
 footer a { color: var(--muted); }
 
-@media (max-width: 600px) {
-  .installs { grid-template-columns: 1fr; gap: 0.25rem 0; }
-  .installs .label { margin-top: 0.5rem; }
+@media (max-width: 700px) {
+  .installs { grid-template-columns: 1fr; gap: 0.2rem 0; }
+  .installs .label { margin-top: 0.55rem; }
+  h1 { max-width: none; }
+  .hero { min-height: 78vh; }
 }
 </style>
 <script type="application/ld+json">
@@ -77,15 +293,8 @@ footer a { color: var(--muted); }
       "downloadUrl": "https://github.com/isatimur/excalidraw-skill-pack",
       "softwareVersion": "0.1.4",
       "license": "https://opensource.org/licenses/MIT",
-      "author": {
-        "@type": "Person",
-        "name": "Timur Isachenko"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+      "author": { "@type": "Person", "name": "Timur Isachenko" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     },
     {
       "@type": "FAQPage",
@@ -95,7 +304,7 @@ footer a { color: var(--muted); }
           "name": "What is excalidraw-skill-pack?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A Claude Code skill (and MCP server) that encodes an opinionated Excalidraw methodology, a theme system, and a renderer, so an AI agent draws diagrams that argue \u2014 with hierarchy, direction, and grouping \u2014 instead of labeled boxes. MIT licensed, works in Claude Code, Cursor, Codex, and Gemini CLI."
+            "text": "A Claude Code skill (and MCP server) that encodes an opinionated Excalidraw methodology, a theme system, and a renderer, so an AI agent draws diagrams that argue — with hierarchy, direction, and grouping — instead of labeled boxes. MIT licensed, works in Claude Code, Cursor, Codex, and Gemini CLI."
           }
         },
         {
@@ -119,7 +328,7 @@ footer a { color: var(--muted); }
           "name": "How is it different from the official Excalidraw MCP?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The official Excalidraw MCP is the primitive layer (raw element CRUD: create, move, connect). excalidraw-skill-pack is the quality layer on top \u2014 the methodology that decides which elements, where, and why, plus reproducible golden-fixture rendering."
+            "text": "The official Excalidraw MCP is the primitive layer (raw element CRUD: create, move, connect). excalidraw-skill-pack is the quality layer on top — the methodology that decides which elements, where, and why, plus reproducible golden-fixture rendering."
           }
         }
       ]
@@ -127,100 +336,121 @@ footer a { color: var(--muted); }
   ]
 }
 </script>
-  <link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/" />
 </head>
 <body>
 
-<header>
-  <div class="eyebrow">The diagram-quality layer · live</div>
-  <h1>Diagrams that argue.<br/>Not boxes that label.</h1>
-  <p class="tag">An opinionated Excalidraw methodology + themes for AI agents — Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, and any MCP agent. 29 typed layouts. Taste gate. Evidence artifacts. Render-inspect loop. 77-diagram book gallery. MIT.</p>
-  <div class="badges">
-    <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Frender?label=npm%20render&color=B8472A" alt="npm render" /></a>
-    <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/mcp-server"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Fmcp-server?label=npm%20mcp-server&color=B8472A" alt="npm mcp-server" /></a>
-    <a href="https://pypi.org/project/excalidraw-skill-pack-render/"><img src="https://img.shields.io/pypi/v/excalidraw-skill-pack-render?label=PyPI&color=3B6A8A" alt="PyPI" /></a>
-    <a href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/LICENSE"><img src="https://img.shields.io/github/license/isatimur/excalidraw-skill-pack?color=7A6F5F" alt="MIT" /></a>
-  </div>
-  <div class="cta">
-    <a href="https://github.com/isatimur/excalidraw-skill-pack" class="primary">GitHub →</a>
+<nav class="site-nav" aria-label="Primary">
+  <a class="brand" href="/">excalidraw-skill-pack</a>
+  <div class="links">
     <a href="#install">Install</a>
-    <a href="/themes">Themes</a>
-    <a href="/vs-diagram-design/">vs diagram-design</a>
+    <a href="/themes/">Themes</a>
     <a href="/gallery/">Gallery</a>
-    <a href="/spec/theme-manifest">Spec</a>
+    <a href="/vs-diagram-design/">vs diagram-design</a>
+    <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
+  </div>
+</nav>
+
+<header class="hero" data-parallax-section>
+  <div class="hero-plane" aria-hidden="true">
+    <img data-parallax-image data-parallax-speed="0.14" src="/images/competitive/why-editable-beats-static.png" alt="" width="1600" height="900" />
+    <div class="hero-veil"></div>
+  </div>
+  <div class="hero-copy">
+    <p class="brand-mark" data-reveal>excalidraw-skill-pack</p>
+    <h1 data-motion-text="lines">
+      <span class="motion-line-mask"><span class="motion-line">Diagrams that argue.</span></span>
+      <span class="motion-line-mask"><span class="motion-line">Not boxes that label.</span></span>
+    </h1>
+    <p class="tag" data-reveal data-reveal-delay="0.08">An opinionated Excalidraw methodology + themes for AI agents — Claude Code, Cursor, Copilot, Codex, Gemini CLI, and any MCP agent. Taste gate. Evidence artifacts. Render-inspect loop. Book-proven.</p>
+    <div class="cta" data-reveal data-reveal-delay="0.14">
+      <a href="https://github.com/isatimur/excalidraw-skill-pack" class="primary" data-magnetic>GitHub →</a>
+      <a href="#install" data-magnetic>Install</a>
+      <a href="/gallery/" data-magnetic>Gallery</a>
+      <a href="/vs-diagram-design/" data-magnetic>vs diagram-design</a>
+    </div>
   </div>
 </header>
 
-<section id="install">
-  <h2>Install</h2>
-  <div class="installs">
-    <span class="label">Claude Code</span><code>npx @excalidraw-skill-pack/install claude-code</code>
-    <span class="label">Cursor</span><code>npx @excalidraw-skill-pack/install cursor</code>
-    <span class="label">GitHub Copilot</span><code>npx @excalidraw-skill-pack/install copilot</code>
-    <span class="label">Codex</span><code>npx @excalidraw-skill-pack/install codex</code>
-    <span class="label">Gemini CLI</span><code>npx @excalidraw-skill-pack/install gemini-cli</code>
-    <span class="label">Any MCP agent</span><code>npx @excalidraw-skill-pack/mcp-server</code>
-    <span class="label">Renderer (Node)</span><code>npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press</code>
-    <span class="label">Renderer (Python)</span><code>pipx install excalidraw-skill-pack-render</code>
-  </div>
-</section>
+<main class="shell">
+  <section id="install" data-reveal>
+    <h2>Install</h2>
+    <div class="installs">
+      <span class="label">Claude Code</span><code>npx @excalidraw-skill-pack/install claude-code</code>
+      <span class="label">Cursor</span><code>npx @excalidraw-skill-pack/install cursor</code>
+      <span class="label">GitHub Copilot</span><code>npx @excalidraw-skill-pack/install copilot</code>
+      <span class="label">Codex</span><code>npx @excalidraw-skill-pack/install codex</code>
+      <span class="label">Gemini CLI</span><code>npx @excalidraw-skill-pack/install gemini-cli</code>
+      <span class="label">Any MCP agent</span><code>npx @excalidraw-skill-pack/mcp-server</code>
+      <span class="label">Renderer (Node)</span><code>npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press</code>
+      <span class="label">Renderer (Python)</span><code>pipx install excalidraw-skill-pack-render</code>
+    </div>
+  </section>
 
-<section id="themes">
-  <h2>Themes</h2>
-  <p>Five themes ship today. Author a new one in 20 lines of JSON + <code>npm publish</code>.</p>
-  <div class="themes">
-    <div class="theme"><img src="/images/themes/default-sketchy.png" alt="default-sketchy" /><div class="name">default-sketchy</div></div>
-    <div class="theme"><img src="/images/themes/stripe-press.png" alt="stripe-press" /><div class="name">stripe-press</div></div>
-    <div class="theme"><img src="/images/themes/notion.png" alt="notion" /><div class="name">notion</div></div>
-    <div class="theme"><img src="/images/themes/whiteboard.png" alt="whiteboard" /><div class="name">whiteboard</div></div>
-    <div class="theme"><img src="/images/themes/dark.png" alt="dark" /><div class="name">dark</div></div>
-  </div>
-  <p style="margin-top: 1.5rem;"><a href="/themes">Browse theme details</a> · <a href="/themes/create">Create a custom theme</a></p>
-</section>
+  <section id="themes">
+    <h2 data-reveal>Themes</h2>
+    <p data-reveal>Five themes ship today. Author a new one in 20 lines of JSON + <code>npm publish</code>.</p>
+    <div class="themes" data-reveal-group>
+      <div class="theme" data-reveal-item><img src="/images/themes/default-sketchy.png" alt="default-sketchy theme preview" /><div class="name">default-sketchy</div></div>
+      <div class="theme" data-reveal-item><img src="/images/themes/stripe-press.png" alt="stripe-press theme preview" /><div class="name">stripe-press</div></div>
+      <div class="theme" data-reveal-item><img src="/images/themes/notion.png" alt="notion theme preview" /><div class="name">notion</div></div>
+      <div class="theme" data-reveal-item><img src="/images/themes/whiteboard.png" alt="whiteboard theme preview" /><div class="name">whiteboard</div></div>
+      <div class="theme" data-reveal-item><img src="/images/themes/dark.png" alt="dark theme preview" /><div class="name">dark</div></div>
+    </div>
+    <p style="margin-top: 1.5rem;" data-reveal><a href="/themes/">Browse theme details</a> · <a href="/themes/create">Create a custom theme</a></p>
+  </section>
 
-<section>
-  <h2>The methodology</h2>
-  <p>Diagrams are arguments. The shape should BE the meaning.</p>
-  <ul class="methodology">
-    <li><span><strong>Isomorphism test.</strong> Would the structure alone communicate the concept?</span></li>
-    <li><span><strong>Evidence artifacts.</strong> Real code, actual API names, concrete formats — not placeholder text.</span></li>
-    <li><span><strong>Taste gate.</strong> Delete until density ~4/10. One or two accents. Anti-slop catalog enforced.</span></li>
-    <li><span><strong>Render → inspect → fix.</strong> The diagram isn't done until the PNG looks right.</span></li>
-    <li><span><strong>29 typed layouts.</strong> Progressive type refs — load only what you need.</span></li>
-  </ul>
-  <p style="margin-top: 1.5rem;"><a href="/vs-diagram-design/">Compare with diagram-design</a> · <a href="/vs-official-excalidraw-mcp/">vs official Excalidraw MCP</a> · <a href="/spec/theme-manifest">Theme manifest</a></p>
-</section>
+  <section>
+    <h2 data-reveal>The methodology</h2>
+    <p data-reveal>Diagrams are arguments. The shape should BE the meaning.</p>
+    <ul class="methodology" data-reveal-group>
+      <li data-reveal-item><span><strong>Isomorphism test.</strong> Would the structure alone communicate the concept?</span></li>
+      <li data-reveal-item><span><strong>Evidence artifacts.</strong> Real code, actual API names, concrete formats — not placeholder text.</span></li>
+      <li data-reveal-item><span><strong>Taste gate.</strong> Delete until density ~4/10. One or two accents. Anti-slop catalog enforced.</span></li>
+      <li data-reveal-item><span><strong>Render → inspect → fix.</strong> The diagram isn't done until the PNG looks right.</span></li>
+      <li data-reveal-item><span><strong>29 typed layouts.</strong> Progressive type refs — load only what you need.</span></li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Why this, not just another Excalidraw MCP?</h2>
-  <p>Excalidraw's <a href="https://github.com/excalidraw/excalidraw-mcp">official MCP</a> and most community servers solve <strong>plumbing</strong>: get an agent to emit valid JSON and render it. They produce correct boxes-and-arrows.</p>
-  <p>This pack solves <strong>taste</strong> — the isomorphism test, evidence artifacts, multi-zoom architecture, container discipline — deciding <em>what</em> to draw and <em>why</em>, so the output is a visual argument that teaches instead of a labeled grid. Plumbing is a commodity now. Quality isn't.</p>
-</section>
+  <section class="proof-band" aria-label="Proof">
+    <figure data-image-reveal data-parallax-section>
+      <a href="/gallery/">
+        <img data-parallax-image data-parallax-speed="0.1" src="/images/competitive/why-editable-beats-static.png" alt="Editable Excalidraw render-inspect loop compared with a static HTML and SVG export" width="1600" height="900" />
+      </a>
+      <figcaption>Proof: editable beats static — <a href="/gallery/">open the gallery</a> · <a href="/vs-diagram-design/">full comparison</a></figcaption>
+    </figure>
+  </section>
 
-<section>
-  <h2>Proof</h2>
-  <p>This skill drew <strong>77 diagrams</strong> for the published technical book <a href="https://fromcopilottocolleague.com">From Copilot to Colleague</a> — argument spines, chapter openers, concept figures, and inline explainers. No other Excalidraw generator can point at a corpus like that. A curated set (the argument spine + all ten chapter openers) ships as source in <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">examples/book</a>; the full 77 are live across <a href="https://fromcopilottocolleague.com">fromcopilottocolleague.com</a>.</p>
-</section>
+  <section>
+    <h2 data-reveal>Why this, not just another Excalidraw MCP?</h2>
+    <p data-reveal>Excalidraw's <a href="https://github.com/excalidraw/excalidraw-mcp">official MCP</a> and most community servers solve <strong>plumbing</strong>: get an agent to emit valid JSON and render it. They produce correct boxes-and-arrows.</p>
+    <p data-reveal>This pack solves <strong>taste</strong> — the isomorphism test, evidence artifacts, multi-zoom architecture, container discipline — deciding <em>what</em> to draw and <em>why</em>, so the output is a visual argument that teaches instead of a labeled grid. Plumbing is a commodity now. Quality isn't.</p>
+  </section>
 
-<section>
-  <h2>What ships in v0.1</h2>
-  <div class="installs">
-    <span class="label">npm — core</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/core">@excalidraw-skill-pack/core</a></code>
-    <span class="label">npm — render</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render">@excalidraw-skill-pack/render</a></code>
-    <span class="label">npm — mcp-server</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/mcp-server">@excalidraw-skill-pack/mcp-server</a></code>
-    <span class="label">npm — install</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/install">@excalidraw-skill-pack/install</a></code>
-    <span class="label">npm — create-theme</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/create-theme">@excalidraw-skill-pack/create-theme</a></code>
-    <span class="label">npm — theme-stripe-press</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/theme-stripe-press">@excalidraw-skill-pack/theme-stripe-press</a></code>
-    <span class="label">npm — theme-notion</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/theme-notion">@excalidraw-skill-pack/theme-notion</a></code>
-    <span class="label">npm — theme-whiteboard</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/theme-whiteboard">@excalidraw-skill-pack/theme-whiteboard</a></code>
-    <span class="label">npm — theme-dark</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/theme-dark">@excalidraw-skill-pack/theme-dark</a></code>
-    <span class="label">PyPI — render</span><code><a href="https://pypi.org/project/excalidraw-skill-pack-render/">excalidraw-skill-pack-render</a></code>
-  </div>
-</section>
+  <section>
+    <h2 data-reveal>Book-proven</h2>
+    <p data-reveal>This skill drew <strong>77 diagrams</strong> for the published technical book <a href="https://fromcopilottocolleague.com">From Copilot to Colleague</a>. A curated set ships as source in <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">examples/book</a>; the full corpus is live on the book site.</p>
+  </section>
 
-<footer>
-  MIT · <a href="https://github.com/isatimur/excalidraw-skill-pack">github.com/isatimur/excalidraw-skill-pack</a> · made by <a href="https://github.com/isatimur">@isatimur</a>
-</footer>
+  <section>
+    <h2 data-reveal>What ships in v0.1</h2>
+    <div class="installs" data-reveal>
+      <span class="label">npm — core</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/core">@excalidraw-skill-pack/core</a></code>
+      <span class="label">npm — render</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render">@excalidraw-skill-pack/render</a></code>
+      <span class="label">npm — mcp-server</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/mcp-server">@excalidraw-skill-pack/mcp-server</a></code>
+      <span class="label">npm — install</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/install">@excalidraw-skill-pack/install</a></code>
+      <span class="label">npm — create-theme</span><code><a href="https://www.npmjs.com/package/@excalidraw-skill-pack/create-theme">@excalidraw-skill-pack/create-theme</a></code>
+      <span class="label">PyPI — render</span><code><a href="https://pypi.org/project/excalidraw-skill-pack-render/">excalidraw-skill-pack-render</a></code>
+    </div>
+  </section>
 
+  <footer>
+    MIT · <a href="https://github.com/isatimur/excalidraw-skill-pack">github.com/isatimur/excalidraw-skill-pack</a> · <a href="https://github.com/isatimur">@isatimur</a>
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="/motion.js" defer></script>
 </body>
 </html>
