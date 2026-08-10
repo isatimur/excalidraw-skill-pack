@@ -13,8 +13,102 @@ const KNOWN_ELEMENT_TYPES = new Set([
 
 const SHAPE_TYPES = new Set(["rectangle", "ellipse", "diamond"]);
 
+const GEOMETRY_SCAN_CAP = 500;
+const OFF_CANVAS_GAP = 5000;
+const ABSOLUTE_FAR = 20000;
+
+type GeometryBox = {
+  index: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
 function approxEqual(a: number, b: number, tol = 4): boolean {
   return Math.abs(a - b) <= tol;
+}
+
+function aabbGap(a: GeometryBox, b: GeometryBox): number {
+  const gapX = Math.max(0, Math.max(a.x, b.x) - Math.min(a.x + a.width, b.x + b.width));
+  const gapY = Math.max(0, Math.max(a.y, b.y) - Math.min(a.y + a.height, b.y + b.height));
+  return Math.max(gapX, gapY);
+}
+
+function dominantClusterIndexes(boxes: GeometryBox[]): Set<number> | null {
+  if (boxes.length <= 1) {
+    return null;
+  }
+
+  const parent = boxes.map((_, i) => i);
+  const find = (i: number): number => {
+    let root = i;
+    while (parent[root] !== root) {
+      root = parent[root]!;
+    }
+    let cursor = i;
+    while (parent[cursor] !== cursor) {
+      const next = parent[cursor]!;
+      parent[cursor] = root;
+      cursor = next;
+    }
+    return root;
+  };
+  const union = (i: number, j: number): void => {
+    const ri = find(i);
+    const rj = find(j);
+    if (ri !== rj) {
+      parent[rj] = ri;
+    }
+  };
+
+  for (let i = 0; i < boxes.length; i++) {
+    for (let j = i + 1; j < boxes.length; j++) {
+      if (aabbGap(boxes[i]!, boxes[j]!) <= OFF_CANVAS_GAP) {
+        union(i, j);
+      }
+    }
+  }
+
+  const members = new Map<number, number[]>();
+  for (let i = 0; i < boxes.length; i++) {
+    const root = find(i);
+    const list = members.get(root);
+    if (list) {
+      list.push(i);
+    } else {
+      members.set(root, [i]);
+    }
+  }
+
+  let best: number[] | null = null;
+  let bestScore = Number.POSITIVE_INFINITY;
+  for (const group of members.values()) {
+    let cx = 0;
+    let cy = 0;
+    for (const i of group) {
+      const b = boxes[i]!;
+      cx += b.x + b.width / 2;
+      cy += b.y + b.height / 2;
+    }
+    cx /= group.length;
+    cy /= group.length;
+    const originDist = Math.hypot(cx, cy);
+    // Prefer larger clusters; tie-break toward the cluster nearer the origin.
+    const better =
+      best === null ||
+      group.length > best.length ||
+      (group.length === best.length && originDist < bestScore);
+    if (better) {
+      best = group;
+      bestScore = originDist;
+    }
+  }
+
+  if (!best) {
+    return null;
+  }
+  return new Set(best.map((i) => boxes[i]!.index));
 }
 
 export function auditDiagram(json: string): Issue[] {
@@ -254,11 +348,19 @@ export function auditDiagram(json: string): Issue[] {
   });
 
   const shapeBoxes = geometryElements.filter(({ type }) => typeof type === "string" && SHAPE_TYPES.has(type));
-  const OVERLAP_SCAN_CAP = 500;
-  if (shapeBoxes.length > OVERLAP_SCAN_CAP) {
+  // Off-canvas must match the renderer bbox: every box-bearing element can inflate export bounds.
+  const canvasBoxes: GeometryBox[] = geometryElements.map(({ index, x, y, width, height }) => ({
+    index,
+    x,
+    y,
+    width,
+    height
+  }));
+
+  if (shapeBoxes.length > GEOMETRY_SCAN_CAP) {
     issues.push({
       severity: "info",
-      message: `Geometry: skipped pairwise overlap scan (${shapeBoxes.length} shapes > ${OVERLAP_SCAN_CAP}) — split the diagram or raise the budget`
+      message: `Geometry: skipped pairwise overlap scan (${shapeBoxes.length} shapes > ${GEOMETRY_SCAN_CAP}) — split the diagram or raise the budget`
     });
   } else {
     let overlapWarnings = 0;
@@ -298,43 +400,43 @@ export function auditDiagram(json: string): Issue[] {
     }
   }
 
-  for (let i = 0; i < shapeBoxes.length; i++) {
-    const candidate = shapeBoxes[i]!;
+  for (const candidate of shapeBoxes) {
     if (candidate.width <= 0 || candidate.height <= 0) {
       issues.push({
         severity: "warning",
         message: `Geometry: shape has non-positive dimensions — elements[${candidate.index}]`
       });
+    }
+  }
+
+  let offCanvasCluster: Set<number> | null = null;
+  if (canvasBoxes.length > GEOMETRY_SCAN_CAP) {
+    issues.push({
+      severity: "info",
+      message: `Geometry: skipped cluster off-canvas scan (${canvasBoxes.length} elements > ${GEOMETRY_SCAN_CAP}) — split the diagram or raise the budget`
+    });
+  } else {
+    offCanvasCluster = dominantClusterIndexes(canvasBoxes);
+  }
+
+  for (const candidate of canvasBoxes) {
+    if (candidate.width <= 0 || candidate.height <= 0) {
       continue;
     }
 
-    let othersMinX = Number.POSITIVE_INFINITY;
-    let othersMinY = Number.POSITIVE_INFINITY;
-    let othersMaxX = Number.NEGATIVE_INFINITY;
-    let othersMaxY = Number.NEGATIVE_INFINITY;
-    for (let j = 0; j < shapeBoxes.length; j++) {
-      if (j === i) continue;
-      const o = shapeBoxes[j]!;
-      othersMinX = Math.min(othersMinX, o.x);
-      othersMinY = Math.min(othersMinY, o.y);
-      othersMaxX = Math.max(othersMaxX, o.x + o.width);
-      othersMaxY = Math.max(othersMaxY, o.y + o.height);
-    }
+    const absoluteFar =
+      Math.abs(candidate.x) > ABSOLUTE_FAR || Math.abs(candidate.y) > ABSOLUTE_FAR;
+    const farNegativeAlone =
+      candidate.x + candidate.width < -1000 || candidate.y + candidate.height < -1000;
+    const outsideDominant =
+      offCanvasCluster !== null &&
+      offCanvasCluster.size > 0 &&
+      !offCanvasCluster.has(candidate.index);
 
-    const hasOthers = Number.isFinite(othersMinX);
-    const absoluteFar = Math.abs(candidate.x) > 20000 || Math.abs(candidate.y) > 20000;
-    const farFromCluster =
-      hasOthers &&
-      (candidate.x > othersMaxX + 5000 ||
-        candidate.y > othersMaxY + 5000 ||
-        candidate.x + candidate.width < othersMinX - 5000 ||
-        candidate.y + candidate.height < othersMinY - 5000);
-    const farNegativeAlone = candidate.x + candidate.width < -1000 || candidate.y + candidate.height < -1000;
-
-    if (absoluteFar || farFromCluster || farNegativeAlone) {
+    if (absoluteFar || farNegativeAlone || outsideDominant) {
       issues.push({
         severity: "warning",
-        message: `Geometry: shape is off-canvas — elements[${candidate.index}]`
+        message: `Geometry: element is off-canvas — elements[${candidate.index}]`
       });
     }
   }

@@ -83,7 +83,32 @@ describe("audit_diagram", () => {
         ]
       })
     })) as { issues: Array<{ severity: string; message: string }> };
-    expect(result.issues.some((i) => /off-canvas/i.test(i.message))).toBe(true);
+    const offCanvas = result.issues.filter((i) => /off-canvas/i.test(i.message));
+    expect(offCanvas.length).toBe(1);
+    expect(offCanvas[0]?.message).toMatch(/elements\[1\]/);
+  });
+
+  it("flags detached non-shape elements in off-canvas checks", async () => {
+    const result = (await auditDiagramTool.handler({
+      json: JSON.stringify({
+        type: "excalidraw",
+        elements: [
+          { type: "rectangle", x: 0, y: 0, width: 100, height: 100, strokeColor: "#1e1e1e" },
+          {
+            type: "text",
+            x: 8000,
+            y: 0,
+            width: 40,
+            height: 20,
+            text: "orphan",
+            strokeColor: "#1e1e1e"
+          }
+        ]
+      })
+    })) as { issues: Array<{ severity: string; message: string }> };
+    expect(result.issues.some((i) => /off-canvas/i.test(i.message) && /elements\[1\]/.test(i.message))).toBe(
+      true
+    );
   });
 
   it("does not flag nested cards as overlapping", async () => {
