@@ -39,7 +39,8 @@
     "element-templates.md",
     "json-schema.md",
     "theme.schema.json",
-    "themes/default-sketchy"
+    "themes/default-sketchy",
+    "references"
   ],
   "bin": {
     "validate-theme": "./dist/validate-theme.js"

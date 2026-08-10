@@ -25,4 +25,26 @@ describe("generate_diagram_prompt", () => {
     const result = (await generateDiagramPromptTool.handler({})) as { theme: string };
     expect(result.theme).toBe("default-sketchy");
   });
+
+  it("splices diagram type reference and taste gate", async () => {
+    const result = (await generateDiagramPromptTool.handler({
+      diagram_type: "evidence",
+      intent: "Explain AG-UI event stream"
+    })) as {
+      diagram_type: string | null;
+      type_reference: string;
+      taste_gate: string;
+    };
+    expect(result.diagram_type).toBe("evidence");
+    expect(result.type_reference).toMatch(/Evidence Pipeline/i);
+    expect(result.taste_gate).toMatch(/Taste Gate/i);
+  });
+
+  it("resolves type aliases like flywheel → loop", async () => {
+    const result = (await generateDiagramPromptTool.handler({
+      diagram_type: "flywheel"
+    })) as { diagram_type: string | null; type_reference: string };
+    expect(result.diagram_type).toBe("loop");
+    expect(result.type_reference.length).toBeGreaterThan(0);
+  });
 });

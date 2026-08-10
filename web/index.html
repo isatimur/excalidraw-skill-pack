@@ -108,6 +108,14 @@ footer a { color: var(--muted); }
         },
         {
           "@type": "Question",
+          "name": "How is it different from diagram-design?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "diagram-design produces editorial HTML+SVG schematics. excalidraw-skill-pack produces editable .excalidraw files with publishable themes, MCP tooling, evidence artifacts, and a mandatory render-inspect loop. See https://excalidraw-skill-pack.vercel.app/vs-diagram-design/"
+          }
+        },
+        {
+          "@type": "Question",
           "name": "How is it different from the official Excalidraw MCP?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -126,7 +134,7 @@ footer a { color: var(--muted); }
 <header>
   <div class="eyebrow">The diagram-quality layer · live</div>
   <h1>Diagrams that argue.<br/>Not boxes that label.</h1>
-  <p class="tag">An opinionated Excalidraw methodology + themes for AI agents — Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, and any MCP agent. 77-diagram book gallery. 5 themes. MIT.</p>
+  <p class="tag">An opinionated Excalidraw methodology + themes for AI agents — Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, and any MCP agent. 29 typed layouts. Taste gate. Evidence artifacts. Render-inspect loop. 77-diagram book gallery. MIT.</p>
   <div class="badges">
     <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/render"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Frender?label=npm%20render&color=B8472A" alt="npm render" /></a>
     <a href="https://www.npmjs.com/package/@excalidraw-skill-pack/mcp-server"><img src="https://img.shields.io/npm/v/%40excalidraw-skill-pack%2Fmcp-server?label=npm%20mcp-server&color=B8472A" alt="npm mcp-server" /></a>
@@ -137,6 +145,7 @@ footer a { color: var(--muted); }
     <a href="https://github.com/isatimur/excalidraw-skill-pack" class="primary">GitHub →</a>
     <a href="#install">Install</a>
     <a href="/themes">Themes</a>
+    <a href="/vs-diagram-design/">vs diagram-design</a>
     <a href="/spec/theme-manifest">Spec</a>
   </div>
 </header>
@@ -174,9 +183,11 @@ footer a { color: var(--muted); }
   <ul class="methodology">
     <li><span><strong>Isomorphism test.</strong> Would the structure alone communicate the concept?</span></li>
     <li><span><strong>Evidence artifacts.</strong> Real code, actual API names, concrete formats — not placeholder text.</span></li>
-    <li><span><strong>One accent per diagram.</strong> Two means a competing argument; split it.</span></li>
+    <li><span><strong>Taste gate.</strong> Delete until density ~4/10. One or two accents. Anti-slop catalog enforced.</span></li>
+    <li><span><strong>Render → inspect → fix.</strong> The diagram isn't done until the PNG looks right.</span></li>
+    <li><span><strong>29 typed layouts.</strong> Progressive type refs — load only what you need.</span></li>
   </ul>
-  <p style="margin-top: 1.5rem;"><a href="/spec/theme-manifest">Read the theme manifest and agent-facing spec</a></p>
+  <p style="margin-top: 1.5rem;"><a href="/vs-diagram-design/">Compare with diagram-design</a> · <a href="/vs-official-excalidraw-mcp/">vs official Excalidraw MCP</a> · <a href="/spec/theme-manifest">Theme manifest</a></p>
 </section>
 
 <section>

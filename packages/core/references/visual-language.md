@@ -1,5 +1,7 @@
 # Visual Language: Patterns, Shapes, Color, Layout, Text
 
+> Type-specific conventions live in `references/types/`. When a diagram type is selected, load its reference before applying this general visual language.
+
 ## Visual Pattern Library
 
 ### Fan-Out (One-to-Many)

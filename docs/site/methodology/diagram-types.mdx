@@ -1,0 +1,54 @@
+---
+title: "Diagram types"
+description: "29 progressive Excalidraw diagram types — architecture through evidence pipelines — with taste gate and brand onboarding."
+---
+
+The skill keeps a lean `SKILL.md` and loads type-specific conventions only when needed. Source of truth: [`packages/core/references/types/`](https://github.com/isatimur/excalidraw-skill-pack/tree/main/packages/core/references/types).
+
+## Selection
+
+| Showing… | Type |
+|---|---|
+| Components + connections | Architecture |
+| Decision branches | Flowchart |
+| Messages over time | Sequence |
+| States + transitions | State |
+| Entities + cardinality | ER |
+| Events on a time axis | Timeline |
+| Cross-functional handoffs | Swimlane |
+| Two-axis positioning | Quadrant |
+| Flywheel / reinforcing cycle | Loop |
+| Containment / trust zones | Nested |
+| Parent → children | Tree |
+| Reporting / escalation | Org chart |
+| Abstraction stacks | Layers |
+| Set overlap | Venn |
+| Ranked drop-off | Pyramid |
+| Sequential multi-actor work | Process |
+| Protocol claim with proof | **Evidence** |
+| Before → after engineered | **Comparison** |
+| Bronze → gold data tiers | Medallion |
+| Payload movement | Data flow |
+| Legacy landscape | IT current-state |
+| End-to-end stack | High-level |
+| Sources → core → consumers | DP integration |
+| Role × component grants | DP security matrix |
+| Multi-axis profile | Radar |
+| Schedule + dependencies | Gantt |
+| Categorical magnitudes | Bar |
+| Trends | Line |
+| Correlation / outliers | Scatter |
+
+## Process gates
+
+- Brand onboarding: [`references/onboarding.md`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/core/references/onboarding.md)
+- Taste gate: [`references/taste-gate.md`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/core/references/taste-gate.md)
+- Anti-patterns: [`references/anti-patterns.md`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/core/references/anti-patterns.md)
+
+## MCP
+
+`generate_diagram_prompt` accepts `diagram_type` (e.g. `evidence`, `flywheel` → `loop`) and splices the matching type reference plus the taste gate into the agent prompt. See [MCP tool reference](/mcp/tool-reference).
+
+## Competitive context
+
+Compared with [diagram-design](https://github.com/cathrynlavery/diagram-design) (editorial HTML+SVG), this pack keeps typed progressive disclosure — and ships editable `.excalidraw`, theme packages, and a render-inspect loop. Full write-up: [vs diagram-design](https://excalidraw-skill-pack.vercel.app/vs-diagram-design/).

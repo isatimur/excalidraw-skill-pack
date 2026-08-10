@@ -37,6 +37,10 @@
       ]
     },
     {
+      "group": "Methodology",
+      "pages": ["methodology/diagram-types"]
+    },
+    {
       "group": "Themes",
       "pages": ["themes/index", "themes/create"]
     },
