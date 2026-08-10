@@ -1,6 +1,6 @@
 import type { ToolDefinition } from "../server.js";
 
-interface Issue {
+export interface Issue {
   severity: "error" | "warning" | "info";
   message: string;
   path?: string;
@@ -17,7 +17,7 @@ function approxEqual(a: number, b: number, tol = 4): boolean {
   return Math.abs(a - b) <= tol;
 }
 
-function auditDiagram(json: string): Issue[] {
+export function auditDiagram(json: string): Issue[] {
   const issues: Issue[] = [];
 
   let data: unknown;
@@ -226,6 +226,164 @@ function auditDiagram(json: string): Issue[] {
       severity: "info",
       message: "Structural audit clean on opacity/labels/budget — still run the render-inspect loop and taste-gate remove-test before shipping"
     });
+  }
+
+  const geometryElements = elements.flatMap((raw, index) => {
+    if (raw === null || typeof raw !== "object" || Array.isArray(raw)) {
+      return [];
+    }
+
+    const el = raw as Record<string, unknown>;
+    const type = el["type"];
+    const x = Number(el["x"]);
+    const y = Number(el["y"]);
+    const width = Number(el["width"]);
+    const height = Number(el["height"]);
+
+    if (
+      el["isDeleted"] === true ||
+      !Number.isFinite(x) ||
+      !Number.isFinite(y) ||
+      !Number.isFinite(width) ||
+      !Number.isFinite(height)
+    ) {
+      return [];
+    }
+
+    return [{ index, el, type, x, y, width, height }];
+  });
+
+  const shapeBoxes = geometryElements.filter(({ type }) => typeof type === "string" && SHAPE_TYPES.has(type));
+  const OVERLAP_SCAN_CAP = 500;
+  if (shapeBoxes.length > OVERLAP_SCAN_CAP) {
+    issues.push({
+      severity: "info",
+      message: `Geometry: skipped pairwise overlap scan (${shapeBoxes.length} shapes > ${OVERLAP_SCAN_CAP}) — split the diagram or raise the budget`
+    });
+  } else {
+    let overlapWarnings = 0;
+    for (let i = 0; i < shapeBoxes.length && overlapWarnings < 8; i++) {
+      const a = shapeBoxes[i]!;
+      const aArea = a.width * a.height;
+      if (aArea <= 0) {
+        continue;
+      }
+
+      for (let j = i + 1; j < shapeBoxes.length && overlapWarnings < 8; j++) {
+        const b = shapeBoxes[j]!;
+        const bArea = b.width * b.height;
+        if (bArea <= 0) {
+          continue;
+        }
+
+        // Strict containment of a smaller shape = intentional nesting (zone/card)
+        const aContainsB =
+          a.x <= b.x && a.y <= b.y && a.x + a.width >= b.x + b.width && a.y + a.height >= b.y + b.height;
+        const bContainsA =
+          b.x <= a.x && b.y <= a.y && b.x + b.width >= a.x + a.width && b.y + b.height >= a.y + a.height;
+        if ((aContainsB && aArea > bArea * 1.05) || (bContainsA && bArea > aArea * 1.05)) {
+          continue;
+        }
+
+        const overlapWidth = Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x));
+        const overlapHeight = Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
+        if (overlapWidth * overlapHeight > Math.min(aArea, bArea) * 0.01) {
+          issues.push({
+            severity: "warning",
+            message: `Geometry: shapes overlap — elements[${a.index}] and elements[${b.index}]`
+          });
+          overlapWarnings += 1;
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < shapeBoxes.length; i++) {
+    const candidate = shapeBoxes[i]!;
+    if (candidate.width <= 0 || candidate.height <= 0) {
+      issues.push({
+        severity: "warning",
+        message: `Geometry: shape has non-positive dimensions — elements[${candidate.index}]`
+      });
+      continue;
+    }
+
+    let othersMinX = Number.POSITIVE_INFINITY;
+    let othersMinY = Number.POSITIVE_INFINITY;
+    let othersMaxX = Number.NEGATIVE_INFINITY;
+    let othersMaxY = Number.NEGATIVE_INFINITY;
+    for (let j = 0; j < shapeBoxes.length; j++) {
+      if (j === i) continue;
+      const o = shapeBoxes[j]!;
+      othersMinX = Math.min(othersMinX, o.x);
+      othersMinY = Math.min(othersMinY, o.y);
+      othersMaxX = Math.max(othersMaxX, o.x + o.width);
+      othersMaxY = Math.max(othersMaxY, o.y + o.height);
+    }
+
+    const hasOthers = Number.isFinite(othersMinX);
+    const absoluteFar = Math.abs(candidate.x) > 20000 || Math.abs(candidate.y) > 20000;
+    const farFromCluster =
+      hasOthers &&
+      (candidate.x > othersMaxX + 5000 ||
+        candidate.y > othersMaxY + 5000 ||
+        candidate.x + candidate.width < othersMinX - 5000 ||
+        candidate.y + candidate.height < othersMinY - 5000);
+    const farNegativeAlone = candidate.x + candidate.width < -1000 || candidate.y + candidate.height < -1000;
+
+    if (absoluteFar || farFromCluster || farNegativeAlone) {
+      issues.push({
+        severity: "warning",
+        message: `Geometry: shape is off-canvas — elements[${candidate.index}]`
+      });
+    }
+  }
+
+  if (!isSkeleton) {
+    const containers = new Map<string, { x: number; y: number; width: number; height: number }>();
+    for (const { el, x, y, width, height } of geometryElements) {
+      if (typeof el["id"] === "string") {
+        containers.set(el["id"], { x, y, width, height });
+      }
+    }
+
+    for (const { index, el, type, x, y, width, height } of geometryElements) {
+      if (type !== "text" || typeof el["containerId"] !== "string") {
+        continue;
+      }
+
+      const containerId = el["containerId"];
+      if (typeof el["id"] === "string" && el["id"] === containerId) {
+        issues.push({
+          severity: "warning",
+          message: `Geometry: bound text containerId is self-referential — elements[${index}]`
+        });
+        continue;
+      }
+
+      const container = containers.get(containerId);
+      if (!container) {
+        issues.push({
+          severity: "warning",
+          message: `Geometry: bound text containerId is missing — elements[${index}]`
+        });
+        continue;
+      }
+
+      const sizeOverflow = width > container.width + 4 || height > container.height + 4;
+      const positionOverflow =
+        x < container.x - 4 ||
+        y < container.y - 4 ||
+        x + width > container.x + container.width + 4 ||
+        y + height > container.y + container.height + 4;
+
+      if (sizeOverflow || positionOverflow) {
+        issues.push({
+          severity: "warning",
+          message: `Geometry: bound text overflows container — elements[${index}]`
+        });
+      }
+    }
   }
 
   return issues;

@@ -12,9 +12,10 @@ describe("render_diagram", () => {
     const json = await readFile(FIXTURE, "utf-8");
     const result = (await renderDiagramTool.handler({
       json, theme: "default-sketchy", scale: 1, width: 800
-    })) as { png_base64: string; width: number; height: number };
+    })) as { png_base64: string; width: number; height: number; issues: unknown[] };
     expect(result.png_base64.length).toBeGreaterThan(1000);
     expect(result.width).toBeGreaterThan(100);
     expect(result.height).toBeGreaterThan(100);
+    expect(Array.isArray(result.issues)).toBe(true);
   }, 60_000);
 });
