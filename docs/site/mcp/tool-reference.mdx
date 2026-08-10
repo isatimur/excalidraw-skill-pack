@@ -30,7 +30,7 @@ Add to `claude_desktop_config.json` or your agent's MCP config:
 
 ### `generate_diagram_prompt`
 
-Returns SKILL.md + active theme palette + selected layout as a structured prompt payload. **Does not call an LLM** — the calling agent's model drafts the JSON using the returned context.
+Returns SKILL.md + active theme palette + optional layout + optional progressive **type reference** + **taste gate** as a structured prompt payload. **Does not call an LLM** — the calling agent's model drafts the JSON using the returned context.
 
 **Input:**
 
@@ -38,7 +38,9 @@ Returns SKILL.md + active theme palette + selected layout as a structured prompt
 {
   "theme": "stripe-press",
   "style_template": "concept-card",
-  "intent": "Show me the post-meeting redaction pipeline"
+  "diagram_type": "evidence",
+  "intent": "Show me the post-meeting redaction pipeline",
+  "include_taste_gate": true
 }
 ```
 
@@ -46,7 +48,9 @@ Returns SKILL.md + active theme palette + selected layout as a structured prompt
 |---|---|---|---|
 | `theme` | string | no | Theme name. Defaults to `default-sketchy`. |
 | `style_template` | string | no | Layout preset name (e.g. `concept-card`, `flow-pipeline`). |
+| `diagram_type` | string | no | Progressive type slug (`architecture`, `evidence`, `flywheel`→`loop`, …). |
 | `intent` | string | yes | What the diagram should communicate. Injected into the methodology prompt. |
+| `include_taste_gate` | boolean | no | Include taste-gate checklist. Defaults to `true`. |
 
 **Returns:**
 
@@ -54,9 +58,12 @@ Returns SKILL.md + active theme palette + selected layout as a structured prompt
 {
   "theme": "stripe-press",
   "intent": "Show me the post-meeting redaction pipeline",
+  "diagram_type": "evidence",
   "skill": "## Diagrams ARGUE...\n\n### Isomorphism Test...",
   "palette_markdown": "| Role | Hex | Use for |\n|---|---|---|\n| `ink` | ...",
   "layout": "# concept-card\n\nA single concept rendered as a self-contained card...",
+  "type_reference": "# Evidence Pipeline / Protocol Explainer\n...",
+  "taste_gate": "# Taste Gate\n...",
   "typography": {
     "fontFamily": "Virgil",
     "bodySize": 16,
