@@ -20,6 +20,9 @@ cp "$CORE_DIR/SKILL.md" "$TARGET/SKILL.md"
 cp -R "$CORE_DIR/themes" "$TARGET/themes"
 cp "$CORE_DIR/element-templates.md" "$TARGET/references/"
 cp "$CORE_DIR/json-schema.md" "$TARGET/references/"
+if [ -d "$CORE_DIR/references" ]; then
+  cp -R "$CORE_DIR/references/." "$TARGET/references/"
+fi
 
 echo "Installed Claude Code skill at $TARGET"
 

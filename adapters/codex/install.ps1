@@ -19,6 +19,9 @@ Copy-Item "$CoreDir\SKILL.md" "$Target\SKILL.md"
 Copy-Item -Recurse -Force "$CoreDir\themes" "$Target\themes"
 Copy-Item "$CoreDir\element-templates.md" "$Target\references\"
 Copy-Item "$CoreDir\json-schema.md" "$Target\references\"
+if (Test-Path "$CoreDir\references") {
+  Copy-Item -Recurse -Force "$CoreDir\references\*" "$Target\references\"
+}
 
 Write-Output "Installed Codex skill at $Target"
 

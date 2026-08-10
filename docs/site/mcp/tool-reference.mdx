@@ -109,7 +109,7 @@ Render Excalidraw JSON to PNG. Runs Excalidraw headless in Chromium via Playwrig
 
 ### `audit_diagram`
 
-Validate Excalidraw JSON against the schema and the methodology's design rules. Returns severity-tagged issues. Use before `render_diagram` if you want to surface problems early.
+Validate Excalidraw JSON against the schema and the methodology's taste gate. Returns severity-tagged issues for structure (geometry, nonstandard labels) and design heuristics (node budget, container ratio, uniform boxes, opacity). Use before `render_diagram` if you want to surface problems early.
 
 **Input:**
 

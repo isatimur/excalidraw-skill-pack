@@ -16,12 +16,25 @@ else
 fi
 
 mkdir -p .cursor/rules
+mkdir -p .cursor/excalidraw-skill-pack
 
 ADAPTER_DIR=$(cd "$(dirname "$0")" && pwd)
 PALETTE_PATH="$CORE_DIR/themes/$THEME/palette.md"
 if [ ! -f "$PALETTE_PATH" ]; then
   PALETTE_PATH="$CORE_DIR/themes/default-sketchy/palette.md"
 fi
+
+if [ -d "$CORE_DIR/references" ]; then
+  rm -rf .cursor/excalidraw-skill-pack/references
+  cp -R "$CORE_DIR/references" .cursor/excalidraw-skill-pack/references
+fi
+if [ -d "$CORE_DIR/themes" ]; then
+  rm -rf .cursor/excalidraw-skill-pack/themes
+  cp -R "$CORE_DIR/themes" .cursor/excalidraw-skill-pack/themes
+fi
+cp "$CORE_DIR/SKILL.md" .cursor/excalidraw-skill-pack/SKILL.md
+cp "$CORE_DIR/element-templates.md" .cursor/excalidraw-skill-pack/ 2>/dev/null || true
+cp "$CORE_DIR/json-schema.md" .cursor/excalidraw-skill-pack/ 2>/dev/null || true
 
 SKILL_BODY=$(cat "$CORE_DIR/SKILL.md") \
 PALETTE_MD=$(cat "$PALETTE_PATH") \
@@ -33,6 +46,7 @@ print(out, end="")
 PYEOF
 
 echo "Installed Cursor rule at .cursor/rules/excalidraw.mdc"
+echo "Installed skill pack refs at .cursor/excalidraw-skill-pack/"
 
 if [ "$MODE" = "full" ]; then
   MCP=.cursor/mcp.json

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>excalidraw-skill-pack vs diagram-design</title>
+<meta name="description" content="Honest comparison: cathrynlavery/diagram-design ships editorial HTML+SVG schematics; excalidraw-skill-pack ships editable Excalidraw arguments with themes, taste gate, evidence artifacts, and a render-inspect loop." />
+<link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/vs-diagram-design/" />
+<meta property="og:title" content="excalidraw-skill-pack vs diagram-design" />
+<meta property="og:description" content="Static editorial HTML vs editable Excalidraw. Same ambition for taste — different artifact. The loop is the product." />
+<meta property="og:image" content="https://excalidraw-skill-pack.vercel.app/images/competitive/why-editable-beats-static.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://excalidraw-skill-pack.vercel.app/vs-diagram-design/" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; --alt:#3B6A8A; }
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
+nav, .kicker { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
+h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
+h1 { font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.12; margin:.6rem 0 1rem; }
+h2 { font-size:1.5rem; margin:2.4rem 0 .8rem; }
+a { color:var(--accent); }
+table { border-collapse:collapse; width:100%; margin:1.5rem 0; font-size:.95rem; }
+th,td { border:1px solid rgba(0,0,0,.14); padding:.7rem .9rem; text-align:left; vertical-align:top; }
+th { font-family:"JetBrains Mono",Menlo,monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:rgba(255,255,255,.35); }
+code { font-family:"JetBrains Mono",Menlo,monospace; background:rgba(255,255,255,.4); padding:.1rem .3rem; }
+.cta { display:inline-block; margin-top:.5rem; border:1px solid var(--accent); padding:.55rem 1rem; text-decoration:none; color:var(--accent); }
+.cta.primary { background:var(--accent); color:var(--paper); }
+.muted { color:var(--muted); }
+.figure { margin:2rem 0; border:1px solid rgba(0,0,0,.12); background:#fff; }
+.figure img { width:100%; display:block; }
+.figure figcaption { font-size:.85rem; color:var(--muted); padding:.75rem 1rem; border-top:1px solid rgba(0,0,0,.08); }
+ul.points { padding-left:1.1rem; }
+ul.points li { margin:.45rem 0; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"WebPage","name":"excalidraw-skill-pack vs diagram-design","url":"https://excalidraw-skill-pack.vercel.app/vs-diagram-design/","description":"Comparison of editable Excalidraw skill-pack methodology versus cathrynlavery/diagram-design HTML+SVG editorial diagrams."},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Should I use excalidraw-skill-pack or diagram-design?","acceptedAnswer":{"@type":"Answer","text":"Choose diagram-design when you want a self-contained editorial HTML+SVG schematic that drops into a blog post. Choose excalidraw-skill-pack when you need an editable .excalidraw file, publishable themes, MCP tooling, dual-language PNG parity, evidence artifacts, and a mandatory render-inspect loop. They share taste ambitions; they ship different artifacts."}},
+    {"@type":"Question","name":"Does excalidraw-skill-pack have typed diagram layouts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Twenty-nine progressive type references cover architecture, flowchart, sequence, state, ER, timeline, swimlane, quadrant, loop, layers, evidence pipelines, comparisons, data-platform topologies, and more — plus a taste gate, anti-patterns catalog, and brand-to-theme onboarding."}},
+    {"@type":"Question","name":"Can the output open in Obsidian or Excalidraw?","acceptedAnswer":{"@type":"Answer","text":"excalidraw-skill-pack produces native .excalidraw JSON (skeleton or full) that opens in Excalidraw, Obsidian, and VS Code. diagram-design produces standalone HTML with inline SVG."}}
+  ]}
+]}
+</script>
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>
+  <a href="/themes/">Themes</a>
+  <a href="/vs-official-excalidraw-mcp/">vs official MCP</a>
+  <a href="/spec/theme-manifest">Spec</a>
+  <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
+</nav>
+<p class="kicker">Comparison</p>
+<h1>excalidraw-skill-pack vs diagram-design</h1>
+<p>
+  <a href="https://github.com/cathrynlavery/diagram-design">diagram-design</a> is a strong Claude Code skill for editorial HTML+SVG schematics — typed layouts, brand scrape, taste gate, complexity budget.
+  <strong>excalidraw-skill-pack</strong> shares that ambition for restraint and type-aware layout, then ships a different artifact: editable Excalidraw, theme packages, MCP, and a render→inspect→fix loop that doesn't end at export.
+</p>
+
+<figure class="figure">
+  <img src="/images/competitive/why-editable-beats-static.png" alt="Side-by-side: static HTML+SVG export vs Excalidraw skill pack render-inspect loop" width="1200" height="900" />
+  <figcaption>Visual argument generated by this pack: static snapshot vs living editable loop.</figcaption>
+</figure>
+
+<h2>The one-line difference</h2>
+<p><strong>diagram-design</strong> ships a self-contained HTML page with inline SVG. <strong>excalidraw-skill-pack</strong> ships <code>.excalidraw</code> (plus PNG) you can open, theme, audit, and iterate — the loop is the product.</p>
+
+<table>
+<thead><tr><th></th><th>diagram-design</th><th>excalidraw-skill-pack</th></tr></thead>
+<tbody>
+<tr><th>Artifact</th><td>Standalone HTML + inline SVG</td><td>Editable <code>.excalidraw</code> + PNG (+ hydrate to full file)</td></tr>
+<tr><th>Open in</th><td>Browser</td><td>Excalidraw, Obsidian, VS Code, browser PNG</td></tr>
+<tr><th>Typed layouts</th><td>~27 editorial types</td><td>29 progressive type refs (incl. evidence + comparison moats)</td></tr>
+<tr><th>Brand skin</th><td>style-guide.md onboarding (URL / skill / folder)</td><td>Theme packages + project/global config + URL/folder onboarding</td></tr>
+<tr><th>Taste</th><td>Deletion philosophy, complexity budget, pre-output checklist</td><td>Taste gate + anti-patterns + MCP <code>audit_diagram</code> heuristics</td></tr>
+<tr><th>Evidence</th><td>Editorial callouts / icons</td><td>Concrete code/JSON evidence artifacts + multi-zoom</td></tr>
+<tr><th>Render loop</th><td>Export optional; quality ends at HTML</td><td>Mandatory render → inspect → fix until the PNG looks right</td></tr>
+<tr><th>Runtime</th><td>Claude Code skill (HTML authoring)</td><td>Skill + MCP across Claude Code, Cursor, Codex, Gemini, Copilot</td></tr>
+<tr><th>Renderer</th><td>—</td><td>Node + Python pixel-parity Playwright PNG</td></tr>
+<tr><th>Best for</th><td>Blog/essay schematics that must match a site's editorial skin</td><td>Living diagrams you keep editing, theming, and proving</td></tr>
+</tbody>
+</table>
+
+<h2>What we learned from them</h2>
+<ul class="points">
+  <li>Progressive type files beat one giant prompt.</li>
+  <li>A first-run brand gate prevents default-skin disasters.</li>
+  <li>Deletion + density ~4/10 is a better finish line than “more boxes.”</li>
+  <li>An explicit anti-slop catalog teaches agents what <em>not</em> to draw.</li>
+</ul>
+
+<h2>Where we go further</h2>
+<ul class="points">
+  <li><strong>Editable forever</strong> — native Excalidraw, not a screenshot of taste.</li>
+  <li><strong>Publishable themes</strong> — npm/PyPI packages, not a single style-guide file.</li>
+  <li><strong>Evidence pipelines</strong> — diagrams that prove claims with real payloads.</li>
+  <li><strong>Machine taste</strong> — <code>audit_diagram</code> flags budget, uniform boxes, container ratio, opacity.</li>
+  <li><strong>Dual renderer</strong> — Node and Python must match pixel-for-pixel.</li>
+</ul>
+
+<h2>When to choose diagram-design</h2>
+<p>You want a drop-in HTML schematic for a long-form post, the site already has an editorial SVG grammar, and you don't need the file to open in Excalidraw or Obsidian.</p>
+
+<h2>When to choose excalidraw-skill-pack</h2>
+<p>You want the agent to produce a diagram you'll keep editing; you need brand themes as packages; you want MCP tools and a render-inspect loop; or the diagram must teach with evidence, not just look editorial.</p>
+
+<p style="margin-top:2rem;">
+  <a class="cta primary" href="https://github.com/isatimur/excalidraw-skill-pack">View on GitHub →</a>
+  <a class="cta" href="/vs-official-excalidraw-mcp/">Also: vs official Excalidraw MCP</a>
+</p>
+<p class="muted" style="margin-top:2.5rem;font-size:.85rem;">MIT licensed. Works in Claude Code, Cursor, Codex, Gemini CLI, and Copilot. Competitor link for context only — we respect their craft.</p>
+</body>
+</html>
