@@ -1,0 +1,26 @@
+---
+title: "With the official Excalidraw MCP"
+description: "Use excalidraw-skill-pack alongside the official Excalidraw MCP App — taste and publishable PNGs plus a live canvas when the host supports MCP Apps."
+---
+
+The [official Excalidraw MCP](https://github.com/excalidraw/excalidraw-mcp) is an **MCP App**: remote host (`https://mcp.excalidraw.com`), streaming draw, viewport camera, fullscreen in-chat editing. This pack is the **quality layer** beside it — typed layouts, taste gate, themes, `audit_diagram`, and reproducible Node+Python PNGs.
+
+They solve different jobs. You can install both.
+
+## Recommended flow
+
+1. **Install both** — add this pack via `npx @excalidraw-skill-pack/install <agent>` (or `/plugin marketplace add isatimur/excalidraw-skill-pack` for Claude Code). Add the official remote MCP App when your host supports it.
+2. **Decide what to draw** — call `generate_diagram_prompt` with a diagram type (and theme if needed). That returns methodology + taste gate + type grammar before any pixels.
+3. **Draw or refine** — draft editable `.excalidraw` with this pack's loop, or use the official canvas for interactive refine when MCP Apps are available.
+4. **Publish with this pack** — prefer `render_diagram` and `audit_diagram` for PNGs you ship in docs, books, or CI. Golden-fixture parity is the Node+Python renderer, not the in-chat editor.
+
+## Who owns what
+
+| Job | Prefer |
+|---|---|
+| Live whiteboard in chat | Official MCP App |
+| Typed layout + taste before drawing | `generate_diagram_prompt` |
+| Theme packages / brand | `list_themes` / `apply_theme` |
+| Publishable PNG + CI audit | `render_diagram` + `audit_diagram` |
+
+Honest comparison: [vs official Excalidraw MCP](https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/).

@@ -29,13 +29,18 @@ Turn “draw me a diagram” into a **visual argument** with hierarchy, directio
 ## Proof (verified in repo)
 
 - **77 figures** for published book *From Copilot to Colleague* (marketing claim; curated sources in `examples/book/`)
-- Competitive fixture: `packages/shared/fixtures/competitive/why-editable-beats-static.excalidraw`
+- Competitive fixtures: `packages/shared/fixtures/competitive/why-editable-beats-static.excalidraw`, `taste-vs-stream.excalidraw`
 - Per-type gallery fixtures under `packages/shared/fixtures/types/` (Round B)
+
+## Competitors (honest)
+
+- **Official Excalidraw MCP** (`excalidraw/excalidraw-mcp`): MCP App — remote host, streaming draw, camera, fullscreen in-chat edit. Wins the interactive surface. Does not ship our typed layouts, taste gate, `audit_diagram`, theme packages, or Node+Python golden PNG parity. Positioning: coexist; see `web/vs-official-excalidraw-mcp/` and `docs/site/mcp/with-official-excalidraw-mcp.mdx`.
+- **diagram-design**: editorial HTML+SVG. Different artifact; see `web/vs-diagram-design/`.
 
 ## Constraints for future work
 
 - Do not invent star counts, customer logos, or benchmarks not in repo
-- Competitor comparisons must stay honest (`web/vs-diagram-design/`)
+- Competitor comparisons must stay honest (`web/vs-diagram-design/`, `web/vs-official-excalidraw-mcp/`) — never frame official MCP as “CRUD-only plumbing”
 - Public claims must trace to fixtures, book corpus, or package capabilities
 
 ## Platform

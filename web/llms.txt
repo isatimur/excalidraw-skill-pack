@@ -15,5 +15,8 @@ Architecture, flowchart, sequence, state, ER, timeline, Gantt, swimlane, quadran
 ## vs diagram-design
 Editable Excalidraw + themes + MCP vs static HTML+SVG: https://excalidraw-skill-pack.vercel.app/vs-diagram-design/
 
+## vs official Excalidraw MCP
+Official is an MCP App (live canvas, streaming, remote host). This pack is typed layouts + taste gate + audit + themes + golden PNG. Coexist: https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/
+
 ## Install
 npx @excalidraw-skill-pack/install claude-code

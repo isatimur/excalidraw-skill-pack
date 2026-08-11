@@ -533,3 +533,7 @@ python -m playwright install chromium
 25. **Arrows land correctly**: Arrows connect to intended elements without crossing others
 26. **Readable at export size**: Text is legible in the rendered PNG
 27. **Balanced composition**: No large empty voids or overcrowded regions
+
+## With the official Excalidraw MCP
+
+The official Excalidraw MCP App owns the live in-chat canvas. This skill owns typed layouts, taste, themes, audit, and publishable PNG. Prefer: `generate_diagram_prompt` → optional official canvas refine → `render_diagram` + `audit_diagram`. See docs: `mcp/with-official-excalidraw-mcp`.
