@@ -12,6 +12,7 @@ const OUT = join(ROOT, "packages", "shared", "fixtures", "types");
 const INK = "#1e3a5f";
 const MUTED = "#64748b";
 const ACCENT = "#c2410c";
+const GRID = "#cbd5e1";
 const FILL = "#dbeafe";
 const PAPER = "#ffffff";
 
@@ -42,11 +43,11 @@ function rect(id, x, y, w, h, label, opts = {}) {
     fillStyle: "solid",
     strokeWidth: 2,
     roughness: 0,
-    label: label ? { text: label } : undefined,
+    label: label ? { text: label, fontSize: opts.labelSize } : undefined,
   };
 }
 
-function diamond(id, x, y, w, h, label) {
+function diamond(id, x, y, w, h, label, opts = {}) {
   return {
     type: "diamond",
     id,
@@ -59,7 +60,7 @@ function diamond(id, x, y, w, h, label) {
     fillStyle: "solid",
     strokeWidth: 2,
     roughness: 0,
-    label: label ? { text: label } : undefined,
+    label: label ? { text: label, fontSize: opts.labelSize } : undefined,
   };
 }
 
@@ -84,9 +85,11 @@ function center(box) {
   return { x: box.x + box.w / 2, y: box.y + box.h / 2 };
 }
 
-function exitAnchor(box, other) {
+// The point on `box`'s edge that faces `toward` — the side an arrow between the
+// two should leave from or land on, never the far side of the shape.
+function edgeAnchor(box, toward) {
   const c = center(box);
-  const o = center(other);
+  const o = center(toward);
   const dx = o.x - c.x;
   const dy = o.y - c.y;
   if (Math.abs(dx) >= Math.abs(dy)) {
@@ -95,33 +98,44 @@ function exitAnchor(box, other) {
   return dy > 0 ? { x: c.x, y: box.y + box.h } : { x: c.x, y: box.y };
 }
 
-function entryAnchor(box, other) {
-  const c = center(box);
-  const o = center(other);
-  const dx = o.x - c.x;
-  const dy = o.y - c.y;
-  if (Math.abs(dx) >= Math.abs(dy)) {
-    return dx > 0 ? { x: box.x, y: c.y } : { x: box.x + box.w, y: c.y };
-  }
-  return dy > 0 ? { x: c.x, y: box.y } : { x: c.x, y: box.y + box.h };
-}
+const SIDE = {
+  top: (b) => ({ x: b.x + b.w / 2, y: b.y }),
+  bottom: (b) => ({ x: b.x + b.w / 2, y: b.y + b.h }),
+  left: (b) => ({ x: b.x, y: b.y + b.h / 2 }),
+  right: (b) => ({ x: b.x + b.w, y: b.y + b.h / 2 }),
+};
 
-function arrow(id, from, to, label) {
-  const start = exitAnchor(from, to);
-  const end = entryAnchor(to, from);
+// `from`/`to` opts pin an edge when the shortest route reads wrong — a parent
+// hands down to a child from its underside, however the boxes happen to sit.
+function arrow(id, from, to, label, opts = {}) {
+  const start = opts.from ? SIDE[opts.from](from) : edgeAnchor(from, to);
+  const end = opts.to ? SIDE[opts.to](to) : edgeAnchor(to, from);
+  // Stop short of the shape so the arrowhead reads as pointing at the box
+  // rather than as a notch cut into its border.
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const standoff = Math.min(opts.standoff ?? 7, len / 3);
   return {
     type: "arrow",
     id,
     x: start.x,
     y: start.y,
-    width: end.x - start.x,
-    height: end.y - start.y,
+    // A bound arrow with no points of its own gets a route invented for it,
+    // which lands off the anchors and skews the edge. Stating the points keeps
+    // the geometry while the bindings still follow the shapes when edited.
+    points: [
+      [0, 0],
+      [dx - (dx / len) * standoff, dy - (dy / len) * standoff],
+    ],
     strokeColor: INK,
     strokeWidth: 2,
     roughness: 0,
     start: { id: from.id },
     end: { id: to.id },
-    label: label ? { text: label } : undefined,
+    // Edge labels are annotations on the relationship, not titles: at body size
+    // they swallow the line they sit on.
+    label: label ? { text: label, fontSize: opts.labelSize ?? 15 } : undefined,
   };
 }
 
@@ -143,6 +157,46 @@ function zone(id, x, y, w, h, label) {
   };
 }
 
+function line(id, x, y, points, opts = {}) {
+  return {
+    type: "line",
+    id,
+    x,
+    y,
+    points,
+    strokeColor: opts.stroke ?? MUTED,
+    backgroundColor: opts.fill ?? "transparent",
+    fillStyle: "solid",
+    strokeWidth: opts.strokeWidth ?? 2,
+    strokeStyle: opts.dashed ? "dashed" : "solid",
+    roughness: 0,
+  };
+}
+
+function dot(id, cx, cy, r, opts = {}) {
+  return ellipse(id, cx - r, cy - r, r * 2, r * 2, "", {
+    fill: opts.fill ?? INK,
+    stroke: opts.stroke ?? INK,
+  });
+}
+
+// Free-standing arrow for edges that connect coordinates rather than shapes
+// (sequence messages, elbow returns), where shape binding would re-route them.
+function path(id, x, y, points, label, opts = {}) {
+  return {
+    type: "arrow",
+    id,
+    x,
+    y,
+    points,
+    strokeColor: opts.stroke ?? INK,
+    strokeWidth: 2,
+    strokeStyle: opts.dashed ? "dashed" : "solid",
+    roughness: 0,
+    label: label ? { text: label, fontSize: opts.labelSize ?? 14 } : undefined,
+  };
+}
+
 function doc(title, elements) {
   return {
     type: "excalidraw-skeleton",
@@ -155,11 +209,14 @@ function doc(title, elements) {
 
 const BUILDERS = {
   architecture: () => {
-    const api = { id: "api", x: 120, y: 120, w: 140, h: 64 };
-    const db = { id: "db", x: 360, y: 120, w: 140, h: 64 };
-    const queue = { id: "queue", x: 600, y: 120, w: 140, h: 64 };
+    // Both dependencies fan out from the API, so they sit on separate rows: a single
+    // row would route the queue arrow through Postgres and stack the two edge labels.
+    const api = { id: "api", x: 120, y: 176, w: 140, h: 64 };
+    const db = { id: "db", x: 440, y: 112, w: 160, h: 64 };
+    const queue = { id: "queue", x: 440, y: 248, w: 160, h: 64 };
     return doc("Architecture — components + boundaries", [
-      zone("zone", 80, 96, 700, 120, "VPC"),
+      zone("zone", 80, 88, 700, 248, ""),
+      txt("zone-label", 96, 96, "VPC", { fontSize: 14, color: MUTED }),
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(queue.id, queue.x, queue.y, queue.w, queue.h, "Queue"),
@@ -167,46 +224,50 @@ const BUILDERS = {
       arrow("a2", api, queue, "publish"),
     ]);
   },
+  // Shapes are declared before any arrow that binds to them: Excalidraw resolves
+  // bindings during conversion, and an arrow that names a later element gets skewed.
   flowchart: () => {
     const start = { id: "start", x: 280, y: 100, w: 120, h: 48 };
-    const decide = { id: "decide", x: 260, y: 200, w: 160, h: 80 };
-    const yes = { id: "yes", x: 120, y: 320, w: 120, h: 56 };
-    const no = { id: "no", x: 440, y: 320, w: 120, h: 56 };
+    const decide = { id: "decide", x: 260, y: 190, w: 160, h: 80 };
+    const yes = { id: "yes", x: 100, y: 330, w: 140, h: 56 };
+    const no = { id: "no", x: 440, y: 330, w: 140, h: 56 };
     return doc("Flowchart — branching decisions", [
       ellipse(start.id, start.x, start.y, start.w, start.h, "Trigger"),
-      arrow("a0", start, decide, ""),
       diamond(decide.id, decide.x, decide.y, decide.w, decide.h, "Valid?"),
-      arrow("a1", decide, yes, "yes"),
-      arrow("a2", decide, no, "no"),
       rect(yes.id, yes.x, yes.y, yes.w, yes.h, "Process"),
-      rect(no.id, no.x, no.y, no.w, no.h, "Reject"),
+      rect(no.id, no.x, no.y, no.w, no.h, "Reject", { fill: "#fed7aa", stroke: ACCENT }),
+      arrow("a0", start, decide, ""),
+      arrow("a1", decide, yes, "yes", { from: "left", to: "top" }),
+      arrow("a2", decide, no, "no", { from: "right", to: "top" }),
     ]);
   },
   sequence: () => {
-    const client = { id: "client", x: 80, y: 100, w: 100, h: 48 };
-    const api = { id: "api", x: 280, y: 100, w: 100, h: 48 };
-    const db = { id: "db", x: 480, y: 100, w: 100, h: 48 };
+    const lifeline = (id, x) => line(id, x, 158, [[0, 0], [0, 250]], { dashed: true });
     return doc("Sequence — messages over time", [
-      rect(client.id, client.x, client.y, client.w, client.h, "Client"),
-      rect(api.id, api.x, api.y, api.w, api.h, "API"),
-      rect(db.id, db.x, db.y, db.w, db.h, "DB"),
-      txt("m1", 130, 180, "POST /orders", { fontSize: 14, color: MUTED }),
-      txt("m2", 330, 220, "INSERT", { fontSize: 14, color: MUTED }),
-      txt("m3", 330, 260, "201 Created", { fontSize: 14, color: MUTED }),
-      arrow("s1", client, api, ""),
-      arrow("s2", api, db, ""),
+      rect("client", 100, 110, 120, 48, "Client"),
+      rect("api", 320, 110, 120, 48, "API"),
+      rect("db", 540, 110, 120, 48, "DB"),
+      lifeline("ll1", 160),
+      lifeline("ll2", 380),
+      lifeline("ll3", 600),
+      path("m1", 160, 200, [[0, 0], [220, 0]], "POST /orders"),
+      path("m2", 380, 250, [[0, 0], [220, 0]], "INSERT"),
+      path("m3", 600, 300, [[0, 0], [-220, 0]], "1 row", { dashed: true, stroke: MUTED }),
+      path("m4", 380, 350, [[0, 0], [-220, 0]], "201 Created", { dashed: true, stroke: MUTED }),
     ]);
   },
   state: () => {
-    const draft = { id: "draft", x: 80, y: 140, w: 120, h: 56 };
-    const review = { id: "review", x: 280, y: 140, w: 120, h: 56 };
-    const live = { id: "live", x: 480, y: 140, w: 120, h: 56 };
+    const draft = { id: "draft", x: 100, y: 140, w: 130, h: 56 };
+    const review = { id: "review", x: 350, y: 140, w: 130, h: 56 };
+    const live = { id: "live", x: 600, y: 140, w: 130, h: 56 };
     return doc("State machine — allowed transitions", [
       rect(draft.id, draft.x, draft.y, draft.w, draft.h, "Draft"),
       rect(review.id, review.x, review.y, review.w, review.h, "Review"),
       rect(live.id, live.x, live.y, live.w, live.h, "Live", { fill: "#dcfce7", stroke: "#15803d" }),
       arrow("t1", draft, review, "submit"),
       arrow("t2", review, live, "approve"),
+      // The rejection path is what makes this a machine rather than a pipeline.
+      path("t3", 415, 196, [[0, 0], [0, 80], [-250, 80], [-250, 0]], "reject", { stroke: ACCENT }),
     ]);
   },
   er: () => {
@@ -223,58 +284,92 @@ const BUILDERS = {
   },
   timeline: () => {
     return doc("Timeline — events on an axis", [
-      txt("axis", 80, 200, "2024 ————●————●————●———— 2026", { fontSize: 18 }),
-      txt("e1", 200, 160, "MVP", { fontSize: 14 }),
-      txt("e2", 380, 160, "Themes", { fontSize: 14 }),
-      txt("e3", 560, 160, "MCP", { fontSize: 14, color: ACCENT }),
+      line("axis", 120, 250, [[0, 0], [520, 0]], { stroke: INK }),
+      dot("d1", 220, 250, 6),
+      dot("d2", 380, 250, 6),
+      dot("d3", 540, 250, 6, { fill: ACCENT, stroke: ACCENT }),
+      txt("e1", 196, 210, "MVP", { fontSize: 15 }),
+      txt("e2", 344, 210, "Themes", { fontSize: 15 }),
+      txt("e3", 506, 210, "MCP app", { fontSize: 15, color: ACCENT }),
+      txt("t0", 112, 266, "2024", { fontSize: 13, color: MUTED }),
+      txt("t1", 616, 266, "2026", { fontSize: 13, color: MUTED }),
     ]);
   },
   gantt: () => {
+    const week = (id, x, label) => [
+      line(id, x, 140, [[0, 0], [0, 180]], { dashed: true, strokeWidth: 1 }),
+      txt(`${id}-l`, x - 12, 118, label, { fontSize: 13, color: MUTED }),
+    ];
     return doc("Gantt — phases on a timeline", [
-      rect("p1", 120, 140, 180, 32, "Design"),
-      rect("p2", 240, 190, 220, 32, "Build", { fill: "#fef3c7" }),
-      rect("p3", 400, 240, 160, 32, "Ship", { fill: "#dcfce7", stroke: "#15803d" }),
-      txt("weeks", 80, 120, "Week 1–8", { fontSize: 13, color: MUTED }),
+      ...week("w1", 200, "W1"),
+      ...week("w3", 340, "W3"),
+      ...week("w5", 480, "W5"),
+      ...week("w7", 620, "W7"),
+      rect("p1", 140, 160, 200, 34, "Design"),
+      rect("p2", 270, 220, 250, 34, "Build", { fill: "#fef3c7" }),
+      rect("p3", 450, 280, 190, 34, "Ship", { fill: "#dcfce7", stroke: "#15803d" }),
     ]);
   },
   swimlane: () => {
+    const spec = { id: "spec", x: 200, y: 130, w: 120, h: 44 };
+    const impl = { id: "impl", x: 420, y: 250, w: 120, h: 44 };
+    const signoff = { id: "signoff", x: 620, y: 130, w: 120, h: 44 };
     return doc("Swimlane — cross-functional handoffs", [
-      zone("lane1", 60, 100, 620, 80, "Product"),
-      zone("lane2", 60, 200, 620, 80, "Engineering"),
-      rect("s1", 100, 120, 100, 40, "Spec"),
-      rect("s2", 280, 220, 100, 40, "Implement"),
-      rect("s3", 460, 120, 100, 40, "Sign-off"),
-      arrow("h1", { id: "s1", x: 100, y: 120, w: 100, h: 40 }, { id: "s2", x: 280, y: 220, w: 100, h: 40 }, "handoff"),
+      zone("lane1", 160, 110, 620, 90, ""),
+      zone("lane2", 160, 230, 620, 90, ""),
+      txt("lane1-l", 62, 148, "Product", { fontSize: 14, color: MUTED }),
+      txt("lane2-l", 62, 268, "Engineering", { fontSize: 14, color: MUTED }),
+      rect(spec.id, spec.x, spec.y, spec.w, spec.h, "Spec"),
+      rect(impl.id, impl.x, impl.y, impl.w, impl.h, "Implement"),
+      rect(signoff.id, signoff.x, signoff.y, signoff.w, signoff.h, "Sign-off", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+      }),
+      arrow("h1", spec, impl, "handoff", { from: "bottom", to: "left" }),
+      arrow("h2", impl, signoff, "review", { from: "right", to: "bottom" }),
     ]);
   },
   quadrant: () => {
     return doc("Quadrant — two-axis positioning", [
-      txt("y", 48, 180, "Impact ↑", { fontSize: 14, color: MUTED }),
-      txt("x", 360, 360, "Effort →", { fontSize: 14, color: MUTED }),
-      rect("q1", 120, 120, 200, 200, "", { fill: PAPER, stroke: MUTED }),
-      ellipse("dot1", 180, 200, 48, 48, "Now"),
-      ellipse("dot2", 320, 160, 48, 48, "Next", { fill: "#fed7aa", stroke: ACCENT }),
+      line("y-axis", 380, 120, [[0, 0], [0, 280]], { stroke: INK }),
+      line("x-axis", 140, 260, [[0, 0], [480, 0]], { stroke: INK }),
+      txt("y-label", 344, 96, "Impact", { fontSize: 14, color: MUTED }),
+      txt("x-label", 634, 252, "Effort", { fontSize: 14, color: MUTED }),
+      txt("q-tl", 152, 132, "do now", { fontSize: 12, color: MUTED }),
+      txt("q-tr", 540, 132, "plan for", { fontSize: 12, color: MUTED }),
+      txt("q-bl", 152, 374, "fill-in", { fontSize: 12, color: MUTED }),
+      txt("q-br", 540, 374, "drop", { fontSize: 12, color: MUTED }),
+      dot("p1", 260, 190, 7),
+      txt("p1-l", 276, 180, "Themes", { fontSize: 14 }),
+      dot("p2", 470, 160, 7, { fill: ACCENT, stroke: ACCENT }),
+      txt("p2-l", 486, 150, "MCP app", { fontSize: 14, color: ACCENT }),
+      dot("p3", 300, 320, 7),
+      txt("p3-l", 316, 310, "Docs polish", { fontSize: 14 }),
     ]);
   },
+  // A flywheel has to close: the fourth arrow returning to Capture is the whole point.
   loop: () => {
-    const hub = { id: "hub", x: 300, y: 200, w: 120, h: 72 };
-    const a = { id: "a", x: 120, y: 120, w: 100, h: 48 };
-    const b = { id: "b", x: 500, y: 120, w: 100, h: 48 };
-    const c = { id: "c", x: 500, y: 300, w: 100, h: 48 };
+    const capture = { id: "capture", x: 320, y: 100, w: 130, h: 48 };
+    const synth = { id: "synth", x: 549, y: 196, w: 152, h: 48 };
+    const publish = { id: "publish", x: 320, y: 300, w: 130, h: 48 };
+    const review = { id: "review", x: 80, y: 196, w: 130, h: 48 };
+    const hub = { id: "hub", x: 320, y: 196, w: 130, h: 56 };
     return doc("Loop — flywheel around a hub", [
+      rect(capture.id, capture.x, capture.y, capture.w, capture.h, "Capture"),
+      rect(synth.id, synth.x, synth.y, synth.w, synth.h, "Synthesize"),
+      rect(publish.id, publish.x, publish.y, publish.w, publish.h, "Publish"),
+      rect(review.id, review.x, review.y, review.w, review.h, "Review"),
       rect(hub.id, hub.x, hub.y, hub.w, hub.h, "Memory", { fill: "#fef3c7", stroke: ACCENT }),
-      rect(a.id, a.x, a.y, a.w, a.h, "Capture"),
-      rect(b.id, b.x, b.y, b.w, b.h, "Synthesize"),
-      rect(c.id, c.x, c.y, c.w, c.h, "Publish"),
-      arrow("l1", a, hub, ""),
-      arrow("l2", hub, b, ""),
-      arrow("l3", b, c, ""),
+      arrow("l1", capture, synth, ""),
+      arrow("l2", synth, publish, ""),
+      arrow("l3", publish, review, ""),
+      arrow("l4", review, capture, ""),
     ]);
   },
   process: () => {
-    const s1 = { id: "s1", x: 80, y: 160, w: 100, h: 48 };
-    const s2 = { id: "s2", x: 240, y: 160, w: 100, h: 48 };
-    const s3 = { id: "s3", x: 400, y: 160, w: 100, h: 48 };
+    const s1 = { id: "s1", x: 80, y: 160, w: 132, h: 48 };
+    const s2 = { id: "s2", x: 272, y: 160, w: 132, h: 48 };
+    const s3 = { id: "s3", x: 464, y: 160, w: 132, h: 48 };
     return doc("Process — multi-step workflow", [
       rect(s1.id, s1.x, s1.y, s1.w, s1.h, "Ingest"),
       rect(s2.id, s2.x, s2.y, s2.w, s2.h, "Transform"),
@@ -290,51 +385,64 @@ const BUILDERS = {
       rect("l1", 160, 280, 400, 56, "Infrastructure"),
     ]);
   },
+  // Boundary labels sit at the top-left edge: a centred container label lands on
+  // whatever the boundary contains.
   nested: () => {
     return doc("Nested — hierarchy by containment", [
-      zone("outer", 80, 100, 520, 280, "Platform"),
-      zone("inner", 120, 160, 200, 160, "Service A"),
-      rect("leaf", 360, 180, 120, 56, "Cache"),
+      zone("outer", 100, 110, 600, 216, ""),
+      txt("outer-l", 116, 120, "Platform", { fontSize: 14, color: MUTED }),
+      zone("inner", 140, 158, 300, 140, ""),
+      txt("inner-l", 156, 168, "Service A", { fontSize: 14, color: MUTED }),
+      rect("api", 172, 196, 236, 44, "API"),
+      rect("cache", 172, 250, 236, 36, "Cache", { fill: "#fef3c7", stroke: ACCENT, labelSize: 15 }),
+      rect("gateway", 484, 196, 176, 44, "Gateway"),
     ]);
   },
   medallion: () => {
+    const bronze = { id: "bronze", x: 100, y: 180, w: 150, h: 68 };
+    const silver = { id: "silver", x: 420, y: 180, w: 150, h: 68 };
+    const gold = { id: "gold", x: 740, y: 180, w: 150, h: 68 };
     return doc("Medallion — bronze / silver / gold tiers", [
-      rect("bronze", 120, 180, 140, 64, "Bronze\nraw"),
-      rect("silver", 300, 160, 140, 64, "Silver\nclean", { fill: "#e2e8f0" }),
-      rect("gold", 480, 140, 140, 64, "Gold\nmart", { fill: "#fef3c7", stroke: ACCENT }),
-      arrow("m1", { id: "bronze", x: 120, y: 180, w: 140, h: 64 }, { id: "silver", x: 300, y: 160, w: 140, h: 64 }, "transform"),
-      arrow("m2", { id: "silver", x: 300, y: 160, w: 140, h: 64 }, { id: "gold", x: 480, y: 140, w: 140, h: 64 }, "aggregate"),
+      rect(bronze.id, bronze.x, bronze.y, bronze.w, bronze.h, "Bronze\nraw"),
+      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver\nconformed", { fill: "#e2e8f0" }),
+      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold\nmart", { fill: "#fef3c7", stroke: ACCENT }),
+      arrow("m1", bronze, silver, "clean"),
+      arrow("m2", silver, gold, "aggregate"),
     ]);
   },
   tree: () => {
-    const root = { id: "root", x: 320, y: 100, w: 120, h: 48 };
-    const left = { id: "left", x: 160, y: 200, w: 100, h: 48 };
-    const right = { id: "right", x: 480, y: 200, w: 100, h: 48 };
+    const root = { id: "root", x: 314, y: 100, w: 132, h: 48 };
+    const left = { id: "left", x: 144, y: 210, w: 132, h: 48 };
+    const right = { id: "right", x: 484, y: 210, w: 132, h: 48 };
     return doc("Tree — parent → children", [
       rect(root.id, root.x, root.y, root.w, root.h, "Root"),
       rect(left.id, left.x, left.y, left.w, left.h, "Branch A"),
       rect(right.id, right.x, right.y, right.w, right.h, "Branch B"),
-      arrow("t1", root, left, ""),
-      arrow("t2", root, right, ""),
+      arrow("t1", root, left, "", { from: "bottom", to: "top" }),
+      arrow("t2", root, right, "", { from: "bottom", to: "top" }),
     ]);
   },
   "org-chart": () => {
-    const ceo = { id: "ceo", x: 300, y: 100, w: 120, h: 48 };
-    const eng = { id: "eng", x: 160, y: 200, w: 120, h: 48 };
-    const prod = { id: "prod", x: 440, y: 200, w: 120, h: 48 };
+    const ceo = { id: "ceo", x: 306, y: 100, w: 120, h: 48 };
+    const eng = { id: "eng", x: 140, y: 210, w: 156, h: 48 };
+    const prod = { id: "prod", x: 436, y: 210, w: 156, h: 48 };
     return doc("Org chart — ownership + routing", [
       rect(ceo.id, ceo.x, ceo.y, ceo.w, ceo.h, "CEO"),
       rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering"),
       rect(prod.id, prod.x, prod.y, prod.w, prod.h, "Product"),
-      arrow("o1", ceo, eng, ""),
-      arrow("o2", ceo, prod, ""),
+      arrow("o1", ceo, eng, "", { from: "bottom", to: "top" }),
+      arrow("o2", ceo, prod, "", { from: "bottom", to: "top" }),
     ]);
   },
   venn: () => {
     return doc("Venn — set overlap", [
-      ellipse("a", 180, 160, 160, 160, "Speed"),
-      ellipse("b", 280, 160, 160, 160, "Quality"),
-      txt("overlap", 280, 230, "Sweet spot", { fontSize: 14, color: ACCENT }),
+      ellipse("a", 180, 130, 200, 200, ""),
+      ellipse("b", 320, 130, 200, 200, ""),
+      txt("a-l", 212, 220, "Speed", { fontSize: 16 }),
+      txt("b-l", 430, 220, "Quality", { fontSize: 16 }),
+      // The overlap is too narrow to hold its own label, so the label sits below it.
+      line("leader", 350, 332, [[0, 0], [0, 26]], { stroke: ACCENT, strokeWidth: 1 }),
+      txt("overlap", 300, 364, "ship it twice", { fontSize: 14, color: ACCENT }),
     ]);
   },
   pyramid: () => {
@@ -370,12 +478,19 @@ const BUILDERS = {
     ]);
   },
   "it-state": () => {
+    const mainframe = { id: "mainframe", x: 80, y: 130, w: 150, h: 64 };
+    const as400 = { id: "as400", x: 80, y: 240, w: 150, h: 64 };
+    const esb = { id: "esb", x: 440, y: 185, w: 150, h: 64 };
+    const saas = { id: "saas", x: 780, y: 185, w: 150, h: 64 };
     return doc("IT current-state — legacy landscape", [
-      rect("legacy", 80, 140, 140, 64, "Mainframe"),
-      rect("bridge", 280, 140, 140, 64, "ESB"),
-      rect("saas", 480, 140, 140, 64, "SaaS", { fill: "#dcfce7" }),
-      arrow("i1", { id: "legacy", x: 80, y: 140, w: 140, h: 64 }, { id: "bridge", x: 280, y: 140, w: 140, h: 64 }, "batch"),
-      arrow("i2", { id: "bridge", x: 280, y: 140, w: 140, h: 64 }, { id: "saas", x: 480, y: 140, w: 140, h: 64 }, "API"),
+      rect(mainframe.id, mainframe.x, mainframe.y, mainframe.w, mainframe.h, "Mainframe"),
+      rect(as400.id, as400.x, as400.y, as400.w, as400.h, "AS/400"),
+      // Everything funnels through one bus: that is the finding, so it carries the accent.
+      rect(esb.id, esb.x, esb.y, esb.w, esb.h, "ESB", { fill: "#fed7aa", stroke: ACCENT }),
+      rect(saas.id, saas.x, saas.y, saas.w, saas.h, "SaaS", { fill: "#dcfce7", stroke: "#15803d" }),
+      arrow("i1", mainframe, esb, "nightly batch"),
+      arrow("i2", as400, esb, "flat file"),
+      arrow("i3", esb, saas, "REST"),
     ]);
   },
   "data-flow": () => {
@@ -389,52 +504,143 @@ const BUILDERS = {
     ]);
   },
   "dp-integration": () => {
+    const sources = [
+      { id: "s-db", x: 80, y: 120, w: 156, h: 44, label: "Postgres" },
+      { id: "s-events", x: 80, y: 186, w: 156, h: 44, label: "Clickstream" },
+      { id: "s-files", x: 80, y: 252, w: 156, h: 44, label: "SFTP drop" },
+    ];
+    const core = { id: "core", x: 330, y: 152, w: 170, h: 112 };
+    const consumers = [
+      { id: "c-bi", x: 594, y: 142, w: 156, h: 44, label: "Dashboards" },
+      { id: "c-ml", x: 594, y: 230, w: 156, h: 44, label: "ML features" },
+    ];
     return doc("DP integration — sources → core → consumers", [
-      rect("src", 80, 160, 100, 48, "Sources"),
-      rect("core", 280, 140, 120, 72, "Lakehouse", { fill: "#fef3c7", stroke: ACCENT }),
-      rect("cons", 500, 160, 100, 48, "BI / ML"),
-      arrow("dp1", { id: "src", x: 80, y: 160, w: 100, h: 48 }, { id: "core", x: 280, y: 140, w: 120, h: 72 }, ""),
-      arrow("dp2", { id: "core", x: 280, y: 140, w: 120, h: 72 }, { id: "cons", x: 500, y: 160, w: 100, h: 48 }, ""),
+      ...sources.map((s) => rect(s.id, s.x, s.y, s.w, s.h, s.label)),
+      rect(core.id, core.x, core.y, core.w, core.h, "Lakehouse", { fill: "#fef3c7", stroke: ACCENT }),
+      ...consumers.map((c) => rect(c.id, c.x, c.y, c.w, c.h, c.label)),
+      ...sources.map((s, i) => arrow(`in${i}`, s, core, "")),
+      ...consumers.map((c, i) => arrow(`out${i}`, core, c, "")),
     ]);
   },
   "dp-security-matrix": () => {
+    const cell = (id, x, y, label, write) =>
+      rect(id, x, y, 130, 44, label, write ? { fill: "#fed7aa", stroke: ACCENT } : { fill: PAPER, stroke: MUTED });
     return doc("DP security matrix — role × resource", [
-      txt("hdr", 80, 120, "Role ↓   Dataset A   Dataset B", { fontSize: 14, color: MUTED }),
-      rect("r1", 80, 160, 480, 40, "Analyst — read — read"),
-      rect("r2", 80, 210, 480, 40, "Engineer — write — read"),
-      rect("r3", 80, 260, 480, 40, "Admin — write — write", { fill: "#fef3c7" }),
+      txt("h1", 300, 128, "Dataset A", { fontSize: 14, color: MUTED }),
+      txt("h2", 470, 128, "Dataset B", { fontSize: 14, color: MUTED }),
+      line("h-rule", 100, 152, [[0, 0], [500, 0]], { strokeWidth: 1 }),
+      line("v-rule", 280, 152, [[0, 0], [0, 168]], { strokeWidth: 1 }),
+      txt("r1", 110, 180, "Analyst", { fontSize: 15 }),
+      txt("r2", 110, 238, "Engineer", { fontSize: 15 }),
+      txt("r3", 110, 296, "Admin", { fontSize: 15 }),
+      cell("c11", 300, 166, "read", false),
+      cell("c12", 450, 166, "read", false),
+      cell("c21", 300, 224, "write", true),
+      cell("c22", 450, 224, "read", false),
+      cell("c31", 300, 282, "write", true),
+      cell("c32", 450, 282, "write", true),
     ]);
   },
   bar: () => {
+    const bar = (id, x, top, label, accent) => [
+      rect(id, x, top, 60, 320 - top, "", accent ? { fill: ACCENT, stroke: ACCENT } : { fill: FILL }),
+      txt(`${id}-l`, x + 16, 332, label, { fontSize: 14, color: MUTED }),
+    ];
     return doc("Bar chart — categorical comparison", [
-      rect("b1", 120, 240, 48, 80, "", { fill: INK }),
-      rect("b2", 220, 200, 48, 120, "", { fill: ACCENT }),
-      rect("b3", 320, 220, 48, 100, "", { fill: INK }),
-      txt("l1", 110, 330, "Q1", { fontSize: 13 }),
-      txt("l2", 210, 330, "Q2", { fontSize: 13 }),
-      txt("l3", 310, 330, "Q3", { fontSize: 13 }),
+      line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
+      line("x-axis", 140, 320, [[0, 0], [440, 0]], { stroke: INK }),
+      ...bar("b1", 180, 250, "Q1"),
+      ...bar("b2", 280, 216, "Q2"),
+      ...bar("b3", 380, 232, "Q3"),
+      ...bar("b4", 480, 158, "Q4", true),
+      txt("callout", 466, 128, "record quarter", { fontSize: 14, color: ACCENT }),
     ]);
   },
   line: () => {
+    const series = [
+      [0, 0],
+      [90, 34],
+      [180, 22],
+      [270, 74],
+      [360, 96],
+      [440, 128],
+    ];
     return doc("Line chart — trend over time", [
-      txt("chart", 80, 200, "↗ latency down 40% YoY", { fontSize: 18 }),
-      rect("axis", 80, 280, 480, 2, "", { fill: MUTED, stroke: MUTED }),
+      line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
+      line("x-axis", 140, 320, [[0, 0], [460, 0]], { stroke: INK }),
+      txt("y-label", 88, 122, "p99", { fontSize: 13, color: MUTED }),
+      txt("x0", 132, 332, "2024", { fontSize: 13, color: MUTED }),
+      txt("x1", 556, 332, "2026", { fontSize: 13, color: MUTED }),
+      line("series", 160, 160, series, { stroke: ACCENT }),
+      ...series.map(([dx, dy], i) => dot(`s${i}`, 160 + dx, 160 + dy, 5, { fill: ACCENT, stroke: ACCENT })),
+      txt("callout", 428, 258, "142ms", { fontSize: 15, color: ACCENT }),
     ]);
   },
   scatter: () => {
+    const points = [
+      [180, 290],
+      [220, 262],
+      [252, 276],
+      [286, 240],
+      [318, 250],
+      [352, 214],
+      [390, 226],
+      [424, 190],
+      [462, 178],
+      [500, 158],
+    ];
     return doc("Scatter — distribution + correlation", [
-      ellipse("p1", 140, 220, 16, 16, ""),
-      ellipse("p2", 200, 180, 16, 16, ""),
-      ellipse("p3", 260, 200, 16, 16, "", { fill: ACCENT, stroke: ACCENT }),
-      ellipse("p4", 320, 160, 16, 16, ""),
-      ellipse("p5", 380, 140, 16, 16, "", { fill: ACCENT, stroke: ACCENT }),
-      txt("label", 80, 120, "Higher skill ↔ lower error rate", { fontSize: 14, color: MUTED }),
+      line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
+      line("x-axis", 140, 320, [[0, 0], [440, 0]], { stroke: INK }),
+      txt("y-label", 78, 122, "errors", { fontSize: 13, color: MUTED }),
+      txt("x-label", 420, 332, "hours of practice", { fontSize: 13, color: MUTED }),
+      line("trend", 170, 300, [[0, 0], [350, -155]], { stroke: ACCENT, dashed: true }),
+      ...points.map(([x, y], i) => dot(`p${i}`, x, y, 6)),
     ]);
   },
   radar: () => {
-    return doc("Radar — multi-axis comparison", [
-      ellipse("radar", 240, 140, 200, 200, "", { fill: PAPER, stroke: MUTED }),
-      txt("axes", 280, 240, "Speed · Quality · Cost", { fontSize: 14 }),
+    const cx = 260;
+    const cy = 250;
+    const vertex = (r, i) => {
+      const angle = (Math.PI / 3) * i - Math.PI / 2;
+      return [Math.round(cx + r * Math.cos(angle)), Math.round(cy + r * Math.sin(angle))];
+    };
+    const ring = (r) => {
+      const pts = [0, 1, 2, 3, 4, 5].map((i) => vertex(r, i));
+      const [ox, oy] = pts[0];
+      return { origin: [ox, oy], points: [...pts, pts[0]].map(([x, y]) => [x - ox, y - oy]) };
+    };
+    const hexagon = (id, radii, opts) => {
+      const pts = radii.map((r, i) => vertex(r, i));
+      const [ox, oy] = pts[0];
+      return line(id, ox, oy, [...pts, pts[0]].map(([x, y]) => [x - ox, y - oy]), opts);
+    };
+    const even = (r) => [r, r, r, r, r, r];
+    const now = [112, 94, 60, 100, 52, 80];
+    const before = [74, 66, 78, 58, 44, 62];
+    const labels = ["Speed", "Quality", "Cost", "Reach", "Depth", "Taste"];
+    return doc("Radar — this quarter against last", [
+      hexagon("now", now, { stroke: ACCENT, fill: "#fed7aa" }),
+      // Rings and spokes go over the fill: Excalidraw fills are opaque, so a
+      // grid underneath disappears exactly where the data sits.
+      hexagon("ring-outer", even(120), { strokeWidth: 1, stroke: GRID }),
+      hexagon("ring-mid", even(80), { strokeWidth: 1, stroke: GRID }),
+      hexagon("ring-inner", even(40), { strokeWidth: 1, stroke: GRID }),
+      ...[0, 1, 2].map((i) => {
+        const [x1, y1] = vertex(120, i);
+        const [x2, y2] = vertex(120, i + 3);
+        return line(`spoke${i}`, x1, y1, [[0, 0], [x2 - x1, y2 - y1]], { strokeWidth: 1, stroke: GRID });
+      }),
+      hexagon("before", before, { dashed: true, strokeWidth: 2 }),
+      ...labels.map((label, i) => {
+        const [x, y] = vertex(152, i);
+        return txt(`ax${i}`, x - label.length * 4, y - 8, label, { fontSize: 13, color: MUTED });
+      }),
+      line("key-now", 520, 214, [[0, 0], [28, 0]], { stroke: ACCENT, strokeWidth: 3 }),
+      txt("key-now-label", 558, 206, "This quarter", { fontSize: 13, color: INK }),
+      line("key-before", 520, 248, [[0, 0], [28, 0]], { dashed: true }),
+      txt("key-before-label", 558, 240, "Last quarter", { fontSize: 13, color: MUTED }),
+      txt("key-note", 520, 280, "0–120 per axis", { fontSize: 12, color: MUTED }),
     ]);
   },
 };

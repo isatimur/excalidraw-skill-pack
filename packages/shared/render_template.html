@@ -15,22 +15,55 @@
   <script type="module">
     import { exportToSvg, convertToExcalidrawElements } from "https://esm.sh/@excalidraw/excalidraw@0.18.0";
 
+    // Excalidraw ships its fonts inside the exported SVG as @font-face rules
+    // scoped to that SVG, so nothing in the page can measure against them until
+    // an export has happened. Hoisting those rules into the document makes the
+    // real faces available for the measuring pass that follows.
+    async function registerFontsFor(elements) {
+      const probe = await exportToSvg({ elements, appState: {}, files: {} });
+      const style = document.createElement("style");
+      style.textContent = [...probe.querySelectorAll("style")]
+        .map((node) => node.textContent)
+        .join("\n");
+      document.head.appendChild(style);
+      await document.fonts.ready;
+      await Promise.all(
+        [...document.fonts].map((face) =>
+          face.status === "loaded" ? face : face.load().catch(() => face)
+        )
+      );
+      await document.fonts.ready;
+    }
+
     // Resolve any supported input document to fully-qualified Excalidraw elements:
     //   type: "mermaid"             → parse Mermaid → skeleton → full elements
     //   type: "excalidraw-skeleton" → hydrate skeleton → full elements
     //   (default / "excalidraw")    → use elements as-is
     // Mermaid is a heavy dependency, so it is imported dynamically only when needed.
     async function resolveToFull(data) {
-      if (data.type === "mermaid") {
-        const { parseMermaidToExcalidraw } = await import("https://esm.sh/@excalidraw/mermaid-to-excalidraw@1.1.3");
-        const def = data.definition || data.mermaid || "";
-        const { elements, files } = await parseMermaidToExcalidraw(def, data.mermaidConfig || {});
-        return { elements: convertToExcalidrawElements(elements), files: files || {} };
+      if (data.type !== "mermaid" && data.type !== "excalidraw-skeleton") {
+        return { elements: data.elements || [], files: data.files || {} };
       }
-      if (data.type === "excalidraw-skeleton") {
-        return { elements: convertToExcalidrawElements(data.elements || []), files: data.files || {} };
-      }
-      return { elements: data.elements || [], files: data.files || {} };
+
+      const convert = async () => {
+        if (data.type === "mermaid") {
+          const { parseMermaidToExcalidraw } = await import("https://esm.sh/@excalidraw/mermaid-to-excalidraw@1.1.3");
+          const def = data.definition || data.mermaid || "";
+          const { elements, files } = await parseMermaidToExcalidraw(def, data.mermaidConfig || {});
+          return { elements: convertToExcalidrawElements(elements), files: files || {} };
+        }
+        return {
+          elements: convertToExcalidrawElements(structuredClone(data.elements || [])),
+          files: data.files || {},
+        };
+      };
+
+      // The first pass is measured against fallback metrics; it exists only to
+      // get the document's own glyphs registered as real faces. The second pass
+      // is the one whose text widths match what the export actually paints.
+      const firstPass = await convert();
+      await registerFontsFor(firstPass.elements);
+      return await convert();
     }
 
     window.renderDiagram = async function(jsonData) {
