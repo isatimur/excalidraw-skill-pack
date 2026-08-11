@@ -8,7 +8,7 @@ Open-source **diagram-quality layer** for AI agents: an opinionated Excalidraw m
 
 ## Primary user
 
-Engineers and technical writers who use AI agents (Claude Code, Cursor, Copilot, Codex, Gemini CLI, any MCP client) to produce **figures that teach** — architecture, flows, sequences, evidence diagrams — and need them to survive editing, theming, and publication.
+Engineers and technical writers who use AI agents (Claude Code, Cursor, Copilot, Codex, Gemini CLI, any MCP client) to produce **figures that teach**: architecture, flows, sequences, evidence diagrams. Those figures must survive editing, theming, and publication.
 
 ## Job to be done
 

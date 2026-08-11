@@ -1,8 +1,8 @@
 # @excalidraw-skill-pack/mcp-server
 
-MCP server exposing **excalidraw-skill-pack** to any MCP-compatible AI agent — the diagram-*quality* layer that turns "draw me a diagram" into figures that argue visually, not labeled boxes.
+MCP server exposing **excalidraw-skill-pack** to any MCP-compatible AI agent: the diagram-*quality* layer that turns "draw me a diagram" into figures that argue visually, not labeled boxes.
 
-It returns *methodology* (the skill prompt + active theme), not LLM-generated content — your agent's own model drafts the JSON. Proven on 77 diagrams in the published book [*From Copilot to Colleague*](https://fromcopilottocolleague.com).
+It returns *methodology* (the skill prompt + active theme), not LLM-generated content. Your agent's own model drafts the JSON. Proven on 77 diagrams in the published book [*From Copilot to Colleague*](https://fromcopilottocolleague.com).
 
 ## Tools
 

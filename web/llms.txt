@@ -1,5 +1,5 @@
 # excalidraw-skill-pack
-> Editable Excalidraw diagrams for AI agents — methodology, 29 types with fixtures, taste gate, themes, MCP.
+> Editable Excalidraw diagrams for AI agents: methodology, 29 types with fixtures, taste gate, themes, MCP.
 
 ## Docs
 - https://excalidraw-skill-pack.vercel.app/
@@ -10,10 +10,13 @@
 - https://github.com/isatimur/excalidraw-skill-pack
 
 ## Types (29)
-Architecture, flowchart, sequence, state, ER, timeline, Gantt, swimlane, quadrant, loop, process, layers, nested, medallion, tree, org-chart, venn, pyramid, evidence, comparison, high-level, it-state, data-flow, dp-integration, dp-security-matrix, bar, line, scatter, radar — each with editable .excalidraw + PNG at /gallery/
+Architecture, flowchart, sequence, state, ER, timeline, Gantt, swimlane, quadrant, loop, process, layers, nested, medallion, tree, org-chart, venn, pyramid, evidence, comparison, high-level, it-state, data-flow, dp-integration, dp-security-matrix, bar, line, scatter, radar. Each has editable .excalidraw + PNG at /gallery/
 
 ## vs diagram-design
 Editable Excalidraw + themes + MCP vs static HTML+SVG: https://excalidraw-skill-pack.vercel.app/vs-diagram-design/
 
 ## Install
 npx @excalidraw-skill-pack/install claude-code
+
+## Try first (no install)
+Telegram or WhatsApp demo: https://app.clawmama.run/skills/s8dq2k/hermes
