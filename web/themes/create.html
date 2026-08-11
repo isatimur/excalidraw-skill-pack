@@ -5,24 +5,54 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Create a theme - excalidraw-skill-pack</title>
 <meta name="description" content="Create a custom Excalidraw skill pack theme." />
+<link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/themes/create" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,ital,wght@6..72,400;6..72,500;6..72,1,400;6..72,1,500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
 <style>
-:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+:root {
+  --ink:#2A2622; --paper:#F4EDE0; --paper-deep:#EBE3D4; --accent:#B8472A; --muted:#6E6356;
+  --line:rgba(42,38,34,.12);
+  --display:"Newsreader","Iowan Old Style",serif;
+  --body:"Source Serif 4","Iowan Old Style",serif;
+  --mono:"IBM Plex Mono",Menlo,monospace;
+}
 * { box-sizing:border-box; }
-body { margin:0 auto; max-width:880px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
-nav { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+body {
+  margin:0 auto; max-width:880px; padding:3rem 1.5rem;
+  background:
+    radial-gradient(80% 45% at 90% 0%, rgba(59,106,138,.07), transparent 50%),
+    linear-gradient(180deg, var(--paper), var(--paper-deep));
+  color:var(--ink); font:1.05rem/1.65 var(--body);
+}
+nav { font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--muted); margin-bottom:2rem; }
 nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
-h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
-h1 { font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; }
+h1,h2 { font-family:var(--display); font-weight:400; font-style:italic; letter-spacing:-0.02em; }
+h1 { font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; margin:0 0 1rem; }
+h2 { font-size:1.65rem; margin:2.75rem 0 1rem; }
 a { color:var(--accent); }
-code, pre { font-family:"JetBrains Mono",Menlo,monospace; }
-pre { overflow:auto; padding:1rem; background:rgba(0,0,0,.06); border-left:3px solid var(--accent); }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.lede { color:var(--muted); max-width:42rem; }
+code, pre { font-family:var(--mono); }
+pre {
+  overflow:auto; padding:1rem;
+  background:rgba(255,255,255,.4);
+  border:1px solid var(--line);
+  font-size:.85rem;
+}
 li { margin:.5rem 0; }
 </style>
 </head>
 <body>
-<nav><a href="/">Home</a><a href="/themes">Themes</a><a href="/spec/theme-manifest">Spec</a><a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a></nav>
+<nav>
+  <a href="/">Home</a>
+  <a href="/gallery/">Gallery</a>
+  <a href="/themes">Themes</a>
+  <a href="/spec/theme-manifest">Spec</a>
+  <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
+</nav>
 <h1>Create a custom theme</h1>
-<p>A theme package lets an agent create diagrams in your brand without rewriting the skill. Keep colors semantic, not decorative: roles like <code>ink</code>, <code>paper</code>, <code>accent</code>, and <code>evidence_bg</code> tell the agent what each color means.</p>
+<p class="lede">A theme package lets an agent create diagrams in your brand without rewriting the skill. Keep colors semantic, not decorative: roles like <code>ink</code>, <code>paper</code>, <code>accent</code>, and <code>evidence_bg</code> tell the agent what each color means.</p>
 
 <h2>Scaffold</h2>
 <pre><code>npx @excalidraw-skill-pack/create-theme my-brand
