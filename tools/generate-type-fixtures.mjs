@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generate canonical excalidraw-skeleton fixtures for each diagram type.
+ * Generate canonical hydrated excalidraw fixtures for each diagram type.
  * Output: packages/shared/fixtures/types/<type>/example.excalidraw
  */
 import { mkdir, writeFile } from "node:fs/promises";
@@ -63,7 +63,7 @@ function diamond(id, x, y, w, h, label) {
   };
 }
 
-function ellipse(id, x, y, w, h, label) {
+function ellipse(id, x, y, w, h, label, opts = {}) {
   return {
     type: "ellipse",
     id,
@@ -71,8 +71,8 @@ function ellipse(id, x, y, w, h, label) {
     y,
     width: w,
     height: h,
-    strokeColor: INK,
-    backgroundColor: FILL,
+    strokeColor: opts.stroke ?? INK,
+    backgroundColor: opts.fill ?? FILL,
     fillStyle: "solid",
     strokeWidth: 2,
     roughness: 0,
@@ -80,14 +80,42 @@ function ellipse(id, x, y, w, h, label) {
   };
 }
 
-function arrow(id, from, to, label, dx = 0, dy = 48) {
+function center(box) {
+  return { x: box.x + box.w / 2, y: box.y + box.h / 2 };
+}
+
+function exitAnchor(box, other) {
+  const c = center(box);
+  const o = center(other);
+  const dx = o.x - c.x;
+  const dy = o.y - c.y;
+  if (Math.abs(dx) >= Math.abs(dy)) {
+    return dx > 0 ? { x: box.x + box.w, y: c.y } : { x: box.x, y: c.y };
+  }
+  return dy > 0 ? { x: c.x, y: box.y + box.h } : { x: c.x, y: box.y };
+}
+
+function entryAnchor(box, other) {
+  const c = center(box);
+  const o = center(other);
+  const dx = o.x - c.x;
+  const dy = o.y - c.y;
+  if (Math.abs(dx) >= Math.abs(dy)) {
+    return dx > 0 ? { x: box.x, y: c.y } : { x: box.x + box.w, y: c.y };
+  }
+  return dy > 0 ? { x: c.x, y: box.y } : { x: c.x, y: box.y + box.h };
+}
+
+function arrow(id, from, to, label) {
+  const start = exitAnchor(from, to);
+  const end = entryAnchor(to, from);
   return {
     type: "arrow",
     id,
-    x: from.x + from.w / 2,
-    y: from.y + from.h,
-    width: dx,
-    height: dy,
+    x: start.x,
+    y: start.y,
+    width: end.x - start.x,
+    height: end.y - start.y,
     strokeColor: INK,
     strokeWidth: 2,
     roughness: 0,
@@ -135,8 +163,8 @@ const BUILDERS = {
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(queue.id, queue.x, queue.y, queue.w, queue.h, "Queue"),
-      arrow("a1", api, db, "read/write", 100, 0),
-      arrow("a2", api, queue, "publish", 220, 0),
+      arrow("a1", api, db, "read/write"),
+      arrow("a2", api, queue, "publish"),
     ]);
   },
   flowchart: () => {
@@ -148,8 +176,8 @@ const BUILDERS = {
       ellipse(start.id, start.x, start.y, start.w, start.h, "Trigger"),
       arrow("a0", start, decide, ""),
       diamond(decide.id, decide.x, decide.y, decide.w, decide.h, "Valid?"),
-      arrow("a1", decide, yes, "yes", -80, 40),
-      arrow("a2", decide, no, "no", 120, 40),
+      arrow("a1", decide, yes, "yes"),
+      arrow("a2", decide, no, "no"),
       rect(yes.id, yes.x, yes.y, yes.w, yes.h, "Process"),
       rect(no.id, no.x, no.y, no.w, no.h, "Reject"),
     ]);
@@ -165,8 +193,8 @@ const BUILDERS = {
       txt("m1", 130, 180, "POST /orders", { fontSize: 14, color: MUTED }),
       txt("m2", 330, 220, "INSERT", { fontSize: 14, color: MUTED }),
       txt("m3", 330, 260, "201 Created", { fontSize: 14, color: MUTED }),
-      arrow("s1", client, api, "", 100, 60),
-      arrow("s2", api, db, "", 100, 60),
+      arrow("s1", client, api, ""),
+      arrow("s2", api, db, ""),
     ]);
   },
   state: () => {
@@ -189,8 +217,8 @@ const BUILDERS = {
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid, email"),
       rect(order.id, order.x, order.y, order.w, order.h, "Order\nid, total"),
       rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku, qty"),
-      arrow("r1", user, order, "1:N", 100, 0),
-      arrow("r2", order, item, "1:N", 100, 0),
+      arrow("r1", user, order, "1:N"),
+      arrow("r2", order, item, "1:N"),
     ]);
   },
   timeline: () => {
@@ -216,7 +244,7 @@ const BUILDERS = {
       rect("s1", 100, 120, 100, 40, "Spec"),
       rect("s2", 280, 220, 100, 40, "Implement"),
       rect("s3", 460, 120, 100, 40, "Sign-off"),
-      arrow("h1", { id: "s1", x: 100, y: 120, w: 100, h: 40 }, { id: "s2", x: 280, y: 220, w: 100, h: 40 }, "handoff", 80, 60),
+      arrow("h1", { id: "s1", x: 100, y: 120, w: 100, h: 40 }, { id: "s2", x: 280, y: 220, w: 100, h: 40 }, "handoff"),
     ]);
   },
   quadrant: () => {
@@ -238,9 +266,9 @@ const BUILDERS = {
       rect(a.id, a.x, a.y, a.w, a.h, "Capture"),
       rect(b.id, b.x, b.y, b.w, b.h, "Synthesize"),
       rect(c.id, c.x, c.y, c.w, c.h, "Publish"),
-      arrow("l1", a, hub, "", 120, 40),
-      arrow("l2", hub, b, "", 80, -40),
-      arrow("l3", b, c, "", 0, 100),
+      arrow("l1", a, hub, ""),
+      arrow("l2", hub, b, ""),
+      arrow("l3", b, c, ""),
     ]);
   },
   process: () => {
@@ -274,8 +302,8 @@ const BUILDERS = {
       rect("bronze", 120, 180, 140, 64, "Bronze\nraw"),
       rect("silver", 300, 160, 140, 64, "Silver\nclean", { fill: "#e2e8f0" }),
       rect("gold", 480, 140, 140, 64, "Gold\nmart", { fill: "#fef3c7", stroke: ACCENT }),
-      arrow("m1", { id: "bronze", x: 120, y: 180, w: 140, h: 64 }, { id: "silver", x: 300, y: 160, w: 140, h: 64 }, "transform", 40, 0),
-      arrow("m2", { id: "silver", x: 300, y: 160, w: 140, h: 64 }, { id: "gold", x: 480, y: 140, w: 140, h: 64 }, "aggregate", 40, 0),
+      arrow("m1", { id: "bronze", x: 120, y: 180, w: 140, h: 64 }, { id: "silver", x: 300, y: 160, w: 140, h: 64 }, "transform"),
+      arrow("m2", { id: "silver", x: 300, y: 160, w: 140, h: 64 }, { id: "gold", x: 480, y: 140, w: 140, h: 64 }, "aggregate"),
     ]);
   },
   tree: () => {
@@ -286,8 +314,8 @@ const BUILDERS = {
       rect(root.id, root.x, root.y, root.w, root.h, "Root"),
       rect(left.id, left.x, left.y, left.w, left.h, "Branch A"),
       rect(right.id, right.x, right.y, right.w, right.h, "Branch B"),
-      arrow("t1", root, left, "", -60, 52),
-      arrow("t2", root, right, "", 60, 52),
+      arrow("t1", root, left, ""),
+      arrow("t2", root, right, ""),
     ]);
   },
   "org-chart": () => {
@@ -298,8 +326,8 @@ const BUILDERS = {
       rect(ceo.id, ceo.x, ceo.y, ceo.w, ceo.h, "CEO"),
       rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering"),
       rect(prod.id, prod.x, prod.y, prod.w, prod.h, "Product"),
-      arrow("o1", ceo, eng, "", -80, 52),
-      arrow("o2", ceo, prod, "", 80, 52),
+      arrow("o1", ceo, eng, ""),
+      arrow("o2", ceo, prod, ""),
     ]);
   },
   venn: () => {
@@ -320,7 +348,7 @@ const BUILDERS = {
     return doc("Evidence — proof artifact beside claim", [
       rect("claim", 80, 140, 200, 72, "Claim:\nP99 < 200ms"),
       rect("proof", 360, 130, 280, 92, '{\n  "metric": "p99",\n  "value": 142\n}', { fill: PAPER, stroke: MUTED }),
-      arrow("e1", { id: "proof", x: 360, y: 130, w: 280, h: 92 }, { id: "claim", x: 80, y: 140, w: 200, h: 72 }, "proves", -120, 0),
+      arrow("e1", { id: "proof", x: 360, y: 130, w: 280, h: 92 }, { id: "claim", x: 80, y: 140, w: 200, h: 72 }, "proves"),
     ]);
   },
   comparison: () => {
@@ -337,8 +365,8 @@ const BUILDERS = {
       rect("edge", 120, 140, 100, 48, "CDN"),
       rect("app", 280, 140, 100, 48, "App"),
       rect("data", 440, 140, 100, 48, "DB"),
-      arrow("h1", { id: "edge", x: 120, y: 140, w: 100, h: 48 }, { id: "app", x: 280, y: 140, w: 100, h: 48 }, "", 60, 0),
-      arrow("h2", { id: "app", x: 280, y: 140, w: 100, h: 48 }, { id: "data", x: 440, y: 140, w: 100, h: 48 }, "", 60, 0),
+      arrow("h1", { id: "edge", x: 120, y: 140, w: 100, h: 48 }, { id: "app", x: 280, y: 140, w: 100, h: 48 }, ""),
+      arrow("h2", { id: "app", x: 280, y: 140, w: 100, h: 48 }, { id: "data", x: 440, y: 140, w: 100, h: 48 }, ""),
     ]);
   },
   "it-state": () => {
@@ -412,15 +440,21 @@ const BUILDERS = {
 };
 
 async function main() {
+  const { hydrateSkeleton } = await import(
+    join(ROOT, "packages", "renderer-node", "dist", "index.js")
+  );
+
   const types = Object.keys(BUILDERS);
   for (const type of types) {
     const dir = join(OUT, type);
     await mkdir(dir, { recursive: true });
-    const json = JSON.stringify(BUILDERS[type](), null, 2) + "\n";
+    const skeleton = JSON.stringify(BUILDERS[type]());
+    const full = await hydrateSkeleton(skeleton);
+    const json = JSON.stringify(JSON.parse(full), null, 2) + "\n";
     await writeFile(join(dir, "example.excalidraw"), json);
     console.log(`wrote ${type}/example.excalidraw`);
   }
-  console.log(`\n${types.length} type fixtures generated.`);
+  console.log(`\n${types.length} hydrated type fixtures generated.`);
 }
 
 main().catch((err) => {
