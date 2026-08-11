@@ -12,9 +12,9 @@ The methodology is the whole point. It encodes editorial judgment as rules the a
 
 ### "Why not just use Excalidraw's official MCP?"
 
-Fair question — it shipped recently and it's good. But it (and every community MCP I tried) solves **plumbing**: get an agent to produce valid JSON and render a canvas. That's a commodity now; there are a dozen of them. None of them decide *what* to draw or *why*. You still get correct boxes-and-arrows.
+Fair question — it shipped as an **MCP App** (remote host, streaming draw, fullscreen in-chat editor) and that surface is excellent. What it does not ship is our quality stack: 29 typed layouts, taste gate, `audit_diagram`, publishable themes, and Node+Python golden PNGs. Community emit-JSON MCPs still exist; they are a different (and weaker) category than the official App.
 
-This is the layer above that: the taste. It's why the [book gallery](https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book) looks the way it does and a generic prompt-to-diagram tool doesn't. You can even run it *alongside* the official MCP — keep their canvas, add this methodology.
+This pack is the methodology beside the canvas. It's why the [book gallery](https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book) looks the way it does. You can run both — keep their interactive surface, add this for taste + publishable output. [Comparison](https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/).
 
 ### What it is, mechanically
 

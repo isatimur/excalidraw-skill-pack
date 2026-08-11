@@ -4,47 +4,57 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>excalidraw-skill-pack vs the official Excalidraw MCP</title>
-<meta name="description" content="An honest comparison: the official Excalidraw MCP is the primitive element layer; excalidraw-skill-pack is the diagram-quality methodology on top. When to choose each." />
+<meta name="description" content="Honest comparison: official Excalidraw MCP is an interactive MCP App (live canvas, streaming draw, remote host). excalidraw-skill-pack is the diagram-quality methodology: typed layouts, taste gate, themes, audit, and reproducible PNGs. They can coexist." />
 <link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/" />
 <meta property="og:title" content="excalidraw-skill-pack vs the official Excalidraw MCP" />
-<meta property="og:description" content="The official MCP draws elements. This decides which elements, where, and why. When to choose each." />
-<meta property="og:image" content="https://raw.githubusercontent.com/isatimur/excalidraw-skill-pack/main/docs/site/images/demo.gif" />
+<meta property="og:description" content="Live canvas vs visual-argument methodology. Official owns the in-chat surface; we own taste, types, themes, and publishable PNGs." />
+<meta property="og:image" content="https://excalidraw-skill-pack.vercel.app/images/competitive/taste-vs-stream.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,ital,wght@6..72,400;6..72,500;6..72,1,400;6..72,1,500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css" />
 <style>
 :root {
-  --ink:#2A2622; --paper:#F4EDE0; --paper-deep:#EBE3D4; --accent:#B8472A; --muted:#6E6356;
-  --display:"Newsreader","Iowan Old Style",serif;
-  --body:"Source Serif 4","Iowan Old Style",serif;
-  --mono:"IBM Plex Mono",Menlo,monospace;
+  --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#6E6356;
+  --display:"Newsreader","Iowan Old Style",serif; --body:"Source Serif 4","Iowan Old Style",serif; --mono:"IBM Plex Mono",Menlo,monospace;
 }
 * { box-sizing:border-box; }
-body {
-  margin:0 auto; max-width:980px; padding:3rem 1.5rem;
-  background:linear-gradient(180deg,var(--paper),var(--paper-deep));
-  color:var(--ink); font:1.05rem/1.65 var(--body);
-}
+html.has-motion [data-motion-text],
+html.has-motion [data-reveal],
+html.has-motion [data-image-reveal] { visibility: hidden; }
+body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:1.05rem/1.65 var(--body); }
 nav { font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--muted); }
 nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
 h1,h2 { font-family:var(--display); font-weight:400; font-style:italic; letter-spacing:-0.02em; }
 h1 { font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.12; margin:.6rem 0 1rem; }
 h2 { font-size:1.5rem; margin:2.4rem 0 .8rem; }
+.motion-line-mask,.motion-word-mask { display:inline-block; overflow:hidden; vertical-align:top; }
+.motion-line,.motion-word { display:inline-block; will-change:transform,opacity,filter; }
 a { color:var(--accent); }
 a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 table { border-collapse:collapse; width:100%; margin:1.5rem 0; font-size:.95rem; }
 th,td { border:1px solid rgba(0,0,0,.14); padding:.7rem .9rem; text-align:left; vertical-align:top; }
 th { font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:rgba(255,255,255,.35); }
 code { font-family:var(--mono); background:rgba(255,255,255,.4); padding:.1rem .3rem; }
-.cta { display:inline-block; margin-top:.5rem; border:1px solid var(--accent); padding:.55rem 1rem; text-decoration:none; font-family:var(--mono); font-size:.82rem; }
+.cta { display:inline-block; margin-top:.5rem; border:1px solid var(--accent); padding:.55rem 1rem; text-decoration:none; color:var(--accent); font-family:var(--mono); font-size:.82rem; }
+.cta.primary { background:var(--accent); color:var(--paper); }
 .muted { color:var(--muted); }
+.figure { margin:2rem 0; border:1px solid rgba(0,0,0,.12); background:#fff; overflow:hidden; }
+.figure img { width:100%; display:block; }
+.figure figcaption { color:var(--muted); padding:.75rem 1rem; border-top:1px solid rgba(0,0,0,.08); font-family:var(--mono); font-size:.78rem; }
+ul.points { padding-left:1.1rem; }
+ul.points li { margin:.45rem 0; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-  {"@type":"WebPage","name":"excalidraw-skill-pack vs the official Excalidraw MCP","url":"https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/"},
+  {"@type":"WebPage","name":"excalidraw-skill-pack vs the official Excalidraw MCP","url":"https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/","description":"Comparison of interactive Excalidraw MCP App versus methodology-first skill pack with typed layouts, taste gate, themes, and reproducible PNGs."},
   {"@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Should I use excalidraw-skill-pack or the official Excalidraw MCP?","acceptedAnswer":{"@type":"Answer","text":"They operate at different layers. The official Excalidraw MCP is the primitive layer: it creates, moves, and connects individual elements. excalidraw-skill-pack is the methodology layer on top: it decides which elements, where, and why, so the diagram makes an argument. Use the official MCP when you want direct element control; use excalidraw-skill-pack when you want the agent to produce a good diagram without you art-directing it. They can coexist."}},
-    {"@type":"Question","name":"Can I use both together?","acceptedAnswer":{"@type":"Answer","text":"Yes. The official MCP is the hands; excalidraw-skill-pack is the taste. The skill pack's methodology can guide element-level operations, and its renderer produces reproducible PNGs from the result."}}
+    {"@type":"Question","name":"Should I use excalidraw-skill-pack or the official Excalidraw MCP?","acceptedAnswer":{"@type":"Answer","text":"They solve different jobs. The official Excalidraw MCP is an MCP App: remote host, streaming draw, viewport camera, and fullscreen in-chat editing. excalidraw-skill-pack is the quality layer: 29 typed layouts, taste gate, audit_diagram, publishable themes, and Node+Python golden-fixture PNG rendering. Use official when you need a live canvas in chat; use the skill pack when the diagram must teach, theme, audit, and publish as editable .excalidraw. They can coexist."}},
+    {"@type":"Question","name":"Can I use both together?","acceptedAnswer":{"@type":"Answer","text":"Yes. Call generate_diagram_prompt (type + taste) to decide what to draw, use the official MCP App for interactive refine when the host supports MCP Apps, then use render_diagram and audit_diagram for publishable PNGs and CI. See the coexistence guide in the docs."}},
+    {"@type":"Question","name":"Does the official MCP include themes and taste gates?","acceptedAnswer":{"@type":"Answer","text":"No. Themes, progressive type references, the taste gate, and audit_diagram heuristics ship in excalidraw-skill-pack. The official product focuses on the interactive drawing surface."}}
   ]}
 ]}
 </script>
@@ -59,35 +69,74 @@ code { font-family:var(--mono); background:rgba(255,255,255,.4); padding:.1rem .
   <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
 </nav>
 
-<h1>excalidraw-skill-pack vs the official Excalidraw MCP</h1>
-<p>Both let an AI agent work with Excalidraw. They solve different problems, and the honest answer to "which should I use" is "probably both, for different reasons." Here's the distinction.</p>
+<h1 data-motion-text="lines">
+  <span class="motion-line-mask"><span class="motion-line">excalidraw-skill-pack</span></span>
+  <span class="motion-line-mask"><span class="motion-line">vs official Excalidraw MCP</span></span>
+</h1>
+<p data-reveal>
+  The <a href="https://github.com/excalidraw/excalidraw-mcp">official Excalidraw MCP</a> is an interactive <strong>MCP App</strong>: remote host at <code>https://mcp.excalidraw.com</code>, streaming draw, viewport camera, fullscreen in-chat editing.
+  <strong>excalidraw-skill-pack</strong> is the <strong>quality layer</strong> beside it: typed layouts, taste gate, themes, <code>audit_diagram</code>, and reproducible PNGs for publication.
+</p>
+
+<figure class="figure" data-image-reveal data-parallax-section>
+  <img data-parallax-image data-parallax-speed="0.1" src="/images/competitive/taste-vs-stream.png" alt="Side-by-side: streaming boxes without taste versus typed layout with evidence and hierarchy" width="1200" height="900" />
+  <figcaption>Same subject (user → API → DB). Left: equal boxes and crossing arrows. Right: hierarchy, one accent, proof beside claim.</figcaption>
+</figure>
 
 <h2>The one-line difference</h2>
-<p>The <strong>official Excalidraw MCP</strong> is the <em>primitive layer</em> — raw element CRUD: create a rectangle, move it, connect two shapes. <strong>excalidraw-skill-pack</strong> is the <em>quality layer</em> on top — the opinionated methodology that decides <em>which</em> elements, <em>where</em>, and <em>why</em>, so the result argues instead of labels.</p>
+<p><strong>Official</strong> owns the <em>live canvas in chat</em>. <strong>excalidraw-skill-pack</strong> owns the <em>visual-argument methodology</em>: what to draw, why, how to theme it, and how to prove the PNG is publishable.</p>
 
 <table>
 <thead><tr><th></th><th>Official Excalidraw MCP</th><th>excalidraw-skill-pack</th></tr></thead>
 <tbody>
-<tr><th>What it is</th><td>An MCP server for element-level Excalidraw operations</td><td>A skill + MCP server encoding diagram methodology, themes, and a renderer</td></tr>
-<tr><th>You control</th><td>Individual elements, directly</td><td>The intent; the methodology handles layout</td></tr>
-<tr><th>Layout quality</th><td>Whatever you or the agent place</td><td>Heuristics enforce hierarchy, direction, grouping</td></tr>
-<tr><th>Themes</th><td>—</td><td>Swappable, publishable theme packages</td></tr>
-<tr><th>Reproducible render</th><td>—</td><td>Golden-fixture PNG rendering (Node + Python parity)</td></tr>
-<tr><th>Best for</th><td>Direct, fine-grained element control</td><td>"Draw me a good diagram" without art-directing it</td></tr>
-<tr><th>License</th><td>Open source</td><td>MIT</td></tr>
+<tr><th>What it is</th><td>MCP App with interactive Excalidraw surface</td><td>Skill + MCP encoding methodology, themes, audit, renderer</td></tr>
+<tr><th>Primary UX</th><td>Streaming draw, camera, fullscreen edit in chat</td><td>Prompt → editable <code>.excalidraw</code> → PNG → inspect → fix</td></tr>
+<tr><th>Hosted option</th><td><code>https://mcp.excalidraw.com</code></td><td>Local <code>npx</code> / stdio adapters (Claude Code, Cursor, Codex, Gemini, Copilot)</td></tr>
+<tr><th>Typed layouts</th><td>Agent improvises</td><td>29 progressive type refs (architecture through radar)</td></tr>
+<tr><th>Taste</th><td>Whatever the model streams</td><td>Taste gate + anti-patterns + <code>audit_diagram</code></td></tr>
+<tr><th>Themes</th><td>—</td><td>Publishable npm/PyPI theme packages</td></tr>
+<tr><th>Evidence</th><td>—</td><td>Concrete payloads beside claims</td></tr>
+<tr><th>Reproducible PNG</th><td>In-chat SVG / editor (not golden CI fixtures)</td><td>Node + Python pixel-parity Playwright PNG</td></tr>
+<tr><th>Proof corpus</th><td>—</td><td>77 figures for a published engineering book</td></tr>
+<tr><th>Best for</th><td>Interactive whiteboard moments in chat</td><td>Figures you keep editing, theming, auditing, and shipping</td></tr>
 </tbody>
 </table>
 
+<h2>What they win</h2>
+<ul class="points">
+  <li>Zero-friction remote MCP App host.</li>
+  <li>Streaming draw and camera that feel alive in the conversation.</li>
+  <li>Fullscreen Excalidraw refine without leaving the chat host (when MCP Apps are supported).</li>
+</ul>
+
+<h2>What we win</h2>
+<ul class="points">
+  <li><strong>29 typed layouts</strong> with fixtures and gallery PNGs.</li>
+  <li><strong>Taste gate + <code>audit_diagram</code></strong> so agents delete until density holds.</li>
+  <li><strong>Publishable themes</strong> and <code>apply_theme</code>.</li>
+  <li><strong>Golden-fixture PNG</strong> for docs, books, and CI.</li>
+  <li><strong>Book-proven corpus</strong>: 77 diagrams for <em>From Copilot to Colleague</em>.</li>
+</ul>
+
 <h2>When to choose the official MCP</h2>
-<p>You want to place and wire specific elements yourself, you're building your own higher-level tooling on top of Excalidraw primitives, or you don't want an opinion imposed on layout. It's the right primitive.</p>
+<p>You want a live whiteboard in chat, a remote URL you can add once, or interactive refine on a host that supports MCP Apps. It is the right surface.</p>
 
 <h2>When to choose excalidraw-skill-pack</h2>
-<p>You want to ask an agent for an architecture, protocol, or state-machine diagram and get back a figure that teaches — with a visual hierarchy and a flow your eye can follow — instead of labeled boxes. It rendered 77 figures for a published engineering book, which is the honest test of whether the methodology holds up.</p>
+<p>You want the agent to produce a figure that teaches: typed structure, hierarchy, evidence, and a PNG that survives publication. You need themes as packages, or you need <code>audit_diagram</code> and render parity in CI.</p>
 
 <h2>Can you use both?</h2>
-<p>Yes — think of the official MCP as the hands and this as the taste. Install excalidraw-skill-pack in one line:</p>
+<p>Yes. Official is the hands and the canvas; this pack is the taste. Typical flow: <code>generate_diagram_prompt</code> (pick type + taste) → draw or refine on the official surface when available → <code>render_diagram</code> + <code>audit_diagram</code> for the publishable PNG. Full write-up: <a href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/docs/site/mcp/with-official-excalidraw-mcp.mdx">coexistence guide</a>.</p>
 <p><code>/plugin marketplace add isatimur/excalidraw-skill-pack</code></p>
-<p><a class="cta" href="https://github.com/isatimur/excalidraw-skill-pack">View on GitHub →</a></p>
-<p class="muted" style="margin-top:2.5rem;font-size:.85rem;">MIT licensed. Works in Claude Code, Cursor, Codex, and Gemini CLI.</p>
+
+<p style="margin-top:2rem;">
+  <a class="cta primary" href="https://github.com/isatimur/excalidraw-skill-pack">View on GitHub →</a>
+  <a class="cta" href="/vs-diagram-design/">Also: vs diagram-design</a>
+  <a class="cta" href="/gallery/">Gallery</a>
+</p>
+<p class="muted" style="margin-top:2.5rem;font-size:.85rem;">MIT licensed. Official MCP link for honest comparison; we respect their craft. They own the canvas; we own the argument.</p>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm" crossorigin="anonymous" defer></script>
+<script src="/motion.js" defer></script>
 </body>
 </html>

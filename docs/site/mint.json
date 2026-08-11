@@ -51,7 +51,7 @@
     },
     {
       "group": "MCP",
-      "pages": ["mcp/tool-reference"]
+      "pages": ["mcp/tool-reference", "mcp/with-official-excalidraw-mcp"]
     },
     {
       "group": "Spec",

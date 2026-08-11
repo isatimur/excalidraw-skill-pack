@@ -1,6 +1,6 @@
 # Awesome-list submissions
 
-Open PRs against each list. The positioning to hold across all of them: this is the **diagram-quality / methodology layer**, not another prompt-to-Excalidraw plumbing MCP. Where a list already has the official `excalidraw-mcp`, that's fine — the one-liner makes clear this is a different category (taste vs. plumbing).
+Open PRs against each list. The positioning to hold across all of them: this is the **diagram-quality / methodology layer**, not a duplicate of the official Excalidraw MCP App (live canvas). Where a list already has the official `excalidraw-mcp`, that's fine — the one-liner makes clear this is additive (taste / types / audit / themes / PNG vs interactive surface).
 
 ---
 
@@ -16,7 +16,7 @@ Open PRs against each list. The positioning to hold across all of them: this is 
 - [isatimur/excalidraw-skill-pack](https://github.com/isatimur/excalidraw-skill-pack) 📇 ☁️ - Diagrams that argue, not boxes that label. An opinionated Excalidraw *methodology* (isomorphism test, evidence artifacts, multi-zoom, container discipline) + a render-view-fix loop, exposed as an MCP server. Model-agnostic (the server ships methodology, your agent's model drafts the JSON). 5 publishable themes; dual Node/Python renderer. Proven on a 77-diagram published book.
 ```
 
-**Note on duplicates:** the official `excalidraw/excalidraw-mcp` may already be listed. Do **not** treat this as a duplicate — it's a different category (quality layer, not canvas plumbing). The entry text above states the distinction explicitly so a maintainer can see it's additive.
+**Note on duplicates:** the official `excalidraw/excalidraw-mcp` may already be listed. Do **not** treat this as a duplicate — official is the interactive MCP App; this is the quality layer. The entry text above states the distinction explicitly so a maintainer can see it's additive.
 
 **Checklist before submitting:**
 - [ ] Confirm the canonical awesome-mcp-servers repo (most-starred / actively merged)
@@ -58,6 +58,6 @@ These are form/registry submissions rather than awesome-list PRs. Same positioni
 
 **Registry blurb (reuse verbatim):**
 
-> excalidraw-skill-pack — the diagram-quality layer for AI agents. Most Excalidraw MCPs solve plumbing (emit JSON, render a canvas). This one ships the *methodology* — isomorphism test, evidence artifacts, multi-zoom, container discipline — so the output is a visual argument, not a labeled grid. Model-agnostic, 5 publishable themes, dual Node/Python renderer. Proven on a 77-diagram published technical book. MIT.
+> excalidraw-skill-pack — the diagram-quality layer for AI agents. The official Excalidraw MCP is a live MCP App (canvas in chat); this pack ships typed layouts, taste gate, themes, audit, and dual Node/Python PNG so the output is a visual argument. Model-agnostic. Proven on a 77-diagram published technical book. MIT.
 
 **Tags:** `diagrams` `excalidraw` `visualization` `mcp` `themes` `architecture-diagrams`

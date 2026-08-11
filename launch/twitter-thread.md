@@ -12,11 +12,11 @@ https://excalidraw-skill-pack.vercel.app
 
 2/ "Isn't there an official Excalidraw MCP now?"
 
-Yes — and it's good. But it solves *plumbing*: emit valid JSON, render a canvas. So does every other one.
+Yes — and it's a strong MCP App: live canvas, streaming draw, remote host. That wins the in-chat surface.
 
-None of them decide WHAT to draw or WHY. You still get boxes-and-arrows.
+What it doesn't ship: typed layouts, taste gate, audit, themes, golden PNG for CI.
 
-This is the layer above: taste.
+This pack is the quality layer beside it. You can use both.
 
 3/ The methodology the agent reads before it draws:
 

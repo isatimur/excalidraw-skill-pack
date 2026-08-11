@@ -76,11 +76,11 @@ Plus ER, timeline, Gantt, layers, nested, tree, org chart, Venn, pyramid, proces
 
 ## Why this, not just another Excalidraw MCP?
 
-Excalidraw's [official MCP](https://github.com/excalidraw/excalidraw-mcp) and most community servers solve **plumbing**: get an agent to emit valid JSON and render it. They produce correct boxes-and-arrows.
+Excalidraw's [official MCP](https://github.com/excalidraw/excalidraw-mcp) is an interactive **MCP App**: remote host, streaming draw, viewport camera, fullscreen in-chat editing. That is the right surface for a live canvas in chat.
 
-This pack solves **taste**: an opinionated methodology — the isomorphism test, evidence artifacts, multi-zoom architecture, container discipline, one-accent-per-diagram — that decides *what* to draw and *why*, so the output is a visual argument that teaches instead of a labeled grid. That's the part a weekend of MCP code can't copy, and it's why the [book gallery](#proof) looks the way it does.
+This pack is the **quality layer** beside it: 29 typed layouts, taste gate, `audit_diagram`, publishable themes, and Node+Python golden-fixture PNGs — so the figure teaches, themes, audits, and ships. Community “emit JSON” servers still exist; they are not the official product, and they are not this.
 
-Plumbing is a commodity now. Quality isn't.
+You can run both: `generate_diagram_prompt` for type + taste → optional official canvas for interactive refine → `render_diagram` + `audit_diagram` for publishable PNGs. [Honest comparison →](https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/)
 
 ## Themes
 
