@@ -1,19 +1,22 @@
 # Sequence
 
-Use sequence when message order between actors is the claim. Use active-theme `palette.md` colors consistently for actor headings, calls, returns, and errors.
+**Best for:** messages over time, protocol flows, OAuth handshakes.
 
-## Layout
-- Actors span the top in reading order; vertical lifelines establish time downward.
-- Messages cross horizontally at distinct y positions. Put causal annotations as free-floating text beside the relevant message.
-- Frame retries, optional branches, and failure paths instead of interleaving them with the main exchange.
+## Layout conventions
+Participants as top-row boxes; time flows downward. Group related messages.
 
 ## Excalidraw pattern
-- Use skeleton actor containers with bound labels; lifelines are dashed `line` elements.
-- Calls are horizontal arrows; returns are dashed arrows. Keep arrow `points` orthogonal.
-- Put concrete request/response JSON in a dark evidence card where accuracy matters.
+Skeleton rectangles for lifelines. Free-floating text for message labels placed between participants.
 
-## Avoid
-- Generic “API call” labels, diagonal message arrows, and component architecture inside lifelines.
+## Connectors & routing
+Horizontal arrows for requests; return messages offset vertically.
+
+## Anti-patterns
+Mixing architecture boxes with sequence timing.
 
 ## Budget
-2–5 actors, 6–12 messages per frame. Split long protocols into phases.
+≤5 participants; ≤12 messages per diagram.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/sequence/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/sequence/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/sequence.png)

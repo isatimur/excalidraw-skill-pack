@@ -1,12 +1,22 @@
-# Line
+# Line chart
 
-Use a line chart when change over continuous time is the claim. Pull series, warning, and text colors from active-theme `palette.md`.
+**Best for:** trends over time, KPI movement.
 
-## Layout and pattern
-- Time is horizontal, scale is vertical, and all series share the same axis.
-- Use 1–3 clean lines with direct end labels; annotate inflection points with free-floating text and dotted leaders.
-- Show the measurement window and unit. Use a dark evidence card for the source query only when it substantiates a key conclusion.
+## Layout conventions
+Trend annotation + axis line. Prefer sparkline simplicity in diagrams.
 
-## Avoid and budget
-- Too many series, non-comparable scales, smoothing that hides events, and a line chart for unordered categories.
-- Keep to 1–3 series and 5–12 meaningful points.
+## Excalidraw pattern
+Axis as thin rectangle or line element; trend as text callout if line path is heavy.
+
+## Connectors & routing
+Time left→right.
+
+## Anti-patterns
+Exact data points without source.
+
+## Budget
+1–2 series.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/line/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/line/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/line.png)

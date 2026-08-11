@@ -1,0 +1,67 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Evidence — proof artifact beside claim",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "claim",
+      "x": 80,
+      "y": 140,
+      "width": 200,
+      "height": 72,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Claim:\nP99 < 200ms"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "proof",
+      "x": 360,
+      "y": 130,
+      "width": 280,
+      "height": 92,
+      "strokeColor": "#64748b",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "{\n  \"metric\": \"p99\",\n  \"value\": 142\n}"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "e1",
+      "x": 500,
+      "y": 222,
+      "width": -120,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "proof"
+      },
+      "end": {
+        "id": "claim"
+      },
+      "label": {
+        "text": "proves"
+      }
+    }
+  ]
+}

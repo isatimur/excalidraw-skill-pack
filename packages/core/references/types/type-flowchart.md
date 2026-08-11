@@ -1,20 +1,22 @@
 # Flowchart
 
-Use a flowchart for a decision-driven path with meaningful branches. Pull start, decision, success, warning, and error colors from the active theme's `palette.md`.
+**Best for:** branching decisions, approval paths, error handling.
 
-## Layout
-- One reading direction, normally top-to-bottom or left-to-right.
-- Put decisions at branch points, labeled on outgoing arrows; merge only when the paths genuinely reconverge.
-- Use whitespace and frames for phases. Keep explanatory text free-floating beside the path.
+## Layout conventions
+Single dominant direction. Ellipse for start/end, diamond for decisions, rectangle for actions.
 
 ## Excalidraw pattern
-- Prefer `excalidraw-skeleton`: ellipse for trigger/end, diamond for decisions, rectangle for actions.
-- Bound labels only to these semantic shapes. Route each branch with right-angle `points`.
-- Use `roughness: 0`, `opacity: 100`, and 2px primary connectors.
+Prefer skeleton: `ellipse` trigger, `diamond` decision, `rectangle` action. Label edges with the condition that fires.
 
-## Avoid
-- Diamonds for non-decisions, unlabeled yes/no branches, and arrows crossing boxes.
-- Flowcharts for collaboration timing; use sequence or swimlane.
+## Connectors & routing
+Orthogonal arrow paths; never diagonal through nodes.
+
+## Anti-patterns
+More than one decision diamond without merge; orphan branches.
 
 ## Budget
-3–7 decisions, under 9 primary nodes. Split exception handling into a second frame when it obscures the happy path.
+≤7 nodes for a single decision story.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/flowchart/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/flowchart/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/flowchart.png)

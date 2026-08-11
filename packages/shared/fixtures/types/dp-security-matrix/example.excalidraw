@@ -1,0 +1,73 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "DP security matrix — role × resource",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "hdr",
+      "x": 80,
+      "y": 120,
+      "text": "Role ↓   Dataset A   Dataset B",
+      "fontSize": 14,
+      "strokeColor": "#64748b",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "r1",
+      "x": 80,
+      "y": 160,
+      "width": 480,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Analyst — read — read"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "r2",
+      "x": 80,
+      "y": 210,
+      "width": 480,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Engineer — write — read"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "r3",
+      "x": 80,
+      "y": 260,
+      "width": 480,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Admin — write — write"
+      }
+    }
+  ]
+}

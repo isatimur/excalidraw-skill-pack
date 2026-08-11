@@ -1,0 +1,103 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "IT current-state — legacy landscape",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "legacy",
+      "x": 80,
+      "y": 140,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Mainframe"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "bridge",
+      "x": 280,
+      "y": 140,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "ESB"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "saas",
+      "x": 480,
+      "y": 140,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "SaaS"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "i1",
+      "x": 150,
+      "y": 204,
+      "width": 0,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "legacy"
+      },
+      "end": {
+        "id": "bridge"
+      },
+      "label": {
+        "text": "batch"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "i2",
+      "x": 350,
+      "y": 204,
+      "width": 0,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "bridge"
+      },
+      "end": {
+        "id": "saas"
+      },
+      "label": {
+        "text": "API"
+      }
+    }
+  ]
+}

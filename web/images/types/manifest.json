@@ -1,0 +1,176 @@
+[
+  {
+    "type": "architecture",
+    "slug": "architecture",
+    "fixture": "packages/shared/fixtures/types/architecture/example.excalidraw",
+    "png": "web/images/types/architecture.png"
+  },
+  {
+    "type": "bar",
+    "slug": "bar",
+    "fixture": "packages/shared/fixtures/types/bar/example.excalidraw",
+    "png": "web/images/types/bar.png"
+  },
+  {
+    "type": "comparison",
+    "slug": "comparison",
+    "fixture": "packages/shared/fixtures/types/comparison/example.excalidraw",
+    "png": "web/images/types/comparison.png"
+  },
+  {
+    "type": "data-flow",
+    "slug": "data-flow",
+    "fixture": "packages/shared/fixtures/types/data-flow/example.excalidraw",
+    "png": "web/images/types/data-flow.png"
+  },
+  {
+    "type": "dp-integration",
+    "slug": "dp-integration",
+    "fixture": "packages/shared/fixtures/types/dp-integration/example.excalidraw",
+    "png": "web/images/types/dp-integration.png"
+  },
+  {
+    "type": "dp-security-matrix",
+    "slug": "dp-security-matrix",
+    "fixture": "packages/shared/fixtures/types/dp-security-matrix/example.excalidraw",
+    "png": "web/images/types/dp-security-matrix.png"
+  },
+  {
+    "type": "er",
+    "slug": "er",
+    "fixture": "packages/shared/fixtures/types/er/example.excalidraw",
+    "png": "web/images/types/er.png"
+  },
+  {
+    "type": "evidence",
+    "slug": "evidence",
+    "fixture": "packages/shared/fixtures/types/evidence/example.excalidraw",
+    "png": "web/images/types/evidence.png"
+  },
+  {
+    "type": "flowchart",
+    "slug": "flowchart",
+    "fixture": "packages/shared/fixtures/types/flowchart/example.excalidraw",
+    "png": "web/images/types/flowchart.png"
+  },
+  {
+    "type": "gantt",
+    "slug": "gantt",
+    "fixture": "packages/shared/fixtures/types/gantt/example.excalidraw",
+    "png": "web/images/types/gantt.png"
+  },
+  {
+    "type": "high-level",
+    "slug": "high-level",
+    "fixture": "packages/shared/fixtures/types/high-level/example.excalidraw",
+    "png": "web/images/types/high-level.png"
+  },
+  {
+    "type": "it-state",
+    "slug": "it-state",
+    "fixture": "packages/shared/fixtures/types/it-state/example.excalidraw",
+    "png": "web/images/types/it-state.png"
+  },
+  {
+    "type": "layers",
+    "slug": "layers",
+    "fixture": "packages/shared/fixtures/types/layers/example.excalidraw",
+    "png": "web/images/types/layers.png"
+  },
+  {
+    "type": "line",
+    "slug": "line",
+    "fixture": "packages/shared/fixtures/types/line/example.excalidraw",
+    "png": "web/images/types/line.png"
+  },
+  {
+    "type": "loop",
+    "slug": "loop",
+    "fixture": "packages/shared/fixtures/types/loop/example.excalidraw",
+    "png": "web/images/types/loop.png"
+  },
+  {
+    "type": "medallion",
+    "slug": "medallion",
+    "fixture": "packages/shared/fixtures/types/medallion/example.excalidraw",
+    "png": "web/images/types/medallion.png"
+  },
+  {
+    "type": "nested",
+    "slug": "nested",
+    "fixture": "packages/shared/fixtures/types/nested/example.excalidraw",
+    "png": "web/images/types/nested.png"
+  },
+  {
+    "type": "org-chart",
+    "slug": "org-chart",
+    "fixture": "packages/shared/fixtures/types/org-chart/example.excalidraw",
+    "png": "web/images/types/org-chart.png"
+  },
+  {
+    "type": "process",
+    "slug": "process",
+    "fixture": "packages/shared/fixtures/types/process/example.excalidraw",
+    "png": "web/images/types/process.png"
+  },
+  {
+    "type": "pyramid",
+    "slug": "pyramid",
+    "fixture": "packages/shared/fixtures/types/pyramid/example.excalidraw",
+    "png": "web/images/types/pyramid.png"
+  },
+  {
+    "type": "quadrant",
+    "slug": "quadrant",
+    "fixture": "packages/shared/fixtures/types/quadrant/example.excalidraw",
+    "png": "web/images/types/quadrant.png"
+  },
+  {
+    "type": "radar",
+    "slug": "radar",
+    "fixture": "packages/shared/fixtures/types/radar/example.excalidraw",
+    "png": "web/images/types/radar.png"
+  },
+  {
+    "type": "scatter",
+    "slug": "scatter",
+    "fixture": "packages/shared/fixtures/types/scatter/example.excalidraw",
+    "png": "web/images/types/scatter.png"
+  },
+  {
+    "type": "sequence",
+    "slug": "sequence",
+    "fixture": "packages/shared/fixtures/types/sequence/example.excalidraw",
+    "png": "web/images/types/sequence.png"
+  },
+  {
+    "type": "state",
+    "slug": "state",
+    "fixture": "packages/shared/fixtures/types/state/example.excalidraw",
+    "png": "web/images/types/state.png"
+  },
+  {
+    "type": "swimlane",
+    "slug": "swimlane",
+    "fixture": "packages/shared/fixtures/types/swimlane/example.excalidraw",
+    "png": "web/images/types/swimlane.png"
+  },
+  {
+    "type": "timeline",
+    "slug": "timeline",
+    "fixture": "packages/shared/fixtures/types/timeline/example.excalidraw",
+    "png": "web/images/types/timeline.png"
+  },
+  {
+    "type": "tree",
+    "slug": "tree",
+    "fixture": "packages/shared/fixtures/types/tree/example.excalidraw",
+    "png": "web/images/types/tree.png"
+  },
+  {
+    "type": "venn",
+    "slug": "venn",
+    "fixture": "packages/shared/fixtures/types/venn/example.excalidraw",
+    "png": "web/images/types/venn.png"
+  }
+]

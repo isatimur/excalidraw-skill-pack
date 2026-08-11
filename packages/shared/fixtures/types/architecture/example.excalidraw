@@ -1,0 +1,120 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Architecture — components + boundaries",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "zone",
+      "x": 80,
+      "y": 96,
+      "width": 700,
+      "height": 120,
+      "strokeColor": "#64748b",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "label": {
+        "text": "VPC"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "api",
+      "x": 120,
+      "y": 120,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "API"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "db",
+      "x": 360,
+      "y": 120,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Postgres"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "queue",
+      "x": 600,
+      "y": 120,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Queue"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a1",
+      "x": 190,
+      "y": 184,
+      "width": 100,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "api"
+      },
+      "end": {
+        "id": "db"
+      },
+      "label": {
+        "text": "read/write"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a2",
+      "x": 190,
+      "y": 184,
+      "width": 220,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "api"
+      },
+      "end": {
+        "id": "queue"
+      },
+      "label": {
+        "text": "publish"
+      }
+    }
+  ]
+}

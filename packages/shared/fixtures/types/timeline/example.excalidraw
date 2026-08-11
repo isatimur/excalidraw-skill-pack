@@ -1,0 +1,55 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Timeline — events on an axis",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "axis",
+      "x": 80,
+      "y": 200,
+      "text": "2024 ————●————●————●———— 2026",
+      "fontSize": 18,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "e1",
+      "x": 200,
+      "y": 160,
+      "text": "MVP",
+      "fontSize": 14,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "e2",
+      "x": 380,
+      "y": 160,
+      "text": "Themes",
+      "fontSize": 14,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "e3",
+      "x": 560,
+      "y": 160,
+      "text": "MCP",
+      "fontSize": 14,
+      "strokeColor": "#c2410c",
+      "fontFamily": 3
+    }
+  ]
+}

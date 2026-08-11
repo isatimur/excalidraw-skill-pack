@@ -1,0 +1,63 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Layers — stacked abstractions",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "l3",
+      "x": 120,
+      "y": 120,
+      "width": 480,
+      "height": 56,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Presentation"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "l2",
+      "x": 140,
+      "y": 200,
+      "width": 440,
+      "height": 56,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Domain"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "l1",
+      "x": 160,
+      "y": 280,
+      "width": 400,
+      "height": 56,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Infrastructure"
+      }
+    }
+  ]
+}

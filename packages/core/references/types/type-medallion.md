@@ -1,18 +1,22 @@
-# Medallion Architecture
+# Medallion
 
-Use medallion to argue progressive data quality: raw, validated, and serving-ready layers. Use active-theme `palette.md` colors for input, transformation, quality gates, and outputs.
+**Best for:** bronze/silver/gold data tiers, lakehouse zones.
 
-## Layout
-- Arrange Bronze → Silver → Gold left-to-right, each as a frame containing free-floating evidence labels.
-- Show the quality rule or transformation at each boundary, not only layer names.
-- Place downstream consumers beyond Gold and source systems before Bronze.
+## Layout conventions
+Left→right tier progression with accent on gold/curated tier.
 
 ## Excalidraw pattern
-- Frames represent tiers; skeleton shapes with bound labels represent durable stores or explicit quality gates.
-- Orthogonal arrows carry named datasets. Add dark cards showing a schema, SQL clause, or JSON record.
+Rectangles per tier; transform arrows labeled `raw→clean→mart`.
 
-## Avoid
-- Treating tiers as generic deployment layers, hiding data contracts, and placing consumers in every tier.
+## Connectors & routing
+Single pipeline direction.
+
+## Anti-patterns
+Mixing medallion with generic ETL jargon boxes.
 
 ## Budget
-3 tiers, 1–3 representative datasets each. Create a data-flow view for detailed lineage.
+3 tiers + sources/sinks.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/medallion/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/medallion/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/medallion.png)

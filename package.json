@@ -34,7 +34,10 @@
     "release": "pnpm build && changeset publish",
     "sync-versions": "tsx tools/sync-versions.ts",
     "sync-skill": "node tools/sync-skill.mjs",
-    "check:skill-sync": "node tools/sync-skill.mjs --check"
+    "check:skill-sync": "node tools/sync-skill.mjs --check",
+    "generate-type-fixtures": "node tools/generate-type-fixtures.mjs",
+    "render-type-gallery": "node tools/render-type-gallery.mjs",
+    "expand-type-refs": "node tools/expand-type-refs.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",

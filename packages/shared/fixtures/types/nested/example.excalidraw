@@ -1,0 +1,65 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Nested — hierarchy by containment",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "outer",
+      "x": 80,
+      "y": 100,
+      "width": 520,
+      "height": 280,
+      "strokeColor": "#64748b",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "label": {
+        "text": "Platform"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "inner",
+      "x": 120,
+      "y": 160,
+      "width": 200,
+      "height": 160,
+      "strokeColor": "#64748b",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "label": {
+        "text": "Service A"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "leaf",
+      "x": 360,
+      "y": 180,
+      "width": 120,
+      "height": 56,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Cache"
+      }
+    }
+  ]
+}

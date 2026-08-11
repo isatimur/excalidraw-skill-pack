@@ -1,0 +1,67 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Comparison — before / after contrast",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "before",
+      "x": 100,
+      "y": 120,
+      "text": "Before: static export",
+      "fontSize": 16,
+      "strokeColor": "#64748b",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "after",
+      "x": 400,
+      "y": 120,
+      "text": "After: editable loop",
+      "fontSize": 16,
+      "strokeColor": "#c2410c",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "b1",
+      "x": 80,
+      "y": 160,
+      "width": 240,
+      "height": 120,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "HTML snapshot"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "a1",
+      "x": 380,
+      "y": 160,
+      "width": 240,
+      "height": 120,
+      "strokeColor": "#15803d",
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": ".excalidraw + PNG"
+      }
+    }
+  ]
+}

@@ -1,18 +1,22 @@
-# Nested Boundaries
+# Nested
 
-Use nested containment when “inside/outside” is the key claim: scope, tenancy, trust, or ownership. Use active-theme `palette.md` neutral and semantic colors without opacity tricks.
+**Best for:** containment hierarchy, scope boundaries.
 
-## Layout
-- Draw 2–4 progressively smaller boundary frames or rectangles with ample inset whitespace.
-- Place labels at each boundary edge; internal items are free-floating unless arrows must bind to them.
-- Put boundary-crossing artifacts at the edge and annotate what changes there.
+## Layout conventions
+Outer zone contains inner zones/components. Labels on zone boundaries.
 
 ## Excalidraw pattern
-- Skeleton frames define named zones; use orthogonal arrows at a boundary crossing.
-- Show a real token, policy, or request snippet in a dark evidence card when trust is technical.
+Dashed zone rectangles; leaf components as solid rectangles inside.
 
-## Avoid
-- Nesting merely to decorate, ambiguous ownership, and overlaid translucent rectangles. `opacity` stays 100.
+## Connectors & routing
+No arrows unless crossing boundary matters.
+
+## Anti-patterns
+Deep nesting >3 levels (split views).
 
 ## Budget
-2–4 containment levels, under 9 salient items. Use architecture for peer components.
+≤3 containment levels.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/nested/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/nested/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/nested.png)

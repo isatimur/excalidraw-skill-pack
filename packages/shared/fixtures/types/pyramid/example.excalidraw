@@ -1,0 +1,63 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Pyramid — ranked hierarchy",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "top",
+      "x": 300,
+      "y": 120,
+      "width": 120,
+      "height": 48,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Strategy"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "mid",
+      "x": 260,
+      "y": 200,
+      "width": 200,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Capabilities"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "base",
+      "x": 200,
+      "y": 280,
+      "width": 320,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Infrastructure"
+      }
+    }
+  ]
+}

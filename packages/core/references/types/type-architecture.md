@@ -1,20 +1,22 @@
 # Architecture
 
-Use architecture to argue how components cooperate across boundaries, not to inventory services. Use active-theme `palette.md` colors: neutral frames, semantic component fills, and source-colored data arrows.
+**Best for:** system overviews, integration maps, infra topology, trust boundaries.
 
-## Layout
-- Make the system boundary legible with frames; arrange 3–7 primary components left-to-right by request/data direction.
-- Put the hero boundary in whitespace. Use free-floating boundary titles and short responsibility subtitles.
-- Use rectangles only for independently deployable or stateful components; use small evidence cards for a real endpoint, event, or configuration.
+## Layout conventions
+Group by tier or trust boundary. Primary flow left→right or top→down. One accent on the integration point or primary store.
 
 ## Excalidraw pattern
-- Draft as `excalidraw-skeleton`; containers receive bound labels.
-- Use `frame` elements for trust, deployment, or ownership zones.
-- Draw arrows with explicit orthogonal `points`; solid for data, dashed governance (theme connector stroke) for control/governance.
+Draft `excalidraw-skeleton`. Use dashed zone rectangles for VPC/trust regions. Rectangles for deployable components. Arrows with orthogonal `points` only.
 
-## Avoid
-- Equal-card “microservice wallpaper,” unnamed arrows, and network spaghetti.
-- Mixing sequence timing into the architecture; link to a sequence diagram instead.
+## Connectors & routing
+Draw arrows before boxes when possible. Solid for data; dashed (theme connector stroke) for control. Bridge the less important arrow at crossings.
+
+## Anti-patterns
+Microservice wallpaper, unnamed arrows, equal-size boxes all in accent.
 
 ## Budget
-5–9 primary components; one evidence artifact per critical boundary; split comprehensive systems into frames.
+5–9 primary components; one evidence card per critical boundary.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/architecture/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/architecture/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/architecture.png)

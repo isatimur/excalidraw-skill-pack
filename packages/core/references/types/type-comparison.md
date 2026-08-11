@@ -1,19 +1,22 @@
-# Engineered Comparison
+# Comparison
 
-Use comparison for a side-by-side argument in which the contrast proves a recommendation. Use active-theme `palette.md` warning colors for the naive state, success colors for the engineered state, and evidence-card syntax for concrete proof.
+**Best for:** before/after, option A vs B, competitor contrast.
 
-## Layout
-- Two parallel frames: before on the left, after on the right; align equivalent stages on the same y positions.
-- Put the decisive difference in the center or bottom as a free-floating conclusion.
-- Use arrows only inside each scenario; do not draw a fake flow from bad to good unless the migration itself is the claim.
+## Layout conventions
+Two columns with matched vertical rhythm. Accent the preferred column only.
 
 ## Excalidraw pattern
-- Skeleton containers receive bound labels for only major states.
-- Put matching code, JSON, metric, or configuration artifacts in evidence cards from the theme palette; use the theme's "before" / "after" evidence text colors for naive vs engineered samples.
-- Use structural lines and leader annotations to make differences traceable.
+Paired rectangles; column headers as free-floating titles.
 
-## Avoid
-- Straw-man “before,” asymmetric detail, and decorative checkmark/X grids.
+## Connectors & routing
+No crossing arrows between columns unless showing migration.
+
+## Anti-patterns
+More than two options without a matrix/table.
 
 ## Budget
-3–6 aligned comparisons, one evidence artifact per decisive claim.
+≤5 rows per column.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/comparison/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/comparison/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/comparison.png)

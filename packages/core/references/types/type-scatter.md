@@ -1,12 +1,22 @@
-# Scatter
+# Scatter plot
 
-Use scatter when correlation, clusters, or outliers are the argument. Use active-theme `palette.md` marker and text hierarchy colors.
+**Best for:** distribution, correlation clusters.
 
-## Layout and pattern
-- Draw two explicit axes with units and direction; place 5–25 small markers by observed value.
-- Label only representative points, outliers, or clusters using dotted leaders.
-- Frame a decision region or threshold when it is real; add a source note and uncertainty annotation.
+## Layout conventions
+Ellipses as points; optional trend callout.
 
-## Avoid and budget
-- Implied causation, arbitrary axes, a point label for every observation, and using scatter for a ranked list.
-- Use a table if exact values—not their distribution—matter.
+## Excalidraw pattern
+Small ellipses; accent outliers only.
+
+## Connectors & routing
+Label axes with measured dimensions.
+
+## Anti-patterns
+Dense point clouds (aggregate or table).
+
+## Budget
+≤12 points.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/scatter/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/scatter/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/scatter.png)

@@ -1,18 +1,22 @@
-# Org Chart
+# Org chart
 
-Use an org chart to establish reporting, delegation, or escalation paths. Pull role hierarchy colors from the active theme's `palette.md`.
+**Best for:** reporting lines, ownership, routing.
 
-## Layout
-- Put the accountable lead at the top; align direct reports on a shared level.
-- Use lines for reporting structure and free-floating role labels. Add a small bounded shape only for accountable roles that need emphasis.
-- Frame departments, not individual people.
+## Layout conventions
+Top-down hierarchy. Single reporting tree per diagram.
 
 ## Excalidraw pattern
-- Skeleton containers use bound role labels; lines branch orthogonally from manager to reports.
-- Dashed arrows may show advisory or dotted-line relationships, explicitly labeled.
+Rectangles for roles; downward arrows.
 
-## Avoid
-- Treating collaboration as reporting, full contact cards, and crossed reporting lines.
+## Connectors & routing
+Center children under parent.
+
+## Anti-patterns
+Matrix reporting without annotation.
 
 ## Budget
-1–3 management levels and 5–9 visible roles. Make a separate view for teams beneath that.
+≤10 nodes.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/org-chart/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/org-chart/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/org-chart.png)

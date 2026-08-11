@@ -1,12 +1,22 @@
-# Bar
+# Bar chart
 
-Use a bar chart to compare discrete magnitudes. Use active-theme `palette.md` primary/secondary colors and title/body text hierarchy.
+**Best for:** categorical comparison, quarterly snapshots.
 
-## Layout and pattern
-- Start bars at a visible zero baseline; label the value directly when precision matters.
-- Keep categories on one axis and one shared unit on the other. Highlight only the comparison that supports the claim.
-- Use free-floating axis labels and a compact source note; frames are unnecessary.
+## Layout conventions
+Baseline at bottom; bars upward. Accent the bar you want read first.
 
-## Avoid and budget
-- Truncated axes without an explicit warning, rainbow categories, stacked bars for unrelated totals, and more than 9 bars.
-- Use a table when there are fewer than four values or exact lookup is the task.
+## Excalidraw pattern
+Rectangles as bars; category labels below.
+
+## Connectors & routing
+Even spacing; shared baseline.
+
+## Anti-patterns
+3D effects or gradient fills.
+
+## Budget
+≤8 categories.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/bar/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/bar/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/bar.png)

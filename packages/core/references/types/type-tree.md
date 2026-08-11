@@ -1,19 +1,22 @@
 # Tree
 
-Use a tree to make parent-child branching legible. Use active-theme `palette.md` structural-line and text hierarchy colors.
+**Best for:** parent→child branching, taxonomies.
 
-## Layout
-- One root, visible trunk, and 2–4 first-level branches. Align siblings consistently.
-- Use free-floating labels beside branches; leave containers for exceptional focal nodes only.
-- Frame separate subtrees if they represent different domains.
+## Layout conventions
+Root top-center; children fan below. Orthogonal connectors.
 
 ## Excalidraw pattern
-- `line` elements form trunk and branches; use right-angle points for a clean hierarchy.
-- Small marker dots can anchor labels. Do not bind every label to a box.
-- Use `roughness: 0` and `opacity: 100`.
+Root rectangle; child rectangles; tree arrows without diagonal spaghetti.
 
-## Avoid
-- Arrowheads on every inheritance line, cards around every label, and more than one hierarchy claim in a tree.
+## Connectors & routing
+Single parent per child.
+
+## Anti-patterns
+Cross-links (use relationship map type).
 
 ## Budget
-5–9 visible nodes; collapse or split deeper branches.
+≤3 levels, ≤7 nodes visible.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/tree/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/tree/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/tree.png)

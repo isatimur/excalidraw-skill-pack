@@ -1,0 +1,97 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Tree — parent → children",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "root",
+      "x": 320,
+      "y": 100,
+      "width": 120,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Root"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "left",
+      "x": 160,
+      "y": 200,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Branch A"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "right",
+      "x": 480,
+      "y": 200,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Branch B"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "t1",
+      "x": 380,
+      "y": 148,
+      "width": -60,
+      "height": 52,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "root"
+      },
+      "end": {
+        "id": "left"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "t2",
+      "x": 380,
+      "y": 148,
+      "width": 60,
+      "height": 52,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "root"
+      },
+      "end": {
+        "id": "right"
+      }
+    }
+  ]
+}
