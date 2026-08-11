@@ -1,10 +1,8 @@
 # Brand-to-Theme Onboarding
 
-On first run, establish the brand as an Excalidraw theme before drawing. This replaces a one-off style-guide scrape with reusable theme files.
+On first run, establish the brand as an **Excalidraw theme package** before drawing. Unlike a one-off `style-guide.md`, themes are publishable, swappable, and shared across agents.
 
-## Resolve the Active Theme
-
-The active theme is resolved in this order:
+## Resolve the active theme
 
 1. `--theme` flag
 2. Project `.excalidraw-skill-pack.json`
@@ -13,46 +11,74 @@ The active theme is resolved in this order:
 
 Treat the resolved theme as the source of truth for colors, typography, and visual conventions.
 
-## Gather Brand Inputs
+## Gather brand inputs
 
 Offer one of these sources:
 
-1. A website URL
-2. An existing skill or style guide containing design tokens
-3. A local folder containing design-token files
-4. A manual paste of brand colors, fonts, and style guidance
+1. **Website URL** — fetch homepage HTML/CSS
+2. **Existing skill or style guide** with design tokens
+3. **Local folder** of design-token files (JSON, CSS variables, Tailwind config)
+4. **Manual paste** of brand colors, fonts, and guidance
 5. Proceed with `default-sketchy`
 
-Extract available colors, fonts, contrast requirements, and the intended character of the diagrams. Do not infer a complete identity from a logo or a single screenshot.
+Extract colors, fonts, contrast requirements, and diagram character. Do not infer a complete identity from a logo alone.
 
-## Map Inputs into a Theme
+## URL onboarding flow (≈60 seconds)
 
-Map the approved inputs into the theme package:
+```
+You:     "onboard excalidraw to https://yoursite.com"
+Agent:   → fetch the homepage
+         → extract dominant palette + font stack
+         → map detected values to semantic roles:
+             paper, ink, muted, accent, link, evidence
+         → check WCAG AA contrast for text on paper
+         → show a proposed diff (theme.json + palette.md + typography.json)
+         → on approval, write theme files + set .excalidraw-skill-pack.json
+You:     "yes, apply it"
+```
 
-- `theme.json`: define the theme manifest and its semantic `roles`.
-- `palette.md`: document a semantic table for backgrounds, primary and secondary emphasis, neutrals, text hierarchy, status/decision colors, and evidence artifacts.
-- `typography.json`: define the usable font family, sizes, weights, and text hierarchy.
+### What gets extracted
 
-Check text and shape combinations for WCAG AA contrast before proposing them. Evidence-artifact colors must also come from the theme.
+| Detected from site | Becomes |
+|---|---|
+| `<body>` background | `paper` |
+| Primary text color | `ink` |
+| Secondary / caption text | `muted` |
+| Cards or containers | `paper-2` |
+| CTA / link / heading accent | `accent` |
+| Monospace in code blocks | evidence / code artifact role |
 
-## Propose, Approve, Write
+## Skill / folder onboarding
 
-1. Present the extracted tokens and their semantic role mapping as a proposed diff.
-2. Get approval before writing or changing a brand theme.
-3. Prefer a project-local theme when the identity belongs only to that project; otherwise scaffold a reusable package with `npx @excalidraw-skill-pack/create-theme <name>`.
-4. Write the approved `theme.json`, `palette.md`, and `typography.json`, then configure the project to select the theme.
+- **From skill:** read bundled `palette.md`, `typography.json`, or equivalent tokens; map roles into theme manifest.
+- **From folder:** load `tokens.json`, `tailwind.config.js`, or CSS custom properties; propose semantic mapping table before write.
 
-## Detect Existing Onboarding
+## Map inputs into a theme package
 
-Treat a project as already onboarded when either condition holds:
+- `theme.json`: manifest + semantic `roles`
+- `palette.md`: backgrounds, emphasis, neutrals, text hierarchy, status colors, evidence artifacts
+- `typography.json`: font families, sizes, weights
 
-- Its `.excalidraw-skill-pack.json` selects a theme.
-- Its resolved active theme has a non-default accent role.
+Check text and shape combinations for **WCAG AA** before proposing. Evidence-artifact colors must come from the theme.
 
-Confirm the theme still matches the current brand before replacing it.
+## Propose, approve, write
 
-## Failure Modes
+1. Present extracted tokens + semantic role mapping as a proposed diff.
+2. Get approval before writing or replacing a brand theme.
+3. Project-local theme when identity is repo-specific; otherwise `npx @excalidraw-skill-pack/create-theme <name>` for a publishable package.
+4. Write approved files and point `.excalidraw-skill-pack.json` at the theme.
 
-- **Imagery-heavy sites:** Extract only stable tokens that are actually visible; do not turn photography, gradients, or page chrome into arbitrary Excalidraw colors.
-- **Paid fonts:** Do not assume the renderer can load them. Use an approved available fallback and record the limitation in typography.
-- **Dark-first brands:** Preserve the brand’s dark surfaces only if text, fills, strokes, and exports remain AA-readable. A dark theme does not justify glows, low-opacity layers, or invented neon accents.
+## Detect existing onboarding
+
+Onboarded when either holds:
+
+- `.excalidraw-skill-pack.json` selects a non-default theme
+- Resolved theme has a non-default accent role
+
+Confirm the theme still matches current brand before replacing.
+
+## Failure modes
+
+- **Imagery-heavy sites:** extract only stable CSS tokens; do not sample photography into diagram colors.
+- **Paid fonts:** record fallback in `typography.json`; renderer may not load licensed faces.
+- **Dark-first brands:** preserve dark surfaces only if AA-readable without glow or low-opacity hacks.

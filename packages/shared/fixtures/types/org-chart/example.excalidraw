@@ -1,0 +1,97 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Org chart — ownership + routing",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "ceo",
+      "x": 300,
+      "y": 100,
+      "width": 120,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "CEO"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "eng",
+      "x": 160,
+      "y": 200,
+      "width": 120,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Engineering"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "prod",
+      "x": 440,
+      "y": 200,
+      "width": 120,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Product"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "o1",
+      "x": 360,
+      "y": 148,
+      "width": -80,
+      "height": 52,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "ceo"
+      },
+      "end": {
+        "id": "eng"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "o2",
+      "x": 360,
+      "y": 148,
+      "width": 80,
+      "height": 52,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "ceo"
+      },
+      "end": {
+        "id": "prod"
+      }
+    }
+  ]
+}

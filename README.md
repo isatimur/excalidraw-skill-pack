@@ -36,6 +36,44 @@
 | Renderer only (Node) | `npx @excalidraw-skill-pack/render diagram.excalidraw --theme stripe-press` |
 | Renderer only (Python) | `pipx install excalidraw-skill-pack-render && excalidraw-render diagram.excalidraw --theme stripe-press` |
 
+## Brand in 60 seconds
+
+```
+You:     "onboard excalidraw to https://yoursite.com"
+Agent:   → fetch homepage → extract palette + fonts
+         → map to theme roles (paper, ink, muted, accent)
+         → propose diff → write theme package → set project config
+```
+
+Every new diagram uses your brand. See [`references/onboarding.md`](packages/core/references/onboarding.md).
+
+## What it makes — 29 typed layouts
+
+Every type ships an **editable** `.excalidraw` source + rendered PNG. [Browse the full gallery →](https://excalidraw-skill-pack.vercel.app/gallery/)
+
+<table>
+<tr>
+  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/architecture.png" width="140" alt="Architecture" /><br/><b>Architecture</b></a></td>
+  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/flowchart.png" width="140" alt="Flowchart" /><br/><b>Flowchart</b></a></td>
+  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/sequence.png" width="140" alt="Sequence" /><br/><b>Sequence</b></a></td>
+  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/loop.png" width="140" alt="Loop" /><br/><b>Loop</b></a></td>
+  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/evidence.png" width="140" alt="Evidence" /><br/><b>Evidence</b></a></td>
+</tr>
+<tr>
+  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/state.png" width="140" alt="State" /><br/><b>State</b></a></td>
+  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/swimlane.png" width="140" alt="Swimlane" /><br/><b>Swimlane</b></a></td>
+  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/quadrant.png" width="140" alt="Quadrant" /><br/><b>Quadrant</b></a></td>
+  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/comparison.png" width="140" alt="Comparison" /><br/><b>Comparison</b></a></td>
+  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/medallion.png" width="140" alt="Medallion" /><br/><b>Medallion</b></a></td>
+</tr>
+</table>
+
+Plus ER, timeline, Gantt, layers, nested, tree, org chart, Venn, pyramid, process, high-level, IT state, data flow, DP integration, DP security matrix, bar, line, scatter, radar — all with source fixtures in [`packages/shared/fixtures/types/`](packages/shared/fixtures/types/).
+
+## vs diagram-design
+
+[diagram-design](https://github.com/cathrynlavery/diagram-design) ships editorial HTML+SVG schematics. **excalidraw-skill-pack** ships editable Excalidraw + themes + MCP + a render-inspect loop. Same taste ambition; different artifact. [Honest comparison →](https://excalidraw-skill-pack.vercel.app/vs-diagram-design/)
+
 ## Why this, not just another Excalidraw MCP?
 
 Excalidraw's [official MCP](https://github.com/excalidraw/excalidraw-mcp) and most community servers solve **plumbing**: get an agent to emit valid JSON and render it. They produce correct boxes-and-arrows.

@@ -1,0 +1,103 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Medallion — bronze / silver / gold tiers",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "bronze",
+      "x": 120,
+      "y": 180,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Bronze\nraw"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "silver",
+      "x": 300,
+      "y": 160,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#e2e8f0",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Silver\nclean"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "gold",
+      "x": 480,
+      "y": 140,
+      "width": 140,
+      "height": 64,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Gold\nmart"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "m1",
+      "x": 190,
+      "y": 244,
+      "width": 40,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "bronze"
+      },
+      "end": {
+        "id": "silver"
+      },
+      "label": {
+        "text": "transform"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "m2",
+      "x": 370,
+      "y": 224,
+      "width": 40,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "silver"
+      },
+      "end": {
+        "id": "gold"
+      },
+      "label": {
+        "text": "aggregate"
+      }
+    }
+  ]
+}

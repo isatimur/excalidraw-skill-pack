@@ -1,0 +1,38 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Line chart — trend over time",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "chart",
+      "x": 80,
+      "y": 200,
+      "text": "↗ latency down 40% YoY",
+      "fontSize": 18,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "axis",
+      "x": 80,
+      "y": 280,
+      "width": 480,
+      "height": 2,
+      "strokeColor": "#64748b",
+      "backgroundColor": "#64748b",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    }
+  ]
+}

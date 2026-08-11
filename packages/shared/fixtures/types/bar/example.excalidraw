@@ -1,0 +1,84 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Bar chart — categorical comparison",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "b1",
+      "x": 120,
+      "y": 240,
+      "width": 48,
+      "height": 80,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#1e3a5f",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "rectangle",
+      "id": "b2",
+      "x": 220,
+      "y": 200,
+      "width": 48,
+      "height": 120,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#c2410c",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "rectangle",
+      "id": "b3",
+      "x": 320,
+      "y": 220,
+      "width": 48,
+      "height": 100,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#1e3a5f",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "text",
+      "id": "l1",
+      "x": 110,
+      "y": 330,
+      "text": "Q1",
+      "fontSize": 13,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "l2",
+      "x": 210,
+      "y": 330,
+      "text": "Q2",
+      "fontSize": 13,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "l3",
+      "x": 310,
+      "y": 330,
+      "text": "Q3",
+      "fontSize": 13,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Flowchart — branching decisions",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "ellipse",
+      "id": "start",
+      "x": 280,
+      "y": 100,
+      "width": 120,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Trigger"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a0",
+      "x": 340,
+      "y": 148,
+      "width": 0,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "start"
+      },
+      "end": {
+        "id": "decide"
+      }
+    },
+    {
+      "type": "diamond",
+      "id": "decide",
+      "x": 260,
+      "y": 200,
+      "width": 160,
+      "height": 80,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fed7aa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Valid?"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a1",
+      "x": 340,
+      "y": 280,
+      "width": -80,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "decide"
+      },
+      "end": {
+        "id": "yes"
+      },
+      "label": {
+        "text": "yes"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a2",
+      "x": 340,
+      "y": 280,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "decide"
+      },
+      "end": {
+        "id": "no"
+      },
+      "label": {
+        "text": "no"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "yes",
+      "x": 120,
+      "y": 320,
+      "width": 120,
+      "height": 56,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Process"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "no",
+      "x": 440,
+      "y": 320,
+      "width": 120,
+      "height": 56,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Reject"
+      }
+    }
+  ]
+}

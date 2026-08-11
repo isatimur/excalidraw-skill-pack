@@ -160,6 +160,43 @@ code { font-family: var(--mono); font-size: 0.86rem; }
   margin: 0 0 1.5rem;
 }
 
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 3rem;
+}
+.type-card {
+  border: 1px solid var(--line);
+  background: #fff;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease;
+}
+.type-card:hover { border-color: var(--accent); }
+.type-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  background: var(--paper-deep);
+}
+.type-card figcaption {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.55rem 0.65rem 0.65rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+}
+.type-card figcaption span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.68rem;
+  margin-top: 0.2rem;
+}
+
 @media (max-width: 820px) {
   .pair,
   .sources { grid-template-columns: 1fr; }
@@ -195,6 +232,42 @@ code { font-family: var(--mono); font-size: 0.86rem; }
       </a>
       <figcaption>Competitive head-to-head: <a href="/vs-diagram-design/">why editable beats static →</a></figcaption>
     </figure>
+  </section>
+
+  <section aria-label="29 diagram types">
+    <h2 data-reveal>29 typed layouts</h2>
+    <p class="note" data-reveal>Every type ships an editable <code>.excalidraw</code> source and a rendered PNG. Open the fixture in Excalidraw, Obsidian, or VS Code; re-theme with <code>--theme</code>.</p>
+    <div class="type-grid" data-reveal-group>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/architecture/example.excalidraw"><img src="/images/types/architecture.png" alt="Architecture diagram type" loading="lazy" /><figcaption>Architecture<span>components + boundaries</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/flowchart/example.excalidraw"><img src="/images/types/flowchart.png" alt="Flowchart diagram type" loading="lazy" /><figcaption>Flowchart<span>branching decisions</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/sequence/example.excalidraw"><img src="/images/types/sequence.png" alt="Sequence diagram type" loading="lazy" /><figcaption>Sequence<span>messages over time</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/state/example.excalidraw"><img src="/images/types/state.png" alt="State machine diagram type" loading="lazy" /><figcaption>State<span>modes + transitions</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/er/example.excalidraw"><img src="/images/types/er.png" alt="ER diagram type" loading="lazy" /><figcaption>ER<span>entities + cardinality</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/timeline/example.excalidraw"><img src="/images/types/timeline.png" alt="Timeline diagram type" loading="lazy" /><figcaption>Timeline<span>events on an axis</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/gantt/example.excalidraw"><img src="/images/types/gantt.png" alt="Gantt diagram type" loading="lazy" /><figcaption>Gantt<span>phases on a timeline</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/swimlane/example.excalidraw"><img src="/images/types/swimlane.png" alt="Swimlane diagram type" loading="lazy" /><figcaption>Swimlane<span>cross-functional flow</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/quadrant/example.excalidraw"><img src="/images/types/quadrant.png" alt="Quadrant diagram type" loading="lazy" /><figcaption>Quadrant<span>two-axis positioning</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/loop/example.excalidraw"><img src="/images/types/loop.png" alt="Loop diagram type" loading="lazy" /><figcaption>Loop<span>flywheel + hub</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/process/example.excalidraw"><img src="/images/types/process.png" alt="Process diagram type" loading="lazy" /><figcaption>Process<span>multi-step workflow</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/layers/example.excalidraw"><img src="/images/types/layers.png" alt="Layers diagram type" loading="lazy" /><figcaption>Layers<span>stacked abstractions</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/nested/example.excalidraw"><img src="/images/types/nested.png" alt="Nested diagram type" loading="lazy" /><figcaption>Nested<span>containment hierarchy</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/medallion/example.excalidraw"><img src="/images/types/medallion.png" alt="Medallion diagram type" loading="lazy" /><figcaption>Medallion<span>bronze / silver / gold</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/tree/example.excalidraw"><img src="/images/types/tree.png" alt="Tree diagram type" loading="lazy" /><figcaption>Tree<span>parent → children</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/org-chart/example.excalidraw"><img src="/images/types/org-chart.png" alt="Org chart diagram type" loading="lazy" /><figcaption>Org chart<span>ownership + routing</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/venn/example.excalidraw"><img src="/images/types/venn.png" alt="Venn diagram type" loading="lazy" /><figcaption>Venn<span>set overlap</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/pyramid/example.excalidraw"><img src="/images/types/pyramid.png" alt="Pyramid diagram type" loading="lazy" /><figcaption>Pyramid<span>ranked hierarchy</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/evidence/example.excalidraw"><img src="/images/types/evidence.png" alt="Evidence diagram type" loading="lazy" /><figcaption>Evidence<span>proof beside claim</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/comparison/example.excalidraw"><img src="/images/types/comparison.png" alt="Comparison diagram type" loading="lazy" /><figcaption>Comparison<span>before / after</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/high-level/example.excalidraw"><img src="/images/types/high-level.png" alt="High-level diagram type" loading="lazy" /><figcaption>High-level<span>end-to-end stack</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/it-state/example.excalidraw"><img src="/images/types/it-state.png" alt="IT current-state diagram type" loading="lazy" /><figcaption>IT current-state<span>legacy landscape</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/data-flow/example.excalidraw"><img src="/images/types/data-flow.png" alt="Data flow diagram type" loading="lazy" /><figcaption>Data flow<span>role-scoped pipeline</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/dp-integration/example.excalidraw"><img src="/images/types/dp-integration.png" alt="DP integration diagram type" loading="lazy" /><figcaption>DP integration<span>sources → core → consumers</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/dp-security-matrix/example.excalidraw"><img src="/images/types/dp-security-matrix.png" alt="DP security matrix diagram type" loading="lazy" /><figcaption>DP security matrix<span>role × dataset</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/bar/example.excalidraw"><img src="/images/types/bar.png" alt="Bar chart diagram type" loading="lazy" /><figcaption>Bar chart<span>categorical comparison</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/line/example.excalidraw"><img src="/images/types/line.png" alt="Line chart diagram type" loading="lazy" /><figcaption>Line chart<span>trend over time</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/scatter/example.excalidraw"><img src="/images/types/scatter.png" alt="Scatter plot diagram type" loading="lazy" /><figcaption>Scatter<span>distribution + correlation</span></figcaption></a>
+      <a class="type-card" data-reveal-item href="https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/radar/example.excalidraw"><img src="/images/types/radar.png" alt="Radar diagram type" loading="lazy" /><figcaption>Radar<span>multi-axis comparison</span></figcaption></a>
+    </div>
   </section>
 
   <section class="stack" aria-label="Book corpus figures">

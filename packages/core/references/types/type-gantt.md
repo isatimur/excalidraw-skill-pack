@@ -1,12 +1,22 @@
 # Gantt
 
-Use Gantt when planned duration, overlap, and dependency timing matter. Use active-theme `palette.md` colors for workstreams, milestones, warnings, and text hierarchy.
+**Best for:** phases, parallel workstreams, delivery windows.
 
-## Layout and pattern
-- Time runs horizontally; workstreams are framed or ruled rows.
-- Bars are skeleton rectangles with bound task labels only when space permits; otherwise use free-floating labels.
-- Use vertical milestone lines and orthogonal dependency arrows sparingly. Show dates and assumptions as evidence text.
+## Layout conventions
+Time on X; stacked bars for phases. Offset bars to show overlap.
 
-## Avoid and budget
-- Treating it as a status dashboard, daily-level granularity, and dependencies that cross every bar.
-- Keep 3–6 workstreams and 6–12 bars. Use a table when duration overlap is irrelevant.
+## Excalidraw pattern
+Rectangles as bars; free-floating phase labels.
+
+## Connectors & routing
+Align bar baselines to a shared timeline row.
+
+## Anti-patterns
+Sub-day precision when a calendar suffices.
+
+## Budget
+≤6 bars.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/gantt/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/gantt/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/gantt.png)

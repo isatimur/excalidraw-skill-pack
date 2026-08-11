@@ -1,0 +1,130 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Loop — flywheel around a hub",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "hub",
+      "x": 300,
+      "y": 200,
+      "width": 120,
+      "height": 72,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Memory"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "a",
+      "x": 120,
+      "y": 120,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Capture"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "b",
+      "x": 500,
+      "y": 120,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Synthesize"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "c",
+      "x": 500,
+      "y": 300,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Publish"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "l1",
+      "x": 170,
+      "y": 168,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "a"
+      },
+      "end": {
+        "id": "hub"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "l2",
+      "x": 360,
+      "y": 272,
+      "width": 80,
+      "height": -40,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "hub"
+      },
+      "end": {
+        "id": "b"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "l3",
+      "x": 550,
+      "y": 168,
+      "width": 0,
+      "height": 100,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "b"
+      },
+      "end": {
+        "id": "c"
+      }
+    }
+  ]
+}

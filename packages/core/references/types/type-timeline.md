@@ -1,19 +1,22 @@
 # Timeline
 
-Use a timeline when order, duration, or a turning point is the argument. Pull marker, success, warning, and text hierarchy colors from the active theme's `palette.md`.
+**Best for:** events on an axis, roadmap milestones.
 
-## Layout
-- One horizontal or vertical spine with evenly meaningful intervals.
-- Use 10–20px marker ellipses and free-floating labels; reserve larger shapes for true milestones.
-- Separate eras or workstreams with frames and whitespace.
+## Layout conventions
+Horizontal axis with event markers above/below. Accent the pivotal event only.
 
 ## Excalidraw pattern
-- The spine is a `line`, not a chain of boxes. Connect event labels with dotted leader lines where needed.
-- Use skeleton markers and bound labels only on milestone shapes.
-- Keep `roughness: 0`, `opacity: 100`; no diagonal connector shortcuts.
+Free-floating text + ellipse or line markers on the axis.
 
-## Avoid
-- A flowchart disguised as dates, equal spacing when duration is encoded, and paragraphs attached to each point.
+## Connectors & routing
+Chronological left→right.
+
+## Anti-patterns
+Dense date tables redrawn as a diagram.
 
 ## Budget
-5–9 milestones per spine. Create a second timeline for a parallel story rather than crowding one axis.
+≤8 milestones.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/timeline/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/timeline/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/timeline.png)

@@ -1,0 +1,90 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Scatter — distribution + correlation",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "ellipse",
+      "id": "p1",
+      "x": 140,
+      "y": 220,
+      "width": 16,
+      "height": 16,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "p2",
+      "x": 200,
+      "y": 180,
+      "width": 16,
+      "height": 16,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "p3",
+      "x": 260,
+      "y": 200,
+      "width": 16,
+      "height": 16,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "p4",
+      "x": 320,
+      "y": 160,
+      "width": 16,
+      "height": 16,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "p5",
+      "x": 380,
+      "y": 140,
+      "width": 16,
+      "height": 16,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "x": 80,
+      "y": 120,
+      "text": "Higher skill ↔ lower error rate",
+      "fontSize": 14,
+      "strokeColor": "#64748b",
+      "fontFamily": 3
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "DP integration — sources → core → consumers",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "src",
+      "x": 80,
+      "y": 160,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Sources"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "core",
+      "x": 280,
+      "y": 140,
+      "width": 120,
+      "height": 72,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Lakehouse"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "cons",
+      "x": 500,
+      "y": 160,
+      "width": 100,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "BI / ML"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "dp1",
+      "x": 130,
+      "y": 208,
+      "width": 0,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "src"
+      },
+      "end": {
+        "id": "core"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "dp2",
+      "x": 340,
+      "y": 212,
+      "width": 0,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "core"
+      },
+      "end": {
+        "id": "cons"
+      }
+    }
+  ]
+}

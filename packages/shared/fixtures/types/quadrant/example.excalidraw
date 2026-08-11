@@ -1,0 +1,80 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Quadrant — two-axis positioning",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "y",
+      "x": 48,
+      "y": 180,
+      "text": "Impact ↑",
+      "fontSize": 14,
+      "strokeColor": "#64748b",
+      "fontFamily": 3
+    },
+    {
+      "type": "text",
+      "id": "x",
+      "x": 360,
+      "y": 360,
+      "text": "Effort →",
+      "fontSize": 14,
+      "strokeColor": "#64748b",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "q1",
+      "x": 120,
+      "y": 120,
+      "width": 200,
+      "height": 200,
+      "strokeColor": "#64748b",
+      "backgroundColor": "#ffffff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "dot1",
+      "x": 180,
+      "y": 200,
+      "width": 48,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Now"
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "dot2",
+      "x": 320,
+      "y": 160,
+      "width": 48,
+      "height": 48,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Next"
+      }
+    }
+  ]
+}

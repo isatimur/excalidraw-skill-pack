@@ -1,19 +1,22 @@
-# DP Integration
+# DP integration
 
-Use for a data-platform integration topology: sources → core → consumers. The argument is the shape of the topology, not a vendor inventory. Colors from active theme `palette.md`.
+**Best for:** sources → lakehouse → consumers.
 
-## Layout
-- Three bands (frames): Sources | Core | Consumers. Primary flow left→right.
-- Convergence into the core, fan-out to consumers. Mark the primary store or broker as the single focal accent.
-- Show real connector names (Kafka topic, CDC stream, REST sink) as free-floating detail — not generic "API".
+## Layout conventions
+Three-column topology. Accent the core platform.
 
 ## Excalidraw pattern
-- Skeleton + frames for bands.
-- Orthogonal routing; dashed connectors for optional/async paths using theme connector styles.
-- Evidence cards only when proving a specific contract (schema, topic config).
+Sources, core, consumers as rectangles; fan-in/fan-out arrows.
 
-## Avoid
-- Logo walls; every source the same size; arrows that skip the core without saying why.
+## Connectors & routing
+Multiple sources may converge; label integration mode.
+
+## Anti-patterns
+Security matrix detail here (use dp-security-matrix).
 
 ## Budget
-Max 9 primary nodes; 3 bands; 1–2 evidence artifacts if the contract is the claim.
+≤3 sources, ≤3 consumers.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/dp-integration/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/dp-integration/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/dp-integration.png)

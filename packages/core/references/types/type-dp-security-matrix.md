@@ -1,19 +1,22 @@
-# DP Security Matrix
+# DP security matrix
 
-Use when the claim is who can do what to which data-platform component. Prefer a spatial matrix over a prose ACL dump. Colors from active theme `palette.md`.
+**Best for:** role × dataset permissions.
 
-## Layout
-- Rows = roles (or principals). Columns = components / data tiers.
-- Cell treatment encodes permission: allow (success colors), deny (error/warning), conditional (decision), absent (muted).
-- Free-floating axis labels; hairline grid via `line` elements. One focal cell callout if a surprising grant/deny is the point.
+## Layout conventions
+Grid as labeled rows; columns as datasets. Use table if >4×4.
 
 ## Excalidraw pattern
-- Skeleton rectangles for cells; do not put every cell label in a heavy container — typography can carry allow/deny.
-- Legend as a bottom strip of free-floating text + small swatches, outside the matrix.
-- If more than ~8×6 cells, split by domain (overview matrix + detail matrix).
+Wide rectangles per row or ASCII-style grid with monospace labels.
 
-## Avoid
-- Rainbow encoding without a legend; identical green checkmarks that hide nuance; floating legend inside the grid.
+## Connectors & routing
+N/A
+
+## Anti-patterns
+Redrawing a spreadsheet with 20 columns.
 
 ## Budget
-Max ~12 roles × 8 components for a single view; 1 focal callout.
+≤6 roles × 4 datasets.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/dp-security-matrix/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/dp-security-matrix/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/dp-security-matrix.png)

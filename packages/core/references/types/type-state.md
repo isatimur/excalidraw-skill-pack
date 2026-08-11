@@ -1,19 +1,22 @@
-# State Machine
+# State machine
 
-Use a state machine to establish legal states and transitions, not a chronological to-do list. Choose state, trigger, warning, and error colors from the active theme's `palette.md`.
+**Best for:** allowed modes, lifecycle, workflow status.
 
-## Layout
-- Place the initial state at the visual entry and terminal states at the edge.
-- Group mutually exclusive modes in frames; show transition labels on arrows.
-- Add guard conditions as free-floating text near the transition, not inside every state.
+## Layout conventions
+States as rectangles; transitions labeled with the event. Highlight terminal/live states with theme success fill.
 
 ## Excalidraw pattern
-- Skeleton ellipses or rounded rectangles with bound labels represent states.
-- Solid arrows show transitions; dashed arrows show recovery or supervisory control. Use orthogonal points.
-- Use evidence cards for a real enum, event name, or transition payload when technical.
+Skeleton rectangles + labeled arrows. No container labels on states unless the state IS a zone.
 
-## Avoid
-- Treating implementation steps as states, multiple start nodes without explanation, and omitted invalid/error paths.
+## Connectors & routing
+Prefer left→right progression for readability.
+
+## Anti-patterns
+States without incoming or outgoing edges unless truly terminal.
 
 ## Budget
-4–8 states, 8–12 transitions. Split nested substates into their own frame.
+≤7 states.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/state/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/state/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/state.png)

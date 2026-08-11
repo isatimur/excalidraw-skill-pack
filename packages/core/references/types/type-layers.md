@@ -1,18 +1,22 @@
-# Layers
+# Layer stack
 
-Use layers to argue abstraction, dependency direction, or control separation. Use active-theme `palette.md` colors consistently by semantic role.
+**Best for:** stacked abstractions, OSI-style tiers.
 
-## Layout
-- Stack 3–6 wide horizontal bands from foundation to experience; each band has one free-floating title and concise supporting labels.
-- Put cross-cutting control planes beside or above the stack, not as another indistinguishable layer.
-- Use frames when layers belong to different trust or ownership zones.
+## Layout conventions
+Wide horizontal bands, top = highest abstraction. Indent or offset for depth cue.
 
 ## Excalidraw pattern
-- Use skeleton rectangles only for actual layer boundaries; labels are bound there, details float inside.
-- Orthogonal arrows cross layers only to show a genuine dependency; dashed governance (theme connector stroke) arrows indicate governance.
+Stacked rectangles with decreasing width optional.
 
-## Avoid
-- Horizontal boxes with no dependency claim, every item boxed, and bidirectional arrows everywhere.
+## Connectors & routing
+Downward dependency arrows on the side.
+
+## Anti-patterns
+More than 5 layers in one figure.
 
 ## Budget
-3–6 layers, 1–3 items per layer. Split deployment topology into architecture.
+3–5 layers.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/layers/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/layers/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/layers.png)

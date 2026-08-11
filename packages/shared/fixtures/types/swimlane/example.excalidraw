@@ -1,0 +1,117 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Swimlane — cross-functional handoffs",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "rectangle",
+      "id": "lane1",
+      "x": 60,
+      "y": 100,
+      "width": 620,
+      "height": 80,
+      "strokeColor": "#64748b",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "label": {
+        "text": "Product"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "lane2",
+      "x": 60,
+      "y": 200,
+      "width": 620,
+      "height": 80,
+      "strokeColor": "#64748b",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "label": {
+        "text": "Engineering"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "s1",
+      "x": 100,
+      "y": 120,
+      "width": 100,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Spec"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "s2",
+      "x": 280,
+      "y": 220,
+      "width": 100,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Implement"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "s3",
+      "x": 460,
+      "y": 120,
+      "width": 100,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Sign-off"
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "h1",
+      "x": 150,
+      "y": 160,
+      "width": 80,
+      "height": 60,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "start": {
+        "id": "s1"
+      },
+      "end": {
+        "id": "s2"
+      },
+      "label": {
+        "text": "handoff"
+      }
+    }
+  ]
+}

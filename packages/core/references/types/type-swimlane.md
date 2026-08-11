@@ -1,19 +1,22 @@
 # Swimlane
 
-Use swimlanes to show ownership through a cross-functional handoff. Use active-theme `palette.md` colors for lane headers and semantic flow states.
+**Best for:** cross-functional handoffs, RACI flows.
 
-## Layout
-- Each frame is one actor, team, or system; lanes run in the shared flow direction.
-- Place actions in their owner’s lane and cross lanes only for actual handoffs.
-- Keep lane names and responsibility notes free-floating near frame edges.
+## Layout conventions
+Horizontal lanes per role/team. Steps flow left→right within and across lanes.
 
 ## Excalidraw pattern
-- Frames define lanes; skeleton rectangles with bound labels mark true actions.
-- Route handoff arrows with orthogonal points across lane borders and label the transferred artifact.
-- Add a small evidence card for an actual ticket, event, or approval object at the risky handoff.
+Dashed zone rectangles for lanes. Steps as rectangles; handoff arrows cross lane boundaries orthogonally.
 
-## Avoid
-- Using lanes as decoration, duplicating a process box in every lane, and mixing time-scale claims into it.
+## Connectors & routing
+Enter/exit lanes at lane centerlines.
+
+## Anti-patterns
+More than 4 lanes (split diagrams).
 
 ## Budget
-3–5 lanes, 6–10 cross-lane actions. Split exception paths into a separate frame.
+≤6 steps per lane.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/swimlane/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/swimlane/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/swimlane.png)

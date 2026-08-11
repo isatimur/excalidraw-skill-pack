@@ -39,6 +39,25 @@ cd packages/renderer-python && uv sync && uv run playwright install chromium && 
 8. Maintainer review + merge
 9. Changesets bot opens a "Version Packages" PR; merging that publishes affected packages
 
+## Good first issues
+
+| Area | What to add |
+|---|---|
+| Type fixture | New or improved `packages/shared/fixtures/types/<type>/example.excalidraw` + PNG via `node tools/render-type-gallery.mjs` |
+| Type reference | Expand `packages/core/references/types/type-*.md`; run `pnpm sync-skill` |
+| Theme | New theme under `packages/themes/` or via `create-theme` scaffolder |
+| Adapter | Install script in `adapters/<agent>/` + CI matrix entry |
+| Gallery | Thumbnail or copy on `web/gallery/` |
+| Docs | Mintlify page under `docs/site/` |
+
+Regenerate type gallery assets:
+
+```bash
+node tools/generate-type-fixtures.mjs   # optional: edit generator first
+pnpm --filter @excalidraw-skill-pack/render build
+node tools/render-type-gallery.mjs
+```
+
 ## Adding a new theme
 
 The easiest path: publish your own theme as a standalone npm package. It will appear in the registry within 24 hours (nightly scan).

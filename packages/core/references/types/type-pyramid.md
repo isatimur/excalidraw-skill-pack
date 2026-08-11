@@ -1,18 +1,22 @@
-# Pyramid
+# Pyramid / funnel
 
-Use a pyramid to argue rank, prerequisite, or narrowing capacity. Pull semantic fills and text colors from the active theme's `palette.md`.
+**Best for:** ranked hierarchy, funnel drop-off.
 
-## Layout
-- Build 3–5 horizontal tiers within one triangular silhouette.
-- Place the foundational claim at the widest base and the scarce or synthesized claim at the apex.
-- Keep examples free-floating beside tiers; use leaders for proof.
+## Layout conventions
+Apex = most abstract/strategic. Widening bands downward.
 
 ## Excalidraw pattern
-- Use skeleton polygons/lines or stacked trapezoid-like shapes with bound tier labels.
-- Use frames only for context, not around every tier.
+Stacked rectangles with decreasing width upward.
 
-## Avoid
-- “Priority pyramid” without a rationale, equal-sized layers, and forcing a process into a rank diagram.
+## Connectors & routing
+Top-down reading order.
+
+## Anti-patterns
+Equal-width bands (that's layers).
 
 ## Budget
-3–5 tiers, one claim and at most two examples per tier. Use layers when tiers are not hierarchical.
+3–5 tiers.
+
+## Example
+- Fixture: [`packages/shared/fixtures/types/pyramid/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/pyramid/example.excalidraw)
+- Rendered: [gallery PNG](https://excalidraw-skill-pack.vercel.app/images/types/pyramid.png)

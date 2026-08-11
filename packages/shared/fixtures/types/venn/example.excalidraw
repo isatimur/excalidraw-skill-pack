@@ -1,0 +1,57 @@
+{
+  "type": "excalidraw-skeleton",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 48,
+      "y": 28,
+      "text": "Venn — set overlap",
+      "fontSize": 28,
+      "strokeColor": "#1e3a5f",
+      "fontFamily": 3
+    },
+    {
+      "type": "ellipse",
+      "id": "a",
+      "x": 180,
+      "y": 160,
+      "width": 160,
+      "height": 160,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Speed"
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "b",
+      "x": 280,
+      "y": 160,
+      "width": 160,
+      "height": 160,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 0,
+      "label": {
+        "text": "Quality"
+      }
+    },
+    {
+      "type": "text",
+      "id": "overlap",
+      "x": 280,
+      "y": 230,
+      "text": "Sweet spot",
+      "fontSize": 14,
+      "strokeColor": "#c2410c",
+      "fontFamily": 3
+    }
+  ]
+}

@@ -9,15 +9,16 @@ The versions below are the latest published releases per package.
 
 ## [Unreleased]
 
-- Pending: sync the MCP server's self-reported version (local `package.json` 0.1.3 → published 0.1.4) via the open changeset.
+- Round B: 29 per-type fixtures + gallery matrix, expanded type references, procedural onboarding, README type grid.
+- Pending: sync the MCP server's self-reported version via changeset when publishing.
 
 ## Published versions
 
 | Package | Version |
 |---|---|
-| `@excalidraw-skill-pack/core` | 0.2.1 |
-| `@excalidraw-skill-pack/render` | 0.3.0 |
-| `@excalidraw-skill-pack/mcp-server` | 0.1.4 |
+| `@excalidraw-skill-pack/core` | 0.2.2 |
+| `@excalidraw-skill-pack/render` | 0.3.1 |
+| `@excalidraw-skill-pack/mcp-server` | 0.1.5 |
 | `@excalidraw-skill-pack/install` | 0.1.8 |
 
 [Unreleased]: https://github.com/isatimur/excalidraw-skill-pack/compare/main...HEAD
