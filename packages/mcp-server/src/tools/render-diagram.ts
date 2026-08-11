@@ -1,6 +1,7 @@
 import { PNG } from "pngjs";
 import { renderToPng } from "@excalidraw-skill-pack/render";
 import type { ToolDefinition } from "../server.js";
+import { auditDiagram } from "./audit-diagram.js";
 
 function parsePngDimensions(buf: Buffer): { width: number; height: number } {
   const png = PNG.sync.read(buf);
@@ -9,7 +10,7 @@ function parsePngDimensions(buf: Buffer): { width: number; height: number } {
 
 export const renderDiagramTool: ToolDefinition = {
   name: "render_diagram",
-  description: "Render Excalidraw JSON to a base64-encoded PNG image.",
+  description: "Render Excalidraw JSON to a base64-encoded PNG image and include audit issues.",
   inputSchema: {
     type: "object",
     properties: {
@@ -25,13 +26,15 @@ export const renderDiagramTool: ToolDefinition = {
     const scale = (input["scale"] as number | undefined) ?? 2;
     const width = (input["width"] as number | undefined) ?? 1200;
 
+    const issues = auditDiagram(json);
     const buf = await renderToPng(json, { scale, width });
     const { width: w, height: h } = parsePngDimensions(buf);
 
     return {
       png_base64: buf.toString("base64"),
       width: w,
-      height: h
+      height: h,
+      issues
     };
   }
 };

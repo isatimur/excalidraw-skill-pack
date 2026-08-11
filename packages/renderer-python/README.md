@@ -25,10 +25,12 @@ Launching Chromium is the dominant cost of a render; reuse it across diagrams.
 from excalidraw_render import BatchItem, Renderer, render_many
 
 # One-shot batch — launches one browser, renders all, closes it:
-pngs = render_many([
-    BatchItem(json=json_a, theme="dark", scale=2),
-    BatchItem(json=json_b, theme="notion"),
-])
+pngs = render_many(
+    [
+        BatchItem(json=json_a, theme="dark", scale=2),
+        BatchItem(json=json_b, theme="notion"),
+    ]
+)
 
 # Or drive the browser yourself for long-lived processes / servers:
 with Renderer() as renderer:

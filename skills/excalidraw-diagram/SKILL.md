@@ -1,35 +1,54 @@
 ---
 name: excalidraw-diagram
-description: Create Excalidraw diagrams as `.excalidraw` JSON that make a visual argument — not just labeled boxes. Use when the user wants to draw, sketch, visualize, or diagram a system architecture, software design, workflow, flowchart, sequence, data flow, state machine, pipeline, org chart, mind map, concept map, network topology, or process — in a hand-drawn, sketchy whiteboard style. Produces valid, themeable `.excalidraw` files that render to PNG and open in Excalidraw, Obsidian, or VS Code. Triggers on phrases like "make a diagram", "draw the architecture", "visualize this", "excalidraw", "flowchart", "system design diagram", "sketch this out", or "whiteboard it".
+description: Create Excalidraw diagrams as editable `.excalidraw` JSON that make a visual argument — architecture, flowchart, sequence, state, ER, timeline, swimlane, quadrant, loop/flywheel, layers, nested, tree, org chart, venn, pyramid, process, medallion, data flow, IT current-state, evidence/protocol explainers, before/after comparisons, and charts — with themed brand skins, a taste gate, progressive type refs, and a mandatory render-inspect loop. Prefer this over static HTML/SVG or Mermaid-slop when the diagram must open in Excalidraw/Obsidian/VS Code, prove claims with evidence artifacts, or iterate until it looks right. Triggers on "make a diagram", "draw the architecture", "visualize this", "excalidraw", "flowchart", "system design diagram", "sketch this out", "whiteboard it", or brand-matched technical diagrams.
 license: MIT
 metadata:
+  version: "0.3.0"
   homepage: https://excalidraw-skill-pack.vercel.app
   repository: https://github.com/isatimur/excalidraw-skill-pack
-  keywords: [excalidraw, diagram, flowchart, architecture-diagram, system-design, visualization, whiteboard, sketch, diagram-as-code, mind-map]
+  keywords: [excalidraw, diagram, flowchart, architecture-diagram, system-design, visualization, whiteboard, sketch, diagram-as-code, mind-map, evidence-artifacts, taste-gate]
 ---
 
 # Excalidraw Diagram Creator
 
 Generate `.excalidraw` JSON files that **argue visually**, not just display information.
 
+Editable forever. Themeable. Renderable to PNG. Open in Excalidraw, Obsidian, or VS Code. Twenty-nine typed layouts with progressive disclosure, a first-run brand gate, a taste gate that deletes until the argument is sharp, and a mandatory render-inspect loop — so the diagram is never “done” until it looks right.
+
 **Setup:** If the user asks you to set up this skill (renderer, dependencies, etc.), use the installed adapter docs or the project README.
+
+## 0. First-run theme gate
+
+**Before generating the first diagram in a new project, verify the theme is intentional.**
+
+Resolve the active theme (`--theme` → project `.excalidraw-skill-pack.json` → `~/.excalidraw-skill-pack/config.json` → `default-sketchy`). If the project still rides the bundled default and the user has a brand, **pause and ask**:
+
+> "This project is still on `default-sketchy`. Customize the theme to match your brand first? (a) pull from a website URL, (b) extract from an installed skill, (c) extract from a local design-token folder, (d) paste tokens manually, (e) proceed with the default for now."
+
+Then follow [`references/onboarding.md`](references/onboarding.md). Once onboarded (project config points at a theme, or the user explicitly chose default), skip this gate.
+
+Don't silently ship default-skinned diagrams into a branded project.
 
 ## Output Contract
 
 When you create or edit a diagram:
 
-1. Produce a valid `.excalidraw` JSON file, not a prose-only answer.
-2. Use this envelope: `type`, `version`, `source`, `elements`, `appState`, and `files`.
+1. Produce a valid `.excalidraw` / `excalidraw-skeleton` / `mermaid` document, not a prose-only answer.
+2. Prefer skeleton format while drafting; hydrate to a full `.excalidraw` for the shareable deliverable.
 3. If the user names an output path, write there. Otherwise use `./diagram.excalidraw`.
-4. Prefer the active theme for all color, typography, element, and layout decisions.
-5. Render and inspect the PNG when a renderer is available. Fix visible defects before stopping.
-6. In the final response, report the `.excalidraw` path, rendered image path if created, theme used, and any validation caveats.
+4. Prefer the active theme for all color, typography, element, and layout decisions — read its `palette.md` before drawing.
+5. Pick a diagram type from [`references/types/index.md`](references/types/index.md) and **load that type's reference** before generating elements.
+6. Run the taste gate in [`references/taste-gate.md`](references/taste-gate.md) before declaring done.
+7. Render and inspect the PNG. Fix visible defects. Loop until it passes.
+8. In the final response, report the `.excalidraw` path, rendered image path if created, theme used, type used, and any validation caveats.
 
-Do not add nonstandard Excalidraw properties such as `label`. Labels are text elements. For shape labels, bind a text element to the container with `containerId`, and keep the text element immediately after its container in `elements`.
+Do not add nonstandard Excalidraw properties such as `label` on **full** elements. Labels are text elements (or skeleton `label: { text }` which the hydrator converts). For full-element shape labels, bind a text element to the container with `containerId`, and keep the text element immediately after its container in `elements`.
+
+**Cursor note:** when installed via the Cursor adapter, progressive-disclosure files live at `.cursor/excalidraw-skill-pack/references/` (same tree as `packages/core/references/`). Load type/taste/onboarding docs from there.
 
 ## Customization
 
-**All colors, typography, and layout rules live in the active theme.** Themes are standalone packages: `default-sketchy` is bundled in core; additional themes ship as `@excalidraw-skill-pack/theme-*` (npm) or `excalidraw-skill-pack-theme-*` (PyPI).
+**All colors, typography, and layout rules live in the active theme.** Themes are standalone packages: `default-sketchy` is bundled in core; additional themes ship as `@excalidraw-skill-pack/theme-*` (npm) or `excalidraw-skill-pack-theme-*` (PyPI). See [`references/color-palette.md`](references/color-palette.md).
 
 The active theme is resolved per call (`--theme` flag), per project (`.excalidraw-skill-pack.json`), or globally (`~/.excalidraw-skill-pack/config.json`). The MCP server's `generate_diagram_prompt` tool splices the active theme's `palette.md` and any requested `layouts/<template>.md` into the agent's system prompt at call time.
 
@@ -43,11 +62,58 @@ To author a new theme: `npx @excalidraw-skill-pack/create-theme my-brand`. See `
 
 A diagram isn't formatted text. It's a visual argument that shows relationships, causality, and flow that words alone can't express. The shape should BE the meaning.
 
+**The highest-quality move is usually deletion.** Every node earns its place. Accent color is reserved for the 1–2 things the reader should look at first. Target density: ~4/10. The diagram isn't done when everything is added — it's done when nothing can be removed. See [`references/taste-gate.md`](references/taste-gate.md) and [`references/anti-patterns.md`](references/anti-patterns.md).
+
 **The Isomorphism Test**: If you removed all text, would the structure alone communicate the concept? If not, redesign.
 
-**The Education Test**: Could someone learn something concrete from this diagram, or does it just label boxes? A good diagram teaches—it shows actual formats, real event names, concrete examples.
+**The Education Test**: Could someone learn something concrete from this diagram, or does it just label boxes? A good diagram teaches — it shows actual formats, real event names, concrete examples.
+
+**Why Excalidraw (not static HTML/SVG):** the artifact stays editable, opens in the tools people already use, themes as publishable packages, and the render-inspect loop catches visual defects that prompt-only SVG never sees.
 
 ---
+
+## Diagram Types (progressive disclosure)
+
+**Always load the matching type file before drawing.** The lean index lives in [`references/types/index.md`](references/types/index.md); each type has layout conventions, Excalidraw patterns, anti-patterns, and a complexity budget.
+
+| If you're showing… | Use | Reference |
+|---|---|---|
+| Components + connections in a system | **Architecture** | [type-architecture.md](references/types/type-architecture.md) |
+| Decision logic with branches | **Flowchart** | [type-flowchart.md](references/types/type-flowchart.md) |
+| Time-ordered messages between actors | **Sequence** | [type-sequence.md](references/types/type-sequence.md) |
+| States + transitions + guards | **State** | [type-state.md](references/types/type-state.md) |
+| Entities + fields + relationships | **ER / data model** | [type-er.md](references/types/type-er.md) |
+| Events positioned in time | **Timeline** | [type-timeline.md](references/types/type-timeline.md) |
+| Cross-functional handoffs | **Swimlane** | [type-swimlane.md](references/types/type-swimlane.md) |
+| Two-axis positioning | **Quadrant** | [type-quadrant.md](references/types/type-quadrant.md) |
+| Reinforcing cycle / flywheel | **Loop** | [type-loop.md](references/types/type-loop.md) |
+| Hierarchy by containment | **Nested** | [type-nested.md](references/types/type-nested.md) |
+| Parent → children | **Tree** | [type-tree.md](references/types/type-tree.md) |
+| Ownership / reporting / escalation | **Org chart** | [type-org-chart.md](references/types/type-org-chart.md) |
+| Stacked abstractions | **Layers** | [type-layers.md](references/types/type-layers.md) |
+| Set overlap | **Venn** | [type-venn.md](references/types/type-venn.md) |
+| Ranked hierarchy or drop-off | **Pyramid** | [type-pyramid.md](references/types/type-pyramid.md) |
+| Multi-actor sequential workflow | **Process** | [type-process.md](references/types/type-process.md) |
+| Protocol / system claim with proof | **Evidence** (moat) | [type-evidence.md](references/types/type-evidence.md) |
+| Before → after engineered contrast | **Comparison** (moat) | [type-comparison.md](references/types/type-comparison.md) |
+| Multi-tier data quality | **Medallion** | [type-medallion.md](references/types/type-medallion.md) |
+| Payload movement + transforms | **Data flow** | [type-data-flow.md](references/types/type-data-flow.md) |
+| Legacy landscape / modernization | **IT current-state** | [type-it-state.md](references/types/type-it-state.md) |
+| End-to-end stack on a cluster | **High-level** | [type-high-level.md](references/types/type-high-level.md) |
+| Sources → core → consumers | **DP integration** | [type-dp-integration.md](references/types/type-dp-integration.md) |
+| Per-role access permissions | **DP security matrix** | [type-dp-security-matrix.md](references/types/type-dp-security-matrix.md) |
+| Multi-axis profile | **Radar** | [type-radar.md](references/types/type-radar.md) |
+| Tasks on a schedule | **Gantt** | [type-gantt.md](references/types/type-gantt.md) |
+| Categorical magnitudes | **Bar** | [type-bar.md](references/types/type-bar.md) |
+| Trends over time | **Line** | [type-line.md](references/types/type-line.md) |
+| Distribution / correlation | **Scatter** | [type-scatter.md](references/types/type-scatter.md) |
+
+Rules of thumb:
+
+- If a 3-column table communicates the same thing, pick the table.
+- If combining two types, pick the dominant axis — don't hybridize grammars.
+- If past the complexity budget, split into overview + detail.
+- Prefer **Evidence** or **Comparison** when the goal is to *teach or convince*, not merely *label*.
 
 ## Depth Assessment (Do This First)
 
@@ -220,11 +286,14 @@ Before JSON, mentally trace how the eye moves through the diagram. There should 
 ### Step 5: Generate JSON
 Only now create the Excalidraw elements. **See below for how to handle large diagrams.**
 
-### Step 6: Render & Validate (MANDATORY)
+### Step 6: Taste Gate
+Run [`references/taste-gate.md`](references/taste-gate.md). Delete until the argument is sharp. Reject anything in [`references/anti-patterns.md`](references/anti-patterns.md).
+
+### Step 7: Render & Validate (MANDATORY)
 After generating the JSON, you MUST run the render-view-fix loop until the diagram looks right. This is not optional — see the **Render & Validate** section below for the full process.
 
-### Step 7: Report the Artifact
-Return the file path and what changed. Do not paste the full JSON unless the user asked for it.
+### Step 8: Report the Artifact
+Return the file path, theme, type, and what changed. Do not paste the full JSON unless the user asked for it.
 
 ---
 

@@ -1,0 +1,13 @@
+# excalidraw-skill-pack
+> Editable Excalidraw diagrams for AI agents — methodology, 29 types, taste gate, themes, MCP.
+
+## Docs
+- https://excalidraw-skill-pack.vercel.app/
+- https://excalidraw-skill-pack.vercel.app/vs-diagram-design/
+- https://excalidraw-skill-pack.vercel.app/gallery/
+- https://excalidraw-skill-pack.vercel.app/vs-official-excalidraw-mcp/
+- https://excalidraw-skill-pack.vercel.app/themes/
+- https://github.com/isatimur/excalidraw-skill-pack
+
+## Install
+npx @excalidraw-skill-pack/install claude-code

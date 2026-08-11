@@ -82,7 +82,7 @@ Returns SKILL.md + active theme palette + optional layout + optional progressive
 
 ### `render_diagram`
 
-Render Excalidraw JSON to PNG. Runs Excalidraw headless in Chromium via Playwright.
+Render Excalidraw JSON to PNG. Runs Excalidraw headless in Chromium via Playwright and includes audit issues for the input.
 
 **Input:**
 
@@ -108,7 +108,8 @@ Render Excalidraw JSON to PNG. Runs Excalidraw headless in Chromium via Playwrig
 {
   "png_base64": "iVBORw0KGgoAAAANSUhEUgAAB...",
   "width": 1920,
-  "height": 1080
+  "height": 1080,
+  "issues": [{ "severity": "warning", "message": "Geometry: shapes overlap — elements[0] and elements[1]" }]
 }
 ```
 

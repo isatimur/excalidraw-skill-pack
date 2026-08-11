@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Proof gallery — diagrams that argue | excalidraw-skill-pack</title>
+<meta name="description" content="Proof gallery for editable Excalidraw diagrams — competitive head-to-head plus the book corpus behind From Copilot to Colleague." />
+<link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/gallery/" />
+<meta property="og:title" content="Proof gallery — diagrams that argue" />
+<meta property="og:description" content="Competitive head-to-head + book corpus for editable Excalidraw diagrams." />
+<meta property="og:image" content="https://excalidraw-skill-pack.vercel.app/images/competitive/why-editable-beats-static.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://excalidraw-skill-pack.vercel.app/gallery/" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+* { box-sizing:border-box; }
+body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
+nav, .kicker, code { font-family:"JetBrains Mono",Menlo,monospace; }
+nav { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
+nav a[aria-current="page"] { color:var(--accent); }
+.kicker { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:2rem 0 .4rem; }
+h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
+h1 { font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.12; margin:.6rem 0 1rem; }
+h2 { font-size:1.5rem; margin:2.8rem 0 .8rem; }
+a { color:var(--accent); }
+.subtitle { color:var(--muted); font-size:1.15rem; max-width:42rem; }
+.figure { margin:2rem 0; border:1px solid rgba(0,0,0,.12); background:#fff; }
+.figure img { width:100%; display:block; }
+.figure figcaption { font-size:.85rem; color:var(--muted); padding:.75rem 1rem; border-top:1px solid rgba(0,0,0,.08); }
+.corpus { padding-left:1.2rem; }
+.corpus li { margin:.45rem 0; }
+.installs { display:grid; grid-template-columns:max-content 1fr; gap:.5rem 1rem; padding:1.2rem; background:rgba(255,255,255,.35); border-left:3px solid var(--accent); }
+.installs span { color:var(--muted); font-family:"JetBrains Mono",Menlo,monospace; font-size:.8rem; }
+code { font-size:.85rem; }
+@media (max-width:600px) { .installs { grid-template-columns:1fr; gap:.2rem; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Proof gallery — diagrams that argue","url":"https://excalidraw-skill-pack.vercel.app/gallery/","description":"Competitive head-to-head and book corpus for editable Excalidraw diagrams."}
+</script>
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>
+  <a href="/themes/">Themes</a>
+  <a href="/gallery/" aria-current="page">Gallery</a>
+  <a href="/vs-diagram-design/">vs diagram-design</a>
+  <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
+</nav>
+<p class="kicker">Proof</p>
+<h1>Proof gallery — diagrams that argue</h1>
+<p class="subtitle">Competitive head-to-head + the book corpus that proved the methodology</p>
+
+<figure class="figure">
+  <a href="/vs-diagram-design/"><img src="/images/competitive/why-editable-beats-static.png" alt="Editable Excalidraw render-inspect loop compared with a static HTML and SVG export" style="width:100%;height:auto;" /></a>
+  <figcaption>Competitive head-to-head: <a href="/vs-diagram-design/">why editable beats static →</a></figcaption>
+</figure>
+
+<section>
+<h2>Book corpus</h2>
+<p>A curated set of source <code>.excalidraw</code> files lives in <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">examples/book</a>. The full published figure corpus is on <a href="https://fromcopilottocolleague.com">From Copilot to Colleague</a>.</p>
+<ul class="corpus">
+  <li><code>01-book-argument-spine.excalidraw</code></li>
+  <li><code>05-chapter1-the-shift.excalidraw</code></li>
+  <li><code>06-chapter2-taste.excalidraw</code></li>
+  <li><code>08-chapter4-evals.excalidraw</code></li>
+  <li><code>10-chapter6-runtimes.excalidraw</code></li>
+  <li><code>14-chapter10-what-endures.excalidraw</code></li>
+</ul>
+</section>
+
+<section>
+<h2>Install</h2>
+<div class="installs">
+  <span>Claude Code</span><code>npx @excalidraw-skill-pack/install claude-code</code>
+  <span>Cursor</span><code>npx @excalidraw-skill-pack/install cursor</code>
+</div>
+</section>
+</body>
+</html>
