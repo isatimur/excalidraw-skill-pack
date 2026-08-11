@@ -212,6 +212,20 @@ function path(id, x, y, points, label, opts = {}) {
   };
 }
 
+// Absolute waypoints → free arrow. Use for orthogonal elbows so a handoff never
+// draws a diagonal through empty space.
+function elbow(id, absolutePoints, opts = {}) {
+  const [ox, oy] = absolutePoints[0];
+  return path(
+    id,
+    ox,
+    oy,
+    absolutePoints.map(([x, y]) => [x - ox, y - oy]),
+    opts.label,
+    opts
+  );
+}
+
 function doc(title, elements) {
   return {
     type: "excalidraw-skeleton",
@@ -318,18 +332,25 @@ const BUILDERS = {
     ]);
   },
   sequence: () => {
-    const lifeline = (id, x) => line(id, x, 158, [[0, 0], [0, 250]], { dashed: true });
+    // Lifelines hang from box centres. Message labels sit ABOVE the shaft as
+    // free text — bound labels land on the line and, at Cascadia width, collide.
+    const cx = { client: 160, api: 400, db: 640 };
+    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 260]], { dashed: true });
     return doc("Sequence — messages over time", [
-      rect("client", 100, 110, 120, 48, "Client"),
-      rect("api", 320, 110, 120, 48, "API"),
-      rect("db", 540, 110, 120, 48, "DB"),
-      lifeline("ll1", 160),
-      lifeline("ll2", 380),
-      lifeline("ll3", 600),
-      path("m1", 160, 200, [[0, 0], [220, 0]], "POST /orders"),
-      path("m2", 380, 250, [[0, 0], [220, 0]], "INSERT"),
-      path("m3", 600, 300, [[0, 0], [-220, 0]], "1 row", { dashed: true, stroke: MUTED }),
-      path("m4", 380, 350, [[0, 0], [-220, 0]], "201 Created", { dashed: true, stroke: MUTED }),
+      rect("client", cx.client - 60, 110, 120, 48, "Client"),
+      rect("api", cx.api - 60, 110, 120, 48, "API"),
+      rect("db", cx.db - 60, 110, 120, 48, "DB"),
+      lifeline("ll1", cx.client),
+      lifeline("ll2", cx.api),
+      lifeline("ll3", cx.db),
+      path("m1", cx.client, 200, [[0, 0], [cx.api - cx.client - 8, 0]], ""),
+      txt("m1-l", cx.client + 48, 178, "POST /orders", { fontSize: 14, color: MUTED }),
+      path("m2", cx.api, 255, [[0, 0], [cx.db - cx.api - 8, 0]], ""),
+      txt("m2-l", cx.api + 72, 233, "INSERT", { fontSize: 14, color: MUTED }),
+      path("m3", cx.db, 310, [[0, 0], [cx.api - cx.db + 8, 0]], "", { dashed: true, stroke: MUTED }),
+      txt("m3-l", cx.api + 80, 288, "1 row", { fontSize: 14, color: MUTED }),
+      path("m4", cx.api, 365, [[0, 0], [cx.client - cx.api + 8, 0]], "", { dashed: true, stroke: MUTED }),
+      txt("m4-l", cx.client + 48, 343, "201 Created", { fontSize: 14, color: MUTED }),
     ]);
   },
   state: () => {
@@ -391,22 +412,42 @@ const BUILDERS = {
     ]);
   },
   swimlane: () => {
-    const spec = { id: "spec", x: 200, y: 130, w: 120, h: 44 };
-    const impl = { id: "impl", x: 420, y: 250, w: 120, h: 44 };
-    const signoff = { id: "signoff", x: 620, y: 130, w: 120, h: 44 };
+    // Orthogonal elbows only — a diagonal handoff through empty lane space
+    // reads as a routing bug, not a cross-functional story.
+    const spec = { id: "spec", x: 220, y: 140, w: 130, h: 48 };
+    const impl = { id: "impl", x: 420, y: 270, w: 140, h: 48 };
+    const signoff = { id: "signoff", x: 650, y: 140, w: 140, h: 48 };
     return doc("Swimlane — cross-functional handoffs", [
-      zone("lane1", 160, 110, 620, 90, ""),
-      zone("lane2", 160, 230, 620, 90, ""),
-      txt("lane1-l", 62, 148, "Product", { fontSize: 14, color: MUTED }),
-      txt("lane2-l", 62, 268, "Engineering", { fontSize: 14, color: MUTED }),
+      zone("lane1", 180, 110, 660, 100, ""),
+      zone("lane2", 180, 240, 660, 100, ""),
+      txt("lane1-l", 60, 150, "Product", { fontSize: 14, color: MUTED }),
+      txt("lane2-l", 48, 280, "Engineering", { fontSize: 14, color: MUTED }),
       rect(spec.id, spec.x, spec.y, spec.w, spec.h, "Spec"),
       rect(impl.id, impl.x, impl.y, impl.w, impl.h, "Implement"),
       rect(signoff.id, signoff.x, signoff.y, signoff.w, signoff.h, "Sign-off", {
         fill: "#dcfce7",
         stroke: "#15803d",
       }),
-      arrow("h1", spec, impl, "handoff", { from: "bottom", to: "left" }),
-      arrow("h2", impl, signoff, "review", { from: "right", to: "bottom" }),
+      elbow(
+        "h1",
+        [
+          [spec.x + spec.w / 2, spec.y + spec.h],
+          [spec.x + spec.w / 2, impl.y + impl.h / 2],
+          [impl.x - 8, impl.y + impl.h / 2],
+        ],
+        {}
+      ),
+      txt("h1-l", spec.x + spec.w / 2 + 12, 220, "handoff", { fontSize: 13, color: MUTED }),
+      elbow(
+        "h2",
+        [
+          [impl.x + impl.w + 8, impl.y + impl.h / 2],
+          [signoff.x + signoff.w / 2, impl.y + impl.h / 2],
+          [signoff.x + signoff.w / 2, signoff.y + signoff.h + 8],
+        ],
+        {}
+      ),
+      txt("h2-l", signoff.x - 40, 252, "review", { fontSize: 13, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -431,35 +472,39 @@ const BUILDERS = {
       txt("p4-l", 486, 320, "Slide export", { fontSize: 15, color: MUTED }),
     ]);
   },
-  // A flywheel has to close: the fourth arrow returning to Capture is the whole point.
+  // Stations on a rectangle so every edge is pure H or V — a diamond with
+  // corner-to-corner diagonals is a flywheel drawn as a star, not a loop.
   loop: () => {
-    const capture = { id: "capture", x: 320, y: 100, w: 130, h: 48 };
-    const synth = { id: "synth", x: 549, y: 196, w: 152, h: 48 };
-    const publish = { id: "publish", x: 320, y: 300, w: 130, h: 48 };
-    const review = { id: "review", x: 80, y: 196, w: 130, h: 48 };
-    const hub = { id: "hub", x: 320, y: 196, w: 130, h: 56 };
+    const capture = { id: "capture", x: 200, y: 110, w: 140, h: 48 };
+    const synth = { id: "synth", x: 520, y: 110, w: 152, h: 48 };
+    const publish = { id: "publish", x: 520, y: 310, w: 152, h: 48 };
+    const review = { id: "review", x: 200, y: 310, w: 140, h: 48 };
+    const hub = { id: "hub", x: 366, y: 206, w: 140, h: 56 };
     return doc("Loop — flywheel around a hub", [
       rect(capture.id, capture.x, capture.y, capture.w, capture.h, "Capture"),
       rect(synth.id, synth.x, synth.y, synth.w, synth.h, "Synthesize"),
       rect(publish.id, publish.x, publish.y, publish.w, publish.h, "Publish"),
       rect(review.id, review.x, review.y, review.w, review.h, "Review"),
       rect(hub.id, hub.x, hub.y, hub.w, hub.h, "Memory", { fill: "#fef3c7", stroke: ACCENT }),
-      arrow("l1", capture, synth, ""),
-      arrow("l2", synth, publish, ""),
-      arrow("l3", publish, review, ""),
-      arrow("l4", review, capture, ""),
+      arrow("l1", capture, synth, "", { from: "right", to: "left" }),
+      arrow("l2", synth, publish, "", { from: "bottom", to: "top" }),
+      arrow("l3", publish, review, "", { from: "left", to: "right" }),
+      arrow("l4", review, capture, "", { from: "top", to: "bottom" }),
     ]);
   },
   process: () => {
-    const s1 = { id: "s1", x: 80, y: 160, w: 132, h: 48 };
-    const s2 = { id: "s2", x: 272, y: 160, w: 132, h: 48 };
-    const s3 = { id: "s3", x: 464, y: 160, w: 132, h: 48 };
+    const s1 = { id: "s1", x: 80, y: 180, w: 150, h: 56 };
+    const s2 = { id: "s2", x: 310, y: 180, w: 150, h: 56 };
+    const s3 = { id: "s3", x: 540, y: 180, w: 150, h: 56 };
     return doc("Process — multi-step workflow", [
       rect(s1.id, s1.x, s1.y, s1.w, s1.h, "Ingest"),
-      rect(s2.id, s2.x, s2.y, s2.w, s2.h, "Transform"),
+      rect(s2.id, s2.x, s2.y, s2.w, s2.h, "Transform", { fill: "#fef3c7", stroke: ACCENT }),
       rect(s3.id, s3.x, s3.y, s3.w, s3.h, "Deliver"),
       arrow("p1", s1, s2, ""),
       arrow("p2", s2, s3, ""),
+      txt("p1-l", 248, 156, "clean", { fontSize: 13, color: MUTED }),
+      txt("p2-l", 478, 156, "ship", { fontSize: 13, color: MUTED }),
+      txt("role", 80, 140, "Role: data engineer", { fontSize: 13, color: MUTED }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -572,16 +617,18 @@ const BUILDERS = {
     ]);
   },
   evidence: () => {
-    const claim = { id: "claim", x: 80, y: 140, w: 200, h: 72 };
-    const proof = { id: "proof", x: 440, y: 130, w: 280, h: 92 };
+    const claim = { id: "claim", x: 80, y: 160, w: 220, h: 80 };
+    const proof = { id: "proof", x: 480, y: 148, w: 280, h: 104 };
     return doc("Evidence — proof artifact beside claim", [
       rect(claim.id, claim.x, claim.y, claim.w, claim.h, "Claim:\nP99 < 200ms"),
       rect(proof.id, proof.x, proof.y, proof.w, proof.h, '{\n  "metric": "p99",\n  "value": 142\n}', {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 15,
       }),
-      txt("proof-src", 440, 106, "load test, 2026-02-14", { fontSize: 13, color: MUTED }),
-      arrow("e1", proof, claim, "proves"),
+      txt("proof-src", proof.x, proof.y - 24, "load test · 2026-02-14", { fontSize: 13, color: MUTED }),
+      arrow("e1", proof, claim, ""),
+      txt("e1-l", 360, 168, "proves", { fontSize: 14, color: MUTED }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
