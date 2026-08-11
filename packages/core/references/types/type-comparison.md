@@ -3,7 +3,7 @@
 **Best for:** before/after, option A vs B, competitor contrast.
 
 ## Layout conventions
-Two columns with matched vertical rhythm. Accent the preferred column only.
+Two columns with matched vertical rhythm. Accent the preferred column only. One row per question, asked of both columns, with the question in a left rail.
 
 ## Excalidraw pattern
 Paired rectangles; column headers as free-floating titles.
@@ -12,7 +12,7 @@ Paired rectangles; column headers as free-floating titles.
 No crossing arrows between columns unless showing migration.
 
 ## Anti-patterns
-More than two options without a matrix/table.
+More than two options without a matrix/table; two columns of unrelated claims, which contrast nothing.
 
 ## Budget
 ≤5 rows per column.

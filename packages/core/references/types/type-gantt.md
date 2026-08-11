@@ -3,16 +3,16 @@
 **Best for:** phases, parallel workstreams, delivery windows.
 
 ## Layout conventions
-Time on X; stacked bars for phases. Offset bars to show overlap.
+Time on X; stacked bars for phases. Offset bars to show overlap. Mark today with an accent vertical rule.
 
 ## Excalidraw pattern
-Rectangles as bars; free-floating phase labels.
+Rectangles as bars; free-floating phase labels; dashed period gridlines.
 
 ## Connectors & routing
 Align bar baselines to a shared timeline row.
 
 ## Anti-patterns
-Sub-day precision when a calendar suffices.
+Sub-day precision when a calendar suffices; no now-line, which shows the plan but never whether it holds.
 
 ## Budget
 ≤6 bars.

@@ -1,9 +1,9 @@
 # High-level
 
-**Best for:** end-to-end stack on one cluster, executive overview.
+**Best for:** end-to-end path across one cluster, executive overview.
 
 ## Layout conventions
-Single zone (cluster/VPC) containing the full path left→right.
+The full path left→right, with the zone drawn around only what you operate. Leave the upstream hops (browser, CDN) outside it.
 
 ## Excalidraw pattern
 Zone rectangle + 3–7 components; minimal labels.
@@ -12,7 +12,7 @@ Zone rectangle + 3–7 components; minimal labels.
 One primary path; no nested detail.
 
 ## Anti-patterns
-Low-level protocol annotations.
+Low-level protocol annotations; a zone that contains everything, which draws a boundary that excludes nothing.
 
 ## Budget
 ≤7 components inside zone.

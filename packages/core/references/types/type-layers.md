@@ -3,16 +3,16 @@
 **Best for:** stacked abstractions, OSI-style tiers.
 
 ## Layout conventions
-Wide horizontal bands, top = highest abstraction. Indent or offset for depth cue.
+Wide horizontal bands, top = highest abstraction. Keep every band the same width; tapering them reads as a pyramid.
 
 ## Excalidraw pattern
-Stacked rectangles with decreasing width optional.
+Equal-width stacked rectangles, one accent band for the layer under discussion.
 
 ## Connectors & routing
-Downward dependency arrows on the side.
+One downward dependency arrow beside the stack, and state the rule it enforces (`no upward calls`). Bands alone show order, not direction.
 
 ## Anti-patterns
-More than 5 layers in one figure.
+More than 5 layers in one figure; a stack with no direction, which claims nothing.
 
 ## Budget
 3–5 layers.

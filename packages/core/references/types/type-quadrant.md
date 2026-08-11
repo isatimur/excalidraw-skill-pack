@@ -9,10 +9,10 @@ Axes as free-floating labels. Items as ellipses or small rectangles in quadrants
 Light quadrant grid optional; accent only the hero item.
 
 ## Connectors & routing
-Label axes with what increases/decreases on each dimension.
+Label axes with what increases/decreases on each dimension, and name each quadrant with the verdict it carries (`do now`, `drop`).
 
 ## Anti-patterns
-Exact numeric scores (use scatter or a table).
+Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty, which dodges the decision the chart exists to force.
 
 ## Budget
 ≤8 positioned items.

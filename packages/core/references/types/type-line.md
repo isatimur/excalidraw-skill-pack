@@ -3,16 +3,16 @@
 **Best for:** trends over time, KPI movement.
 
 ## Layout conventions
-Trend annotation + axis line. Prefer sparkline simplicity in diagrams.
+Axes plus two muted gridlines carrying units. Dots on each reading, and the last value called out beside the endpoint.
 
 ## Excalidraw pattern
-Axis as thin rectangle or line element; trend as text callout if line path is heavy.
+Series as an open `line` polyline (last point must not return to the first, or it fills); axes and gridlines as thin `line` elements.
 
 ## Connectors & routing
 Time left→right.
 
 ## Anti-patterns
-Exact data points without source.
+Exact data points without source; a trend with no scale, which shows the shape but not the size.
 
 ## Budget
 1–2 series.

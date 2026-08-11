@@ -6,13 +6,13 @@
 Top-down hierarchy. Single reporting tree per diagram.
 
 ## Excalidraw pattern
-Rectangles for roles; downward arrows.
+Rectangles for roles; solid downward arrows for reporting, dashed for the routing the tree hides (who a team actually asks).
 
 ## Connectors & routing
-Center children under parent.
+Center children under parent. Label every dashed edge with the ask.
 
 ## Anti-patterns
-Matrix reporting without annotation.
+Matrix reporting without annotation; a plain tree when the point was routing.
 
 ## Budget
 ≤10 nodes.

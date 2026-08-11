@@ -6,7 +6,7 @@
 Apex = most abstract/strategic. Widening bands downward.
 
 ## Excalidraw pattern
-Stacked rectangles with decreasing width upward.
+Trapezoid tiers as closed `line` polygons with centred free text. Stacked rectangles read as a bar stack, not a pyramid.
 
 ## Connectors & routing
 Top-down reading order.
