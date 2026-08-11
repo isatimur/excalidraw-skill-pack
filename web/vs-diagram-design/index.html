@@ -12,26 +12,39 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://excalidraw-skill-pack.vercel.app/vs-diagram-design/" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,ital,wght@6..72,400;6..72,500;6..72,1,400;6..72,1,500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css" />
 <style>
-:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; --alt:#3B6A8A; }
+:root {
+  --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#6E6356; --alt:#3B6A8A;
+  --display:"Newsreader","Iowan Old Style",serif; --body:"Source Serif 4","Iowan Old Style",serif; --mono:"IBM Plex Mono",Menlo,monospace;
+}
 * { box-sizing:border-box; }
-body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
-nav, .kicker { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+html.has-motion [data-motion-text],
+html.has-motion [data-reveal],
+html.has-motion [data-image-reveal] { visibility: hidden; }
+body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:1.05rem/1.65 var(--body); }
+nav { font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--muted); }
 nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
-h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
+h1,h2 { font-family:var(--display); font-weight:400; font-style:italic; letter-spacing:-0.02em; }
 h1 { font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.12; margin:.6rem 0 1rem; }
 h2 { font-size:1.5rem; margin:2.4rem 0 .8rem; }
+.motion-line-mask,.motion-word-mask { display:inline-block; overflow:hidden; vertical-align:top; }
+.motion-line,.motion-word { display:inline-block; will-change:transform,opacity,filter; }
 a { color:var(--accent); }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 table { border-collapse:collapse; width:100%; margin:1.5rem 0; font-size:.95rem; }
 th,td { border:1px solid rgba(0,0,0,.14); padding:.7rem .9rem; text-align:left; vertical-align:top; }
-th { font-family:"JetBrains Mono",Menlo,monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:rgba(255,255,255,.35); }
-code { font-family:"JetBrains Mono",Menlo,monospace; background:rgba(255,255,255,.4); padding:.1rem .3rem; }
-.cta { display:inline-block; margin-top:.5rem; border:1px solid var(--accent); padding:.55rem 1rem; text-decoration:none; color:var(--accent); }
+th { font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:rgba(255,255,255,.35); }
+code { font-family:var(--mono); background:rgba(255,255,255,.4); padding:.1rem .3rem; }
+.cta { display:inline-block; margin-top:.5rem; border:1px solid var(--accent); padding:.55rem 1rem; text-decoration:none; color:var(--accent); font-family:var(--mono); font-size:.82rem; }
 .cta.primary { background:var(--accent); color:var(--paper); }
 .muted { color:var(--muted); }
-.figure { margin:2rem 0; border:1px solid rgba(0,0,0,.12); background:#fff; }
+.figure { margin:2rem 0; border:1px solid rgba(0,0,0,.12); background:#fff; overflow:hidden; }
 .figure img { width:100%; display:block; }
-.figure figcaption { font-size:.85rem; color:var(--muted); padding:.75rem 1rem; border-top:1px solid rgba(0,0,0,.08); }
+.figure figcaption { font-size:.85rem; color:var(--muted); padding:.75rem 1rem; border-top:1px solid rgba(0,0,0,.08); font-family:var(--mono); font-size:.78rem; }
 ul.points { padding-left:1.1rem; }
 ul.points li { margin:.45rem 0; }
 </style>
@@ -55,15 +68,17 @@ ul.points li { margin:.45rem 0; }
   <a href="/spec/theme-manifest">Spec</a>
   <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
 </nav>
-<p class="kicker">Comparison</p>
-<h1>excalidraw-skill-pack vs diagram-design</h1>
-<p>
+<h1 data-motion-text="lines">
+  <span class="motion-line-mask"><span class="motion-line">excalidraw-skill-pack</span></span>
+  <span class="motion-line-mask"><span class="motion-line">vs diagram-design</span></span>
+</h1>
+<p data-reveal>
   <a href="https://github.com/cathrynlavery/diagram-design">diagram-design</a> is a strong Claude Code skill for editorial HTML+SVG schematics — typed layouts, brand scrape, taste gate, complexity budget.
   <strong>excalidraw-skill-pack</strong> shares that ambition for restraint and type-aware layout, then ships a different artifact: editable Excalidraw, theme packages, MCP, and a render→inspect→fix loop that doesn't end at export.
 </p>
 
-<figure class="figure">
-  <img src="/images/competitive/why-editable-beats-static.png" alt="Side-by-side: static HTML+SVG export vs Excalidraw skill pack render-inspect loop" width="1200" height="900" />
+<figure class="figure" data-image-reveal data-parallax-section>
+  <img data-parallax-image data-parallax-speed="0.1" src="/images/competitive/why-editable-beats-static.png" alt="Side-by-side: static HTML+SVG export vs Excalidraw skill pack render-inspect loop" width="1200" height="900" />
   <figcaption>Visual argument generated by this pack: static snapshot vs living editable loop.</figcaption>
 </figure>
 
@@ -114,5 +129,9 @@ ul.points li { margin:.45rem 0; }
   <a class="cta" href="/vs-official-excalidraw-mcp/">Also: vs official Excalidraw MCP</a>
 </p>
 <p class="muted" style="margin-top:2.5rem;font-size:.85rem;">MIT licensed. Works in Claude Code, Cursor, Codex, Gemini CLI, and Copilot. Competitor link for context only — we respect their craft.</p>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm" crossorigin="anonymous" defer></script>
+<script src="/motion.js" defer></script>
 </body>
 </html>

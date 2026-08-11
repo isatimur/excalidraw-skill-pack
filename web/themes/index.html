@@ -5,32 +5,72 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Themes - excalidraw-skill-pack</title>
 <meta name="description" content="Built-in Excalidraw themes for excalidraw-skill-pack." />
+<link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/themes/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,ital,wght@6..72,400;6..72,500;6..72,1,400;6..72,1,500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
 <style>
-:root { --ink:#2A2622; --paper:#F4EDE0; --accent:#B8472A; --muted:#7A6F5F; }
+:root {
+  --ink:#2A2622; --paper:#F4EDE0; --paper-deep:#EBE3D4; --accent:#B8472A; --muted:#6E6356;
+  --line:rgba(42,38,34,.12);
+  --display:"Newsreader","Iowan Old Style",serif;
+  --body:"Source Serif 4","Iowan Old Style",serif;
+  --mono:"IBM Plex Mono",Menlo,monospace;
+}
 * { box-sizing:border-box; }
-body { margin:0 auto; max-width:980px; padding:3rem 1.5rem; background:var(--paper); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif; }
-nav, .name { font-family:"JetBrains Mono",Menlo,monospace; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+body {
+  margin:0 auto; max-width:980px; padding:3rem 1.5rem;
+  background:
+    radial-gradient(90% 50% at 10% 0%, rgba(184,71,42,.07), transparent 55%),
+    linear-gradient(180deg, var(--paper), var(--paper-deep));
+  color:var(--ink); font:1.05rem/1.65 var(--body);
+}
+nav { font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--muted); margin-bottom:2rem; }
 nav a { color:var(--muted); text-decoration:none; margin-right:1rem; }
-h1,h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-style:italic; }
-h1 { font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; }
+nav a[aria-current="page"] { color:var(--accent); }
+h1,h2 { font-family:var(--display); font-weight:400; font-style:italic; letter-spacing:-0.02em; }
+h1 { font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; margin:0 0 1rem; }
+h2 { font-size:1.65rem; margin:2.75rem 0 1rem; }
 a { color:var(--accent); }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.lede { color:var(--muted); max-width:46rem; margin-bottom:2rem; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin:2rem 0; }
-.card { border:1px solid rgba(0,0,0,.12); background:rgba(255,255,255,.25); padding:1rem; }
-.card img { width:100%; height:150px; object-fit:cover; background:white; border:1px solid rgba(0,0,0,.08); }
-.name { margin:.75rem 0 .25rem; }
-code { font-family:"JetBrains Mono",Menlo,monospace; }
+.theme {
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.35);
+  padding:0;
+  overflow:hidden;
+}
+.theme img { width:100%; height:150px; object-fit:cover; background:#fff; display:block; border-bottom:1px solid var(--line); }
+.theme .body { padding:1rem 1.05rem 1.15rem; }
+.name { font-family:var(--mono); font-size:.78rem; color:var(--muted); margin:0 0 .35rem; }
+.theme p { margin:0; font-size:.95rem; }
+code { font-family:var(--mono); font-size:.9rem; }
+pre {
+  overflow:auto; padding:1rem;
+  background:rgba(255,255,255,.4);
+  border:1px solid var(--line);
+  font-family:var(--mono); font-size:.85rem;
+}
 </style>
 </head>
 <body>
-<nav><a href="/">Home</a><a href="/themes/create">Create theme</a><a href="/spec/theme-manifest">Spec</a><a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a></nav>
+<nav>
+  <a href="/">Home</a>
+  <a href="/gallery/">Gallery</a>
+  <a href="/themes/" aria-current="page">Themes</a>
+  <a href="/themes/create">Create theme</a>
+  <a href="/spec/theme-manifest">Spec</a>
+  <a href="https://github.com/isatimur/excalidraw-skill-pack">GitHub</a>
+</nav>
 <h1>Themes</h1>
-<p>Themes are portable visual systems for Excalidraw diagrams: palette tokens, typography, element defaults, and optional layout instructions. Agents use the same theme contract that renderers use.</p>
+<p class="lede">Portable visual systems for Excalidraw diagrams: palette tokens, typography, element defaults, and optional layout instructions. Agents and renderers share the same contract.</p>
 <div class="grid">
-  <div class="card"><img src="/images/themes/default-sketchy.png" alt="default-sketchy preview" /><div class="name">default-sketchy</div><p>Bundled baseline theme. Friendly, general-purpose, and portable.</p></div>
-  <div class="card"><img src="/images/themes/stripe-press.png" alt="stripe-press preview" /><div class="name">stripe-press</div><p>Editorial and book-grade. Strong for explainers and polished essays.</p></div>
-  <div class="card"><img src="/images/themes/notion.png" alt="notion preview" /><div class="name">notion</div><p>Rounded, off-white, workspace-style diagrams.</p></div>
-  <div class="card"><img src="/images/themes/whiteboard.png" alt="whiteboard preview" /><div class="name">whiteboard</div><p>Low-fi and bright. Useful for brainstorming and collaborative sketches.</p></div>
-  <div class="card"><img src="/images/themes/dark.png" alt="dark preview" /><div class="name">dark</div><p>Inverted contrast for dark docs, talks, and technical dashboards.</p></div>
+  <div class="theme"><img src="/images/themes/default-sketchy.png" alt="default-sketchy preview" /><div class="body"><div class="name">default-sketchy</div><p>Bundled baseline. Friendly, general-purpose, portable.</p></div></div>
+  <div class="theme"><img src="/images/themes/stripe-press.png" alt="stripe-press preview" /><div class="body"><div class="name">stripe-press</div><p>Editorial and book-grade. Strong for explainers and polished essays.</p></div></div>
+  <div class="theme"><img src="/images/themes/notion.png" alt="notion preview" /><div class="body"><div class="name">notion</div><p>Rounded, off-white, workspace-style diagrams.</p></div></div>
+  <div class="theme"><img src="/images/themes/whiteboard.png" alt="whiteboard preview" /><div class="body"><div class="name">whiteboard</div><p>Low-fi and bright. Useful for brainstorming sketches.</p></div></div>
+  <div class="theme"><img src="/images/themes/dark.png" alt="dark preview" /><div class="body"><div class="name">dark</div><p>Inverted contrast for dark docs, talks, and technical decks.</p></div></div>
 </div>
 <h2>Use a theme</h2>
 <p>Render with Node:</p>
