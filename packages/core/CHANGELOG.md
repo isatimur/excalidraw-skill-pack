@@ -1,5 +1,11 @@
 # @excalidraw-skill-pack/core
 
+## 0.2.3
+
+### Patch Changes
+
+- e19e29a: Expand type references with fixture links and procedural onboarding; ship 29 per-type gallery fixtures.
+
 ## 0.2.2
 
 ### Patch Changes
