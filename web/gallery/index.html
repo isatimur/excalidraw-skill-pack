@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Proof gallery — diagrams that argue | excalidraw-skill-pack</title>
-<meta name="description" content="Proof gallery for editable Excalidraw diagrams — competitive head-to-head plus the book corpus behind From Copilot to Colleague." />
+<meta name="description" content="Proof gallery for editable Excalidraw diagrams — competitive head-to-head plus curated figures from the 77-diagram book corpus behind From Copilot to Colleague." />
 <link rel="canonical" href="https://excalidraw-skill-pack.vercel.app/gallery/" />
 <meta property="og:title" content="Proof gallery — diagrams that argue" />
 <meta property="og:description" content="Competitive head-to-head + book corpus for editable Excalidraw diagrams." />
-<meta property="og:image" content="https://excalidraw-skill-pack.vercel.app/images/competitive/why-editable-beats-static.png" />
+<meta property="og:image" content="https://excalidraw-skill-pack.vercel.app/images/book/01-book-argument-spine.png" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://excalidraw-skill-pack.vercel.app/gallery/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -81,12 +81,15 @@ h1 {
 .lede {
   color: var(--muted);
   font-size: 1.2rem;
-  max-width: 38rem;
-  margin-bottom: 2.5rem;
+  max-width: 40rem;
+  margin-bottom: 2.75rem;
 }
 
+.feature {
+  margin: 0 0 4rem;
+}
 .artifact {
-  margin: 0 0 3rem;
+  margin: 0;
   border: 1px solid var(--line);
   background: #fff;
   overflow: hidden;
@@ -95,8 +98,9 @@ h1 {
   width: 100%;
   height: auto;
   display: block;
-  min-height: 42vh;
+  min-height: 48vh;
   object-fit: cover;
+  object-position: center top;
 }
 .artifact figcaption {
   font-family: var(--mono);
@@ -106,18 +110,35 @@ h1 {
   border-top: 1px solid var(--line);
 }
 
-.rail {
+.stack {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 2.5rem;
-  align-items: start;
+  gap: 2.75rem;
+  margin: 0 0 4.5rem;
 }
+.stack .artifact img {
+  min-height: 36vh;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.pair .artifact img { min-height: 32vh; height: 100%; }
+
 h2 {
   font-family: var(--display);
   font-style: italic;
   font-weight: 400;
   font-size: 1.65rem;
   margin: 0 0 0.85rem;
+}
+.sources {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: start;
 }
 .corpus { padding-left: 1.15rem; margin: 0; }
 .corpus li { margin: 0.45rem 0; }
@@ -133,9 +154,15 @@ code { font-family: var(--mono); font-size: 0.86rem; }
   font-size: 0.8rem;
 }
 .installs span { color: var(--muted); }
+.note {
+  color: var(--muted);
+  max-width: 48rem;
+  margin: 0 0 1.5rem;
+}
 
 @media (max-width: 820px) {
-  .rail { grid-template-columns: 1fr; }
+  .pair,
+  .sources { grid-template-columns: 1fr; }
   .artifact img { min-height: 28vh; }
 }
 </style>
@@ -159,19 +186,55 @@ code { font-family: var(--mono); font-size: 0.86rem; }
     <span class="motion-line-mask"><span class="motion-line">Proof gallery —</span></span>
     <span class="motion-line-mask"><span class="motion-line">diagrams that argue</span></span>
   </h1>
-  <p class="lede" data-reveal>The competitive head-to-head leads. The book corpus backs it. Editable Excalidraw with a render-inspect loop, not a static HTML+SVG export.</p>
+  <p class="lede" data-reveal>Large renders first. The competitive head-to-head, then curated figures from the 77-diagram book corpus. Editable Excalidraw with a render-inspect loop — not a static HTML+SVG export.</p>
 
-  <figure class="artifact" data-image-reveal data-parallax-section>
-    <a href="/vs-diagram-design/">
-      <img data-parallax-image data-parallax-speed="0.1" src="/images/competitive/why-editable-beats-static.png" alt="Editable Excalidraw render-inspect loop compared with a static HTML and SVG export" width="1600" height="900" />
-    </a>
-    <figcaption>Competitive head-to-head: <a href="/vs-diagram-design/">why editable beats static →</a></figcaption>
-  </figure>
+  <section class="feature">
+    <figure class="artifact" data-image-reveal data-parallax-section>
+      <a href="/vs-diagram-design/">
+        <img data-parallax-image data-parallax-speed="0.1" src="/images/competitive/why-editable-beats-static.png" alt="Editable Excalidraw render-inspect loop compared with a static HTML and SVG export" width="1600" height="900" />
+      </a>
+      <figcaption>Competitive head-to-head: <a href="/vs-diagram-design/">why editable beats static →</a></figcaption>
+    </figure>
+  </section>
 
-  <div class="rail">
+  <section class="stack" aria-label="Book corpus figures">
+    <figure class="artifact" data-image-reveal data-parallax-section>
+      <img data-parallax-image data-parallax-speed="0.08" src="/images/book/01-book-argument-spine.png" alt="Book argument spine diagram" width="1600" height="1000" />
+      <figcaption>01 — Book argument spine</figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure class="artifact" data-image-reveal data-parallax-section>
+        <img data-parallax-image data-parallax-speed="0.08" src="/images/book/05-chapter1-the-shift.png" alt="Chapter 1 opener — The Shift" width="1200" height="900" />
+        <figcaption>05 — Chapter 1 · The Shift</figcaption>
+      </figure>
+      <figure class="artifact" data-image-reveal data-parallax-section>
+        <img data-parallax-image data-parallax-speed="0.12" src="/images/book/06-chapter2-taste.png" alt="Chapter 2 opener — Taste" width="1200" height="900" />
+        <figcaption>06 — Chapter 2 · Taste</figcaption>
+      </figure>
+    </div>
+
+    <figure class="artifact" data-image-reveal data-parallax-section>
+      <img data-parallax-image data-parallax-speed="0.08" src="/images/book/08-chapter4-evals.png" alt="Chapter 4 opener — Evals" width="1600" height="1000" />
+      <figcaption>08 — Chapter 4 · Evals</figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure class="artifact" data-image-reveal data-parallax-section>
+        <img data-parallax-image data-parallax-speed="0.1" src="/images/book/10-chapter6-runtimes.png" alt="Chapter 6 opener — Runtimes" width="1200" height="900" />
+        <figcaption>10 — Chapter 6 · Runtimes</figcaption>
+      </figure>
+      <figure class="artifact" data-image-reveal data-parallax-section>
+        <img data-parallax-image data-parallax-speed="0.12" src="/images/book/14-chapter10-what-endures.png" alt="Chapter 10 opener — What Endures" width="1200" height="900" />
+        <figcaption>14 — Chapter 10 · What Endures</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="sources">
     <section data-reveal>
-      <h2>Book corpus</h2>
-      <p>Curated <code>.excalidraw</code> sources live in <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">examples/book</a>. The full published figure set is on <a href="https://fromcopilottocolleague.com">From Copilot to Colleague</a>.</p>
+      <h2>Source files</h2>
+      <p class="note">Curated <code>.excalidraw</code> sources ship in <a href="https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book">examples/book</a>. The full published set of 77 figures lives on <a href="https://fromcopilottocolleague.com">From Copilot to Colleague</a>.</p>
       <ul class="corpus">
         <li><code>01-book-argument-spine.excalidraw</code></li>
         <li><code>05-chapter1-the-shift.excalidraw</code></li>
