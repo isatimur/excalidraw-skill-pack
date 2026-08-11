@@ -73,10 +73,13 @@ function ellipse(id, x, y, w, h, label, opts = {}) {
     height: h,
     strokeColor: opts.stroke ?? INK,
     backgroundColor: opts.fill ?? FILL,
-    fillStyle: "solid",
-    strokeWidth: 2,
-    roughness: 0,
+    fillStyle: opts.fillStyle ?? "solid",
+    strokeStyle: opts.strokeStyle ?? "solid",
+    opacity: opts.opacity ?? 100,
+    strokeWidth: opts.strokeWidth ?? 2,
+    roughness: opts.roughness ?? 0,
     label: label ? { text: label } : undefined,
+    ...opts.extra,
   };
 }
 

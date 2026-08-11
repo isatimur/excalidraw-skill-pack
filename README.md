@@ -25,6 +25,7 @@
 
 | For | Command |
 |---|---|
+| **Try first (no install)** | [Telegram or WhatsApp via Clawmama](https://app.clawmama.run/skills/s8dq2k/hermes?utm_source=github&utm_medium=readme&utm_campaign=skill_outreach_isatimur_excalidraw_skill_pack) — hosted demo of the skill workflow |
 | Claude Code (plugin) | `/plugin marketplace add isatimur/excalidraw-skill-pack` then `/plugin install excalidraw-skill-pack` |
 | Claude Code (script) | `npx @excalidraw-skill-pack/install claude-code` |
 | Cursor | `npx @excalidraw-skill-pack/install cursor` |
@@ -48,27 +49,13 @@ Agent:   → fetch homepage → extract palette + fonts
 Every new diagram uses your brand. See [`references/onboarding.md`](packages/core/references/onboarding.md).
 
 ## What it makes — 29 typed layouts
+Every type ships an **editable** `.excalidraw` source and a rendered PNG. [Browse the full gallery →](https://excalidraw-skill-pack.vercel.app/gallery/)
 
-Every type ships an **editable** `.excalidraw` source + rendered PNG. [Browse the full gallery →](https://excalidraw-skill-pack.vercel.app/gallery/)
+This is the set of **29** typed layouts you can generate:
 
-<table>
-<tr>
-  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/architecture.png" width="140" alt="Architecture" /><br/><b>Architecture</b></a></td>
-  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/flowchart.png" width="140" alt="Flowchart" /><br/><b>Flowchart</b></a></td>
-  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/sequence.png" width="140" alt="Sequence" /><br/><b>Sequence</b></a></td>
-  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/loop.png" width="140" alt="Loop" /><br/><b>Loop</b></a></td>
-  <td align="center" width="20%"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/evidence.png" width="140" alt="Evidence" /><br/><b>Evidence</b></a></td>
-</tr>
-<tr>
-  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/state.png" width="140" alt="State" /><br/><b>State</b></a></td>
-  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/swimlane.png" width="140" alt="Swimlane" /><br/><b>Swimlane</b></a></td>
-  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/quadrant.png" width="140" alt="Quadrant" /><br/><b>Quadrant</b></a></td>
-  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/comparison.png" width="140" alt="Comparison" /><br/><b>Comparison</b></a></td>
-  <td align="center"><a href="https://excalidraw-skill-pack.vercel.app/gallery/"><img src="web/images/types/medallion.png" width="140" alt="Medallion" /><br/><b>Medallion</b></a></td>
-</tr>
-</table>
+Architecture, Flowchart, Sequence, Loop, Evidence; State, Swimlane, Quadrant, Comparison, Medallion; ER, Timeline, Gantt, Layers, Nested, Tree, Org chart, Venn, Pyramid, Process, High-level, IT state, Data flow, DP integration, DP security matrix, Bar, Line, Scatter, Radar.
 
-Plus ER, timeline, Gantt, layers, nested, tree, org chart, Venn, pyramid, process, high-level, IT state, data flow, DP integration, DP security matrix, bar, line, scatter, radar — all with source fixtures in [`packages/shared/fixtures/types/`](packages/shared/fixtures/types/).
+All of them have source fixtures in [`packages/shared/fixtures/types/`](packages/shared/fixtures/types/).
 
 ## vs diagram-design
 
@@ -78,7 +65,7 @@ Plus ER, timeline, Gantt, layers, nested, tree, org chart, Venn, pyramid, proces
 
 Excalidraw's [official MCP](https://github.com/excalidraw/excalidraw-mcp) and most community servers solve **plumbing**: get an agent to emit valid JSON and render it. They produce correct boxes-and-arrows.
 
-This pack solves **taste**: an opinionated methodology — the isomorphism test, evidence artifacts, multi-zoom architecture, container discipline, one-accent-per-diagram — that decides *what* to draw and *why*, so the output is a visual argument that teaches instead of a labeled grid. That's the part a weekend of MCP code can't copy, and it's why the [book gallery](#proof) looks the way it does.
+This pack solves **taste**: an opinionated methodology (isomorphism test, evidence artifacts, multi-zoom architecture, container discipline, one accent per diagram) that decides *what* to draw and *why*, so the output is a visual argument that teaches instead of a labeled grid. That's the part a weekend of MCP code can't copy, and it's why the [book gallery](#proof) looks the way it does.
 
 Plumbing is a commodity now. Quality isn't.
 
@@ -118,7 +105,7 @@ cd theme-my-brand && npm publish --access public
 
 ## Proof
 
-This skill drew **77 diagrams** for the published technical book [*From Copilot to Colleague*](https://fromcopilottocolleague.com) — argument spines, chapter openers, concept figures, and inline explainers, all from the methodology in this repo. No other Excalidraw generator can point at a corpus like that. A curated set — the book's argument spine plus all ten chapter openers — ships as source `.excalidraw` files in [`examples/book`](https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book); the full 77 are live across [fromcopilottocolleague.com](https://fromcopilottocolleague.com).
+This skill drew **77 diagrams** for the published technical book [*From Copilot to Colleague*](https://fromcopilottocolleague.com): argument spines, chapter openers, concept figures, and inline explainers, all from the methodology in this repo. No other Excalidraw generator can point at a corpus like that. A curated set (the book's argument spine plus all ten chapter openers) ships as source `.excalidraw` files in [`examples/book`](https://github.com/isatimur/excalidraw-skill-pack/tree/main/examples/book); the full 77 are live across [fromcopilottocolleague.com](https://fromcopilottocolleague.com).
 
 <p align="center">
   <a href="examples/book/01-book-argument-spine.png"><img src="examples/book/01-book-argument-spine.png" alt="Book argument spine" width="240" /></a>
@@ -133,7 +120,7 @@ This skill drew **77 diagrams** for the published technical book [*From Copilot 
 Diagrams are arguments. The shape should BE the meaning.
 
 - **Isomorphism Test:** would the structure alone communicate the concept?
-- **Evidence artifacts:** real code snippets, actual API names, concrete formats — not placeholder text.
+- **Evidence artifacts:** real code snippets, actual API names, concrete formats, not placeholder text.
 - **One accent per diagram.** Two means a competing argument; split it.
 
 Read the [full methodology](https://excalidraw-skill-pack.vercel.app/spec/theme-manifest) (it's also what the AI agent reads).
