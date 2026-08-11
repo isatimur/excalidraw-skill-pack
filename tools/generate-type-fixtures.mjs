@@ -475,11 +475,12 @@ const BUILDERS = {
   // Stations on a rectangle so every edge is pure H or V — a diamond with
   // corner-to-corner diagonals is a flywheel drawn as a star, not a loop.
   loop: () => {
-    const capture = { id: "capture", x: 200, y: 110, w: 140, h: 48 };
-    const synth = { id: "synth", x: 520, y: 110, w: 152, h: 48 };
-    const publish = { id: "publish", x: 520, y: 310, w: 152, h: 48 };
-    const review = { id: "review", x: 200, y: 310, w: 140, h: 48 };
-    const hub = { id: "hub", x: 366, y: 206, w: 140, h: 56 };
+    const capture = { id: "capture", x: 200, y: 110, w: 148, h: 48 };
+    const synth = { id: "synth", x: 520, y: 110, w: 148, h: 48 };
+    const publish = { id: "publish", x: 520, y: 310, w: 148, h: 48 };
+    const review = { id: "review", x: 200, y: 310, w: 148, h: 48 };
+    // Rectangle centre of the four equal stations — equal widths keep the hub optical.
+    const hub = { id: "hub", x: 360, y: 206, w: 148, h: 56 };
     return doc("Loop — flywheel around a hub", [
       rect(capture.id, capture.x, capture.y, capture.w, capture.h, "Capture"),
       rect(synth.id, synth.x, synth.y, synth.w, synth.h, "Synthesize"),
