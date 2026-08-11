@@ -27,18 +27,25 @@ const GLYPHS = {
     l(48, 37, 48, 46),
     r(26, 46, 44, 12),
   ],
+  // Span, not containment — one unbroken run edge to edge. Architecture already
+  // owns "dashed boundary around a cluster", so the boundary here only marks
+  // where the run crosses into production.
   "high-level": [
-    r(6, 6, 62, 9),
-    r(6, 19, 62, 9),
-    r(6, 32, 62, 9),
-    r(6, 45, 62, 9),
-    l(82, 8, 82, 46, { a: true }),
-    pg("77,44 82,55 87,44", { a: true, af: true }),
+    r(2, 26, 16, 12),
+    l(18, 32, 24, 32),
+    r(24, 26, 16, 12),
+    l(40, 32, 46, 32),
+    r(45, 18, 49, 28, { d: true }),
+    r(50, 26, 16, 12),
+    l(66, 32, 72, 32),
+    r(72, 26, 16, 12, { a: true }),
   ],
   layers: [
-    pg("48,6 84,18 48,30 12,18", { a: true }),
-    pg("48,20 84,32 48,44 12,32"),
-    pg("48,34 84,46 48,58 12,46"),
+    r(6, 8, 62, 12),
+    r(6, 26, 62, 12, { a: true }),
+    r(6, 44, 62, 12),
+    l(82, 10, 82, 44),
+    pg("77,42 82,54 87,42", { f: true }),
   ],
   nested: [r(4, 5, 88, 54), r(17, 14, 62, 36), r(31, 23, 34, 18, { a: true })],
   er: [
@@ -92,14 +99,17 @@ const GLYPHS = {
     pg("47,16 64,16 71,32 64,48 47,48 54,32"),
     pg("69,16 86,16 93,32 86,48 69,48 76,32", { a: true }),
   ],
+  // Two dashed scopes, one crossing: the cut is where a role's reach ends.
   "data-flow": [
-    l(3, 23, 93, 23, { d: true }),
-    l(3, 43, 93, 43, { d: true }),
-    pl("10,11 32,11 32,33 60,33 60,53 86,53", { a: true }),
-    dot(10, 11),
-    dot(32, 33),
-    dot(60, 53),
-    dot(86, 53, { af: true }),
+    r(2, 16, 42, 32, { d: true }),
+    r(6, 26, 15, 12, { a: true }),
+    r(25, 26, 15, 12, { a: true }),
+    l(21, 32, 25, 32),
+    r(52, 16, 42, 32, { d: true }),
+    r(56, 26, 15, 12),
+    r(75, 26, 15, 12),
+    l(71, 32, 75, 32),
+    l(44, 32, 52, 32, { a: true }),
   ],
   swimlane: [
     l(19, 3, 19, 59),
@@ -294,7 +304,7 @@ export const FAMILIES = [
     question: "what contains what",
     types: [
       ["architecture", "Architecture", "components + boundaries"],
-      ["high-level", "High-level", "end-to-end stack"],
+      ["high-level", "High-level", "end-to-end path"],
       ["layers", "Layers", "stacked abstractions"],
       ["nested", "Nested", "containment hierarchy"],
       ["er", "ER", "entities + cardinality"],

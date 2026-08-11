@@ -196,6 +196,7 @@ function dot(id, cx, cy, r, opts = {}) {
 
 // Free-standing arrow for edges that connect coordinates rather than shapes
 // (sequence messages, elbow returns), where shape binding would re-route them.
+// Points are offsets from the element origin, not steps from the previous point.
 function path(id, x, y, points, label, opts = {}) {
   return {
     type: "arrow",
@@ -346,15 +347,15 @@ const BUILDERS = {
     ]);
   },
   er: () => {
-    const user = { id: "user", x: 80, y: 140, w: 140, h: 72 };
-    const order = { id: "order", x: 320, y: 140, w: 140, h: 72 };
-    const item = { id: "item", x: 560, y: 140, w: 140, h: 72 };
+    const user = { id: "user", x: 80, y: 140, w: 150, h: 72 };
+    const order = { id: "order", x: 370, y: 140, w: 150, h: 72 };
+    const item = { id: "item", x: 660, y: 140, w: 150, h: 72 };
     return doc("ER — entities + cardinality", [
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid, email"),
       rect(order.id, order.x, order.y, order.w, order.h, "Order\nid, total"),
       rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku, qty"),
-      arrow("r1", user, order, "1:N"),
-      arrow("r2", order, item, "1:N"),
+      arrow("r1", user, order, "1:N", { labelSize: 14 }),
+      arrow("r2", order, item, "1:N", { labelSize: 14 }),
     ]);
   },
   timeline: () => {
@@ -461,11 +462,19 @@ const BUILDERS = {
       arrow("p2", s2, s3, ""),
     ]);
   },
+  // Equal widths, because tapering them says "pyramid". The one-way arrow is the
+  // claim a layer diagram exists to make: dependencies point down, never up.
   layers: () => {
     return doc("Layers — stacked abstractions", [
-      rect("l3", 120, 120, 480, 56, "Presentation"),
-      rect("l2", 140, 200, 440, 56, "Domain", { fill: "#fef3c7" }),
-      rect("l1", 160, 280, 400, 56, "Infrastructure"),
+      rect("l3", 140, 130, 460, 60, "Presentation"),
+      rect("l2", 140, 206, 460, 60, "Domain", { fill: "#fef3c7", stroke: ACCENT }),
+      rect("l1", 140, 282, 460, 60, "Infrastructure"),
+      path("dep", 648, 136, [[0, 0], [0, 200]], "", { stroke: MUTED }),
+      txt("dep-l", 668, 200, "depends on", { fontSize: 14, color: MUTED }),
+      txt("rule", 140, 358, "no upward calls: Infrastructure never imports Domain", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -505,16 +514,26 @@ const BUILDERS = {
       arrow("t2", root, right, "", { from: "bottom", to: "top" }),
     ]);
   },
+  // Solid lines are the reporting tree; the dashed one is the routing the title
+  // promises — who Product actually asks, which the tree alone never shows.
   "org-chart": () => {
     const ceo = { id: "ceo", x: 306, y: 100, w: 120, h: 48 };
     const eng = { id: "eng", x: 140, y: 210, w: 156, h: 48 };
     const prod = { id: "prod", x: 436, y: 210, w: 156, h: 48 };
+    const platform = { id: "platform", x: 140, y: 320, w: 156, h: 48 };
     return doc("Org chart — ownership + routing", [
       rect(ceo.id, ceo.x, ceo.y, ceo.w, ceo.h, "CEO"),
       rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering"),
       rect(prod.id, prod.x, prod.y, prod.w, prod.h, "Product"),
+      rect(platform.id, platform.x, platform.y, platform.w, platform.h, "Platform", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
       arrow("o1", ceo, eng, "", { from: "bottom", to: "top" }),
       arrow("o2", ceo, prod, "", { from: "bottom", to: "top" }),
+      arrow("o3", eng, platform, "", { from: "bottom", to: "top" }),
+      path("route", 514, 262, [[0, 0], [0, 82], [-198, 82]], "", { dashed: true, stroke: MUTED }),
+      txt("route-l", 336, 356, "asks for capacity", { fontSize: 13, color: MUTED }),
     ]);
   },
   venn: () => {
