@@ -4,7 +4,7 @@
   "source": "https://github.com/isatimur/excalidraw-skill-pack",
   "elements": [
     {
-      "id": "DhCsWIOgh3KvYGpQ92Gws",
+      "id": "bNmtcdPcjsxOr3hLX4GWN",
       "type": "text",
       "x": 48,
       "y": 28,
@@ -22,12 +22,12 @@
       "frameId": null,
       "index": "a0",
       "roundness": null,
-      "seed": 1135179944,
+      "seed": 1307628356,
       "version": 2,
-      "versionNonce": 307326632,
+      "versionNonce": 1288658169,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471749379,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Pyramid — ranked hierarchy",
@@ -41,12 +41,12 @@
       "lineHeight": 1.2
     },
     {
-      "id": "GNx0VjAteXQfTLhRkICHv",
-      "type": "rectangle",
-      "x": 300,
-      "y": 120,
-      "width": 120,
-      "height": 48,
+      "id": "MON8GE127Wy45QrpcLh5b",
+      "type": "line",
+      "x": 396,
+      "y": 110,
+      "width": 100,
+      "height": 0,
       "angle": 0,
       "strokeColor": "#c2410c",
       "backgroundColor": "#fef3c7",
@@ -59,27 +59,49 @@
       "frameId": null,
       "index": "a1",
       "roundness": null,
-      "seed": 1078314456,
+      "seed": 867844350,
       "version": 2,
-      "versionNonce": 146812888,
+      "versionNonce": 784968063,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "type": "text",
-          "id": "-vbeA_xg5_ABAhtiNo3r4"
-        }
-      ],
-      "updated": 1786471749379,
+      "boundElements": null,
+      "updated": 1767225600000,
       "link": null,
-      "locked": false
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          82,
+          76
+        ],
+        [
+          -74,
+          76
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null
     },
     {
-      "id": "eAL0f-Uh0B5SLP08iUBoY",
-      "type": "rectangle",
-      "x": 260,
-      "y": 200,
-      "width": 200,
-      "height": 48,
+      "id": "_jcAjpLCxt-dVQz1PKNdA",
+      "type": "line",
+      "x": 316,
+      "y": 194,
+      "width": 100,
+      "height": 0,
       "angle": 0,
       "strokeColor": "#1e3a5f",
       "backgroundColor": "#dbeafe",
@@ -92,30 +114,52 @@
       "frameId": null,
       "index": "a2",
       "roundness": null,
-      "seed": 608445352,
+      "seed": 366694802,
       "version": 2,
-      "versionNonce": 108878248,
+      "versionNonce": 694126729,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "type": "text",
-          "id": "V6gxLq45Cd39MQ3dIEI3r"
-        }
-      ],
-      "updated": 1786471749379,
+      "boundElements": null,
+      "updated": 1767225600000,
       "link": null,
-      "locked": false
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          168,
+          0
+        ],
+        [
+          248,
+          76
+        ],
+        [
+          -80,
+          76
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null
     },
     {
-      "id": "y4xM_WCvxIk9186h2fl86",
-      "type": "rectangle",
-      "x": 200,
-      "y": 280,
-      "width": 320,
-      "height": 48,
+      "id": "xjx1MsXIil49tNHbWUMu7",
+      "type": "line",
+      "x": 230,
+      "y": 278,
+      "width": 100,
+      "height": 0,
       "angle": 0,
       "strokeColor": "#1e3a5f",
-      "backgroundColor": "#dbeafe",
+      "backgroundColor": "#eef2f7",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -125,27 +169,49 @@
       "frameId": null,
       "index": "a3",
       "roundness": null,
-      "seed": 1279216344,
+      "seed": 1193798961,
       "version": 2,
-      "versionNonce": 769422552,
+      "versionNonce": 980486019,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "type": "text",
-          "id": "aJ42DFkUIZuT327psgFEa"
-        }
-      ],
-      "updated": 1786471749379,
+      "boundElements": null,
+      "updated": 1767225600000,
       "link": null,
-      "locked": false
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          340,
+          0
+        ],
+        [
+          420,
+          76
+        ],
+        [
+          -80,
+          76
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null
     },
     {
-      "id": "-vbeA_xg5_ABAhtiNo3r4",
+      "id": "_XVgtgUKaH07KBA95wVS5",
       "type": "text",
-      "x": 317.02003479003906,
-      "y": 131.5,
-      "width": 85.95993041992188,
-      "height": 25,
+      "x": 360,
+      "y": 158,
+      "width": 75,
+      "height": 19.2,
       "angle": 0,
       "strokeColor": "#c2410c",
       "backgroundColor": "transparent",
@@ -158,31 +224,31 @@
       "frameId": null,
       "index": "a4",
       "roundness": null,
-      "seed": 66315432,
-      "version": 3,
-      "versionNonce": 1632585128,
+      "seed": 926059948,
+      "version": 2,
+      "versionNonce": 424878016,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471749380,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Strategy",
-      "fontSize": 20,
-      "fontFamily": 5,
-      "textAlign": "center",
-      "verticalAlign": "middle",
-      "containerId": "GNx0VjAteXQfTLhRkICHv",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
       "originalText": "Strategy",
       "autoResize": true,
-      "lineHeight": 1.25
+      "lineHeight": 1.2
     },
     {
-      "id": "V6gxLq45Cd39MQ3dIEI3r",
+      "id": "p2rrXbxSPbTMKpDHnQNu_",
       "type": "text",
-      "x": 305.37005615234375,
-      "y": 211.5,
-      "width": 109.2598876953125,
-      "height": 25,
+      "x": 340,
+      "y": 222,
+      "width": 112.5,
+      "height": 19.2,
       "angle": 0,
       "strokeColor": "#1e3a5f",
       "backgroundColor": "transparent",
@@ -195,31 +261,31 @@
       "frameId": null,
       "index": "a5",
       "roundness": null,
-      "seed": 1214320552,
-      "version": 3,
-      "versionNonce": 309283032,
+      "seed": 448031670,
+      "version": 2,
+      "versionNonce": 128693614,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471749380,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Capabilities",
-      "fontSize": 20,
-      "fontFamily": 5,
-      "textAlign": "center",
-      "verticalAlign": "middle",
-      "containerId": "eAL0f-Uh0B5SLP08iUBoY",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
       "originalText": "Capabilities",
       "autoResize": true,
-      "lineHeight": 1.25
+      "lineHeight": 1.2
     },
     {
-      "id": "aJ42DFkUIZuT327psgFEa",
+      "id": "RjMjJ3QJ5Q_ViyQW4sBTZ",
       "type": "text",
-      "x": 288.9400634765625,
-      "y": 291.5,
-      "width": 142.119873046875,
-      "height": 25,
+      "x": 330,
+      "y": 306,
+      "width": 131.25,
+      "height": 19.2,
       "angle": 0,
       "strokeColor": "#1e3a5f",
       "backgroundColor": "transparent",
@@ -232,23 +298,23 @@
       "frameId": null,
       "index": "a6",
       "roundness": null,
-      "seed": 2079382184,
-      "version": 3,
-      "versionNonce": 94916776,
+      "seed": 1377513443,
+      "version": 2,
+      "versionNonce": 974724064,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471749380,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Infrastructure",
-      "fontSize": 20,
-      "fontFamily": 5,
-      "textAlign": "center",
-      "verticalAlign": "middle",
-      "containerId": "y4xM_WCvxIk9186h2fl86",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
       "originalText": "Infrastructure",
       "autoResize": true,
-      "lineHeight": 1.25
+      "lineHeight": 1.2
     }
   ],
   "appState": {

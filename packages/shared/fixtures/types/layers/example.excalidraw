@@ -4,7 +4,7 @@
   "source": "https://github.com/isatimur/excalidraw-skill-pack",
   "elements": [
     {
-      "id": "xEIMAZ3XUFNDTnkXl3jjt",
+      "id": "ZJx5Pfmn9uV7yelrFK0fa",
       "type": "text",
       "x": 48,
       "y": 28,
@@ -22,12 +22,12 @@
       "frameId": null,
       "index": "a0",
       "roundness": null,
-      "seed": 953750000,
+      "seed": 2063463774,
       "version": 2,
-      "versionNonce": 676419056,
+      "versionNonce": 2135460608,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Layers — stacked abstractions",
@@ -41,7 +41,7 @@
       "lineHeight": 1.2
     },
     {
-      "id": "BGePY2DCm_CyMkpZiJP7x",
+      "id": "uMhrvlIecV0u0bVhVsHbs",
       "type": "rectangle",
       "x": 120,
       "y": 120,
@@ -59,22 +59,22 @@
       "frameId": null,
       "index": "a1",
       "roundness": null,
-      "seed": 711804176,
+      "seed": 72306806,
       "version": 2,
-      "versionNonce": 1082867984,
+      "versionNonce": 1121051507,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "6y80QIA2adEuD7coEQ3ac"
+          "id": "YKupNhsS_2AtZ6JOmpseM"
         }
       ],
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false
     },
     {
-      "id": "-5Qkikf1iPqmGJNZL3mzd",
+      "id": "VUun7VZAgWSQTJ03mXlQ3",
       "type": "rectangle",
       "x": 140,
       "y": 200,
@@ -92,22 +92,22 @@
       "frameId": null,
       "index": "a2",
       "roundness": null,
-      "seed": 1908495344,
+      "seed": 242829301,
       "version": 2,
-      "versionNonce": 1368463344,
+      "versionNonce": 1436280870,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "pe78jRybqGU5fgBhjodUs"
+          "id": "ZmpzGhS4JV9Ol3TIM62A0"
         }
       ],
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false
     },
     {
-      "id": "4bTRepQqsoBLYF3bortnn",
+      "id": "2ZLcMQcJFgKm0gJOPhE3h",
       "type": "rectangle",
       "x": 160,
       "y": 280,
@@ -125,22 +125,22 @@
       "frameId": null,
       "index": "a3",
       "roundness": null,
-      "seed": 77734672,
+      "seed": 1120209360,
       "version": 2,
-      "versionNonce": 497065744,
+      "versionNonce": 508932152,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "KOCtnrdLnJyidw_s5vSFZ"
+          "id": "zuloF4t2ecKifH4z1YaTF"
         }
       ],
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false
     },
     {
-      "id": "6y80QIA2adEuD7coEQ3ac",
+      "id": "YKupNhsS_2AtZ6JOmpseM",
       "type": "text",
       "x": 297.1500473022461,
       "y": 135.5,
@@ -158,12 +158,12 @@
       "frameId": null,
       "index": "a4",
       "roundness": null,
-      "seed": 25729520,
+      "seed": 2036216493,
       "version": 3,
-      "versionNonce": 1930272752,
+      "versionNonce": 331746970,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Presentation",
@@ -171,13 +171,13 @@
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
-      "containerId": "BGePY2DCm_CyMkpZiJP7x",
+      "containerId": "uMhrvlIecV0u0bVhVsHbs",
       "originalText": "Presentation",
       "autoResize": true,
       "lineHeight": 1.25
     },
     {
-      "id": "pe78jRybqGU5fgBhjodUs",
+      "id": "ZmpzGhS4JV9Ol3TIM62A0",
       "type": "text",
       "x": 326.11002349853516,
       "y": 215.5,
@@ -195,12 +195,12 @@
       "frameId": null,
       "index": "a5",
       "roundness": null,
-      "seed": 188734448,
+      "seed": 995491698,
       "version": 3,
-      "versionNonce": 1175492368,
+      "versionNonce": 153462038,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Domain",
@@ -208,13 +208,13 @@
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
-      "containerId": "-5Qkikf1iPqmGJNZL3mzd",
+      "containerId": "VUun7VZAgWSQTJ03mXlQ3",
       "originalText": "Domain",
       "autoResize": true,
       "lineHeight": 1.25
     },
     {
-      "id": "KOCtnrdLnJyidw_s5vSFZ",
+      "id": "zuloF4t2ecKifH4z1YaTF",
       "type": "text",
       "x": 288.9400634765625,
       "y": 295.5,
@@ -232,12 +232,12 @@
       "frameId": null,
       "index": "a6",
       "roundness": null,
-      "seed": 549379568,
+      "seed": 2008838750,
       "version": 3,
-      "versionNonce": 1379148272,
+      "versionNonce": 2071786073,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1786471743811,
+      "updated": 1767225600000,
       "link": null,
       "locked": false,
       "text": "Infrastructure",
@@ -245,7 +245,7 @@
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
-      "containerId": "4bTRepQqsoBLYF3bortnn",
+      "containerId": "2ZLcMQcJFgKm0gJOPhE3h",
       "originalText": "Infrastructure",
       "autoResize": true,
       "lineHeight": 1.25

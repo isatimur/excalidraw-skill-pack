@@ -173,6 +173,20 @@ function line(id, x, y, points, opts = {}) {
   };
 }
 
+// A run of absolute points. Closed by default, since Excalidraw only fills a
+// line whose last point returns to its first; pass `open` for a polyline.
+function poly(id, pts, opts = {}) {
+  const [ox, oy] = pts[0];
+  const run = opts.open ? pts : [...pts, pts[0]];
+  return line(
+    id,
+    ox,
+    oy,
+    run.map(([x, y]) => [x - ox, y - oy]),
+    opts
+  );
+}
+
 function dot(id, cx, cy, r, opts = {}) {
   return ellipse(id, cx - r, cy - r, r * 2, r * 2, "", {
     fill: opts.fill ?? INK,
@@ -205,6 +219,67 @@ function doc(title, elements) {
       ...elements,
     ],
   };
+}
+
+const ID_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
+const FIXED_UPDATED = Date.UTC(2026, 0, 1);
+
+function fnv1a(text) {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < text.length; i += 1) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
+}
+
+function mulberry32(seed) {
+  let state = seed >>> 0;
+  return () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Hydration mints fresh ids, seeds and a wall-clock `updated` on every run, so
+// re-running rewrote all 29 files whether or not any diagram changed. Deriving
+// them from the type name keeps the diff to the diagrams that actually moved.
+function stabilize(type, document) {
+  const rand = mulberry32(fnv1a(type));
+  const randInt = () => Math.floor(rand() * 2147483648);
+  const ids = new Map();
+  const idFor = (id) => {
+    if (typeof id !== "string") return id;
+    if (!ids.has(id)) {
+      ids.set(
+        id,
+        Array.from({ length: 21 }, () => ID_ALPHABET[Math.floor(rand() * ID_ALPHABET.length)]).join("")
+      );
+    }
+    return ids.get(id);
+  };
+
+  for (const el of document.elements) idFor(el.id);
+
+  for (const el of document.elements) {
+    el.id = idFor(el.id);
+    el.seed = randInt();
+    el.versionNonce = randInt();
+    el.updated = FIXED_UPDATED;
+    if (el.containerId) el.containerId = idFor(el.containerId);
+    if (el.frameId) el.frameId = idFor(el.frameId);
+    if (Array.isArray(el.groupIds)) el.groupIds = el.groupIds.map(idFor);
+    if (Array.isArray(el.boundElements)) {
+      el.boundElements = el.boundElements.map((bound) => ({ ...bound, id: idFor(bound.id) }));
+    }
+    for (const key of ["startBinding", "endBinding"]) {
+      if (el[key]?.elementId) el[key] = { ...el[key], elementId: idFor(el[key].elementId) };
+    }
+  }
+  return document;
 }
 
 const BUILDERS = {
@@ -308,6 +383,10 @@ const BUILDERS = {
       rect("p1", 140, 160, 200, 34, "Design"),
       rect("p2", 270, 220, 250, 34, "Build", { fill: "#fef3c7" }),
       rect("p3", 450, 280, 190, 34, "Ship", { fill: "#dcfce7", stroke: "#15803d" }),
+      // Without a now-line a Gantt only says what the plan is, never whether it holds.
+      line("today", 400, 132, [[0, 0], [0, 196]], { stroke: ACCENT, strokeWidth: 2 }),
+      txt("today-l", 372, 112, "today", { fontSize: 13, color: ACCENT }),
+      txt("slip", 548, 228, "Build runs past\nthe Ship start", { fontSize: 13, color: MUTED }),
     ]);
   },
   swimlane: () => {
@@ -333,18 +412,22 @@ const BUILDERS = {
     return doc("Quadrant — two-axis positioning", [
       line("y-axis", 380, 120, [[0, 0], [0, 280]], { stroke: INK }),
       line("x-axis", 140, 260, [[0, 0], [480, 0]], { stroke: INK }),
-      txt("y-label", 344, 96, "Impact", { fontSize: 14, color: MUTED }),
-      txt("x-label", 634, 252, "Effort", { fontSize: 14, color: MUTED }),
-      txt("q-tl", 152, 132, "do now", { fontSize: 12, color: MUTED }),
-      txt("q-tr", 540, 132, "plan for", { fontSize: 12, color: MUTED }),
-      txt("q-bl", 152, 374, "fill-in", { fontSize: 12, color: MUTED }),
-      txt("q-br", 540, 374, "drop", { fontSize: 12, color: MUTED }),
-      dot("p1", 260, 190, 7),
-      txt("p1-l", 276, 180, "Themes", { fontSize: 14 }),
-      dot("p2", 470, 160, 7, { fill: ACCENT, stroke: ACCENT }),
-      txt("p2-l", 486, 150, "MCP app", { fontSize: 14, color: ACCENT }),
-      dot("p3", 300, 320, 7),
-      txt("p3-l", 316, 310, "Docs polish", { fontSize: 14 }),
+      txt("y-label", 344, 92, "Impact", { fontSize: 15, color: MUTED }),
+      txt("x-label", 634, 250, "Effort", { fontSize: 15, color: MUTED }),
+      txt("q-tl", 152, 130, "do now", { fontSize: 14, color: MUTED }),
+      txt("q-tr", 528, 130, "plan for", { fontSize: 14, color: MUTED }),
+      txt("q-bl", 152, 376, "fill-in", { fontSize: 14, color: MUTED }),
+      txt("q-br", 566, 376, "drop", { fontSize: 14, color: MUTED }),
+      dot("p1", 258, 186, 7),
+      txt("p1-l", 274, 176, "Themes", { fontSize: 15 }),
+      dot("p2", 470, 158, 7, { fill: ACCENT, stroke: ACCENT }),
+      txt("p2-l", 486, 148, "MCP app", { fontSize: 15, color: ACCENT }),
+      dot("p3", 244, 320, 7),
+      txt("p3-l", 260, 310, "Docs polish", { fontSize: 15 }),
+      // The empty quadrant is the one worth filling: naming what to drop is the
+      // decision a positioning chart exists to force.
+      dot("p4", 470, 330, 7, { fill: MUTED, stroke: MUTED }),
+      txt("p4-l", 486, 320, "Slide export", { fontSize: 15, color: MUTED }),
     ]);
   },
   // A flywheel has to close: the fourth arrow returning to Capture is the whole point.
@@ -445,36 +528,90 @@ const BUILDERS = {
       txt("overlap", 300, 364, "ship it twice", { fontSize: 14, color: ACCENT }),
     ]);
   },
+  // Tiers are trapezoids, not stacked bars: the widening is what says the base
+  // carries everything above it.
   pyramid: () => {
+    const apex = 400;
+    const tier = (id, yTop, yBottom, halfTop, halfBottom, opts) =>
+      poly(
+        id,
+        [
+          [apex - halfTop, yTop],
+          [apex + halfTop, yTop],
+          [apex + halfBottom, yBottom],
+          [apex - halfBottom, yBottom],
+        ],
+        opts
+      );
     return doc("Pyramid — ranked hierarchy", [
-      rect("top", 300, 120, 120, 48, "Strategy", { fill: "#fef3c7", stroke: ACCENT }),
-      rect("mid", 260, 200, 200, 48, "Capabilities"),
-      rect("base", 200, 280, 320, 48, "Infrastructure"),
+      tier("t3", 110, 186, 4, 78, { stroke: ACCENT, fill: "#fef3c7" }),
+      tier("t2", 194, 270, 84, 164, { stroke: INK, fill: FILL }),
+      tier("t1", 278, 354, 170, 250, { stroke: INK, fill: "#eef2f7" }),
+      txt("t3-l", 360, 158, "Strategy", { fontSize: 16, color: ACCENT }),
+      txt("t2-l", 340, 222, "Capabilities", { fontSize: 16 }),
+      txt("t1-l", 330, 306, "Infrastructure", { fontSize: 16 }),
     ]);
   },
   evidence: () => {
+    const claim = { id: "claim", x: 80, y: 140, w: 200, h: 72 };
+    const proof = { id: "proof", x: 440, y: 130, w: 280, h: 92 };
     return doc("Evidence — proof artifact beside claim", [
-      rect("claim", 80, 140, 200, 72, "Claim:\nP99 < 200ms"),
-      rect("proof", 360, 130, 280, 92, '{\n  "metric": "p99",\n  "value": 142\n}', { fill: PAPER, stroke: MUTED }),
-      arrow("e1", { id: "proof", x: 360, y: 130, w: 280, h: 92 }, { id: "claim", x: 80, y: 140, w: 200, h: 72 }, "proves"),
+      rect(claim.id, claim.x, claim.y, claim.w, claim.h, "Claim:\nP99 < 200ms"),
+      rect(proof.id, proof.x, proof.y, proof.w, proof.h, '{\n  "metric": "p99",\n  "value": 142\n}', {
+        fill: PAPER,
+        stroke: MUTED,
+      }),
+      txt("proof-src", 440, 106, "load test, 2026-02-14", { fontSize: 13, color: MUTED }),
+      arrow("e1", proof, claim, "proves"),
     ]);
   },
+  // One column per option, one row per question asked of both — a contrast only
+  // reads as an argument when the same question is put to each side.
   comparison: () => {
+    const rows = [
+      { id: "edit", ask: "Edit a box", before: "re-run the exporter", after: "drag it in Excalidraw" },
+      { id: "review", ask: "Review a change", before: "eyeball two PNGs", after: "diff the source" },
+      { id: "rebrand", ask: "Re-theme", before: "recolour by hand", after: "pass --theme dark" },
+    ];
+    const cellW = 250;
     return doc("Comparison — before / after contrast", [
-      txt("before", 100, 120, "Before: static export", { fontSize: 16, color: MUTED }),
-      txt("after", 400, 120, "After: editable loop", { fontSize: 16, color: ACCENT }),
-      rect("b1", 80, 160, 240, 120, "HTML snapshot"),
-      rect("a1", 380, 160, 240, 120, ".excalidraw + PNG", { fill: "#dcfce7", stroke: "#15803d" }),
+      txt("h-before", 250, 118, "Static export", { fontSize: 16, color: MUTED }),
+      txt("h-after", 540, 118, "Editable source", { fontSize: 16, color: "#15803d" }),
+      line("h-rule", 100, 146, [[0, 0], [700, 0]], { strokeWidth: 1, stroke: GRID }),
+      ...rows.flatMap((row, i) => {
+        const y = 166 + i * 74;
+        return [
+          txt(`${row.id}-ask`, 100, y + 16, row.ask, { fontSize: 14, color: MUTED }),
+          rect(`${row.id}-b`, 250, y, cellW, 52, row.before, { labelSize: 15, fill: "#f1f5f9" }),
+          rect(`${row.id}-a`, 530, y, cellW, 52, row.after, {
+            labelSize: 15,
+            fill: "#dcfce7",
+            stroke: "#15803d",
+          }),
+        ];
+      }),
     ]);
   },
+  // The boundary earns its keep by leaving something out: browser and CDN sit
+  // outside the cluster, which is the whole reason to draw the cluster.
   "high-level": () => {
+    const browser = { id: "browser", x: 60, y: 208, w: 132, h: 48 };
+    const cdn = { id: "cdn", x: 240, y: 208, w: 132, h: 48 };
+    const app = { id: "app", x: 460, y: 208, w: 132, h: 48 };
+    const db = { id: "db", x: 660, y: 160, w: 132, h: 48 };
+    const cache = { id: "cache", x: 660, y: 262, w: 132, h: 48 };
     return doc("High-level — end-to-end on one cluster", [
-      zone("cluster", 80, 100, 560, 220, "Production cluster"),
-      rect("edge", 120, 140, 100, 48, "CDN"),
-      rect("app", 280, 140, 100, 48, "App"),
-      rect("data", 440, 140, 100, 48, "DB"),
-      arrow("h1", { id: "edge", x: 120, y: 140, w: 100, h: 48 }, { id: "app", x: 280, y: 140, w: 100, h: 48 }, ""),
-      arrow("h2", { id: "app", x: 280, y: 140, w: 100, h: 48 }, { id: "data", x: 440, y: 140, w: 100, h: 48 }, ""),
+      zone("cluster", 420, 120, 412, 232, ""),
+      txt("cluster-l", 436, 130, "Production cluster", { fontSize: 14, color: MUTED }),
+      rect(browser.id, browser.x, browser.y, browser.w, browser.h, "Browser", { fill: PAPER, stroke: MUTED }),
+      rect(cdn.id, cdn.x, cdn.y, cdn.w, cdn.h, "CDN", { fill: PAPER, stroke: MUTED }),
+      rect(app.id, app.x, app.y, app.w, app.h, "App"),
+      rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
+      rect(cache.id, cache.x, cache.y, cache.w, cache.h, "Redis"),
+      arrow("hl1", browser, cdn, ""),
+      arrow("hl2", cdn, app, ""),
+      arrow("hl3", app, db, ""),
+      arrow("hl4", app, cache, ""),
     ]);
   },
   "it-state": () => {
@@ -493,14 +630,24 @@ const BUILDERS = {
       arrow("i3", esb, saas, "REST"),
     ]);
   },
+  // Scoping is the argument: the same pipeline, cut where one role's reach ends.
   "data-flow": () => {
+    const ingest = { id: "ingest", x: 90, y: 208, w: 132, h: 48 };
+    const stream = { id: "stream", x: 268, y: 208, w: 132, h: 48 };
+    const warehouse = { id: "warehouse", x: 566, y: 208, w: 148, h: 48 };
+    const dash = { id: "dash", x: 766, y: 208, w: 148, h: 48 };
     return doc("Data flow — role-scoped pipeline", [
-      rect("ingest", 80, 160, 100, 48, "Ingest"),
-      rect("stream", 240, 160, 100, 48, "Stream"),
-      rect("serve", 400, 160, 100, 48, "Serve"),
-      txt("role", 80, 120, "Role: analytics engineer", { fontSize: 13, color: MUTED }),
-      arrow("d1", { id: "ingest", x: 80, y: 160, w: 100, h: 48 }, { id: "stream", x: 240, y: 160, w: 100, h: 48 }, ""),
-      arrow("d2", { id: "stream", x: 240, y: 160, w: 100, h: 48 }, { id: "serve", x: 400, y: 160, w: 100, h: 48 }, ""),
+      zone("raw", 66, 168, 358, 128, ""),
+      txt("raw-l", 82, 178, "service accounts only — raw PII", { fontSize: 13, color: ACCENT }),
+      zone("scoped", 536, 168, 400, 128, ""),
+      txt("scoped-l", 552, 178, "analytics engineer can read", { fontSize: 13, color: MUTED }),
+      rect(ingest.id, ingest.x, ingest.y, ingest.w, ingest.h, "Ingest", { fill: "#fed7aa", stroke: ACCENT }),
+      rect(stream.id, stream.x, stream.y, stream.w, stream.h, "Stream", { fill: "#fed7aa", stroke: ACCENT }),
+      rect(warehouse.id, warehouse.x, warehouse.y, warehouse.w, warehouse.h, "Warehouse"),
+      rect(dash.id, dash.x, dash.y, dash.w, dash.h, "Dashboards"),
+      arrow("df1", ingest, stream, ""),
+      arrow("df2", stream, warehouse, "masked"),
+      arrow("df3", warehouse, dash, ""),
     ]);
   },
   "dp-integration": () => {
@@ -542,38 +689,61 @@ const BUILDERS = {
     ]);
   },
   bar: () => {
-    const bar = (id, x, top, label, accent) => [
-      rect(id, x, top, 60, 320 - top, "", accent ? { fill: ACCENT, stroke: ACCENT } : { fill: FILL }),
-      txt(`${id}-l`, x + 16, 332, label, { fontSize: 14, color: MUTED }),
+    // A bar without a scale only shows which is taller. Ticks make it a number.
+    const baseline = 320;
+    const perUnit = 1.6;
+    const bar = (id, x, value, label, accent) => {
+      const top = baseline - value * perUnit;
+      return [
+        rect(id, x, top, 60, value * perUnit, "", accent ? { fill: ACCENT, stroke: ACCENT } : { fill: FILL }),
+        txt(`${id}-l`, x + 16, baseline + 12, label, { fontSize: 14, color: MUTED }),
+        txt(`${id}-v`, x + (value >= 100 ? 8 : 14), top - 22, `${value}`, {
+          fontSize: 14,
+          color: accent ? ACCENT : MUTED,
+        }),
+      ];
+    };
+    const tick = (id, value) => [
+      line(id, 140, baseline - value * perUnit, [[0, 0], [440, 0]], { strokeWidth: 1, stroke: GRID }),
+      txt(`${id}-l`, 96, baseline - value * perUnit - 8, `${value}`, { fontSize: 13, color: MUTED }),
     ];
     return doc("Bar chart — categorical comparison", [
+      ...tick("t50", 50),
+      ...tick("t100", 100),
       line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
-      line("x-axis", 140, 320, [[0, 0], [440, 0]], { stroke: INK }),
-      ...bar("b1", 180, 250, "Q1"),
-      ...bar("b2", 280, 216, "Q2"),
-      ...bar("b3", 380, 232, "Q3"),
-      ...bar("b4", 480, 158, "Q4", true),
-      txt("callout", 466, 128, "record quarter", { fontSize: 14, color: ACCENT }),
+      line("x-axis", 140, baseline, [[0, 0], [440, 0]], { stroke: INK }),
+      txt("y-unit", 96, 108, "signups (k)", { fontSize: 13, color: MUTED }),
+      ...bar("b1", 180, 44, "Q1"),
+      ...bar("b2", 280, 65, "Q2"),
+      ...bar("b3", 380, 55, "Q3"),
+      ...bar("b4", 480, 101, "Q4", true),
+      txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
     ]);
   },
   line: () => {
-    const series = [
-      [0, 0],
-      [90, 34],
-      [180, 22],
-      [270, 74],
-      [360, 96],
-      [440, 128],
+    const baseline = 320;
+    const perMs = 0.4;
+    const y = (ms) => baseline - ms * perMs;
+    const readings = [400, 345, 315, 215, 168, 142];
+    const at = (i) => [160 + i * 92, y(readings[i])];
+    const tick = (id, ms) => [
+      line(id, 140, y(ms), [[0, 0], [480, 0]], { strokeWidth: 1, stroke: GRID }),
+      txt(`${id}-l`, 74, y(ms) - 8, `${ms}ms`, { fontSize: 13, color: MUTED }),
     ];
     return doc("Line chart — trend over time", [
-      line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
-      line("x-axis", 140, 320, [[0, 0], [460, 0]], { stroke: INK }),
-      txt("y-label", 88, 122, "p99", { fontSize: 13, color: MUTED }),
-      txt("x0", 132, 332, "2024", { fontSize: 13, color: MUTED }),
-      txt("x1", 556, 332, "2026", { fontSize: 13, color: MUTED }),
-      line("series", 160, 160, series, { stroke: ACCENT }),
-      ...series.map(([dx, dy], i) => dot(`s${i}`, 160 + dx, 160 + dy, 5, { fill: ACCENT, stroke: ACCENT })),
-      txt("callout", 428, 258, "142ms", { fontSize: 15, color: ACCENT }),
+      ...tick("t200", 200),
+      ...tick("t400", 400),
+      line("y-axis", 140, 140, [[0, 0], [0, 180]], { stroke: INK }),
+      line("x-axis", 140, baseline, [[0, 0], [480, 0]], { stroke: INK }),
+      txt("y-unit", 74, 116, "p99 latency", { fontSize: 13, color: MUTED }),
+      txt("x0", 146, baseline + 12, "2024", { fontSize: 13, color: MUTED }),
+      txt("x1", 570, baseline + 12, "2026", { fontSize: 13, color: MUTED }),
+      poly("series", readings.map((_, i) => at(i)), { stroke: ACCENT, open: true }),
+      ...readings.map((_, i) => {
+        const [px, py] = at(i);
+        return dot(`s${i}`, px, py, 5, { fill: ACCENT, stroke: ACCENT });
+      }),
+      txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
     ]);
   },
   scatter: () => {
@@ -610,11 +780,7 @@ const BUILDERS = {
       const [ox, oy] = pts[0];
       return { origin: [ox, oy], points: [...pts, pts[0]].map(([x, y]) => [x - ox, y - oy]) };
     };
-    const hexagon = (id, radii, opts) => {
-      const pts = radii.map((r, i) => vertex(r, i));
-      const [ox, oy] = pts[0];
-      return line(id, ox, oy, [...pts, pts[0]].map(([x, y]) => [x - ox, y - oy]), opts);
-    };
+    const hexagon = (id, radii, opts) => poly(id, radii.map((r, i) => vertex(r, i)), opts);
     const even = (r) => [r, r, r, r, r, r];
     const now = [112, 94, 60, 100, 52, 80];
     const before = [74, 66, 78, 58, 44, 62];
@@ -656,7 +822,7 @@ async function main() {
     await mkdir(dir, { recursive: true });
     const skeleton = JSON.stringify(BUILDERS[type]());
     const full = await hydrateSkeleton(skeleton);
-    const json = JSON.stringify(JSON.parse(full), null, 2) + "\n";
+    const json = JSON.stringify(stabilize(type, JSON.parse(full)), null, 2) + "\n";
     await writeFile(join(dir, "example.excalidraw"), json);
     console.log(`wrote ${type}/example.excalidraw`);
   }
