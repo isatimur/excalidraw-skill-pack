@@ -1530,6 +1530,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Do-now quadrant stamp — clear of plan-Q3 captions.
+      rect("do-now", 80, 60, 100, 28, "Do now", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -2088,6 +2094,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Redis engine stamp under Cache.
+      rect("redis", 670, 440, 100, 28, "Redis 7", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2579,6 +2591,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Design→Platform weekly ask stamp.
+      rect("weekly", 680, 440, 140, 28, "Design weekly", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2691,6 +2709,12 @@ const BUILDERS = {
       rect("ship2", 360, 520, 120, 28, "ship ×2", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Jaccard stamp — overlap / union.
+      rect("jacc", 780, 500, 120, 28, "J≈0.19", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3572,6 +3596,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Page-on-lag ownership stamp.
+      rect("page-lag", 580, 460, 140, 28, "page on lag", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -3882,6 +3912,12 @@ const BUILDERS = {
       rect("paid-chip", 700, 328, 110, 28, "paid 41%", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Prior-year YTD stamp.
+      rect("prior-chip", 700, 364, 120, 28, "prior 216k", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
