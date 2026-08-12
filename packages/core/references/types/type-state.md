@@ -3,16 +3,16 @@
 **Best for:** allowed modes, lifecycle, workflow status.
 
 ## Layout conventions
-States as rectangles; transitions labeled with the event. Highlight terminal/live states with theme success fill.
+States as rectangles; transitions labeled with the event. Entry dot into the first state. Highlight terminal/live with theme success fill.
 
 ## Excalidraw pattern
-Skeleton rectangles + labeled arrows. No container labels on states unless the state IS a zone.
+Skeleton rectangles + free labels on transitions. Rejection is an orthogonal under-loop, not a diagonal.
 
 ## Connectors & routing
-Prefer left→right progression for readability.
+Prefer left→right progression; ban illegal shortcuts in a caption.
 
 ## Anti-patterns
-States without incoming or outgoing edges unless truly terminal.
+States without incoming or outgoing edges unless truly terminal; Draft→Live without Review.
 
 ## Budget
 ≤7 states.

@@ -3,10 +3,10 @@
 **Best for:** phases, parallel workstreams, delivery windows.
 
 ## Layout conventions
-Time on X; stacked bars for phases. Offset bars to show overlap. Mark today with an accent vertical rule.
+Time on X; stacked bars for phases. Offset bars to show overlap. Mark today with an accent vertical rule. Owner labels left of each bar.
 
 ## Excalidraw pattern
-Rectangles as bars; free-floating phase labels; dashed period gridlines.
+Rectangles as bars with concrete deliverables; free-floating owner + period labels; dashed week gridlines.
 
 ## Connectors & routing
 Align bar baselines to a shared timeline row.

@@ -3,16 +3,16 @@
 **Best for:** containment hierarchy, scope boundaries.
 
 ## Layout conventions
-Outer zone contains inner zones/components. Labels on zone boundaries.
+Outer zone contains inner zones/components. Free zone labels at top-left. Put an actor outside the outer zone.
 
 ## Excalidraw pattern
-Dashed zone rectangles; leaf components as solid rectangles inside.
+Dashed zone rectangles; leaf components as solid rectangles inside. Gateway as the edge of the platform.
 
 ## Connectors & routing
-No arrows unless crossing boundary matters.
+Arrows only when crossing a boundary matters; free protocol labels above shafts.
 
 ## Anti-patterns
-Deep nesting >3 levels (split views).
+Deep nesting >3 levels (split views); a Platform that contains the Client.
 
 ## Budget
 ≤3 containment levels.

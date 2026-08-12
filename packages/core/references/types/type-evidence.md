@@ -3,16 +3,16 @@
 **Best for:** proof beside claims, API payloads, metric cards.
 
 ## Layout conventions
-Claim box opposite evidence artifact. Arrow labeled `proves` or `shows`.
+Claim box opposite evidence artifact. Free `proves` label. Gate caption under the claim.
 
 ## Excalidraw pattern
-Evidence as monospace-friendly text block or JSON snippet in a rectangle.
+Evidence as a dated monospace JSON/snippet rectangle with source line above.
 
 ## Connectors & routing
 Evidence points at claim, not decorative placement.
 
 ## Anti-patterns
-Placeholder lorem in evidence blocks.
+Placeholder lorem; a single metric with no suite, RPS, or pass mark.
 
 ## Budget
 1–3 claims per diagram.

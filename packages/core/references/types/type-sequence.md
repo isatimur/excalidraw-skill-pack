@@ -6,10 +6,10 @@
 Participants as top-row boxes; time flows downward. Group related messages.
 
 ## Excalidraw pattern
-Skeleton rectangles for lifelines. Free-floating text for message labels placed between participants.
+Skeleton rectangles for lifelines. Free-floating text for message labels placed ABOVE the shaft — bound labels collide at Cascadia width.
 
 ## Connectors & routing
-Horizontal arrows for requests; return messages offset vertically.
+Horizontal arrows for requests; return messages offset vertically and dashed.
 
 ## Anti-patterns
 Mixing architecture boxes with sequence timing.

@@ -3,16 +3,16 @@
 **Best for:** recurring systems, feedback loops, compound engines.
 
 ## Layout conventions
-Hub in center (accent). Stations around the hub. Clockwise flow when possible.
+Hub in center (accent). Four equal stations on a rectangle. Clockwise orthogonal edges.
 
 ## Excalidraw pattern
-Central rectangle as memory/hub; outer stations as rectangles; curved or orthogonal return paths.
+Central memory/hub; outer stations; free edge labels; dashed spokes into the hub.
 
 ## Connectors & routing
-Dashed arrows for write-backs; solid for primary flow.
+Pure H/V arrows between stations; never a diagonal star into the hub.
 
 ## Anti-patterns
-Bidirectional arrows without semantic difference.
+Bidirectional arrows without semantic difference; unlabeled flywheel edges.
 
 ## Budget
 ≤6 stations + hub.

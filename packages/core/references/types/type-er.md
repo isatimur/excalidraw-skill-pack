@@ -3,16 +3,16 @@
 **Best for:** entities, relationships, cardinality.
 
 ## Layout conventions
-Entities as rectangles with key fields in bound labels. Relationships as labeled arrows.
+Entities as rectangles with key fields in bound labels. Crow's-foot marks on the N side; free `1:N` labels above the shaft.
 
 ## Excalidraw pattern
-Skeleton rectangles; cardinality on arrow labels (`1:N`, `N:M`).
+Skeleton rectangles; `endArrowhead: null` so tips never paint over the feet.
 
 ## Connectors & routing
 Minimize crossing; stack related entities.
 
 ## Anti-patterns
-Full field lists when a table would be faster.
+Full field lists when a table would be faster; default arrowheads covering crow's feet.
 
 ## Budget
 ≤6 entities.

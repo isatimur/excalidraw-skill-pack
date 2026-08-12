@@ -3,16 +3,16 @@
 **Best for:** multi-step workflows, ETL stages, pipelines.
 
 ## Layout conventions
-Strict left→right or top→down sequence of transforms.
+Strict left→right transforms with concrete artifacts per stage. Accent the judgment stage.
 
 ## Excalidraw pattern
-Skeleton rectangles chained by arrows.
+Skeleton rectangles chained by arrows; free handoff labels; optional DQ quarantine branch.
 
 ## Connectors & routing
-One arrow per handoff; label only non-obvious transforms.
+One arrow per handoff; orthogonal drop for failure paths.
 
 ## Anti-patterns
-Checklist steps redrawn as boxes.
+Checklist steps redrawn as bare verbs with no artifact.
 
 ## Budget
 ≤7 stages.

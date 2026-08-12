@@ -328,16 +328,19 @@ const BUILDERS = {
   // bindings during conversion, and an arrow that names a later element gets skewed.
   flowchart: () => {
     // Exit the diamond on the sides, then drop — never a diagonal through air.
-    const start = { id: "start", x: 310, y: 100, w: 120, h: 48 };
-    const decide = { id: "decide", x: 290, y: 190, w: 160, h: 80 };
-    const yes = { id: "yes", x: 120, y: 360, w: 140, h: 56 };
-    const no = { id: "no", x: 480, y: 360, w: 140, h: 56 };
+    const start = { id: "start", x: 310, y: 90, w: 120, h: 48 };
+    const decide = { id: "decide", x: 290, y: 180, w: 160, h: 80 };
+    const yes = { id: "yes", x: 100, y: 360, w: 160, h: 64 };
+    const no = { id: "no", x: 500, y: 360, w: 160, h: 64 };
     const dCy = decide.y + decide.h / 2;
     return doc("Flowchart — branching decisions", [
-      ellipse(start.id, start.x, start.y, start.w, start.h, "Trigger"),
-      diamond(decide.id, decide.x, decide.y, decide.w, decide.h, "Valid?"),
-      rect(yes.id, yes.x, yes.y, yes.w, yes.h, "Process"),
-      rect(no.id, no.x, no.y, no.w, no.h, "Reject", { fill: "#fed7aa", stroke: ACCENT }),
+      ellipse(start.id, start.x, start.y, start.w, start.h, "PR opened"),
+      diamond(decide.id, decide.x, decide.y, decide.w, decide.h, "audit\npass?"),
+      rect(yes.id, yes.x, yes.y, yes.w, yes.h, "Merge\n+ deploy"),
+      rect(no.id, no.x, no.y, no.w, no.h, "Fix labels\nre-render", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+      }),
       arrow("a0", start, decide, "", { from: "bottom", to: "top" }),
       elbow("a1", [
         [decide.x, dCy],
@@ -350,7 +353,11 @@ const BUILDERS = {
         [no.x + no.w / 2, dCy],
         [no.x + no.w / 2, no.y - 8],
       ]),
-      txt("a2-l", no.x + no.w / 2 - 10, dCy - 22, "no", { fontSize: 14, color: MUTED }),
+      txt("a2-l", no.x + no.w / 2 - 10, dCy - 22, "no", { fontSize: 14, color: ACCENT }),
+      txt("rule", 100, 450, "taste gate blocks merge until the PNG reads clean", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   sequence: () => {
@@ -980,17 +987,27 @@ const BUILDERS = {
     const esb = { id: "esb", x: 440, y: 185, w: 150, h: 64 };
     const saas = { id: "saas", x: 780, y: 185, w: 150, h: 64 };
     return doc("IT current-state — legacy landscape", [
-      rect(mainframe.id, mainframe.x, mainframe.y, mainframe.w, mainframe.h, "Mainframe"),
-      rect(as400.id, as400.x, as400.y, as400.w, as400.h, "AS/400"),
+      rect(mainframe.id, mainframe.x, mainframe.y, mainframe.w, mainframe.h, "Mainframe\nCOBOL jobs"),
+      rect(as400.id, as400.x, as400.y, as400.w, as400.h, "AS/400\ninventory"),
       // Everything funnels through one bus: that is the finding, so it carries the accent.
-      rect(esb.id, esb.x, esb.y, esb.w, esb.h, "ESB", { fill: "#fed7aa", stroke: ACCENT }),
-      rect(saas.id, saas.x, saas.y, saas.w, saas.h, "SaaS", { fill: "#dcfce7", stroke: "#15803d" }),
+      rect(esb.id, esb.x, esb.y, esb.w, esb.h, "ESB\nsingle throat", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+      }),
+      rect(saas.id, saas.x, saas.y, saas.w, saas.h, "SaaS CRM", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+      }),
       arrow("i1", mainframe, esb, ""),
       arrow("i2", as400, esb, ""),
       arrow("i3", esb, saas, ""),
       txt("i1-l", 280, 140, "nightly batch", { fontSize: 13, color: MUTED }),
       txt("i2-l", 300, 268, "flat file", { fontSize: 13, color: MUTED }),
       txt("i3-l", 630, 164, "REST", { fontSize: 13, color: MUTED }),
+      txt("find", 80, 330, "finding: every modernization path still hits the ESB", {
+        fontSize: 13,
+        color: ACCENT,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
