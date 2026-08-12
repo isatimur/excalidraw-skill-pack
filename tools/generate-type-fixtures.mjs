@@ -300,6 +300,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("qdepth", 690, 300, "depth < 100", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -1515,6 +1516,10 @@ const BUILDERS = {
         })
       ),
       txt("hist-l", 460, 420, "last 4 runs p99", { fontSize: 11, color: MUTED }),
+      txt("budget-e", 60, 382, "budget: fail the PR if any run ≥ 200", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
