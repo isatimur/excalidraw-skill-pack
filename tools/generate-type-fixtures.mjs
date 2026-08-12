@@ -685,6 +685,13 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Decision gate: Audit doesn't start until MCP green for 2 releases.
+      diamond("gate-d", 580, 100, 48, 40, ""),
+      txt("gate-d-l", 568, 92, "go?", { fontSize: 11, color: ACCENT }),
+      txt("gate-rule", 120, axisY + 142, "Audit starts only after 2 green MCP releases", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   gantt: () => {
@@ -1166,6 +1173,8 @@ const BUILDERS = {
       txt("ttl", 670, 288, "TTL 5m", { fontSize: 11, color: ACCENT }),
       txt("rps", 220, 248, "~2.4k RPS", { fontSize: 11, color: MUTED }),
       txt("hit", 670, 176, "hit 93%", { fontSize: 11, color: ACCENT }),
+      txt("q-n", 220, 340, "queue depth < 40", { fontSize: 11, color: MUTED }),
+      txt("warm-pct", 360, 340, "warm fills 7% of SETs", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -1988,6 +1997,9 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("mask", 300, 100, "orders_pii masked at query", { fontSize: 11, color: MUTED }),
+      txt("cell-n", 600, 100, "12 cells · 5 deny", { fontSize: 11, color: MUTED }),
+      txt("eng-scope", 780, 238, "Eng write: PII only", { fontSize: 11, color: ACCENT }),
     ]);
   },
   bar: () => {
@@ -2162,6 +2174,16 @@ const BUILDERS = {
       txt("alert-l", 630, y(180) - 8, "alert 180", { fontSize: 11, color: MUTED }),
       txt("end-v", at(5)[0] - 10, at(5)[1] - 16, "142", { fontSize: 12, color: ACCENT }),
       txt("under", 520, y(142) + 28, "under SLA", { fontSize: 11, color: ACCENT }),
+      // Hold span on R5–R6: the win is staying under, not one lucky reading.
+      line("hold-h", at(4)[0], y(190), [[0, 0], [at(5)[0] - at(4)[0], 0]], {
+        stroke: ACCENT,
+        strokeWidth: 1,
+      }),
+      txt("hold-span", at(4)[0] + 8, y(190) - 16, "hold", { fontSize: 11, color: ACCENT }),
+      txt("rel-cad", 400, baseline + 120, "release cadence: ~3wk", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   scatter: () => {
