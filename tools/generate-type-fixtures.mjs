@@ -306,6 +306,18 @@ const BUILDERS = {
         [no.x + no.w / 2, no.y - 8],
       ]),
       txt("a2-l", no.x + no.w / 2 - 10, dCy - 22, "no", { fontSize: 14, color: ACCENT }),
+      // Fix → re-audit: the taste gate is a loop, not a dead-end reject.
+      elbow(
+        "retry",
+        [
+          [no.x + no.w + 8, no.y + no.h / 2],
+          [720, no.y + no.h / 2],
+          [720, dCy],
+          [decide.x + decide.w + 8, dCy],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("retry-l", 680, 300, "again", { fontSize: 13, color: ACCENT }),
       txt("rule", 100, 450, "taste gate blocks merge until the PNG reads clean", {
         fontSize: 13,
         color: MUTED,
