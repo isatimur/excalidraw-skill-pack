@@ -436,6 +436,16 @@ const BUILDERS = {
       { id: "e4", x: 680, label: "Audit", sub: "taste gate", accent: false },
     ];
     const tick = (id, x) => line(id, x, axisY - 6, [[0, 0], [0, 12]], { strokeWidth: 1, stroke: MUTED });
+    // Phase brackets under the axis: the timeline's claim is duration, not just dots.
+    const bracket = (id, x0, x1, label, y = axisY + 56) => [
+      line(`${id}-l`, x0, y - 8, [[0, 0], [0, 8]], { strokeWidth: 1, stroke: MUTED }),
+      line(`${id}-r`, x1, y - 8, [[0, 0], [0, 8]], { strokeWidth: 1, stroke: MUTED }),
+      line(`${id}-h`, x0, y, [[0, 0], [x1 - x0, 0]], { strokeWidth: 1, stroke: MUTED }),
+      txt(`${id}-t`, (x0 + x1) / 2 - label.length * 3.2, y + 8, label, {
+        fontSize: 12,
+        color: MUTED,
+      }),
+    ];
     return doc("Timeline — events on an axis", [
       line("axis", 120, axisY, [[0, 0], [620, 0]], { stroke: INK }),
       ...[200, 280, 360, 440, 520, 600, 680].map((x, i) => tick(`tk${i}`, x)),
@@ -445,11 +455,11 @@ const BUILDERS = {
           strokeWidth: 1,
           stroke: e.accent ? ACCENT : MUTED,
         }),
-        txt(`${e.id}-l`, e.x - (e.label.length * 4), axisY - 52, e.label, {
+        txt(`${e.id}-l`, e.x - e.label.length * 4, axisY - 52, e.label, {
           fontSize: 15,
           color: e.accent ? ACCENT : INK,
         }),
-        txt(`${e.id}-s`, e.x - (e.sub.length * 3.2), axisY + 18, e.sub, {
+        txt(`${e.id}-s`, e.x - e.sub.length * 3.2, axisY + 18, e.sub, {
           fontSize: 12,
           color: MUTED,
         }),
@@ -458,6 +468,9 @@ const BUILDERS = {
       txt("t1", 710, axisY + 40, "2026", { fontSize: 13, color: MUTED }),
       line("now", 520, axisY + 48, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
       txt("now-l", 500, axisY + 78, "now", { fontSize: 12, color: ACCENT }),
+      ...bracket("ph1", 200, 360, "build packs"),
+      ...bracket("ph2", 360, 520, "productize", axisY + 88),
+      ...bracket("ph3", 520, 680, "harden", axisY + 56),
       txt("story", 120, 120, "from shippable MVP to a taste gate that blocks bad diagrams", {
         fontSize: 13,
         color: MUTED,
@@ -701,20 +714,25 @@ const BUILDERS = {
     // Gateway is the edge of Platform; Service A nests API+Cache. Client stays out
     // so the Platform boundary excludes something — same rule as architecture VPC.
     // Align Gateway and API on one row so the route stays a pure horizontal.
-    const client = { id: "client", x: 40, y: 220, w: 120, h: 44 };
-    const gateway = { id: "gateway", x: 220, y: 220, w: 140, h: 44 };
-    const api = { id: "api", x: 460, y: 220, w: 200, h: 44 };
-    const cache = { id: "cache", x: 460, y: 276, w: 200, h: 36 };
+    const client = { id: "client", x: 40, y: 200, w: 120, h: 44 };
+    const gateway = { id: "gateway", x: 220, y: 200, w: 140, h: 44 };
+    const api = { id: "api", x: 460, y: 200, w: 200, h: 44 };
+    const cache = { id: "cache", x: 460, y: 280, w: 200, h: 36 };
+    const worker = { id: "worker", x: 220, y: 290, w: 140, h: 36 };
     return doc("Nested — hierarchy by containment", [
-      zone("outer", 190, 110, 520, 230, ""),
+      zone("outer", 190, 110, 520, 250, ""),
       txt("outer-l", 206, 120, "Platform", { fontSize: 14, color: MUTED }),
-      zone("inner", 420, 150, 270, 180, ""),
+      zone("inner", 420, 150, 270, 190, ""),
       txt("inner-l", 436, 160, "Service A", { fontSize: 14, color: MUTED }),
       rect(client.id, client.x, client.y, client.w, client.h, "Client", {
         fill: PAPER,
         stroke: MUTED,
       }),
       rect(gateway.id, gateway.x, gateway.y, gateway.w, gateway.h, "Gateway"),
+      rect(worker.id, worker.x, worker.y, worker.w, worker.h, "Worker", {
+        fill: "#e2e8f0",
+        labelSize: 15,
+      }),
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(cache.id, cache.x, cache.y, cache.w, cache.h, "Cache", {
         fill: "#fef3c7",
@@ -723,9 +741,13 @@ const BUILDERS = {
       }),
       arrow("n0", client, gateway, "", { from: "right", to: "left" }),
       arrow("n1", gateway, api, "", { from: "right", to: "left" }),
-      txt("n0-l", 150, 196, "HTTPS", { fontSize: 13, color: MUTED }),
-      txt("n1-l", 370, 196, "route", { fontSize: 13, color: MUTED }),
-      txt("note", 40, 300, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
+      arrow("n2", api, cache, "", { from: "bottom", to: "top" }),
+      arrow("n3", gateway, worker, "", { from: "bottom", to: "top" }),
+      txt("n0-l", 150, 176, "HTTPS", { fontSize: 13, color: MUTED }),
+      txt("n1-l", 370, 176, "route", { fontSize: 13, color: MUTED }),
+      txt("n2-l", 670, 248, "hit", { fontSize: 13, color: ACCENT }),
+      txt("n3-l", 250, 268, "enqueue", { fontSize: 12, color: MUTED }),
+      txt("note", 40, 360, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -757,28 +779,33 @@ const BUILDERS = {
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
-  // Orthogonal rails keep every edge pure H/V.
+  // Orthogonal rails keep every edge pure H/V. Three mid nodes + leaf forks.
   tree: () => {
-    const root = { id: "root", x: 334, y: 100, w: 132, h: 48 };
-    const left = { id: "left", x: 140, y: 220, w: 132, h: 48 };
-    const right = { id: "right", x: 528, y: 220, w: 132, h: 48 };
-    const a1 = { id: "a1", x: 80, y: 340, w: 120, h: 44 };
-    const a2 = { id: "a2", x: 220, y: 340, w: 120, h: 44 };
-    const b1 = { id: "b1", x: 528, y: 340, w: 132, h: 44 };
-    const railY = 184;
+    const root = { id: "root", x: 334, y: 90, w: 132, h: 48 };
+    const left = { id: "left", x: 80, y: 210, w: 132, h: 48 };
+    const mid = { id: "mid", x: 334, y: 210, w: 132, h: 48 };
+    const right = { id: "right", x: 588, y: 210, w: 132, h: 48 };
+    const a1 = { id: "a1", x: 40, y: 340, w: 120, h: 44 };
+    const a2 = { id: "a2", x: 170, y: 340, w: 120, h: 44 };
+    const b1 = { id: "b1", x: 334, y: 340, w: 132, h: 44 };
+    const c1 = { id: "c1", x: 528, y: 340, w: 120, h: 44 };
+    const c2 = { id: "c2", x: 660, y: 340, w: 120, h: 44 };
+    const railY = 174;
     const leafRailY = 304;
     return doc("Tree — parent → children", [
       rect(root.id, root.x, root.y, root.w, root.h, "packages/"),
       rect(left.id, left.x, left.y, left.w, left.h, "core/"),
+      rect(mid.id, mid.x, mid.y, mid.w, mid.h, "render/"),
       rect(right.id, right.x, right.y, right.w, right.h, "themes/"),
       rect(a1.id, a1.x, a1.y, a1.w, a1.h, "SKILL.md", { labelSize: 15 }),
       rect(a2.id, a2.x, a2.y, a2.w, a2.h, "loader.ts", { labelSize: 15 }),
-      rect(b1.id, b1.x, b1.y, b1.w, b1.h, "dark/", {
+      rect(b1.id, b1.x, b1.y, b1.w, b1.h, "cli.ts", { labelSize: 15 }),
+      rect(c1.id, c1.x, c1.y, c1.w, c1.h, "dark/", {
         fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 15,
       }),
-      // Root drops to a shared rail, then fans to children.
+      rect(c2.id, c2.x, c2.y, c2.w, c2.h, "notion/", { labelSize: 15 }),
       line("trunk", root.x + root.w / 2, root.y + root.h, [[0, 0], [0, railY - (root.y + root.h)]], {
         stroke: INK,
       }),
@@ -792,6 +819,10 @@ const BUILDERS = {
       elbow("t1", [
         [left.x + left.w / 2, railY],
         [left.x + left.w / 2, left.y - 8],
+      ]),
+      elbow("t1b", [
+        [mid.x + mid.w / 2, railY],
+        [mid.x + mid.w / 2, mid.y - 8],
       ]),
       elbow("t2", [
         [right.x + right.w / 2, railY],
@@ -815,8 +846,30 @@ const BUILDERS = {
         [a2.x + a2.w / 2, leafRailY],
         [a2.x + a2.w / 2, a2.y - 8],
       ]),
-      arrow("t5", right, b1, "", { from: "bottom", to: "top" }),
-      txt("note", 80, 410, "depth is the grammar: three levels, one accent leaf", {
+      arrow("t5", mid, b1, "", { from: "bottom", to: "top" }),
+      line(
+        "trunk-c",
+        right.x + right.w / 2,
+        right.y + right.h,
+        [[0, 0], [0, leafRailY - (right.y + right.h)]],
+        { stroke: INK }
+      ),
+      line(
+        "rail-c",
+        c1.x + c1.w / 2,
+        leafRailY,
+        [[0, 0], [c2.x + c2.w / 2 - (c1.x + c1.w / 2), 0]],
+        { stroke: INK }
+      ),
+      elbow("t6", [
+        [c1.x + c1.w / 2, leafRailY],
+        [c1.x + c1.w / 2, c1.y - 8],
+      ]),
+      elbow("t7", [
+        [c2.x + c2.w / 2, leafRailY],
+        [c2.x + c2.w / 2, c2.y - 8],
+      ]),
+      txt("note", 80, 410, "depth is the grammar: three packages, one accent leaf", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -1165,9 +1218,10 @@ const BUILDERS = {
     ]);
   },
   bar: () => {
-    // A bar without a scale only shows which is taller. Ticks make it a number.
+    // A bar without a scale only shows which is taller. Ticks + avg make it a number.
     const baseline = 320;
     const perUnit = 1.6;
+    const avg = 66;
     const bar = (id, x, value, label, accent) => {
       const top = baseline - value * perUnit;
       return [
@@ -1193,7 +1247,15 @@ const BUILDERS = {
       ...bar("b2", 280, 65, "Q2"),
       ...bar("b3", 380, 55, "Q3"),
       ...bar("b4", 480, 101, "Q4", true),
+      // Average line: Q4's claim is "above the year", not only "tallest bar".
+      line("avg", 140, baseline - avg * perUnit, [[0, 0], [440, 0]], {
+        stroke: MUTED,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("avg-l", 590, baseline - avg * perUnit - 8, `avg ${avg}`, { fontSize: 12, color: MUTED }),
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
+      txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
       txt("yoy", 180, baseline + 40, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
     ]);
   },
