@@ -642,6 +642,7 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("pk-n", 80, 280, "4 PKs · 3 FKs", { fontSize: 11, color: MUTED }),
+      txt("status-enum", 370, 280, "status enum", { fontSize: 11, color: MUTED }),
     ]);
   },
   timeline: () => {
@@ -1165,6 +1166,7 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("s3-path", 60, 452, "s3://raw/events/", { fontSize: 11, color: MUTED }),
+      txt("dbt-ver", 380, 100, "dbt 1.8", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -1356,6 +1358,7 @@ const BUILDERS = {
       txt("dq-rate", 330, 390, "DQ fail ≈ 0.08%", { fontSize: 11, color: ACCENT }),
       txt("gold-n", 600, 390, "400 metrics · 12 marts", { fontSize: 11, color: MUTED }),
       txt("bronze-lag", 60, 456, "ingest lag p95 3m", { fontSize: 11, color: MUTED }),
+      txt("silver-keys", 330, 300, "dim_user keys", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -1750,6 +1753,7 @@ const BUILDERS = {
       line("fb-used", 460, 448, [[0, 0], [82, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("fb-l", 460, 460, "fail budget used 71% this week", { fontSize: 11, color: MUTED }),
       txt("headroom", 460, 484, "headroom 58ms to gate", { fontSize: 11, color: "#15803d" }),
+      txt("suite-n", 460, 100, "checkout-load", { fontSize: 11, color: MUTED }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -1805,6 +1809,7 @@ const BUILDERS = {
         color: "#15803d",
       }),
       txt("row-n", 100, 100, "6 matched questions", { fontSize: 11, color: MUTED }),
+      txt("col-win", 540, 80, "preferred →", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
@@ -2615,6 +2620,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("reach-now", vertex(100, 3)[0] - 10, vertex(100, 3)[1] + 8, "100", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
+      txt("speed-now", vertex(112, 0)[0] - 10, vertex(112, 0)[1] - 18, "112", {
         fontSize: 11,
         color: ACCENT,
       }),
