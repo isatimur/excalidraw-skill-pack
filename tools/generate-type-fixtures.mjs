@@ -345,6 +345,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("owner", 100, 498, "taste gate owner: Design lead on-call", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   sequence: () => {
@@ -828,6 +832,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("kill", 80, 452, "skip Review twice → freeze Publish until catch-up", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   process: () => {
@@ -914,6 +922,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("lint", 140, 428, "enforced by eslint-plugin-boundaries", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("pin", 140, 452, "Infra packages never import Domain — CI fails the PR", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1018,6 +1030,22 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("fresh", 60, 366, "freshness: Gold ≤ T+1 day · Silver ≤ T+6h", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      // Reject path: bad Silver rows never become Gold.
+      elbow(
+        "m-rej",
+        [
+          [silver.x + silver.w / 2, silver.y + silver.h + 8],
+          [silver.x + silver.w / 2, 400],
+          [bronze.x + bronze.w / 2, 400],
+          [bronze.x + bronze.w / 2, bronze.y + bronze.h + 8],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("m-rej-l", 200, 412, "DQ fail → Bronze re-ingest", { fontSize: 12, color: ACCENT }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -1599,6 +1627,14 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("slo", 60, 344, "SLO: ingest lag < 15 min · reverse ETL hourly", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("schema", 60, 368, "schema registry gates every CDC topic", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("own", 60, 392, "owner: data platform · page on lag breach", {
         fontSize: 12,
         color: MUTED,
       }),
