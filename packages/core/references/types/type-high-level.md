@@ -6,13 +6,13 @@
 The full path left→right, with the zone drawn around only what you operate. Leave the upstream hops (browser, CDN) outside it.
 
 ## Excalidraw pattern
-Zone rectangle + 3–7 components; minimal labels.
+Zone rectangle + 3–7 components; free protocol labels above shafts.
 
 ## Connectors & routing
-One primary path; no nested detail.
+Primary path horizontal; fan to datastores via orthogonal elbows, never diagonal spokes.
 
 ## Anti-patterns
-Low-level protocol annotations; a zone that contains everything, which draws a boundary that excludes nothing.
+A zone that contains everything; diagonal App→DB/Redis spokes.
 
 ## Budget
 ≤7 components inside zone.

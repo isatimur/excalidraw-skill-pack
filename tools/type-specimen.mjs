@@ -18,14 +18,17 @@ const p = (d, o) => `<path d="${d}"${attrs(o)}/>`;
 
 const GLYPHS = {
   architecture: [
-    r(3, 5, 90, 32, { d: true }),
-    r(12, 13, 20, 16),
-    r(38, 13, 20, 16),
-    r(64, 13, 20, 16, { a: true }),
-    l(32, 21, 38, 21),
-    l(58, 21, 64, 21),
-    l(48, 37, 48, 46),
-    r(26, 46, 44, 12),
+    r(22, 8, 74, 48, { d: true }),
+    r(2, 24, 16, 14),
+    l(18, 31, 28, 31),
+    r(28, 24, 18, 14),
+    l(46, 31, 54, 31),
+    l(54, 31, 54, 18),
+    l(54, 18, 62, 18),
+    r(62, 12, 26, 12, { a: true }),
+    l(54, 31, 54, 44),
+    l(54, 44, 62, 44),
+    r(62, 38, 26, 12),
   ],
   // Span, not containment — one unbroken run edge to edge. Architecture already
   // owns "dashed boundary around a cluster", so the boundary here only marks

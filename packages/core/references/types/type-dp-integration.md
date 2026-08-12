@@ -6,13 +6,13 @@
 Three-column topology. Accent the core platform.
 
 ## Excalidraw pattern
-Sources, core, consumers as rectangles; fan-in/fan-out arrows.
+Sources, core, consumers as rectangles; fan-in/fan-out via orthogonal rails.
 
 ## Connectors & routing
-Multiple sources may converge; label integration mode.
+Shared vertical trunk into/out of the core — never diagonal spokes.
 
 ## Anti-patterns
-Security matrix detail here (use dp-security-matrix).
+Diagonal fan-in; security matrix detail here (use dp-security-matrix).
 
 ## Budget
 ≤3 sources, ≤3 consumers.
