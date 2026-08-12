@@ -988,6 +988,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Order FK stamp.
+      rect("ord-fk", 370, 500, 120, 28, "Order FK", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1143,6 +1149,12 @@ const BUILDERS = {
       }),
       // Audit taste-gate stamp.
       rect("audit-gate", 700, 480, 120, 28, "Audit gate", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // MCP live twin stamp near now.
+      rect("now-mcp", 520, 480, 100, 28, "MCP now", {
         fill: "#fed7aa",
         stroke: ACCENT,
         labelSize: 12,
@@ -1460,6 +1472,12 @@ const BUILDERS = {
       rect("eng2d", 700, 480, 100, 28, "Eng ≤2d", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // PM sign-off stamp.
+      rect("pm-so", 700, 520, 120, 28, "PM sign-off", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -2252,6 +2270,12 @@ const BUILDERS = {
       }),
       // Service A nest stamp.
       rect("svc-a", 720, 140, 100, 28, "Service A", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Client-out stamp — below Client column captions.
+      rect("cli-out", 40, 580, 120, 28, "Client out", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3586,6 +3610,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // ESB throat stamp.
+      rect("throat", 440, 400, 140, 28, "single throat", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
@@ -3728,6 +3758,12 @@ const BUILDERS = {
       }),
       // Orders topic stamp — clear of Kafka edge labels.
       rect("ord-t", 766, 380, 120, 28, "orders topic", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Looker hop stamp.
+      rect("looker", 766, 420, 100, 28, "Looker", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
