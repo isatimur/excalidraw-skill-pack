@@ -308,6 +308,7 @@ const BUILDERS = {
       txt("hc", 260, 264, "healthz /ready", { fontSize: 11, color: MUTED }),
       txt("wal", 690, 176, "WAL shipping", { fontSize: 11, color: MUTED }),
       txt("pub-n", 690, 248, "topic: orders.v2", { fontSize: 11, color: MUTED }),
+      txt("worker-n", 690, 372, "concurrency 8", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -780,6 +781,7 @@ const BUILDERS = {
       txt("w8", 690, 388, "W8 go-live", { fontSize: 11, color: "#15803d" }),
       txt("overlap-g", 420, 200, "overlap W4–W5", { fontSize: 11, color: ACCENT }),
       txt("ftes", 60, 340, "FTEs: Sam 1 · Eng 3 · Ops 1", { fontSize: 11, color: MUTED }),
+      txt("dep-n", 360, 180, "FS: Design → Build", { fontSize: 11, color: MUTED }),
     ]);
   },
   swimlane: () => {
@@ -863,6 +865,7 @@ const BUILDERS = {
       txt("red-n", 420, 400, "reds this week: 1", { fontSize: 11, color: ACCENT }),
       txt("green", 700, 188, "last green: 09:14", { fontSize: 11, color: "#15803d" }),
       txt("handoff-ms", 360, 200, "handoff < 15m", { fontSize: 11, color: MUTED }),
+      txt("scope-n", 312, 100, "scope locked", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -947,6 +950,7 @@ const BUILDERS = {
       // Buyer-ask gate: Slide export stays dropped until demand is named.
       txt("ask", 486, 360, "no buyer ask", { fontSize: 11, color: MUTED }),
       txt("score-q", 528, 444, "do-now score: Themes 9/10", { fontSize: 11, color: ACCENT }),
+      txt("mcp-roi", 486, 208, "ROI lag 2q", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1982,6 +1986,7 @@ const BUILDERS = {
       }),
       txt("vol-df", 90, 268, "~40k msg/min", { fontSize: 11, color: MUTED }),
       txt("dlq-n", 268, 368, "DLQ depth < 20", { fontSize: 11, color: ACCENT }),
+      txt("mask-n", 430, 248, "hash email+phone", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
@@ -2114,6 +2119,7 @@ const BUILDERS = {
       txt("mask", 300, 100, "orders_pii masked at query", { fontSize: 11, color: MUTED }),
       txt("cell-n", 600, 100, "12 cells · 5 deny", { fontSize: 11, color: MUTED }),
       txt("eng-scope", 780, 238, "Eng write: PII only", { fontSize: 11, color: ACCENT }),
+      txt("admin-n", 780, 296, "Admin = break-glass", { fontSize: 11, color: ACCENT }),
     ]);
   },
   bar: () => {
