@@ -1638,6 +1638,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Service A pod count chip.
+      rect("pods", 720, 200, 80, 28, "2 pods", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -1988,6 +1994,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Open reqs chip.
+      rect("reqs-chip", 320, 480, 140, 28, "open reqs: 2", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2157,6 +2169,12 @@ const BUILDERS = {
       line("eng-bar", 290, 360, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("eng-fill", 290, 360, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("eng-bar-l", 290, 372, "60 eng base", { fontSize: 11, color: MUTED }),
+      // Deferred Depth stamp (already have cut box — add count).
+      rect("defer-n", 80, 200, 120, 28, "1 bet deferred", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   evidence: () => {
@@ -3114,6 +3132,12 @@ const BUILDERS = {
       rect("hold-chip", at(5)[0] - 20, y(142) + 40, 80, 28, "hold OK", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Rewrite cost chip.
+      rect("rw-chip", rewriteX - 50, 80, 100, 28, "2wk rewrite", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
