@@ -750,6 +750,7 @@ const BUILDERS = {
       ),
       txt("fail-l", 420, 372, "red → fix", { fontSize: 12, color: ACCENT }),
       txt("sla", 680, 320, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
+      txt("wip", 360, 248, "WIP limit: 1 Spec in Eng", { fontSize: 11, color: MUTED }),
       txt("goal", 200, 400, "goal: Sign-off same day as green tests", {
         fontSize: 12,
         color: MUTED,
@@ -1449,6 +1450,14 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Mini history of the last four p99s — the claim is a trend, not one JSON blob.
+      ...[118, 156, 149, 142].map((ms, i) =>
+        dot(`hist${i}`, 460 + i * 28, 400 - (ms - 100) * 0.4, 4, {
+          fill: i === 3 ? ACCENT : MUTED,
+          stroke: i === 3 ? ACCENT : MUTED,
+        })
+      ),
+      txt("hist-l", 460, 420, "last 4 runs p99", { fontSize: 11, color: MUTED }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
