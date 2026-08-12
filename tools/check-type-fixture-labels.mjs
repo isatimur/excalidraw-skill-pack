@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Guard: free-floating labels must clear filled shapes, and bound labels must
- * leave breathing room inside their containers. Catches the class of collisions
- * that made the taste-vs-stream "good" panel look like trash.
+ * Guard: free-floating labels must clear filled shapes, bound labels must leave
+ * breathing room inside containers, and connector arrows must stay orthogonal.
+ * Catches the class of collisions/routing that made taste-vs-stream look like trash.
  */
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
@@ -52,10 +52,28 @@ for (const type of dirs) {
       );
     }
   }
+
+  // Chart series and crow's-foot ornaments are `line`s — only arrows are routing.
+  for (const a of doc.elements.filter((e) => e.type === "arrow" && !e.isDeleted)) {
+    const pts = a.points;
+    if (!Array.isArray(pts) || pts.length < 2) continue;
+    for (let i = 1; i < pts.length; i += 1) {
+      const [x0, y0] = pts[i - 1];
+      const [x1, y1] = pts[i];
+      const dx = Math.abs(x1 - x0);
+      const dy = Math.abs(y1 - y0);
+      if (dx > 2 && dy > 2) {
+        issues.push(
+          `${type}: arrow ${a.id} has diagonal segment (${Math.round(dx)}×${Math.round(dy)})`
+        );
+        break;
+      }
+    }
+  }
 }
 
 if (issues.length) {
   console.error(issues.join("\n"));
   process.exit(1);
 }
-console.log(`ok — ${dirs.length} type fixtures, labels clear`);
+console.log(`ok — ${dirs.length} type fixtures, labels clear, arrows orthogonal`);

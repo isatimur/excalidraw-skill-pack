@@ -922,8 +922,11 @@ const BUILDERS = {
   },
   evidence: () => {
     // Claim + source + numbers + pass mark: a single JSON blob alone is a prop.
-    const claim = { id: "claim", x: 60, y: 150, w: 240, h: 100 };
+    // Same midline → pure horizontal proves arrow (ortho gate).
     const proof = { id: "proof", x: 460, y: 130, w: 320, h: 160 };
+    const claim = { id: "claim", x: 60, y: 160, w: 240, h: 100 };
+    const midY = proof.y + proof.h / 2;
+    claim.y = midY - claim.h / 2;
     return doc("Evidence — proof artifact beside claim", [
       rect(claim.id, claim.x, claim.y, claim.w, claim.h, "Claim\nP99 < 200ms\nat 2k RPS"),
       rect(
@@ -943,9 +946,9 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
-      arrow("e1", proof, claim, ""),
-      txt("e1-l", 350, 160, "proves", { fontSize: 14, color: MUTED }),
-      txt("gate", 60, 280, "gate: merge blocked if p99 ≥ 200", {
+      arrow("e1", proof, claim, "", { from: "left", to: "right" }),
+      txt("e1-l", 350, midY - 22, "proves", { fontSize: 14, color: MUTED }),
+      txt("gate", 60, 310, "gate: merge blocked if p99 ≥ 200", {
         fontSize: 13,
         color: ACCENT,
       }),
