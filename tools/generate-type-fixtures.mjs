@@ -540,6 +540,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Types-regression stamp.
+      rect("treg", 100, 680, 140, 28, "types-regression", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   sequence: () => {
@@ -703,6 +709,12 @@ const BUILDERS = {
       rect("api-busy", 320, 640, 100, 28, "API busy", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Warm skip stamp.
+      rect("warm-sk", 520, 720, 120, 28, "warm skip", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -1054,6 +1066,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Crow feet stamp.
+      rect("feet", 240, 200, 100, 28, "crows feet", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1221,6 +1239,12 @@ const BUILDERS = {
       }),
       // Themes milestone stamp.
       rect("thm-ms", 360, 520, 120, 28, "Themes live", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // MVP ship stamp.
+      rect("mvp-s", 200, 520, 100, 28, "MVP ship", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2961,6 +2985,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Vacant lead stamp — clear of IC:mgr caption row.
+      rect("vac-lead", 500, 560, 140, 28, "vacant lead", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -4462,6 +4492,12 @@ const BUILDERS = {
       rect("q4-38", 700, 472, 110, 28, "Q4 38% YTD", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // YoY spark stamp.
+      rect("spark", 700, 508, 110, 28, "Δ YoY", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
