@@ -1154,6 +1154,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // FS dependency chip.
+      rect("fs-chip", 500, 220, 80, 28, "FS link", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1962,6 +1968,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // mTLS chip on Client.
+      rect("mtls", 40, 540, 100, 28, "mTLS off", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2638,6 +2650,12 @@ const BUILDERS = {
       rect("squad-chip", 640, 480, 120, 28, "12 squads", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Funded bets chip already — stamp Taste share.
+      rect("taste-share", 360, 40, 100, 28, "Taste on", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -3406,6 +3424,12 @@ const BUILDERS = {
         stroke: "#b91c1c",
         labelSize: 12,
       }),
+      // Admin break-glass chip.
+      rect("admin-chip", 780, 440, 120, 28, "Admin BG", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   bar: () => {
@@ -3602,6 +3626,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Q3 pause chip.
+      rect("q3-chip", 250, baseline + 220, 120, 28, "Q3 pause", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   line: () => {
@@ -3777,6 +3807,12 @@ const BUILDERS = {
       rect("cad-chip", 300, baseline + 220, 120, 28, "cadence 3wk", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Delta chip.
+      rect("delta-chip", 440, baseline + 220, 120, 28, "−258ms", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
