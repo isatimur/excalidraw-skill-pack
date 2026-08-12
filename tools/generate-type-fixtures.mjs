@@ -455,7 +455,7 @@ const BUILDERS = {
       // Without a now-line a Gantt only says what the plan is, never whether it holds.
       line("today", 400, 132, [[0, 0], [0, 196]], { stroke: ACCENT, strokeWidth: 2 }),
       txt("today-l", 372, 112, "today", { fontSize: 13, color: ACCENT }),
-      txt("slip", 548, 228, "Build runs past\nthe Ship start", { fontSize: 13, color: MUTED }),
+      txt("slip", 560, 248, "Build runs past\nthe Ship start", { fontSize: 13, color: MUTED }),
     ]);
   },
   swimlane: () => {
@@ -573,14 +573,23 @@ const BUILDERS = {
   // Boundary labels sit at the top-left edge: a centred container label lands on
   // whatever the boundary contains.
   nested: () => {
+    const api = { id: "api", x: 172, y: 196, w: 236, h: 44 };
+    const cache = { id: "cache", x: 172, y: 250, w: 236, h: 36 };
+    const gateway = { id: "gateway", x: 484, y: 196, w: 176, h: 44 };
     return doc("Nested — hierarchy by containment", [
       zone("outer", 100, 110, 600, 216, ""),
       txt("outer-l", 116, 120, "Platform", { fontSize: 14, color: MUTED }),
       zone("inner", 140, 158, 300, 140, ""),
       txt("inner-l", 156, 168, "Service A", { fontSize: 14, color: MUTED }),
-      rect("api", 172, 196, 236, 44, "API"),
-      rect("cache", 172, 250, 236, 36, "Cache", { fill: "#fef3c7", stroke: ACCENT, labelSize: 15 }),
-      rect("gateway", 484, 196, 176, 44, "Gateway"),
+      rect(api.id, api.x, api.y, api.w, api.h, "API"),
+      rect(cache.id, cache.x, cache.y, cache.w, cache.h, "Cache", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 15,
+      }),
+      rect(gateway.id, gateway.x, gateway.y, gateway.w, gateway.h, "Gateway"),
+      arrow("n1", gateway, api, ""),
+      txt("n1-l", 420, 176, "route", { fontSize: 13, color: MUTED }),
     ]);
   },
   medallion: () => {
