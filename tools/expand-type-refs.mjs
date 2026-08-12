@@ -16,7 +16,7 @@ const META = {
     layout: "Group by tier or trust boundary. Primary flow left→right. One accent on the primary store. Put at least one actor outside the zone so the boundary excludes something.",
     pattern: "Draft `excalidraw-skeleton`. Dashed zone for VPC/trust; free zone label at top-left. Rectangles for deployable components. Free text for edge labels above shafts.",
     routing: "Orthogonal `points` only. Solid for data; dashed for control. Bridge the less important arrow at crossings.",
-    avoid: "Microservice wallpaper, unnamed arrows, a zone that contains everything, bound labels jammed onto short shafts.",
+    avoid: "Microservice wallpaper, unnamed arrows, a zone that contains everything, bound labels jammed onto short shafts, a Queue with no consumer.",
     budget: "5–9 primary components; one evidence card per critical boundary.",
   },
   flowchart: {

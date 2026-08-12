@@ -1217,17 +1217,18 @@ const BUILDERS = {
   },
   "dp-integration": () => {
     const sources = [
-      { id: "s-db", x: 80, y: 120, w: 156, h: 44, label: "Postgres" },
-      { id: "s-events", x: 80, y: 186, w: 156, h: 44, label: "Clickstream" },
-      { id: "s-files", x: 80, y: 252, w: 156, h: 44, label: "SFTP drop" },
+      { id: "s-db", x: 60, y: 120, w: 156, h: 44, label: "Postgres" },
+      { id: "s-events", x: 60, y: 186, w: 156, h: 44, label: "Clickstream" },
+      { id: "s-files", x: 60, y: 252, w: 156, h: 44, label: "SFTP drop" },
     ];
-    const core = { id: "core", x: 330, y: 152, w: 170, h: 112 };
+    const core = { id: "core", x: 310, y: 152, w: 170, h: 112 };
     const consumers = [
-      { id: "c-bi", x: 594, y: 142, w: 156, h: 44, label: "Dashboards" },
-      { id: "c-ml", x: 594, y: 230, w: 156, h: 44, label: "ML features" },
+      { id: "c-bi", x: 580, y: 110, w: 156, h: 44, label: "Dashboards" },
+      { id: "c-ml", x: 580, y: 186, w: 156, h: 44, label: "ML features" },
+      { id: "c-ops", x: 580, y: 262, w: 156, h: 44, label: "Reverse ETL" },
     ];
-    const railIn = 280;
-    const railOut = 540;
+    const railIn = 260;
+    const railOut = 520;
     const coreCy = core.y + core.h / 2;
     return doc("DP integration — sources → core → consumers", [
       ...sources.map((s) => rect(s.id, s.x, s.y, s.w, s.h, s.label)),
@@ -1235,7 +1236,9 @@ const BUILDERS = {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
-      ...consumers.map((c) => rect(c.id, c.x, c.y, c.w, c.h, c.label)),
+      ...consumers.map((c, i) =>
+        rect(c.id, c.x, c.y, c.w, c.h, c.label, i === 2 ? { fill: "#e2e8f0", labelSize: 15 } : {})
+      ),
       ...sources.map((s, i) =>
         elbow(`in${i}`, [
           [s.x + s.w + 8, s.y + s.h / 2],
@@ -1252,9 +1255,13 @@ const BUILDERS = {
           [c.x - 8, c.y + c.h / 2],
         ])
       ),
-      txt("in-l", 250, 100, "CDC / batch", { fontSize: 12, color: MUTED }),
-      txt("out-l", 520, 112, "SQL / features", { fontSize: 12, color: MUTED }),
-      txt("core-note", 330, 290, "one write path; many readers", { fontSize: 13, color: ACCENT }),
+      txt("in-l", 230, 100, "CDC / batch", { fontSize: 12, color: MUTED }),
+      txt("out-l", 500, 90, "SQL / features / sync", { fontSize: 12, color: MUTED }),
+      txt("core-note", 310, 290, "one write path; many readers", { fontSize: 13, color: ACCENT }),
+      txt("claim", 60, 320, "Reverse ETL proves the lake is not a dead end", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
