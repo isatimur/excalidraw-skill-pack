@@ -1646,6 +1646,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("origin", 500, 364, "origin only serves on miss", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "it-state": () => {
@@ -2135,6 +2139,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("method", 500, 364, "OLS · robust SE", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
