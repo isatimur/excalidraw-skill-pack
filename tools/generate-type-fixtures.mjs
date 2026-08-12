@@ -310,8 +310,10 @@ const BUILDERS = {
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(queue.id, queue.x, queue.y, queue.w, queue.h, "Queue"),
-      arrow("a1", api, db, "read/write"),
-      arrow("a2", api, queue, "publish"),
+      arrow("a1", api, db, ""),
+      arrow("a2", api, queue, ""),
+      txt("a1-l", 300, 128, "read/write", { fontSize: 14, color: MUTED }),
+      txt("a2-l", 312, 268, "publish", { fontSize: 14, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -366,17 +368,32 @@ const BUILDERS = {
     ]);
   },
   state: () => {
-    const draft = { id: "draft", x: 100, y: 140, w: 130, h: 56 };
-    const review = { id: "review", x: 350, y: 140, w: 130, h: 56 };
-    const live = { id: "live", x: 600, y: 140, w: 130, h: 56 };
+    const draft = { id: "draft", x: 100, y: 140, w: 140, h: 56 };
+    const review = { id: "review", x: 380, y: 140, w: 140, h: 56 };
+    const live = { id: "live", x: 660, y: 140, w: 140, h: 56 };
     return doc("State machine — allowed transitions", [
       rect(draft.id, draft.x, draft.y, draft.w, draft.h, "Draft"),
       rect(review.id, review.x, review.y, review.w, review.h, "Review"),
-      rect(live.id, live.x, live.y, live.w, live.h, "Live", { fill: "#dcfce7", stroke: "#15803d" }),
-      arrow("t1", draft, review, "submit"),
-      arrow("t2", review, live, "approve"),
-      // The rejection path is what makes this a machine rather than a pipeline.
-      path("t3", 415, 196, [[0, 0], [0, 80], [-250, 80], [-250, 0]], "reject", { stroke: ACCENT }),
+      rect(live.id, live.x, live.y, live.w, live.h, "Live", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+      }),
+      arrow("t1", draft, review, ""),
+      arrow("t2", review, live, ""),
+      txt("t1-l", 268, 118, "submit", { fontSize: 14, color: MUTED }),
+      txt("t2-l", 548, 118, "approve", { fontSize: 14, color: MUTED }),
+      // Rejection is the edge that makes it a machine, not a pipeline.
+      elbow(
+        "t3",
+        [
+          [review.x + review.w / 2, review.y + review.h + 8],
+          [review.x + review.w / 2, 280],
+          [draft.x + draft.w / 2, 280],
+          [draft.x + draft.w / 2, draft.y + draft.h + 8],
+        ],
+        { stroke: ACCENT }
+      ),
+      txt("t3-l", 220, 292, "reject", { fontSize: 14, color: ACCENT }),
     ]);
   },
   er: () => {
@@ -655,10 +672,11 @@ const BUILDERS = {
   // Solid lines are the reporting tree; the dashed one is the routing the title
   // promises — who Product actually asks, which the tree alone never shows.
   "org-chart": () => {
-    const ceo = { id: "ceo", x: 306, y: 100, w: 120, h: 48 };
-    const eng = { id: "eng", x: 140, y: 210, w: 156, h: 48 };
-    const prod = { id: "prod", x: 436, y: 210, w: 156, h: 48 };
-    const platform = { id: "platform", x: 140, y: 320, w: 156, h: 48 };
+    const ceo = { id: "ceo", x: 334, y: 100, w: 132, h: 48 };
+    const eng = { id: "eng", x: 140, y: 220, w: 156, h: 48 };
+    const prod = { id: "prod", x: 504, y: 220, w: 156, h: 48 };
+    const platform = { id: "platform", x: 140, y: 340, w: 156, h: 48 };
+    const railY = 184;
     return doc("Org chart — ownership + routing", [
       rect(ceo.id, ceo.x, ceo.y, ceo.w, ceo.h, "CEO"),
       rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering"),
@@ -667,22 +685,51 @@ const BUILDERS = {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
-      arrow("o1", ceo, eng, "", { from: "bottom", to: "top" }),
-      arrow("o2", ceo, prod, "", { from: "bottom", to: "top" }),
+      line("trunk", ceo.x + ceo.w / 2, ceo.y + ceo.h, [[0, 0], [0, railY - (ceo.y + ceo.h)]], {
+        stroke: INK,
+      }),
+      line(
+        "rail",
+        eng.x + eng.w / 2,
+        railY,
+        [[0, 0], [prod.x + prod.w / 2 - (eng.x + eng.w / 2), 0]],
+        { stroke: INK }
+      ),
+      elbow("o1", [
+        [eng.x + eng.w / 2, railY],
+        [eng.x + eng.w / 2, eng.y - 8],
+      ]),
+      elbow("o2", [
+        [prod.x + prod.w / 2, railY],
+        [prod.x + prod.w / 2, prod.y - 8],
+      ]),
       arrow("o3", eng, platform, "", { from: "bottom", to: "top" }),
-      path("route", 514, 262, [[0, 0], [0, 82], [-198, 82]], "", { dashed: true, stroke: MUTED }),
-      txt("route-l", 336, 356, "asks for capacity", { fontSize: 13, color: MUTED }),
+      elbow(
+        "route",
+        [
+          [prod.x + prod.w / 2, prod.y + prod.h + 8],
+          [prod.x + prod.w / 2, platform.y + platform.h / 2],
+          [platform.x + platform.w + 8, platform.y + platform.h / 2],
+        ],
+        { dashed: true, stroke: MUTED }
+      ),
+      txt("route-l", 360, platform.y + platform.h / 2 + 14, "asks for capacity", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   venn: () => {
+    // Accent fill on a third ellipse in the lens — labels stay in the exclusive
+    // lobes so the overlap never has to carry text it cannot fit.
     return doc("Venn — set overlap", [
-      ellipse("a", 180, 130, 200, 200, ""),
-      ellipse("b", 320, 130, 200, 200, ""),
-      txt("a-l", 212, 220, "Speed", { fontSize: 16 }),
-      txt("b-l", 430, 220, "Quality", { fontSize: 16 }),
-      // The overlap is too narrow to hold its own label, so the label sits below it.
-      line("leader", 350, 332, [[0, 0], [0, 26]], { stroke: ACCENT, strokeWidth: 1 }),
-      txt("overlap", 300, 364, "ship it twice", { fontSize: 14, color: ACCENT }),
+      ellipse("a", 180, 140, 220, 220, "", { fill: FILL }),
+      ellipse("b", 320, 140, 220, 220, "", { fill: FILL }),
+      ellipse("lens", 300, 200, 120, 100, "", { fill: "#fed7aa", stroke: ACCENT }),
+      txt("a-l", 220, 230, "Speed", { fontSize: 16 }),
+      txt("b-l", 450, 230, "Quality", { fontSize: 16 }),
+      line("leader", 360, 360, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
+      txt("overlap", 304, 394, "ship it twice", { fontSize: 14, color: ACCENT }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -906,25 +953,39 @@ const BUILDERS = {
     ]);
   },
   scatter: () => {
+    // Errors fall with practice — a rising cloud would tell the wrong story.
+    const baseline = 320;
     const points = [
-      [180, 290],
-      [220, 262],
-      [252, 276],
-      [286, 240],
-      [318, 250],
-      [352, 214],
-      [390, 226],
-      [424, 190],
-      [462, 178],
-      [500, 158],
+      [180, 150],
+      [210, 168],
+      [240, 160],
+      [270, 190],
+      [300, 182],
+      [330, 210],
+      [360, 205],
+      [390, 230],
+      [420, 248],
+      [450, 242],
+      [480, 270],
+    ];
+    const tick = (id, y, label) => [
+      line(id, 140, y, [[0, 0], [400, 0]], { strokeWidth: 1, stroke: GRID }),
+      txt(`${id}-l`, 96, y - 8, label, { fontSize: 12, color: MUTED }),
     ];
     return doc("Scatter — distribution + correlation", [
+      ...tick("t50", 270, "50"),
+      ...tick("t100", 200, "100"),
       line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
-      line("x-axis", 140, 320, [[0, 0], [440, 0]], { stroke: INK }),
-      txt("y-label", 78, 122, "errors", { fontSize: 13, color: MUTED }),
-      txt("x-label", 420, 332, "hours of practice", { fontSize: 13, color: MUTED }),
-      line("trend", 170, 300, [[0, 0], [350, -155]], { stroke: ACCENT, dashed: true }),
-      ...points.map(([x, y], i) => dot(`p${i}`, x, y, 6)),
+      line("x-axis", 140, baseline, [[0, 0], [400, 0]], { stroke: INK }),
+      txt("y-label", 78, 112, "errors", { fontSize: 13, color: MUTED }),
+      txt("x-label", 390, baseline + 14, "hours of practice", { fontSize: 13, color: MUTED }),
+      line("trend", 170, 145, [[0, 0], [320, 140]], { stroke: ACCENT, dashed: true }),
+      ...points.map(([x, y], i) =>
+        i === points.length - 1
+          ? dot(`p${i}`, x, y, 7, { fill: ACCENT, stroke: ACCENT })
+          : dot(`p${i}`, x, y, 6)
+      ),
+      txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
     ]);
   },
   radar: () => {
