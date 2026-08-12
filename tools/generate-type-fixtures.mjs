@@ -423,9 +423,9 @@ const BUILDERS = {
     ]);
   },
   er: () => {
-    const user = { id: "user", x: 80, y: 140, w: 170, h: 96 };
-    const order = { id: "order", x: 370, y: 140, w: 170, h: 96 };
-    const item = { id: "item", x: 660, y: 140, w: 170, h: 96 };
+    const user = { id: "user", x: 80, y: 140, w: 170, h: 110 };
+    const order = { id: "order", x: 370, y: 140, w: 170, h: 110 };
+    const item = { id: "item", x: 660, y: 140, w: 170, h: 110 };
     // Pure lines for the shaft — hydrated arrows still grow a tip even when
     // endArrowhead is null, which paints over the crow's foot.
     const shaft = (id, from, to) => {
@@ -444,8 +444,8 @@ const BUILDERS = {
     ];
     return doc("ER — entities + cardinality", [
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid PK\nemail"),
-      rect(order.id, order.x, order.y, order.w, order.h, "Order\nid PK\nuser_id FK"),
-      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nid PK\norder_id FK", {
+      rect(order.id, order.x, order.y, order.w, order.h, "Order\nid PK\nuser_id FK\ncreated_at"),
+      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nid PK\norder_id FK\nqty", {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
@@ -455,7 +455,7 @@ const BUILDERS = {
       ...foot("f2", item.x, item.y + item.h / 2),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
       txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
-      txt("note", 80, 260, "one user → many orders → many line items", {
+      txt("note", 80, 280, "one user → many orders → many line items", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -726,6 +726,18 @@ const BUILDERS = {
         { stroke: ACCENT }
       ),
       txt("fail-l", 420, 280, "row fails DQ", { fontSize: 13, color: ACCENT }),
+      // Quarantine is temporary: fix and re-enter Transform — not a dead-end dump.
+      elbow(
+        "p-retry",
+        [
+          [fail.x + fail.w + 8, fail.y + fail.h / 2],
+          [540, fail.y + fail.h / 2],
+          [540, s2.y + s2.h / 2],
+          [s2.x + s2.w + 8, s2.y + s2.h / 2],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("retry-l", 500, 300, "fix → retry", { fontSize: 12, color: ACCENT }),
       txt("sla", 580, 260, "P95 < 40 min", { fontSize: 13, color: MUTED }),
     ]);
   },
