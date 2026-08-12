@@ -1521,6 +1521,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("delta", 160, baseline + 64, "−258ms from start · 6 releases", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   scatter: () => {
