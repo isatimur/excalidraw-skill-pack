@@ -360,6 +360,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("sha", 500, 72, "SHA abc12ef · required checks", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   sequence: () => {
@@ -578,6 +582,10 @@ const BUILDERS = {
       txt("vol", 80, 516, "scale: ~50k users · ~2M orders/yr · avg 3.2 lines/order", {
         fontSize: 12,
         color: MUTED,
+      }),
+      txt("sku-note", 660, 400, "sku resolves via Product", {
+        fontSize: 11,
+        color: ACCENT,
       }),
     ]);
   },
