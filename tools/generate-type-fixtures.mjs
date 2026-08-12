@@ -301,6 +301,9 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("qdepth", 690, 300, "depth < 100", { fontSize: 11, color: MUTED }),
+      txt("repl", 690, 152, "replica lag < 2s", { fontSize: 11, color: MUTED }),
+      txt("cg", 690, 348, "cg: orders-v2", { fontSize: 11, color: MUTED }),
+      txt("fail", 260, 168, "failover: API multi-AZ", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -728,6 +731,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      // Milestone pin at go-live: a date without a tick is just caption wallpaper.
+      line("ms-tick", 710, 300, [[0, 0], [0, 12]], { stroke: "#15803d", strokeWidth: 2 }),
+      txt("done-d", 160, 412, "Design closed W3", { fontSize: 11, color: MUTED }),
+      txt("burn", 290, 412, "Build burn 38d of 60", { fontSize: 11, color: ACCENT }),
     ]);
   },
   swimlane: () => {
@@ -1329,6 +1336,9 @@ const BUILDERS = {
       }),
       // Accent stripe is curated; notion/stripe are published siblings.
       txt("pub", 528, 410, "published themes", { fontSize: 11, color: MUTED }),
+      txt("pin", 360, 456, "parity pin on template.html", { fontSize: 11, color: ACCENT }),
+      txt("wb", 792, 400, "whiteboard/ not listed", { fontSize: 11, color: MUTED }),
+      txt("loc", 80, 100, "~4.2k LOC across L1", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2121,6 +2131,7 @@ const BUILDERS = {
       }),
       txt("rewrite-l", rewriteX - 28, 132, "index rewrite", { fontSize: 12, color: MUTED }),
       txt("cross", rewriteX + 8, y(200) + 12, "R4 crosses", { fontSize: 11, color: ACCENT }),
+      txt("r4-v", at(3)[0] - 10, at(3)[1] - 18, "215", { fontSize: 11, color: MUTED }),
       // Pre-rewrite zone: falling but still over SLA — rewrite is the cause, not drift.
       txt("over", 200, y(300) - 4, "over SLA", { fontSize: 12, color: MUTED }),
       txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
