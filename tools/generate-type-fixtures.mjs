@@ -376,6 +376,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Client surface stamp.
+      rect("ios-web", 40, 480, 100, 28, "iOS + Web", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -494,6 +500,12 @@ const BUILDERS = {
       }),
       // PR number chip.
       rect("pr-chip", 280, 640, 120, 28, "PR #4821", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Taste-gate tool stamp.
+      rect("tool-chip", 280, 680, 160, 28, "labels gate", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -637,6 +649,12 @@ const BUILDERS = {
       rect("created", 100, 680, 120, 28, "201 Created", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Cache GET latency stamp.
+      rect("get6", 520, 640, 100, 28, "GET 6ms", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -1915,6 +1933,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Boundary lint stamp.
+      rect("lint", 700, 560, 120, 28, "boundary lint", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -2868,6 +2892,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Infra budget weight stamp.
+      rect("infra60", 640, 520, 120, 28, "infra 60%", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   evidence: () => {
@@ -3466,6 +3496,12 @@ const BUILDERS = {
       }),
       // Mask hop chip.
       rect("mask-n", 430, 480, 120, 28, "mask hop", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Dashboard count stamp.
+      rect("boards", 766, 340, 120, 28, "12 boards", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
