@@ -481,6 +481,7 @@ const BUILDERS = {
     const user = { id: "user", x: 80, y: 140, w: 170, h: 120 };
     const order = { id: "order", x: 370, y: 140, w: 170, h: 120 };
     const item = { id: "item", x: 660, y: 140, w: 170, h: 120 };
+    const product = { id: "product", x: 660, y: 300, w: 170, h: 88 };
     // Pure lines for the shaft — hydrated arrows still grow a tip even when
     // endArrowhead is null, which paints over the crow's foot.
     const shaft = (id, from, to) => {
@@ -504,31 +505,44 @@ const BUILDERS = {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
+      rect(product.id, product.x, product.y, product.w, product.h, "Product\nid PK\nsku UNIQUE", {
+        fill: "#e2e8f0",
+        labelSize: 15,
+      }),
       shaft("r1", user, order),
       shaft("r2", order, item),
       ...foot("f1", order.x, order.y + order.h / 2),
       ...foot("f2", item.x, item.y + item.h / 2),
+      elbow(
+        "r3",
+        [
+          [item.x + item.w / 2, item.y + item.h + 8],
+          [item.x + item.w / 2, product.y - 8],
+        ],
+        { stroke: INK }
+      ),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
       txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
+      txt("r3-l", 580, 268, "N:1 sku", { fontSize: 13, color: MUTED }),
       txt("one1", 248, 168, "1", { fontSize: 12, color: MUTED }),
       txt("one2", 538, 168, "1", { fontSize: 12, color: MUTED }),
-      txt("note", 80, 290, "one user → many orders → many line items", {
+      txt("note", 80, 420, "one user → many orders → many line items → one Product", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("idx", 80, 314, "indexes: order(user_id), line_item(order_id)", {
+      txt("idx", 80, 444, "indexes: order(user_id), line_item(order_id), product(sku)", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("uniq", 80, 338, "email UNIQUE · status ∈ {open, paid, void}", {
+      txt("uniq", 80, 468, "email UNIQUE · status ∈ {open, paid, void}", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("casc", 80, 362, "ON DELETE CASCADE line_item ← order", {
+      txt("casc", 80, 492, "ON DELETE CASCADE line_item ← order", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("vol", 80, 386, "scale: ~50k users · ~2M orders/yr · avg 3.2 lines/order", {
+      txt("vol", 80, 516, "scale: ~50k users · ~2M orders/yr · avg 3.2 lines/order", {
         fontSize: 12,
         color: MUTED,
       }),
