@@ -1160,6 +1160,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Overlap weeks chip.
+      rect("ov-w", 700, 160, 120, 28, "overlap W4–5", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1606,6 +1612,12 @@ const BUILDERS = {
       rect("med-chip", 80, 440, 120, 28, "median 5d", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Memory fill already — stamp notes count near hub.
+      rect("hub-fill", 520, 200, 100, 28, "Memory 74%", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2260,6 +2272,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Accent leaf chip.
+      rect("dark-chip", 528, 500, 100, 28, "dark/ leaf", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2419,6 +2437,12 @@ const BUILDERS = {
       }),
       // Product headcount chip.
       rect("prod-hc", 680, 280, 100, 28, "Prod 4", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // CEO title span already — stamp headcount total.
+      rect("hc21", 504, 320, 100, 28, "HC 21", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2652,8 +2676,14 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
-      // Funded bets chip already — stamp Taste share.
+      // Taste share chip.
       rect("taste-share", 360, 40, 100, 28, "Taste on", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Reach chip twin.
+      rect("reach-on", 470, 40, 100, 28, "Reach on", {
         fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 12,
@@ -3216,6 +3246,12 @@ const BUILDERS = {
       rect("pii-chip", 66, 420, 100, 28, "raw PII", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Kafka version chip.
+      rect("kaf-chip", 268, 120, 120, 28, "Kafka 3.6", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
