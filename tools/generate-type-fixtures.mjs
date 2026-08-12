@@ -591,6 +591,10 @@ const BUILDERS = {
       // decision a positioning chart exists to force.
       dot("p4", 470, 330, 7, { fill: MUTED, stroke: MUTED }),
       txt("p4-l", 486, 320, "Slide export", { fontSize: 15, color: MUTED }),
+      txt("claim", 140, 420, "Themes ship this sprint; MCP app is a quarter bet", {
+        fontSize: 13,
+        color: ACCENT,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
