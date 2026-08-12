@@ -364,6 +364,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Multi-AZ chip.
+      rect("az-chip", 400, 320, 120, 28, "multi-AZ", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -880,6 +886,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Users scale chip.
+      rect("user-n", 80, 440, 120, 28, "~50k users", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1282,6 +1294,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Brief age chip.
+      rect("brief-chip", 200, 480, 100, 28, "Brief 2h", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   quadrant: () => {
@@ -1576,6 +1594,12 @@ const BUILDERS = {
       rect("hub-n", 200, 200, 120, 28, "~1.2k notes", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Median cycle chip.
+      rect("med-chip", 80, 440, 120, 28, "median 5d", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2931,6 +2955,12 @@ const BUILDERS = {
       rect("miss-only", 60, 440, 160, 28, "origin on miss", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Cluster node count chip.
+      rect("nodes", 840, 200, 100, 28, "3 nodes", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
