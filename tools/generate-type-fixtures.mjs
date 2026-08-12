@@ -1162,6 +1162,12 @@ const BUILDERS = {
       line("score-bar", 640, 240, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("score-fill", 640, 240, [[0, 0], [90, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("score-bar-l", 640, 252, "Themes 9/10", { fontSize: 11, color: ACCENT }),
+      // Spare capacity chip — 0d left.
+      rect("spare-chip", 640, 280, 100, 32, "spare 0d", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1562,6 +1568,10 @@ const BUILDERS = {
       line("warm-bar", 360, 380, [[0, 0], [140, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("warm-fill", 360, 380, [[0, 0], [10, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("warm-bar-l", 360, 392, "warm 7% SETs", { fontSize: 11, color: ACCENT }),
+      // Cache size fill — ~2GB.
+      line("sz-bar", 670, 360, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("sz-fill", 670, 360, [[0, 0], [70, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("sz-bar-l", 670, 372, "~2GB cache", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -1962,6 +1972,10 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 14,
       }),
+      // Tax ratio bar — 4.3× exclusives vs overlap.
+      line("tax-bar", 200, 560, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("tax-fill", 200, 560, [[0, 0], [172, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("tax-bar-l", 200, 572, "tax 4.3× exclusives", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -2986,6 +3000,12 @@ const BUILDERS = {
       line("imp-bar", 160, baseline + 190, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("imp-fill", 160, baseline + 190, [[0, 0], [129, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("imp-bar-l", 160, baseline + 202, "−64.5% R1→R6", { fontSize: 11, color: ACCENT }),
+      // Pages this week — 0 is a green chip under alert.
+      rect("page0", 630, y(180) + 48, 90, 28, "0 pages", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   scatter: () => {
