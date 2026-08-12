@@ -1572,6 +1572,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Parity effort stamp — clear of score caption.
+      rect("par-chip", 80, 400, 110, 28, "Parity 5d", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1738,6 +1744,12 @@ const BUILDERS = {
       rect("rev-rate", 80, 340, 120, 28, "Review OK", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Draft hop stamp on Synthesize→Publish edge.
+      rect("draft-hop", 680, 380, 100, 28, "draft hop", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2651,6 +2663,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Routing style stamp — dashed = ask path.
+      rect("dash-ask", 680, 480, 140, 28, "dashed = ask", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2767,6 +2785,12 @@ const BUILDERS = {
       }),
       // Jaccard stamp — overlap / union.
       rect("jacc", 780, 500, 120, 28, "J≈0.19", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Union size stamp.
+      rect("union", 780, 540, 120, 28, "|S∪Q|≈63", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3275,6 +3299,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // TLS stamp on Client edge.
+      rect("tls13", 60, 480, 100, 28, "TLS 1.3", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
@@ -3768,6 +3798,12 @@ const BUILDERS = {
       }),
       // Analyst read chip.
       rect("an-read", 780, 480, 120, 28, "Analyst R×2", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Intern scope stamp.
+      rect("int-agg", 780, 520, 120, 28, "Intern agg", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
