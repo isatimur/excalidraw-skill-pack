@@ -1118,9 +1118,10 @@ const BUILDERS = {
         labelSize: 15,
       }),
       rect(c2.id, c2.x, c2.y, c2.w, c2.h, "notion/", { labelSize: 15 }),
+      rect("c3", 792, 340, 100, 44, "stripe/", { labelSize: 14 }),
       txt("d0", 480, 102, "L0", { fontSize: 11, color: MUTED }),
       txt("d1", 740, 222, "L1", { fontSize: 11, color: MUTED }),
-      txt("d2", 800, 352, "L2", { fontSize: 11, color: MUTED }),
+      txt("d2", 900, 352, "L2", { fontSize: 11, color: MUTED }),
       line("trunk", root.x + root.w / 2, root.y + root.h, [[0, 0], [0, railY - (root.y + root.h)]], {
         stroke: INK,
       }),
@@ -1177,7 +1178,7 @@ const BUILDERS = {
         "rail-c",
         c1.x + c1.w / 2,
         leafRailY,
-        [[0, 0], [c2.x + c2.w / 2 - (c1.x + c1.w / 2), 0]],
+        [[0, 0], [792 + 50 - (c1.x + c1.w / 2), 0]],
         { stroke: INK }
       ),
       elbow("t6", [
@@ -1188,15 +1189,19 @@ const BUILDERS = {
         [c2.x + c2.w / 2, leafRailY],
         [c2.x + c2.w / 2, c2.y - 8],
       ]),
-      txt("note", 80, 460, "depth is the grammar: three packages, one accent leaf", {
+      elbow("t8", [
+        [792 + 50, leafRailY],
+        [792 + 50, 340 - 8],
+      ]),
+      txt("note", 80, 410, "depth is the grammar: three packages, one accent leaf", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("count", 80, 484, "10 nodes · dark/ is the curated accent", {
+      txt("count", 80, 434, "11 nodes · dark/ is the curated accent", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("omit", 80, 508, "mcp-server/ omitted — not a published theme pack", {
+      txt("omit", 80, 458, "mcp-server/ omitted — not a published theme pack", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1740,6 +1745,10 @@ const BUILDERS = {
       txt("deny", 100, 464, "deny-by-default · grants are explicit cells · audited weekly", {
         fontSize: 12,
         color: MUTED,
+      }),
+      txt("glass", 100, 488, "break-glass: Admin only · logged · expires 4h", {
+        fontSize: 12,
+        color: ACCENT,
       }),
     ]);
   },
