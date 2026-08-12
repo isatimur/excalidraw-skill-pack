@@ -1390,6 +1390,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("slo", 60, 344, "SLO: ingest lag < 15 min · reverse ETL hourly", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
