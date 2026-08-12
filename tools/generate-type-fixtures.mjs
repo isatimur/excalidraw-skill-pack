@@ -423,6 +423,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("auth", 100, 558, "auth: Bearer · idempotency-key on POST", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   state: () => {
@@ -500,6 +504,10 @@ const BUILDERS = {
         { stroke: MUTED, dashed: true }
       ),
       txt("t5-l", 740, 360, "change ticket", { fontSize: 12, color: MUTED }),
+      txt("inflight", 100, 428, "in flight: 3 Draft · 1 Review · 12 Live", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   er: () => {
