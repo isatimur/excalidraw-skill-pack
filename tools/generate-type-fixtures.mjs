@@ -1280,6 +1280,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Ops FTE stamp twin.
+      rect("ops-own", 60, 520, 100, 28, "Ops · Ship", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1788,6 +1794,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Feedback hop stamp on Review→Capture.
+      rect("fb-hop", 80, 380, 120, 28, "feedback hop", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   process: () => {
@@ -2013,6 +2025,12 @@ const BUILDERS = {
       }),
       // Boundary lint stamp.
       rect("lint", 700, 560, 120, 28, "boundary lint", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Upward-import forbid stamp — clear of rule captions.
+      rect("no-up", 700, 600, 120, 28, "no upward", {
         fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 12,
@@ -2857,6 +2875,12 @@ const BUILDERS = {
       rect("inter", 640, 540, 100, 28, "|∩|=12", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Dual-owner gate stamp already — exclusives killed ratio.
+      rect("excl28", 60, 580, 120, 28, "Speed excl 28", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3890,6 +3914,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Secrets deny-column stamp.
+      rect("sec-deny", 640, 640, 140, 28, "secrets deny", {
+        fill: "#fee2e2",
+        stroke: "#b91c1c",
+        labelSize: 12,
+      }),
     ]);
   },
   bar: () => {
@@ -4108,6 +4138,12 @@ const BUILDERS = {
       rect("nov3", 700, 400, 100, 28, "Nov 3", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // 2026 annual target stamp.
+      rect("tgt120", 700, 436, 120, 28, "2026 120k", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
