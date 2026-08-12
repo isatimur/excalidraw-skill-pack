@@ -660,6 +660,13 @@ const BUILDERS = {
       txt("thm-d", 340, axisY - 72, "Sep '24", { fontSize: 11, color: MUTED }),
       txt("mcp-d", 500, axisY - 72, "Jun '25", { fontSize: 11, color: ACCENT }),
       txt("aud-d", 660, axisY - 72, "TBD", { fontSize: 11, color: MUTED }),
+      // Freeze before Audit: taste gate needs a quiet window, not a forever now.
+      line("frz", 600, axisY + 18, [[0, 0], [80, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
+      txt("frz-l", 608, axisY + 28, "freeze", { fontSize: 11, color: ACCENT }),
+      txt("span", 120, axisY + 118, "axis span ≈ 22mo · harden must close before freeze ends", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   gantt: () => {
@@ -787,6 +794,11 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("mins", 200, 448, "stage mins: Brief 30 · Spec 90 · Impl 240 · Test 60", {
+        fontSize: 11,
+        color: MUTED,
+      }),
+      txt("retry", 530, 320, "retry ≤2 then page", { fontSize: 11, color: ACCENT }),
     ]);
   },
   quadrant: () => {
@@ -848,6 +860,12 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      // Residual after Themes+Parity: the chart should leave a day, not pack 8/8.
+      txt("spare", 140, 516, "spare after pull: 0d · next fill-in waits", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
+      txt("sum", 528, 420, "pulled: 3+5=8d", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -2106,6 +2124,11 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("hold", 630, y(142) + 16, "hold <180", { fontSize: 11, color: MUTED }),
+      // Alert band sits under SLA so the page fires before the contract breaks.
+      line("alert", 140, y(180), [[0, 0], [480, 0]], { stroke: MUTED, dashed: true, strokeWidth: 1 }),
+      txt("alert-l", 630, y(180) - 8, "alert 180", { fontSize: 11, color: MUTED }),
+      txt("end-v", at(5)[0] - 10, at(5)[1] - 16, "142", { fontSize: 12, color: ACCENT }),
+      txt("under", 520, y(142) + 28, "under SLA", { fontSize: 11, color: ACCENT }),
     ]);
   },
   scatter: () => {
