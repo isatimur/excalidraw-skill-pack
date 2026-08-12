@@ -484,6 +484,14 @@ const BUILDERS = {
       txt("idemp", 100, 582, "idempotency-key TTL 24h", { fontSize: 11, color: MUTED }),
       txt("miss-pct", 520, 558, "miss rate 7%", { fontSize: 11, color: ACCENT }),
       txt("post-n", cx.client + 28, 158, "idempotent", { fontSize: 11, color: MUTED }),
+      // Deadline tick: the 250ms budget is a mark on the time axis, not only a caption.
+      line("deadline", 40, 490, [[0, 0], [700, 0]], {
+        stroke: ACCENT,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("deadline-l", 40, 496, "250ms budget", { fontSize: 11, color: ACCENT }),
+      txt("headroom", 760, 480, "≈110ms headroom", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   state: () => {
@@ -798,7 +806,7 @@ const BUILDERS = {
       // Progress ticks sit above the row so they never land on the bar fill.
       txt("pct1", 370, 140, "100%", { fontSize: 11, color: MUTED }),
       txt("pct2", 600, 200, "62%", { fontSize: 11, color: ACCENT }),
-      txt("pct3", 680, 310, "0%", { fontSize: 11, color: MUTED }),
+      txt("pct3", 680, 248, "0% Ship", { fontSize: 11, color: MUTED }),
       // Without a now-line a Gantt only says what the plan is, never whether it holds.
       line("today", 420, 132, [[0, 0], [0, 216]], { stroke: ACCENT, strokeWidth: 2 }),
       txt("today-l", 392, 112, "today", { fontSize: 13, color: ACCENT }),
@@ -812,8 +820,8 @@ const BUILDERS = {
         { stroke: MUTED }
       ),
       txt("crit", 160, 140, "critical path", { fontSize: 12, color: MUTED }),
-      txt("block", 680, 248, "blocked\non Build", { fontSize: 12, color: ACCENT }),
-      txt("ms", 640, 340, "go-live W8", { fontSize: 13, color: "#15803d" }),
+      txt("block", 680, 228, "blocked\non Build", { fontSize: 12, color: ACCENT }),
+      txt("ms", 750, 300, "go-live W8", { fontSize: 13, color: "#15803d" }),
       txt("conf", 640, 364, "confidence: low until Build closes", {
         fontSize: 12,
         color: ACCENT,
@@ -827,15 +835,29 @@ const BUILDERS = {
         color: ACCENT,
       }),
       // Milestone pin at go-live: a date without a tick is just caption wallpaper.
-      line("ms-tick", 710, 300, [[0, 0], [0, 12]], { stroke: "#15803d", strokeWidth: 2 }),
+      line("ms-tick", 710, 280, [[0, 0], [0, 12]], { stroke: "#15803d", strokeWidth: 2 }),
       txt("done-d", 160, 412, "Design closed W3", { fontSize: 11, color: MUTED }),
       txt("burn", 290, 412, "Build burn 38d of 60", { fontSize: 11, color: ACCENT }),
-      txt("w8", 690, 388, "W8 go-live", { fontSize: 11, color: "#15803d" }),
+      txt("w8", 750, 320, "W8 go-live", { fontSize: 11, color: "#15803d" }),
       txt("overlap-g", 420, 200, "overlap W4–W5", { fontSize: 11, color: ACCENT }),
       txt("ftes", 60, 340, "FTEs: Sam 1 · Eng 3 · Ops 1", { fontSize: 11, color: MUTED }),
       txt("dep-n", 360, 180, "FS: Design → Build", { fontSize: 11, color: MUTED }),
       txt("ship-own", 470, 320, "Ops owns cutover", { fontSize: 11, color: MUTED }),
       txt("des-done", 160, 148, "Sam done", { fontSize: 11, color: MUTED }),
+      // Soft-launch buffer is a bar under Ship — W8–W9 without a span is wallpaper.
+      rect("buf-bar", 640, 340, 100, 14, "", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 1,
+      }),
+      txt("buf-bar-l", 750, 336, "soft launch", { fontSize: 11, color: "#15803d" }),
+      // Hard cut tick at W10.
+      line("hard-cut", 780, 140, [[0, 0], [0, 200]], {
+        stroke: ACCENT,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("hard-cut-l", 760, 112, "W10 hard", { fontSize: 11, color: ACCENT }),
     ]);
   },
   swimlane: () => {
@@ -925,6 +947,23 @@ const BUILDERS = {
       txt("sign-n", 700, 100, "PM sign-off", { fontSize: 11, color: "#15803d" }),
       txt("brief-n", 200, 100, "Brief #91", { fontSize: 11, color: MUTED }),
       txt("test-owner", 530, 340, "QA on-call", { fontSize: 11, color: MUTED }),
+      // Page after 2 reds — escalation is a box, not only "retry ≤2 then page".
+      rect("page", 700, 360, 120, 40, "Page PM", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
+      elbow(
+        "page-e",
+        [
+          [test.x + test.w + 8, test.y + test.h / 2],
+          [760, test.y + test.h / 2],
+          [760, 360],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("page-l", 680, 300, "×2 red →", { fontSize: 11, color: ACCENT }),
+      txt("page-n", 700, 408, "pages this wk: 0", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -1610,28 +1649,28 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("note", 140, 420, "solid = reports to · dashed = who they actually ask", {
+      txt("note", 140, 460, "solid = reports to · dashed = who they actually ask", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("head", 140, 444, "21 people under CEO · Platform is the scarce resource", {
+      txt("head", 140, 484, "21 people under CEO · Platform is the scarce resource", {
         fontSize: 12,
         color: ACCENT,
       }),
-      txt("hire", 140, 468, "next hire: Platform SRE · not another Product IC", {
+      txt("hire", 140, 508, "next hire: Platform SRE · not another Product IC", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("reqs", 140, 492, "Platform open reqs: 2 · Eng open reqs: 0", {
+      txt("reqs", 140, 532, "Platform open reqs: 2 · Eng open reqs: 0", {
         fontSize: 12,
         color: ACCENT,
       }),
       txt("vacant", 300, 360, "vacant lead", { fontSize: 11, color: ACCENT }),
-      txt("span", 140, 516, "span of control: CEO 2 · Eng 1 · Product 1", {
+      txt("span", 140, 556, "span of control: CEO 2 · Eng 1 · Product 1", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("ratio", 140, 540, "IC:manager ≈ 6:1 Eng · 4:1 Product", {
+      txt("ratio", 140, 580, "IC:manager ≈ 6:1 Eng · 4:1 Product", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1640,7 +1679,19 @@ const BUILDERS = {
       txt("ceo-span", 480, 100, "span=2", { fontSize: 11, color: MUTED }),
       txt("eng-mgr", 40, 220, "1 Eng manager", { fontSize: 11, color: MUTED }),
       txt("prod-mgr", 680, 220, "1 PM", { fontSize: 11, color: MUTED }),
-      txt("plat-ic", 140, 400, "3 ICs · vacant lead", { fontSize: 11, color: ACCENT }),
+      // Vacant lead is a seat, not a caption — dashed empty box under Platform.
+      rect("vacant-box", 140, 400, 156, 36, "(vacant lead)", {
+        fill: PAPER,
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
+      line("vacant-link", 218, 388, [[0, 0], [0, 12]], {
+        stroke: ACCENT,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("vacant-age", 310, 408, "open 47d", { fontSize: 11, color: ACCENT }),
+      txt("plat-ic", 140, 444, "3 ICs · seat empty", { fontSize: 11, color: ACCENT }),
     ]);
   },
   venn: () => {
@@ -1760,6 +1811,29 @@ const BUILDERS = {
       txt("bets", 440, 148, "Taste · Reach", { fontSize: 11, color: ACCENT }),
       txt("defer", 440, 168, "Depth deferred", { fontSize: 11, color: MUTED }),
       txt("infra-n", 290, 340, "60 eng under", { fontSize: 11, color: MUTED }),
+      // Deferred Depth sits off-pyramid — cut is structural, not only captioned.
+      rect("depth-cut", 80, 120, 120, 40, "Depth bet", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 14,
+      }),
+      txt("depth-cut-l", 80, 168, "deferred → next Q", { fontSize: 11, color: MUTED }),
+      line("depth-x", 80, 140, [[0, 0], [120, 0]], {
+        stroke: ACCENT,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      // Funded chips under Strategy — Taste + Reach are on the pyramid.
+      rect("chip-t", 200, 100, 70, 28, "Taste", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      rect("chip-r", 280, 100, 70, 28, "Reach", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   evidence: () => {
@@ -2638,6 +2712,26 @@ const BUILDERS = {
       txt("out-n", 450, 280, "1 residual", { fontSize: 11, color: MUTED }),
       txt("last-err", 460, 232, "28 errors", { fontSize: 11, color: ACCENT }),
       txt("start-err", 96, 160, "~140 err", { fontSize: 11, color: MUTED }),
+      // Expert cluster on the right — practice pays off as a zone, not only n=.
+      ellipse("exp-zone", 400, 220, 110, 70, "", {
+        stroke: ACCENT,
+        strokeWidth: 1,
+        dashed: true,
+        fill: "transparent",
+      }),
+      txt("exp-zone-l", 410, 208, "practiced", { fontSize: 11, color: ACCENT }),
+      // CI band around the trend: slope claim needs a width, not only a caption.
+      line("ci-lo", 170, 160, [[0, 0], [320, 140]], {
+        stroke: MUTED,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      line("ci-hi", 170, 130, [[0, 0], [320, 140]], {
+        stroke: MUTED,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("ci-band", 500, 148, "±1 SE band", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
