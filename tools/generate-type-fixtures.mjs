@@ -1504,6 +1504,10 @@ const BUILDERS = {
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
       txt("prior-l", 590, 280, "grey = prior year", { fontSize: 12, color: MUTED }),
       txt("yoy", 180, baseline + 40, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
+      txt("launch", 180, baseline + 64, "launch week: Nov 3 · paid + organic", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   line: () => {
