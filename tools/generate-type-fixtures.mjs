@@ -526,6 +526,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("risk", 120, 144, "risk: Audit slips if MCP app stays the forever now", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   gantt: () => {
