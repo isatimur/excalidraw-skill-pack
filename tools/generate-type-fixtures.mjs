@@ -863,6 +863,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Reject path stamp.
+      rect("rej-x2", 260, 480, 120, 28, "reject ×2", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1330,6 +1336,12 @@ const BUILDERS = {
       }),
       // Ops FTE stamp twin.
       rect("ops-own", 60, 520, 100, 28, "Ops · Ship", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Buffer weeks stamp.
+      rect("buf-w", 640, 500, 120, 28, "buffer 2wk", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2003,6 +2015,12 @@ const BUILDERS = {
       rect("last-g", 580, 500, 140, 28, "last run green", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Transform stage stamp.
+      rect("xfrm", 320, 480, 140, 28, "Transform 22m", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -3816,6 +3834,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Masked hop stamp.
+      rect("masked", 430, 520, 100, 28, "masked", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -4074,6 +4098,12 @@ const BUILDERS = {
       rect("sec-deny", 640, 640, 140, 28, "secrets deny", {
         fill: "#fee2e2",
         stroke: "#b91c1c",
+        labelSize: 12,
+      }),
+      // Weekly audit stamp.
+      rect("wk-audit", 450, 640, 140, 28, "audit weekly", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -4815,6 +4845,12 @@ const BUILDERS = {
       rect("depth52", 680, 540, 100, 28, "Depth 52", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Quality score stamp.
+      rect("qual94", 200, 500, 100, 28, "Quality 94", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
