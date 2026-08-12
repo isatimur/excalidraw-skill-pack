@@ -761,6 +761,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Live count chip.
+      rect("live-n", 660, 100, 100, 28, "Live · 12", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1005,6 +1011,12 @@ const BUILDERS = {
       }),
       // Harden phase chip.
       rect("hard-ph", 700, 440, 120, 28, "harden 4mo", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Build packs phase chip.
+      rect("build-ph", 200, 480, 120, 28, "build 6mo", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -1408,6 +1420,12 @@ const BUILDERS = {
       rect("spr-chip", 640, 320, 110, 28, "sprint 8d", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Effort scale chip.
+      rect("eff-chip", 640, 360, 110, 28, "effort days", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2363,6 +2381,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Product headcount chip.
+      rect("prod-hc", 680, 280, 100, 28, "Prod 4", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -3137,6 +3161,12 @@ const BUILDERS = {
       // Reprocess chip on DLQ loop.
       rect("repr-chip", 120, 420, 120, 28, "reprocess ✓", {
         fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Analyst deny already ACL — stamp PII gate.
+      rect("pii-chip", 66, 420, 100, 28, "raw PII", {
+        fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 12,
       }),
@@ -3965,6 +3995,12 @@ const BUILDERS = {
       rect("taste-chip", 680, 496, 120, 28, "Taste ↑", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Cost trade chip.
+      rect("cost-trade", 80, 500, 120, 28, "Cost ↓", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
