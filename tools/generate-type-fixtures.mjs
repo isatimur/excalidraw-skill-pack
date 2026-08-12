@@ -394,6 +394,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Queue depth stamp.
+      rect("q30", 690, 540, 100, 28, "depth 30", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -525,6 +531,12 @@ const BUILDERS = {
       // Design on-call stamp.
       rect("des-oc", 460, 680, 140, 28, "Design on-call", {
         fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Taste gate stamp.
+      rect("taste-g", 100, 640, 120, 28, "taste gate", {
+        fill: "#fed7aa",
         stroke: ACCENT,
         labelSize: 12,
       }),
@@ -1514,6 +1526,12 @@ const BUILDERS = {
       rect("pm-so", 700, 520, 120, 28, "PM sign-off", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Brief number stamp.
+      rect("brief91", 200, 520, 100, 28, "Brief #91", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2871,6 +2889,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Design headcount twin already — ask cadence.
+      rect("ask-cad", 680, 560, 140, 28, "ask cadence", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -3005,6 +3029,12 @@ const BUILDERS = {
       }),
       // Dual-owner gate stamp already — exclusives killed ratio.
       rect("excl28", 60, 580, 120, 28, "Speed excl 28", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Quality exclusive stamp.
+      rect("excl23", 640, 580, 120, 28, "Qual excl 23", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3170,6 +3200,12 @@ const BUILDERS = {
       rect("cap30", 640, 560, 120, 28, "capab 30%", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Fund Taste+Reach stamp — clear of owners caption.
+      rect("fund-tr", 640, 600, 140, 28, "fund Taste+Reach", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
