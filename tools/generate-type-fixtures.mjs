@@ -338,6 +338,10 @@ const BUILDERS = {
       line("repl-bar", 690, 200, [[0, 0], [80, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("repl-fill", 690, 200, [[0, 0], [16, 0]], { stroke: "#15803d", strokeWidth: 6 }),
       txt("repl-bar-l", 690, 212, "lag 0.4s / 2s", { fontSize: 11, color: "#15803d" }),
+      // Worker concurrency fill — 8 of capacity.
+      line("conc-bar", 690, 390, [[0, 0], [80, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("conc-fill", 690, 390, [[0, 0], [64, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("conc-bar-l", 690, 402, "conc 8", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -646,6 +650,11 @@ const BUILDERS = {
       line("apr-bar", 660, 420, [[0, 0], [140, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("apr-fill", 660, 420, [[0, 0], [129, 0]], { stroke: "#15803d", strokeWidth: 6 }),
       txt("apr-bar-l", 660, 432, "approve 92%", { fontSize: 11, color: "#15803d" }),
+      // In-flight stack — Draft/Review/Live counts as stacked fills.
+      line("inf-d", 100, 500, [[0, 0], [60, 0]], { stroke: MUTED, strokeWidth: 8 }),
+      line("inf-r", 170, 500, [[0, 0], [20, 0]], { stroke: ACCENT, strokeWidth: 8 }),
+      line("inf-l", 200, 500, [[0, 0], [120, 0]], { stroke: "#15803d", strokeWidth: 8 }),
+      txt("inf-bar-l", 100, 512, "in flight 3·1·12", { fontSize: 11, color: MUTED }),
     ]);
   },
   er: () => {
@@ -2600,6 +2609,12 @@ const BUILDERS = {
       line("lag-bar", 310, 360, [[0, 0], [170, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("lag-fill", 310, 360, [[0, 0], [45, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("lag-bar-l", 310, 372, "lag 4m / SLO 15m", { fontSize: 11, color: ACCENT }),
+      // Source→consumer fan count — 3×3 is a stamp.
+      rect("fan-n", 760, 186, 100, 40, "3×3 fan", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -2832,6 +2847,10 @@ const BUILDERS = {
       line("share-bar", 550, 200, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("share-fill", 550, 200, [[0, 0], [38, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("share-bar-l", 550, 212, "Q4 38% YTD", { fontSize: 11, color: ACCENT }),
+      // Paid share of Q4 — 41% is a fill under paid label.
+      line("paid-bar", 550, 240, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("paid-fill", 550, 240, [[0, 0], [41, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("paid-bar-l", 550, 252, "paid 41%", { fontSize: 11, color: ACCENT }),
     ]);
   },
   line: () => {
