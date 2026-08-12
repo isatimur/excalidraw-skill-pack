@@ -1256,6 +1256,7 @@ const BUILDERS = {
           : dot(`p${i}`, x, y, 6)
       ),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
+      txt("n", 140, baseline + 40, "n = 48 sessions · same cohort", { fontSize: 12, color: MUTED }),
     ]);
   },
   radar: () => {
@@ -1264,11 +1265,6 @@ const BUILDERS = {
     const vertex = (r, i) => {
       const angle = (Math.PI / 3) * i - Math.PI / 2;
       return [Math.round(cx + r * Math.cos(angle)), Math.round(cy + r * Math.sin(angle))];
-    };
-    const ring = (r) => {
-      const pts = [0, 1, 2, 3, 4, 5].map((i) => vertex(r, i));
-      const [ox, oy] = pts[0];
-      return { origin: [ox, oy], points: [...pts, pts[0]].map(([x, y]) => [x - ox, y - oy]) };
     };
     const hexagon = (id, radii, opts) => poly(id, radii.map((r, i) => vertex(r, i)), opts);
     const even = (r) => [r, r, r, r, r, r];
@@ -1300,6 +1296,10 @@ const BUILDERS = {
       line("key-before", 520, 248, [[0, 0], [28, 0]], { dashed: true }),
       txt("key-before-label", 558, 240, "Last quarter", { fontSize: 13, color: MUTED }),
       txt("key-note", 520, 280, "0–120 per axis", { fontSize: 12, color: MUTED }),
+      txt("find", 520, 320, "Reach + Taste up; Cost traded down", {
+        fontSize: 13,
+        color: ACCENT,
+      }),
     ]);
   },
 };
