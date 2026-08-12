@@ -838,6 +838,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // PK/FK count chip.
+      rect("pk-chip", 80, 400, 120, 28, "4 PK · 3 FK", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1350,6 +1356,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Fill-in backlog chip.
+      rect("fill-chip", 140, 400, 120, 28, "fill-in only", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1834,6 +1846,12 @@ const BUILDERS = {
       rect("ttl-chip", 670, 400, 100, 28, "TTL 5m", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // p99 route chip.
+      rect("p99-nest", 40, 500, 120, 28, "p99 < 40ms", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -2341,6 +2359,12 @@ const BUILDERS = {
       }),
       // Speed set size chip.
       rect("s-chip", 60, 500, 100, 28, "|S|=40", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Quality set size chip.
+      rect("q-chip", 640, 500, 100, 28, "|Q|=35", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2868,6 +2892,12 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("strangle-l", 80, 528, "study only · not funded", { fontSize: 11, color: MUTED }),
+      // ESB cost chip — 4× SaaS.
+      rect("cost-chip", 440, 320, 140, 28, "ESB 4× SaaS", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
@@ -3518,6 +3548,12 @@ const BUILDERS = {
       // Prior year never cleared SLA — contrast stamp.
       rect("prior-chip", 630, baseline + 220, 140, 28, "prior never <SLA", {
         fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Alert threshold chip.
+      rect("alert-chip", 160, baseline + 220, 120, 28, "alert 180ms", {
+        fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
       }),
