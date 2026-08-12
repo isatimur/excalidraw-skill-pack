@@ -554,30 +554,57 @@ const BUILDERS = {
     ]);
   },
   process: () => {
-    const s1 = { id: "s1", x: 80, y: 180, w: 150, h: 56 };
-    const s2 = { id: "s2", x: 310, y: 180, w: 150, h: 56 };
-    const s3 = { id: "s3", x: 540, y: 180, w: 150, h: 56 };
+    // Each stage owns a concrete artifact; the middle is accented because that
+    // is where the role's judgment lives, not where boxes get names.
+    const s1 = { id: "s1", x: 60, y: 150, w: 180, h: 88 };
+    const s2 = { id: "s2", x: 320, y: 150, w: 180, h: 88 };
+    const s3 = { id: "s3", x: 580, y: 150, w: 180, h: 88 };
+    const fail = { id: "fail", x: 320, y: 310, w: 180, h: 48 };
     return doc("Process — multi-step workflow", [
-      rect(s1.id, s1.x, s1.y, s1.w, s1.h, "Ingest"),
-      rect(s2.id, s2.x, s2.y, s2.w, s2.h, "Transform", { fill: "#fef3c7", stroke: ACCENT }),
-      rect(s3.id, s3.x, s3.y, s3.w, s3.h, "Deliver"),
+      txt("role", 60, 118, "Role: data engineer · nightly", { fontSize: 13, color: MUTED }),
+      rect(s1.id, s1.x, s1.y, s1.w, s1.h, "Ingest\nS3 → staging"),
+      rect(s2.id, s2.x, s2.y, s2.w, s2.h, "Transform\ndbt models", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
+      rect(s3.id, s3.x, s3.y, s3.w, s3.h, "Deliver\nmart + SLA"),
       arrow("p1", s1, s2, ""),
       arrow("p2", s2, s3, ""),
-      txt("p1-l", 248, 156, "clean", { fontSize: 13, color: MUTED }),
-      txt("p2-l", 478, 156, "ship", { fontSize: 13, color: MUTED }),
-      txt("role", 80, 140, "Role: data engineer", { fontSize: 13, color: MUTED }),
+      txt("p1-l", 258, 128, "schema check", { fontSize: 13, color: MUTED }),
+      txt("p2-l", 518, 128, "publish", { fontSize: 13, color: MUTED }),
+      rect(fail.id, fail.x, fail.y, fail.w, fail.h, "quarantine", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 15,
+      }),
+      elbow(
+        "p-fail",
+        [
+          [s2.x + s2.w / 2, s2.y + s2.h + 6],
+          [s2.x + s2.w / 2, fail.y - 8],
+        ],
+        { stroke: ACCENT }
+      ),
+      txt("fail-l", 512, 280, "row fails DQ", { fontSize: 13, color: ACCENT }),
+      txt("sla", 580, 260, "P95 < 40 min", { fontSize: 13, color: MUTED }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
   // claim a layer diagram exists to make: dependencies point down, never up.
+  // Examples ride in the bound label so free-text collision checks stay clean.
   layers: () => {
     return doc("Layers — stacked abstractions", [
-      rect("l3", 140, 130, 460, 60, "Presentation"),
-      rect("l2", 140, 206, 460, 60, "Domain", { fill: "#fef3c7", stroke: ACCENT }),
-      rect("l1", 140, 282, 460, 60, "Infrastructure"),
-      path("dep", 648, 136, [[0, 0], [0, 200]], "", { stroke: MUTED }),
-      txt("dep-l", 668, 200, "depends on", { fontSize: 14, color: MUTED }),
-      txt("rule", 140, 358, "no upward calls: Infrastructure never imports Domain", {
+      rect("l3", 140, 110, 480, 72, "Presentation\nNext.js · REST handlers"),
+      rect("l2", 140, 198, 480, 72, "Domain\norders · pricing · entitlements", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
+      rect("l1", 140, 286, 480, 72, "Infrastructure\nPostgres · Redis · S3"),
+      path("dep", 668, 120, [[0, 0], [0, 230]], "", { stroke: MUTED }),
+      txt("dep-l", 688, 210, "depends on", { fontSize: 14, color: MUTED }),
+      path("forbid", 80, 350, [[0, 0], [0, -230]], "", { stroke: ACCENT, dashed: true }),
+      txt("forbid-l", 40, 200, "✗ never", { fontSize: 13, color: ACCENT }),
+      txt("rule", 140, 380, "Infrastructure never imports Domain", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -607,23 +634,27 @@ const BUILDERS = {
   },
   medallion: () => {
     // Wide gaps + free edge labels: "aggregate" is wider than a tight shaft can hold.
-    const bronze = { id: "bronze", x: 80, y: 180, w: 160, h: 72 };
-    const silver = { id: "silver", x: 360, y: 180, w: 160, h: 72 };
-    const gold = { id: "gold", x: 640, y: 180, w: 160, h: 72 };
+    // Under each tier: the concrete contract a reader can audit, not just a name.
+    const bronze = { id: "bronze", x: 60, y: 140, w: 180, h: 96 };
+    const silver = { id: "silver", x: 330, y: 140, w: 180, h: 96 };
+    const gold = { id: "gold", x: 600, y: 140, w: 180, h: 96 };
     return doc("Medallion — bronze / silver / gold tiers", [
-      rect(bronze.id, bronze.x, bronze.y, bronze.w, bronze.h, "Bronze\nraw"),
-      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver\nconformed", {
+      rect(bronze.id, bronze.x, bronze.y, bronze.w, bronze.h, "Bronze · raw\nevents_raw"),
+      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver · conformed\ndim_user", {
         fill: "#e2e8f0",
       }),
-      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold\nmart", {
+      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold · mart\nmrt_revenue", {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
       arrow("m1", bronze, silver, ""),
       arrow("m2", silver, gold, ""),
-      txt("m1-l", 278, 158, "clean", { fontSize: 14, color: MUTED }),
-      txt("m2-l", 538, 158, "aggregate", { fontSize: 14, color: MUTED }),
-      txt("tier-note", 80, 280, "each tier is a contract: raw → conformed → mart", {
+      txt("m1-l", 258, 118, "dedupe + types", { fontSize: 13, color: MUTED }),
+      txt("m2-l", 518, 118, "aggregate", { fontSize: 13, color: MUTED }),
+      txt("b-own", 60, 252, "owned by ingest", { fontSize: 12, color: MUTED }),
+      txt("s-own", 330, 252, "owned by analytics eng", { fontSize: 12, color: MUTED }),
+      txt("g-own", 600, 252, "owned by BI", { fontSize: 12, color: ACCENT }),
+      txt("tier-note", 60, 290, "each tier is a contract: raw → conformed → mart", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -743,21 +774,24 @@ const BUILDERS = {
   },
   venn: () => {
     // Accent fill on a third ellipse in the lens — labels stay in the exclusive
-    // lobes so the overlap never has to carry text it cannot fit.
+    // lobes so the overlap never has to carry text it cannot fit. Exclusive
+    // callouts sit outside the circles (collision gate treats ellipses as shapes).
     return doc("Venn — set overlap", [
-      ellipse("a", 180, 140, 220, 220, "", { fill: FILL }),
-      ellipse("b", 320, 140, 220, 220, "", { fill: FILL }),
-      ellipse("lens", 300, 200, 120, 100, "", { fill: "#fed7aa", stroke: ACCENT }),
-      txt("a-l", 220, 230, "Speed", { fontSize: 16 }),
-      txt("b-l", 450, 230, "Quality", { fontSize: 16 }),
-      line("leader", 360, 360, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
-      txt("overlap", 304, 394, "ship it twice", { fontSize: 14, color: ACCENT }),
+      ellipse("a", 200, 130, 240, 240, "", { fill: FILL }),
+      ellipse("b", 360, 130, 240, 240, "", { fill: FILL }),
+      ellipse("lens", 340, 200, 120, 100, "", { fill: "#fed7aa", stroke: ACCENT }),
+      txt("a-l", 230, 230, "Speed", { fontSize: 16 }),
+      txt("b-l", 490, 230, "Quality", { fontSize: 16 }),
+      txt("a-ex", 60, 220, "fast &\nwrong", { fontSize: 13, color: MUTED }),
+      txt("b-ex", 640, 220, "perfect &\nlate", { fontSize: 13, color: MUTED }),
+      line("leader", 400, 360, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
+      txt("overlap", 344, 394, "ship it twice", { fontSize: 14, color: ACCENT }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
-  // carries everything above it.
+  // carries everything above it. Side callouts pin each band to a concrete ask.
   pyramid: () => {
-    const apex = 400;
+    const apex = 360;
     const tier = (id, yTop, yBottom, halfTop, halfBottom, opts) =>
       poly(
         id,
@@ -773,24 +807,48 @@ const BUILDERS = {
       tier("t3", 110, 186, 4, 78, { stroke: ACCENT, fill: "#fef3c7" }),
       tier("t2", 194, 270, 84, 164, { stroke: INK, fill: FILL }),
       tier("t1", 278, 354, 170, 250, { stroke: INK, fill: "#eef2f7" }),
-      txt("t3-l", 360, 158, "Strategy", { fontSize: 16, color: ACCENT }),
-      txt("t2-l", 340, 222, "Capabilities", { fontSize: 16 }),
-      txt("t1-l", 330, 306, "Infrastructure", { fontSize: 16 }),
+      txt("t3-l", 320, 138, "Strategy", { fontSize: 15, color: ACCENT }),
+      txt("t3-ex", 460, 148, "which bets we fund", { fontSize: 13, color: ACCENT }),
+      txt("t2-l", 300, 222, "Capabilities", { fontSize: 15 }),
+      txt("t2-ex", 540, 222, "what we can ship", { fontSize: 13, color: MUTED }),
+      txt("t1-l", 290, 306, "Infrastructure", { fontSize: 15 }),
+      txt("t1-ex", 620, 306, "what everything sits on", { fontSize: 13, color: MUTED }),
+      txt("invert", 80, 390, "invert it and strategy floats with nothing under it", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   evidence: () => {
-    const claim = { id: "claim", x: 80, y: 160, w: 220, h: 80 };
-    const proof = { id: "proof", x: 480, y: 148, w: 280, h: 104 };
+    // Claim + source + numbers + pass mark: a single JSON blob alone is a prop.
+    const claim = { id: "claim", x: 60, y: 150, w: 240, h: 100 };
+    const proof = { id: "proof", x: 460, y: 130, w: 320, h: 160 };
     return doc("Evidence — proof artifact beside claim", [
-      rect(claim.id, claim.x, claim.y, claim.w, claim.h, "Claim:\nP99 < 200ms"),
-      rect(proof.id, proof.x, proof.y, proof.w, proof.h, '{\n  "metric": "p99",\n  "value": 142\n}', {
-        fill: PAPER,
-        stroke: MUTED,
-        labelSize: 15,
+      rect(claim.id, claim.x, claim.y, claim.w, claim.h, "Claim\nP99 < 200ms\nat 2k RPS"),
+      rect(
+        proof.id,
+        proof.x,
+        proof.y,
+        proof.w,
+        proof.h,
+        '{\n  "suite": "checkout-load",\n  "p99_ms": 142,\n  "rps": 2000,\n  "pass": true\n}',
+        {
+          fill: PAPER,
+          stroke: MUTED,
+          labelSize: 14,
+        }
+      ),
+      txt("proof-src", proof.x, proof.y - 24, "k6 · staging · 2026-02-14", {
+        fontSize: 13,
+        color: MUTED,
       }),
-      txt("proof-src", proof.x, proof.y - 24, "load test · 2026-02-14", { fontSize: 13, color: MUTED }),
       arrow("e1", proof, claim, ""),
-      txt("e1-l", 360, 168, "proves", { fontSize: 14, color: MUTED }),
+      txt("e1-l", 350, 160, "proves", { fontSize: 14, color: MUTED }),
+      txt("gate", 60, 280, "gate: merge blocked if p99 ≥ 200", {
+        fontSize: 13,
+        color: ACCENT,
+      }),
+      txt("n", 460, 310, "n = 12 runs · same build SHA", { fontSize: 12, color: MUTED }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
