@@ -770,6 +770,10 @@ const BUILDERS = {
       ),
       txt("retry-l", 500, 300, "fix → retry", { fontSize: 12, color: ACCENT }),
       txt("sla", 580, 260, "P95 < 40 min", { fontSize: 13, color: MUTED }),
+      txt("window", 580, 340, "window: 01:00–05:00 UTC", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
