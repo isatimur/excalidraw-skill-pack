@@ -737,6 +737,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Approve SLA chip.
+      rect("sla-chip", 520, 440, 140, 28, "Review < 1d", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -971,6 +977,12 @@ const BUILDERS = {
       rect("gate-chip", 440, 60, 120, 28, "gate pending", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Harden phase chip.
+      rect("hard-ph", 700, 440, 120, 28, "harden 4mo", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2490,6 +2502,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Squad count chip.
+      rect("squad-chip", 640, 480, 120, 28, "12 squads", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   evidence: () => {
@@ -2593,6 +2611,12 @@ const BUILDERS = {
       rect("n-chip", 200, 460, 100, 28, "n = 12", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Required-check chip under PASS.
+      rect("req-ev", 800, 300, 120, 28, "required ✓", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -3680,6 +3704,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Residual count chip.
+      rect("res-chip", 620, 460, 120, 28, "1 residual", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   radar: () => {
@@ -3784,6 +3814,12 @@ const BUILDERS = {
       // Depth-first bet chip — the quarter's priority is a stamp, not only a caption.
       rect("depth-bet", 520, 496, 140, 28, "Depth first", {
         fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Taste differentiator chip.
+      rect("taste-chip", 680, 496, 120, 28, "Taste ↑", {
+        fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 12,
       }),
