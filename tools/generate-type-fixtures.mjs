@@ -958,6 +958,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Product PK stamp.
+      rect("prod-pk", 660, 480, 120, 28, "Product PK", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1109,6 +1115,12 @@ const BUILDERS = {
       rect("pmm", 40, 220, 100, 28, "PMM owns", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Audit taste-gate stamp.
+      rect("audit-gate", 700, 480, 120, 28, "Audit gate", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -1877,6 +1889,12 @@ const BUILDERS = {
       rect("dbt", 700, 100, 120, 28, "dbt models", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // dbt version stamp.
+      rect("dbt-ver", 700, 140, 100, 28, "dbt 1.8", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3081,6 +3099,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Latest p99 stamp from proof JSON.
+      rect("p99-ev", 800, 460, 100, 28, "p99 142", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -4022,6 +4046,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Launch date stamp.
+      rect("nov3", 700, 400, 100, 28, "Nov 3", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   line: () => {
@@ -4215,6 +4245,12 @@ const BUILDERS = {
       rect("own-chip", 160, baseline + 250, 140, 28, "search eng", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // SLA contract stamp.
+      rect("sla200", 320, baseline + 250, 120, 28, "SLA 200ms", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
