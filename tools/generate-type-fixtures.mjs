@@ -1674,6 +1674,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Capture station rate already — stamp Review rate.
+      rect("rev-rate", 80, 340, 120, 28, "Review OK", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   process: () => {
@@ -2147,6 +2153,12 @@ const BUILDERS = {
       line("fresh-bar", 600, 460, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("fresh-fill", 600, 460, [[0, 0], [120, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("fresh-bar-l", 600, 472, "Gold ≤ T+1", { fontSize: 11, color: ACCENT }),
+      // Bronze ingest lag chip.
+      rect("ing-lag", 60, 500, 120, 28, "lag p95 3m", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -2976,6 +2988,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Static export lose chip.
+      rect("lose-chip", 250, 60, 140, 28, "static loses", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
@@ -3113,6 +3131,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Jobs lag chip.
+      rect("jobs-lag", 460, 400, 120, 28, "jobs < 5s", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
@@ -3226,6 +3250,12 @@ const BUILDERS = {
       rect("cost-chip", 440, 320, 140, 28, "ESB 4× SaaS", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Interface count chip.
+      rect("iface", 440, 360, 140, 28, "~180 ifaces", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -4247,6 +4277,12 @@ const BUILDERS = {
       rect("cost-trade", 80, 500, 120, 28, "Cost ↓", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Reach score chip.
+      rect("reach-n", 80, 460, 100, 28, "Reach 100", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
