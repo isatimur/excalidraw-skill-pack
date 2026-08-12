@@ -38,6 +38,8 @@
     "generate-type-fixtures": "node tools/generate-type-fixtures.mjs",
     "render-type-gallery": "node tools/render-type-gallery.mjs",
     "build-type-specimen": "node tools/build-type-specimen.mjs",
+    "generate-taste-vs-stream": "node tools/generate-taste-vs-stream-fixture.mjs",
+    "generate-why-editable": "node tools/generate-why-editable-fixture.mjs",
     "expand-type-refs": "node tools/expand-type-refs.mjs"
   },
   "devDependencies": {

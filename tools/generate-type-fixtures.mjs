@@ -404,8 +404,10 @@ const BUILDERS = {
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid, email"),
       rect(order.id, order.x, order.y, order.w, order.h, "Order\nid, total"),
       rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku, qty"),
-      arrow("r1", user, order, "1:N", { labelSize: 14 }),
-      arrow("r2", order, item, "1:N", { labelSize: 14 }),
+      arrow("r1", user, order, ""),
+      arrow("r2", order, item, ""),
+      txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
+      txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
     ]);
   },
   timeline: () => {
@@ -840,9 +842,12 @@ const BUILDERS = {
       // Everything funnels through one bus: that is the finding, so it carries the accent.
       rect(esb.id, esb.x, esb.y, esb.w, esb.h, "ESB", { fill: "#fed7aa", stroke: ACCENT }),
       rect(saas.id, saas.x, saas.y, saas.w, saas.h, "SaaS", { fill: "#dcfce7", stroke: "#15803d" }),
-      arrow("i1", mainframe, esb, "nightly batch"),
-      arrow("i2", as400, esb, "flat file"),
-      arrow("i3", esb, saas, "REST"),
+      arrow("i1", mainframe, esb, ""),
+      arrow("i2", as400, esb, ""),
+      arrow("i3", esb, saas, ""),
+      txt("i1-l", 280, 140, "nightly batch", { fontSize: 13, color: MUTED }),
+      txt("i2-l", 300, 268, "flat file", { fontSize: 13, color: MUTED }),
+      txt("i3-l", 630, 164, "REST", { fontSize: 13, color: MUTED }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
@@ -861,8 +866,9 @@ const BUILDERS = {
       rect(warehouse.id, warehouse.x, warehouse.y, warehouse.w, warehouse.h, "Warehouse"),
       rect(dash.id, dash.x, dash.y, dash.w, dash.h, "Dashboards"),
       arrow("df1", ingest, stream, ""),
-      arrow("df2", stream, warehouse, "masked"),
+      arrow("df2", stream, warehouse, ""),
       arrow("df3", warehouse, dash, ""),
+      txt("df2-l", 430, 186, "masked", { fontSize: 13, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
