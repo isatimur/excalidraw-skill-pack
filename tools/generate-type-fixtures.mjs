@@ -585,6 +585,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Miss-path sum chip.
+      rect("miss-sum", 720, 560, 140, 28, "miss ≈140ms", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -1062,6 +1068,12 @@ const BUILDERS = {
       rect("hard-chip", 740, 380, 110, 28, "W10 hard cut", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Soft-launch chip under buffer bar.
+      rect("soft-chip", 640, 460, 120, 28, "soft W8–W9", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -1800,6 +1812,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // TTL chip beside Cache.
+      rect("ttl-chip", 670, 400, 100, 28, "TTL 5m", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2068,6 +2086,12 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("wb-box-l", 900, 424, "not listed", { fontSize: 11, color: MUTED }),
+      // Theme pack count chip.
+      rect("theme-n-chip", 660, 500, 120, 28, "3 theme packs", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2289,6 +2313,12 @@ const BUILDERS = {
       rect("prod-chip", 360, 480, 120, 28, "product n=12", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Speed set size chip.
+      rect("s-chip", 60, 500, 100, 28, "|S|=40", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3288,6 +3318,12 @@ const BUILDERS = {
       rect("rec-chip", 700, 220, 120, 28, "record Q4", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Freeze date chip.
+      rect("frz-chip", 700, 256, 140, 28, "freeze 01-08", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
