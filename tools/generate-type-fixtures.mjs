@@ -1111,6 +1111,7 @@ const BUILDERS = {
       { id: "review", ask: "Review a change", before: "eyeball two PNGs", after: "diff the source" },
       { id: "rebrand", ask: "Re-theme", before: "recolour by hand", after: "pass --theme dark" },
       { id: "open", ask: "Open later", before: "hope the PNG is enough", after: "open the .excalidraw" },
+      { id: "ci", ask: "CI render", before: "no source to hydrate", after: "excalidraw-render in CI" },
     ];
     const cellW = 250;
     return doc("Comparison — same questions, two answers", [
@@ -1129,7 +1130,7 @@ const BUILDERS = {
           }),
         ];
       }),
-      txt("verdict", 250, 440, "editable wins on every question that matters after day one", {
+      txt("verdict", 250, 520, "editable wins on every question that matters after day one", {
         fontSize: 13,
         color: "#15803d",
       }),
