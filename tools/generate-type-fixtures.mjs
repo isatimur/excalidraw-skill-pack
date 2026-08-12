@@ -418,6 +418,12 @@ const BUILDERS = {
       txt("yes-ms", 100, 340, "merge path ~4 min", { fontSize: 11, color: MUTED }),
       txt("no-ms", 500, 340, "fix path ~12 min", { fontSize: 11, color: ACCENT }),
       txt("audit-tool", 100, 592, "tool: check-type-labels", { fontSize: 11, color: MUTED }),
+      // Retry stamp — 3 retries this week is a chip on the no path.
+      rect("retry-chip", 680, 380, 120, 36, "retries ×3", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
     ]);
   },
   sequence: () => {
@@ -2024,6 +2030,12 @@ const BUILDERS = {
       txt("bw3-l", 568, 140, "10%", { fontSize: 11, color: ACCENT }),
       txt("bw2-l", 618, 224, "30%", { fontSize: 11, color: MUTED }),
       txt("bw1-l", 678, 308, "60%", { fontSize: 11, color: MUTED }),
+      // Funded count chip — Taste+Reach only is a stamp.
+      rect("fund-n", 200, 60, 150, 32, "fund 2 of 3", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
     ]);
   },
   evidence: () => {
@@ -2107,6 +2119,10 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("gate-h-l", 580, 352, "200ms gate", { fontSize: 11, color: ACCENT }),
+      // Flake budget bar — ≤1/12 is a fill.
+      line("flake-bar", 60, 420, [[0, 0], [120, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("flake-fill", 60, 420, [[0, 0], [10, 0]], { stroke: "#15803d", strokeWidth: 6 }),
+      txt("flake-bar-l", 60, 432, "flake 0 / 12", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -2279,6 +2295,10 @@ const BUILDERS = {
       line("edge-bar", 240, 292, [[0, 0], [132, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("edge-fill", 240, 292, [[0, 0], [103, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("edge-bar-l", 240, 304, "edge hit 78%", { fontSize: 11, color: MUTED }),
+      // Origin RPS vs edge — 400 of 2k is a fill under the budget claim.
+      line("orig-bar", 60, 400, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("orig-fill", 60, 400, [[0, 0], [32, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("orig-bar-l", 60, 412, "origin 400 / edge 2k RPS", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
