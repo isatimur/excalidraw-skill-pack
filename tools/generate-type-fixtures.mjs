@@ -640,6 +640,10 @@ const BUILDERS = {
         fontSize: 13,
         color: ACCENT,
       }),
+      txt("drop", 140, 444, "Slide export stays in drop until a buyer asks", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
