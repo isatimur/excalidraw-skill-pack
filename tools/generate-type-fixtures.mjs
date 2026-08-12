@@ -923,6 +923,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Live SLA stamp.
+      rect("live-sla", 660, 140, 120, 28, "Live SLA", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1086,6 +1092,12 @@ const BUILDERS = {
       }),
       // Crow feet stamp.
       rect("feet", 240, 200, 100, 28, "crows feet", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Mandatory bar stamp.
+      rect("mand", 240, 240, 120, 28, "mandatory", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -1624,6 +1636,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Red fix stamp.
+      rect("red-fix", 420, 460, 100, 28, "red → fix", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   quadrant: () => {
@@ -2008,6 +2026,12 @@ const BUILDERS = {
       rect("write-e", 80, 280, 100, 28, "write", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Synthesize stamp — clear of LLM draft caption.
+      rect("synth-e", 680, 420, 120, 28, "Synthesize", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3075,6 +3099,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Routing ask stamp — clear of Design weekly caption.
+      rect("route-ask", 40, 500, 140, 28, "Product asks", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -3930,6 +3960,12 @@ const BUILDERS = {
       }),
       // COBOL jobs stamp — clear of nightly caption.
       rect("cobol", 80, 400, 120, 28, "COBOL jobs", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Flat file stamp — clear of edge label.
+      rect("flat", 250, 360, 100, 28, "flat file", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
