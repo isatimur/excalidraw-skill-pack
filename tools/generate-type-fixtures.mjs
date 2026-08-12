@@ -905,6 +905,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Archive edge stamp.
+      rect("arch-e", 810, 280, 100, 28, "archive →", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -2442,6 +2448,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Cache hit stamp.
+      rect("hit-n", 670, 480, 100, 28, "hit path", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2541,6 +2553,12 @@ const BUILDERS = {
       rect("sil-keys", 330, 500, 120, 28, "~2M keys", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Gold metrics stamp.
+      rect("gold-m", 600, 500, 140, 28, "~400 metrics", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2778,6 +2796,12 @@ const BUILDERS = {
       }),
       // Core package stamp.
       rect("core-pkg", 40, 540, 120, 28, "core pkg", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Render leaf stamp.
+      rect("rend", 334, 500, 120, 28, "renderer", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -4170,6 +4194,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // SFTP source stamp.
+      rect("sftp", 60, 500, 100, 28, "SFTP drop", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -4532,6 +4562,12 @@ const BUILDERS = {
       }),
       // YoY spark stamp.
       rect("spark", 700, 508, 110, 28, "Δ YoY", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Goal line stamp.
+      rect("goal-l", 700, 544, 110, 28, "goal 90k", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
