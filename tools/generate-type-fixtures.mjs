@@ -465,6 +465,7 @@ const BUILDERS = {
       txt("cache-ms", cx.cache + 12, 268, "GET 6ms", { fontSize: 11, color: MUTED }),
       txt("idemp", 100, 582, "idempotency-key TTL 24h", { fontSize: 11, color: MUTED }),
       txt("miss-pct", 520, 558, "miss rate 7%", { fontSize: 11, color: ACCENT }),
+      txt("post-n", cx.client + 28, 158, "idempotent", { fontSize: 11, color: MUTED }),
     ]);
   },
   state: () => {
@@ -734,6 +735,7 @@ const BUILDERS = {
       txt("green-n", 500, 144, "2 green releases", { fontSize: 11, color: "#15803d" }),
       txt("mcp-live", 500, axisY + 40, "MCP live", { fontSize: 11, color: ACCENT }),
       txt("mvp-ship", 170, axisY + 40, "shipped", { fontSize: 11, color: MUTED }),
+      txt("audit-tbd", 660, axisY + 40, "gate open", { fontSize: 11, color: MUTED }),
     ]);
   },
   gantt: () => {
@@ -885,6 +887,7 @@ const BUILDERS = {
       txt("impl-n", 360, 320, "PR #4821", { fontSize: 11, color: MUTED }),
       txt("sign-n", 700, 100, "PM sign-off", { fontSize: 11, color: "#15803d" }),
       txt("brief-n", 200, 100, "Brief #91", { fontSize: 11, color: MUTED }),
+      txt("test-owner", 530, 340, "QA on-call", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -975,6 +978,7 @@ const BUILDERS = {
       txt("fill-why", 260, 360, "backlog only", { fontSize: 11, color: MUTED }),
       txt("plan-q", 470, 140, "plan Q3", { fontSize: 11, color: ACCENT }),
       txt("themes-why", 274, 210, "tokens ready", { fontSize: 11, color: MUTED }),
+      txt("docs-why", 260, 350, "nice-to-have", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -2336,6 +2340,7 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      txt("legend-b", 590, 300, "live vs prior", { fontSize: 11, color: MUTED }),
     ]);
   },
   line: () => {
@@ -2532,6 +2537,7 @@ const BUILDERS = {
       txt("fit", 170, 300, "fit R²≈0.67", { fontSize: 11, color: MUTED }),
       txt("out-n", 450, 280, "1 residual", { fontSize: 11, color: MUTED }),
       txt("last-err", 460, 232, "28 errors", { fontSize: 11, color: ACCENT }),
+      txt("start-err", 96, 160, "~140 err", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
