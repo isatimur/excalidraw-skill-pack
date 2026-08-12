@@ -797,6 +797,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Review count chip.
+      rect("rev-n", 380, 100, 110, 28, "Review · 1", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1512,6 +1518,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Do-now quadrant chip.
+      rect("now-q", 152, 100, 100, 28, "do now", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1799,6 +1811,12 @@ const BUILDERS = {
       rect("rows-n", 320, 440, 140, 28, "~12M rows/n", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // dbt models chip.
+      rect("dbt", 500, 100, 120, 28, "dbt models", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2543,6 +2561,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Platform headcount chip.
+      rect("plat-hc", 140, 360, 120, 28, "Platform 3", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2648,6 +2672,12 @@ const BUILDERS = {
       // Killed this Q chip.
       rect("kill-q", 60, 540, 120, 28, "killed Q", {
         fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Ship twice chip.
+      rect("ship2", 360, 520, 120, 28, "ship ×2", {
+        fill: "#fed7aa",
         stroke: ACCENT,
         labelSize: 12,
       }),
@@ -4015,6 +4045,12 @@ const BUILDERS = {
       }),
       // Release count chip.
       rect("rel6", 580, baseline + 220, 100, 28, "6 releases", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Search eng owner chip.
+      rect("own-chip", 160, baseline + 250, 140, 28, "search eng", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
