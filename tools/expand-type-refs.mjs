@@ -248,9 +248,9 @@ const META = {
     title: "Line chart",
     best: "trends over time, KPI movement.",
     layout: "Axes plus two muted gridlines carrying units. Dots on each reading, and the last value called out beside the endpoint. Mark the event that caused the change.",
-    pattern: "Series as an open `line` polyline (last point must not return to the first, or it fills); axes and gridlines as thin `line` elements; SLA dashed threshold; vertical event marker.",
+    pattern: "Series as an open `line` polyline (last point must not return to the first, or it fills); axes and gridlines as thin `line` elements; SLA dashed threshold; vertical event marker; dashed prior-year series so the event isn't confused with seasonality.",
     routing: "Time left→right. Series may diagonal; axes and markers stay orthogonal.",
-    avoid: "Exact data points without source; a trend with no scale or event — mood, not an argument.",
+    avoid: "Exact data points without source; a trend with no scale or event — mood, not an argument; claiming a rewrite win without a prior-year control.",
     budget: "1–2 series.",
   },
   scatter: {
