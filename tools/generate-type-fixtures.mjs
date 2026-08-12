@@ -244,19 +244,25 @@ const BUILDERS = {
     // Both dependencies fan out from the API on separate rows. Elbows keep the
     // fan orthogonal — edgeAnchor would draw diagonals into Postgres/Queue.
     // Client sits outside the VPC — a boundary that contains everything is just a frame.
+    // Worker closes the publish story: a queue with no consumer is wallpaper.
     const client = { id: "client", x: 40, y: 200, w: 120, h: 48 };
     const api = { id: "api", x: 260, y: 196, w: 140, h: 56 };
     const db = { id: "db", x: 520, y: 120, w: 160, h: 56 };
-    const queue = { id: "queue", x: 520, y: 268, w: 160, h: 56 };
+    const queue = { id: "queue", x: 520, y: 248, w: 160, h: 48 };
+    const worker = { id: "worker", x: 520, y: 330, w: 160, h: 48 };
     const apiRight = api.x + api.w;
     const apiCy = api.y + api.h / 2;
     return doc("Architecture — components + boundaries", [
-      zone("zone", 220, 88, 520, 280, ""),
+      zone("zone", 220, 88, 520, 320, ""),
       txt("zone-label", 236, 96, "Production VPC", { fontSize: 14, color: MUTED }),
       rect(client.id, client.x, client.y, client.w, client.h, "Client", { fill: PAPER, stroke: MUTED }),
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(queue.id, queue.x, queue.y, queue.w, queue.h, "Queue"),
+      rect(worker.id, worker.x, worker.y, worker.w, worker.h, "Worker", {
+        fill: "#e2e8f0",
+        labelSize: 15,
+      }),
       arrow("a0", client, api, "", { from: "right", to: "left" }),
       elbow("a1", [
         [apiRight + 8, apiCy],
@@ -270,9 +276,11 @@ const BUILDERS = {
         [apiRight + 48, queue.y + queue.h / 2],
         [queue.x - 8, queue.y + queue.h / 2],
       ]),
+      arrow("a3", queue, worker, "", { from: "bottom", to: "top" }),
       txt("a0-l", 148, 178, "POST /orders", { fontSize: 13, color: MUTED }),
       txt("a1-l", 430, 140, "read/write", { fontSize: 13, color: MUTED }),
-      txt("a2-l", 438, 280, "publish", { fontSize: 13, color: MUTED }),
+      txt("a2-l", 438, 252, "publish", { fontSize: 13, color: MUTED }),
+      txt("a3-l", 690, 300, "consume", { fontSize: 13, color: MUTED }),
       txt("note", 40, 280, "edge stays out", { fontSize: 12, color: MUTED }),
     ]);
   },
@@ -1089,37 +1097,53 @@ const BUILDERS = {
   "high-level": () => {
     const browser = { id: "browser", x: 60, y: 208, w: 132, h: 48 };
     const cdn = { id: "cdn", x: 240, y: 208, w: 132, h: 48 };
-    const app = { id: "app", x: 460, y: 208, w: 132, h: 48 };
-    const db = { id: "db", x: 660, y: 160, w: 132, h: 48 };
-    const cache = { id: "cache", x: 660, y: 262, w: 132, h: 48 };
+    const app = { id: "app", x: 460, y: 160, w: 132, h: 48 };
+    const db = { id: "db", x: 660, y: 140, w: 132, h: 48 };
+    const cache = { id: "cache", x: 660, y: 280, w: 132, h: 40 };
+    const worker = { id: "worker", x: 460, y: 280, w: 132, h: 40 };
     const appRight = app.x + app.w;
     const appCy = app.y + app.h / 2;
     return doc("High-level — end-to-end on one cluster", [
-      zone("cluster", 420, 120, 412, 232, ""),
-      txt("cluster-l", 436, 130, "Production cluster", { fontSize: 14, color: MUTED }),
+      zone("cluster", 420, 110, 412, 240, ""),
+      txt("cluster-l", 436, 120, "Production cluster", { fontSize: 14, color: MUTED }),
       rect(browser.id, browser.x, browser.y, browser.w, browser.h, "Browser", { fill: PAPER, stroke: MUTED }),
       rect(cdn.id, cdn.x, cdn.y, cdn.w, cdn.h, "CDN", { fill: PAPER, stroke: MUTED }),
       rect(app.id, app.x, app.y, app.w, app.h, "App"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(cache.id, cache.x, cache.y, cache.w, cache.h, "Redis"),
+      rect(worker.id, worker.x, worker.y, worker.w, worker.h, "Worker", {
+        fill: "#e2e8f0",
+        labelSize: 15,
+      }),
       arrow("hl1", browser, cdn, "", { from: "right", to: "left" }),
-      arrow("hl2", cdn, app, "", { from: "right", to: "left" }),
+      // CDN → App: elbow so App can sit above Worker without a diagonal.
+      elbow("hl2", [
+        [cdn.x + cdn.w + 8, cdn.y + cdn.h / 2],
+        [420, cdn.y + cdn.h / 2],
+        [420, appCy],
+        [app.x - 8, appCy],
+      ]),
       elbow("hl3", [
         [appRight + 8, appCy],
         [appRight + 40, appCy],
         [appRight + 40, db.y + db.h / 2],
         [db.x - 8, db.y + db.h / 2],
       ]),
+      // App reads Redis via the shared rail; Worker SETs on the bottom row.
       elbow("hl4", [
         [appRight + 8, appCy],
         [appRight + 40, appCy],
         [appRight + 40, cache.y + cache.h / 2],
         [cache.x - 8, cache.y + cache.h / 2],
       ]),
+      arrow("hl5", app, worker, "", { from: "bottom", to: "top" }),
+      arrow("hl6", worker, cache, "", { from: "right", to: "left" }),
       txt("hl1-l", 168, 186, "HTTPS", { fontSize: 13, color: MUTED }),
-      txt("hl2-l", 348, 186, "edge cache", { fontSize: 13, color: MUTED }),
-      txt("hl3-l", 600, 148, "SQL", { fontSize: 13, color: MUTED }),
-      txt("hl4-l", 600, 268, "GET", { fontSize: 13, color: MUTED }),
+      txt("hl2-l", 348, 176, "edge cache", { fontSize: 13, color: MUTED }),
+      txt("hl3-l", 600, 128, "SQL", { fontSize: 13, color: MUTED }),
+      txt("hl4-l", 600, 248, "GET", { fontSize: 13, color: MUTED }),
+      txt("hl5-l", 500, 248, "jobs", { fontSize: 12, color: MUTED }),
+      txt("hl6-l", 580, 260, "SET", { fontSize: 12, color: MUTED }),
       txt("note", 60, 280, "origin stays inside; edge stays out", { fontSize: 13, color: MUTED }),
     ]);
   },
