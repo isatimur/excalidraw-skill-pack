@@ -869,6 +869,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("own", 40, 408, "owner: platform · page on hit-rate drop", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   medallion: () => {
