@@ -927,6 +927,9 @@ const BUILDERS = {
       arrow("p2", s2, s3, ""),
       txt("p1-l", 258, 128, "schema check", { fontSize: 13, color: MUTED }),
       txt("p2-l", 518, 128, "publish", { fontSize: 13, color: MUTED }),
+      txt("d1", 120, 250, "~8 min", { fontSize: 11, color: MUTED }),
+      txt("d2", 380, 250, "~22 min", { fontSize: 11, color: ACCENT }),
+      txt("d3", 640, 250, "~6 min", { fontSize: 11, color: MUTED }),
       rect(fail.id, fail.x, fail.y, fail.w, fail.h, "quarantine", {
         fill: "#fee2e2",
         stroke: ACCENT,
@@ -1915,6 +1918,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("src", 180, baseline + 104, "source: warehouse.signups_daily · freeze 2026-01-08", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("mix", 180, baseline + 128, "Q4 mix: 41% paid · 59% organic", {
         fontSize: 12,
         color: MUTED,
       }),
