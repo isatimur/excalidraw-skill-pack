@@ -330,6 +330,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("ci", 100, 474, "CI: check-type-labels · types-regression", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   sequence: () => {
