@@ -420,6 +420,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("term", 100, 404, "Archived is terminal — no path back to Live", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   er: () => {
@@ -1483,6 +1487,7 @@ const BUILDERS = {
       ),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
       txt("r2", 500, 220, "r ≈ −0.82", { fontSize: 12, color: MUTED }),
+      txt("out", 500, 300, "accent = last session", { fontSize: 12, color: MUTED }),
       txt("n", 140, baseline + 40, "n = 48 sessions · same cohort", { fontSize: 12, color: MUTED }),
     ]);
   },
