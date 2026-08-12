@@ -382,6 +382,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Consumer group stamp.
+      rect("cg-chip", 690, 460, 120, 28, "cg orders-v2", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -1915,6 +1921,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Last run green stamp.
+      rect("last-g", 580, 500, 140, 28, "last run green", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -2508,6 +2520,12 @@ const BUILDERS = {
       }),
       // Off-tree pack stamp beside whiteboard exclusion.
       rect("off-tree", 900, 460, 120, 28, "off-tree", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Render template leaf stamp — clear of SKILL.md caption.
+      rect("tmpl", 200, 500, 140, 28, "template.html", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3756,6 +3774,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Lag p95 stamp vs 15m SLO.
+      rect("lag4", 310, 440, 120, 28, "lag p95 4m", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -4434,6 +4458,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Error target stamp — distinct from free "target 40" axis label.
+      rect("tgt40", 740, 360, 110, 28, "err floor 40", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   radar: () => {
@@ -4562,6 +4592,12 @@ const BUILDERS = {
       // Speed score stamp.
       rect("speed-n", 80, 420, 100, 28, "Speed 112", {
         fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Depth score stamp — clear of Depth-first bet chip.
+      rect("depth52", 680, 540, 100, 28, "Depth 52", {
+        fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 12,
       }),
