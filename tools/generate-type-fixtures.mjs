@@ -432,6 +432,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 13,
       }),
+      // Canary chip under Deploy.
+      rect("canary", 100, 510, 120, 28, "canary 10%", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   sequence: () => {
@@ -1843,6 +1849,12 @@ const BUILDERS = {
       line("loc-bar", 80, 70, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("loc-fill", 80, 70, [[0, 0], [168, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("loc-bar-l", 80, 82, "~4.2k LOC L1", { fontSize: 11, color: MUTED }),
+      // Curated accent stamp on dark/.
+      rect("curated", 528, 470, 120, 28, "curated accent", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1952,6 +1964,12 @@ const BUILDERS = {
       line("hc-bar", 504, 280, [[0, 0], [156, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("hc-fill", 504, 280, [[0, 0], [156, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("hc-bar-l", 504, 292, "21 headcount", { fontSize: 11, color: MUTED }),
+      // Scarce Platform chip.
+      rect("scarce", 140, 480, 156, 32, "scarce: Platform", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2208,6 +2226,12 @@ const BUILDERS = {
       line("flake-bar", 60, 420, [[0, 0], [120, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("flake-fill", 60, 420, [[0, 0], [10, 0]], { stroke: "#15803d", strokeWidth: 6 }),
       txt("flake-bar-l", 60, 432, "flake 0 / 12", { fontSize: 11, color: "#15803d" }),
+      // Headroom chip — 58ms to gate.
+      rect("hr-chip", 800, 260, 120, 32, "58ms headroom", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
