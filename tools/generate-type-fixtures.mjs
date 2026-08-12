@@ -761,12 +761,12 @@ const BUILDERS = {
     const railY = 184;
     const leafRailY = 304;
     return doc("Tree — parent → children", [
-      rect(root.id, root.x, root.y, root.w, root.h, "Root"),
-      rect(left.id, left.x, left.y, left.w, left.h, "Branch A"),
-      rect(right.id, right.x, right.y, right.w, right.h, "Branch B"),
-      rect(a1.id, a1.x, a1.y, a1.w, a1.h, "Leaf A1", { labelSize: 15 }),
-      rect(a2.id, a2.x, a2.y, a2.w, a2.h, "Leaf A2", { labelSize: 15 }),
-      rect(b1.id, b1.x, b1.y, b1.w, b1.h, "Leaf B1", {
+      rect(root.id, root.x, root.y, root.w, root.h, "packages/"),
+      rect(left.id, left.x, left.y, left.w, left.h, "core/"),
+      rect(right.id, right.x, right.y, right.w, right.h, "themes/"),
+      rect(a1.id, a1.x, a1.y, a1.w, a1.h, "SKILL.md", { labelSize: 15 }),
+      rect(a2.id, a2.x, a2.y, a2.w, a2.h, "loader.ts", { labelSize: 15 }),
+      rect(b1.id, b1.x, b1.y, b1.w, b1.h, "dark/", {
         fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 15,
@@ -809,6 +809,10 @@ const BUILDERS = {
         [a2.x + a2.w / 2, a2.y - 8],
       ]),
       arrow("t5", right, b1, "", { from: "bottom", to: "top" }),
+      txt("note", 80, 410, "depth is the grammar: three levels, one accent leaf", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -821,9 +825,9 @@ const BUILDERS = {
     const railY = 184;
     return doc("Org chart — ownership + routing", [
       rect(ceo.id, ceo.x, ceo.y, ceo.w, ceo.h, "CEO"),
-      rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering"),
-      rect(prod.id, prod.x, prod.y, prod.w, prod.h, "Product"),
-      rect(platform.id, platform.x, platform.y, platform.w, platform.h, "Platform", {
+      rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering\n12 people"),
+      rect(prod.id, prod.x, prod.y, prod.w, prod.h, "Product\n4 people"),
+      rect(platform.id, platform.x, platform.y, platform.w, platform.h, "Platform\n3 people", {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
@@ -857,6 +861,10 @@ const BUILDERS = {
       ),
       txt("route-l", 360, platform.y + platform.h / 2 + 14, "asks for capacity", {
         fontSize: 13,
+        color: MUTED,
+      }),
+      txt("note", 360, 380, "solid = reports to · dashed = who they actually ask", {
+        fontSize: 12,
         color: MUTED,
       }),
     ]);
