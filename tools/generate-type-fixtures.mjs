@@ -794,6 +794,7 @@ const BUILDERS = {
       txt("ftes", 60, 340, "FTEs: Sam 1 · Eng 3 · Ops 1", { fontSize: 11, color: MUTED }),
       txt("dep-n", 360, 180, "FS: Design → Build", { fontSize: 11, color: MUTED }),
       txt("ship-own", 470, 320, "Ops owns cutover", { fontSize: 11, color: MUTED }),
+      txt("des-done", 160, 148, "Sam done", { fontSize: 11, color: MUTED }),
     ]);
   },
   swimlane: () => {
@@ -1071,6 +1072,7 @@ const BUILDERS = {
       txt("rev-n", 200, 370, "~6 reviews/wk", { fontSize: 11, color: MUTED }),
       txt("hub-age", 380, 268, "oldest note 11mo", { fontSize: 11, color: MUTED }),
       txt("cap-src", 200, 168, "Slack + Notion", { fontSize: 11, color: MUTED }),
+      txt("syn-tool", 678, 120, "LLM draft", { fontSize: 11, color: MUTED }),
     ]);
   },
   process: () => {
@@ -1288,6 +1290,7 @@ const BUILDERS = {
       txt("gw-rps", 220, 152, "p50 18ms", { fontSize: 11, color: MUTED }),
       txt("api-ver", 460, 248, "API v3", { fontSize: 11, color: MUTED }),
       txt("cache-sz", 670, 340, "~2GB", { fontSize: 11, color: MUTED }),
+      txt("warm-age", 360, 360, "warm every 5m", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -2035,6 +2038,7 @@ const BUILDERS = {
       txt("mask-n", 430, 248, "hash email+phone", { fontSize: 11, color: MUTED }),
       txt("wh-n", 566, 268, "Snowflake", { fontSize: 11, color: MUTED }),
       txt("dash-n", 766, 268, "12 boards", { fontSize: 11, color: MUTED }),
+      txt("stream-n", 410, 248, "topic orders", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
@@ -2114,6 +2118,7 @@ const BUILDERS = {
       }),
       txt("lag-n", 310, 320, "lag p95 4m", { fontSize: 11, color: ACCENT }),
       txt("src-n", 60, 300, "3 sources · 3 consumers", { fontSize: 11, color: MUTED }),
+      txt("etl-n", 580, 320, "reverse ETL hourly", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -2575,6 +2580,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("taste-now", vertex(80, 5)[0] - 10, vertex(80, 5)[1] - 18, "80", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
+      txt("reach-now", vertex(100, 3)[0] - 10, vertex(100, 3)[1] + 8, "100", {
         fontSize: 11,
         color: ACCENT,
       }),
