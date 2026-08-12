@@ -681,6 +681,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Cache miss path stamp.
+      rect("miss-path", 520, 680, 120, 28, "miss path", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -1169,6 +1175,12 @@ const BUILDERS = {
       rect("now-mcp", 520, 480, 100, 28, "MCP now", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Themes milestone stamp.
+      rect("thm-ms", 360, 520, 120, 28, "Themes live", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -1848,6 +1860,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Notes edge stamp.
+      rect("notes-e", 360, 60, 100, 28, "notes edge", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   process: () => {
@@ -2081,6 +2099,12 @@ const BUILDERS = {
       rect("no-up", 700, 600, 120, 28, "no upward", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Next.js presentation stamp — clear of Presentation band.
+      rect("nextjs", 640, 80, 120, 28, "Next.js", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2819,6 +2843,12 @@ const BUILDERS = {
       txt("vac-bar-l", 140, 532, "vacant 47d / 60d SLA", { fontSize: 11, color: ACCENT }),
       // Eng manager stamp — clear of SRE pin caption.
       rect("eng-mgr", 40, 360, 110, 28, "1 Eng mgr", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // PM stamp twin.
+      rect("pm1", 680, 520, 80, 28, "1 PM", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -4481,6 +4511,12 @@ const BUILDERS = {
       }),
       // Final reading stamp.
       rect("r6-142", 460, baseline + 250, 100, 28, "R6 142ms", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Cross-under release stamp.
+      rect("r4-under", 580, baseline + 250, 120, 28, "R4 under", {
         fill: "#dcfce7",
         stroke: "#15803d",
         labelSize: 12,
