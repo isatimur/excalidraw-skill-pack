@@ -375,6 +375,7 @@ const BUILDERS = {
       }),
       txt("retry-n", 680, 340, "retries this week: 3", { fontSize: 11, color: ACCENT }),
       txt("yes-ms", 100, 340, "merge path ~4 min", { fontSize: 11, color: MUTED }),
+      txt("no-ms", 500, 340, "fix path ~12 min", { fontSize: 11, color: ACCENT }),
     ]);
   },
   sequence: () => {
@@ -723,6 +724,7 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("green-n", 500, 144, "2 green releases", { fontSize: 11, color: "#15803d" }),
+      txt("mcp-live", 500, axisY + 40, "MCP live", { fontSize: 11, color: ACCENT }),
     ]);
   },
   gantt: () => {
@@ -1059,6 +1061,7 @@ const BUILDERS = {
       txt("frz-p-l", 560, 288, "freeze if skip×2", { fontSize: 11, color: ACCENT }),
       txt("rev-n", 200, 370, "~6 reviews/wk", { fontSize: 11, color: MUTED }),
       txt("hub-age", 380, 268, "oldest note 11mo", { fontSize: 11, color: MUTED }),
+      txt("cap-src", 200, 168, "Slack + Notion", { fontSize: 11, color: MUTED }),
     ]);
   },
   process: () => {
@@ -1188,6 +1191,7 @@ const BUILDERS = {
         fontSize: 11,
         color: ACCENT,
       }),
+      txt("domain-n", 640, 250, "orders · pricing", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -1459,6 +1463,7 @@ const BUILDERS = {
       txt("theme-n", 660, 392, "3 theme packs", { fontSize: 11, color: ACCENT }),
       txt("cli-n", 480, 456, "CLI entry → cli.ts", { fontSize: 11, color: MUTED }),
       txt("skill-n", 40, 456, "SKILL.md = agent prompt", { fontSize: 11, color: MUTED }),
+      txt("load-n", 170, 392, "theme loader", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1851,6 +1856,7 @@ const BUILDERS = {
       txt("sql-n", 660, 120, "primary", { fontSize: 11, color: ACCENT }),
       txt("redis-n", 800, 288, "hit 92%", { fontSize: 11, color: MUTED }),
       txt("https-n", 168, 268, "TLS 1.3", { fontSize: 11, color: MUTED }),
+      txt("cluster-n", 436, 100, "3 nodes · k8s", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
