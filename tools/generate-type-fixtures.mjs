@@ -393,6 +393,17 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Time axis: a sequence without ticks is just stacked arrows.
+      txt("t0", 40, 194, "t0", { fontSize: 11, color: MUTED }),
+      txt("t1", 40, 244, "t1", { fontSize: 11, color: MUTED }),
+      txt("t2", 40, 294, "t2", { fontSize: 11, color: MUTED }),
+      txt("t3", 40, 344, "t3", { fontSize: 11, color: MUTED }),
+      txt("t4", 40, 424, "t4", { fontSize: 11, color: MUTED }),
+      txt("t5", 40, 464, "t5", { fontSize: 11, color: MUTED }),
+      txt("warm", 520, 510, "warm hit skips INSERT · < 40ms", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   state: () => {
@@ -660,8 +671,24 @@ const BUILDERS = {
         {}
       ),
       txt("h2-l", 620, 200, "PR review", { fontSize: 13, color: MUTED }),
+      // Fail → re-implement: Test is a gate, not a one-way handoff.
+      elbow(
+        "fail",
+        [
+          [test.x + test.w / 2, test.y + test.h + 8],
+          [test.x + test.w / 2, 360],
+          [impl.x + impl.w / 2, 360],
+          [impl.x + impl.w / 2, impl.y + impl.h + 8],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("fail-l", 420, 372, "red → fix", { fontSize: 12, color: ACCENT }),
       txt("sla", 680, 320, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
-      txt("goal", 200, 360, "goal: Sign-off same day as green tests", {
+      txt("goal", 200, 400, "goal: Sign-off same day as green tests", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("owner", 200, 424, "Sign-off owner = PM on-call", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -991,6 +1018,9 @@ const BUILDERS = {
         labelSize: 15,
       }),
       rect(c2.id, c2.x, c2.y, c2.w, c2.h, "notion/", { labelSize: 15 }),
+      txt("d0", 480, 102, "L0", { fontSize: 11, color: MUTED }),
+      txt("d1", 740, 222, "L1", { fontSize: 11, color: MUTED }),
+      txt("d2", 800, 352, "L2", { fontSize: 11, color: MUTED }),
       line("trunk", root.x + root.w / 2, root.y + root.h, [[0, 0], [0, railY - (root.y + root.h)]], {
         stroke: INK,
       }),
@@ -1059,6 +1089,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("count", 80, 434, "9 nodes · dark/ is the curated accent", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("omit", 80, 458, "mcp-server/ omitted — not a published theme pack", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1331,6 +1365,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("ttl", 60, 328, "Redis TTL 15m · Worker owns warm SETs", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "it-state": () => {
@@ -1491,23 +1529,36 @@ const BUILDERS = {
   "dp-security-matrix": () => {
     const cell = (id, x, y, label, write) =>
       rect(id, x, y, 130, 44, label, write ? { fill: "#fed7aa", stroke: ACCENT } : { fill: PAPER, stroke: MUTED });
+    const deny = (id, x, y) =>
+      rect(id, x, y, 130, 44, "deny", { fill: "#fee2e2", stroke: "#b91c1c", labelSize: 15 });
     return doc("DP security matrix — role × resource", [
       txt("h1", 300, 128, "orders_pii", { fontSize: 14, color: MUTED }),
       txt("h2", 470, 128, "agg_revenue", { fontSize: 14, color: MUTED }),
-      line("h-rule", 100, 152, [[0, 0], [500, 0]], { strokeWidth: 1 }),
-      line("v-rule", 280, 152, [[0, 0], [0, 168]], { strokeWidth: 1 }),
+      txt("h3", 640, 128, "secrets", { fontSize: 14, color: MUTED }),
+      line("h-rule", 100, 152, [[0, 0], [670, 0]], { strokeWidth: 1 }),
+      line("v-rule", 280, 152, [[0, 0], [0, 226]], { strokeWidth: 1 }),
       txt("r1", 110, 180, "Analyst", { fontSize: 15 }),
       txt("r2", 110, 238, "Engineer", { fontSize: 15 }),
       txt("r3", 110, 296, "Admin", { fontSize: 15 }),
+      txt("r4", 110, 354, "Intern", { fontSize: 15, color: MUTED }),
       cell("c11", 300, 166, "read", false),
       cell("c12", 450, 166, "read", false),
+      deny("c13", 600, 166),
       cell("c21", 300, 224, "write", true),
       cell("c22", 450, 224, "read", false),
+      deny("c23", 600, 224),
       cell("c31", 300, 282, "write", true),
       cell("c32", 450, 282, "write", true),
-      txt("leg", 100, 350, "orange = write · white = read-only", { fontSize: 13, color: MUTED }),
-      txt("claim", 100, 380, "Analyst never touches PII write path", { fontSize: 13, color: ACCENT }),
-      txt("deny", 100, 404, "deny-by-default · grants are explicit cells", {
+      cell("c33", 600, 282, "write", true),
+      deny("c41", 300, 340),
+      cell("c42", 450, 340, "read", false),
+      deny("c43", 600, 340),
+      txt("leg", 100, 410, "orange = write · white = read · red = deny", { fontSize: 13, color: MUTED }),
+      txt("claim", 100, 440, "Analyst never touches PII write path · Intern never sees secrets", {
+        fontSize: 13,
+        color: ACCENT,
+      }),
+      txt("deny", 100, 464, "deny-by-default · grants are explicit cells · audited weekly", {
         fontSize: 12,
         color: MUTED,
       }),
