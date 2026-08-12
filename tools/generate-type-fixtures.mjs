@@ -777,6 +777,7 @@ const BUILDERS = {
       txt("burn", 290, 412, "Build burn 38d of 60", { fontSize: 11, color: ACCENT }),
       txt("w8", 690, 388, "W8 go-live", { fontSize: 11, color: "#15803d" }),
       txt("overlap-g", 420, 200, "overlap W4–W5", { fontSize: 11, color: ACCENT }),
+      txt("ftes", 60, 340, "FTEs: Sam 1 · Eng 3 · Ops 1", { fontSize: 11, color: MUTED }),
     ]);
   },
   swimlane: () => {
@@ -943,6 +944,7 @@ const BUILDERS = {
       txt("it1", 392, 232, "mid", { fontSize: 10, color: MUTED }),
       // Buyer-ask gate: Slide export stays dropped until demand is named.
       txt("ask", 486, 360, "no buyer ask", { fontSize: 11, color: MUTED }),
+      txt("score-q", 528, 444, "do-now score: Themes 9/10", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1119,6 +1121,10 @@ const BUILDERS = {
       txt("dbt-n", 380, 118, "142 models · 3 failing tests", {
         fontSize: 11,
         color: ACCENT,
+      }),
+      txt("sum-p", 60, 428, "stage sum ≈ 36 min · under P95 40", {
+        fontSize: 11,
+        color: MUTED,
       }),
     ]);
   },
@@ -1427,6 +1433,7 @@ const BUILDERS = {
       txt("loc", 80, 100, "~4.2k LOC across L1", { fontSize: 11, color: MUTED }),
       txt("leaf-n", 40, 392, "2 core leaves", { fontSize: 11, color: MUTED }),
       txt("theme-n", 660, 392, "3 theme packs", { fontSize: 11, color: ACCENT }),
+      txt("cli-n", 480, 456, "CLI entry → cli.ts", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1813,6 +1820,8 @@ const BUILDERS = {
       txt("p99-hl", 460, 140, "App p99 62ms", { fontSize: 11, color: ACCENT }),
       txt("cdn-ttl", 240, 268, "CDN TTL 1h", { fontSize: 11, color: MUTED }),
       txt("jobs-n", 460, 320, "jobs lag < 5s", { fontSize: 11, color: MUTED }),
+      txt("sql-n", 660, 120, "primary", { fontSize: 11, color: ACCENT }),
+      txt("redis-n", 800, 288, "hit 92%", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
