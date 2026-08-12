@@ -596,6 +596,10 @@ const BUILDERS = {
       // Slip bar on Audit: risk isn't only a caption — it owns a span.
       line("slip-h", 520, axisY - 70, [[0, 0], [160, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
       txt("slip-l", 540, axisY - 88, "±6wk slip risk", { fontSize: 12, color: ACCENT }),
+      txt("owner-tl", 120, 192, "owner: PMM · Audit owner: Design lead", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   gantt: () => {
@@ -762,6 +766,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("drop", 140, 444, "Slide export stays in drop until a buyer asks", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("cap", 140, 468, "capacity this sprint: 8 eng-days · Themes + Parity fit", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1792,6 +1800,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("src", 180, baseline + 104, "source: warehouse.signups_daily · freeze 2026-01-08", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   line: () => {
@@ -1841,6 +1853,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("delta", 160, baseline + 72, "−258ms from start · 6 releases · hold <180ms", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("owner-l", 160, baseline + 96, "owner: search eng · alert if p99 > 180 for 15m", {
         fontSize: 12,
         color: MUTED,
       }),
