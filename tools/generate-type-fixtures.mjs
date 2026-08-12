@@ -882,6 +882,7 @@ const BUILDERS = {
       txt("test-n", 530, 248, "e2e suite", { fontSize: 11, color: MUTED }),
       txt("impl-n", 360, 320, "PR #4821", { fontSize: 11, color: MUTED }),
       txt("sign-n", 700, 100, "PM sign-off", { fontSize: 11, color: "#15803d" }),
+      txt("brief-n", 200, 100, "Brief #91", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -971,6 +972,7 @@ const BUILDERS = {
       txt("drop-why", 560, 360, "no PM request", { fontSize: 11, color: MUTED }),
       txt("fill-why", 260, 360, "backlog only", { fontSize: 11, color: MUTED }),
       txt("plan-q", 470, 140, "plan Q3", { fontSize: 11, color: ACCENT }),
+      txt("themes-why", 274, 210, "tokens ready", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1605,6 +1607,8 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("lens-n", 520, 394, "= product set", { fontSize: 11, color: ACCENT }),
+      txt("speed-n", 60, 250, "|S|=40", { fontSize: 11, color: MUTED }),
+      txt("qual-n", 640, 250, "|Q|=35", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -2317,6 +2321,10 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      txt("q2-peak", 280, baseline - 65 * perUnit - 36, "mid-year", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   line: () => {
@@ -2424,6 +2432,7 @@ const BUILDERS = {
       }),
       txt("r3-v", at(2)[0] - 10, at(2)[1] - 16, "315", { fontSize: 11, color: MUTED }),
       txt("r2-v", at(1)[0] - 10, at(1)[1] - 16, "345", { fontSize: 11, color: MUTED }),
+      txt("prior-end", atP(5)[0] + 8, atP(5)[1] - 12, "310", { fontSize: 11, color: MUTED }),
     ]);
   },
   scatter: () => {
@@ -2507,6 +2516,7 @@ const BUILDERS = {
       txt("exp-n", 420, 248, "n=37 practiced", { fontSize: 11, color: MUTED }),
       txt("fit", 170, 300, "fit R²≈0.67", { fontSize: 11, color: MUTED }),
       txt("out-n", 450, 280, "1 residual", { fontSize: 11, color: MUTED }),
+      txt("last-err", 460, 232, "28 errors", { fontSize: 11, color: ACCENT }),
     ]);
   },
   radar: () => {
