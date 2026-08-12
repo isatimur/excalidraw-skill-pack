@@ -671,6 +671,12 @@ const BUILDERS = {
       line("inf-r", 170, 500, [[0, 0], [20, 0]], { stroke: ACCENT, strokeWidth: 8 }),
       line("inf-l", 200, 500, [[0, 0], [120, 0]], { stroke: "#15803d", strokeWidth: 8 }),
       txt("inf-bar-l", 100, 512, "in flight 3·1·12", { fontSize: 11, color: MUTED }),
+      // Oldest Live age chip.
+      rect("old-live", 810, 200, 110, 28, "oldest 14d", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -968,6 +974,12 @@ const BUILDERS = {
       line("burn-bar", 290, 440, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("burn-fill", 290, 440, [[0, 0], [114, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("burn-bar-l", 290, 452, "burn 38/60d", { fontSize: 11, color: ACCENT }),
+      // Confidence chip — low until Build closes.
+      rect("conf-chip", 640, 420, 140, 28, "confidence: low", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1193,6 +1205,12 @@ const BUILDERS = {
         fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 13,
+      }),
+      // MCP quarter bet chip.
+      rect("mcp-chip", 470, 100, 100, 28, "MCP Q3", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
       }),
     ]);
   },
@@ -2609,6 +2627,12 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("acl-l", 66, 344, "analysts blocked", { fontSize: 11, color: ACCENT }),
+      // Mask contract chip on the cut.
+      rect("mask-chip", 430, 400, 140, 32, "hash email+phone", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
