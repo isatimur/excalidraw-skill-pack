@@ -253,7 +253,7 @@ const BUILDERS = {
     const apiRight = api.x + api.w;
     const apiCy = api.y + api.h / 2;
     return doc("Architecture — components + boundaries", [
-      zone("zone", 220, 88, 520, 320, ""),
+      zone("zone", 220, 88, 520, 340, ""),
       txt("zone-label", 236, 96, "Production VPC", { fontSize: 14, color: MUTED }),
       rect(client.id, client.x, client.y, client.w, client.h, "Client", { fill: PAPER, stroke: MUTED }),
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
@@ -281,8 +281,18 @@ const BUILDERS = {
       txt("a1-l", 430, 140, "read/write", { fontSize: 13, color: MUTED }),
       txt("a2-l", 438, 252, "publish", { fontSize: 13, color: MUTED }),
       txt("a3-l", 690, 300, "consume", { fontSize: 13, color: MUTED }),
+      // Worker persists outcomes — consume without a writeback is a dead letter.
+      elbow("a4", [
+        [worker.x - 8, worker.y + worker.h / 2],
+        [apiRight + 72, worker.y + worker.h / 2],
+        [apiRight + 72, db.y + db.h + 8],
+        [db.x + db.w / 2, db.y + db.h + 8],
+        [db.x + db.w / 2, db.y + db.h + 4],
+      ]),
+      txt("a4-l", 430, 360, "ack → UPDATE", { fontSize: 12, color: MUTED }),
       txt("note", 40, 280, "edge stays out", { fontSize: 12, color: MUTED }),
       txt("trust", 40, 304, "TLS terminates at API", { fontSize: 12, color: MUTED }),
+      txt("cdn", 40, 328, "CDN not in VPC · metrics from API", { fontSize: 12, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -425,6 +435,11 @@ const BUILDERS = {
         { stroke: ACCENT }
       ),
       txt("t3-l", 220, 312, "reject", { fontSize: 14, color: ACCENT }),
+      // Re-entry count: reject isn't free — two strikes force a redesign.
+      txt("strikes", 100, 340, "reject ×2 → redesign ticket", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
       txt("rule", 100, 380, "no Draft → Live: every ship passes Review", {
         fontSize: 13,
         color: MUTED,
@@ -433,7 +448,12 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("sla-rev", 380, 404, "Review SLA: < 1 business day", {
+      // Sit under Live/Archived so it never collides with the terminal rule.
+      txt("sla-rev", 520, 380, "Review SLA: < 1 business day", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("owner", 520, 404, "approver = Design lead", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -472,11 +492,21 @@ const BUILDERS = {
       ...foot("f2", item.x, item.y + item.h / 2),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
       txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
+      txt("one1", 248, 168, "1", { fontSize: 12, color: MUTED }),
+      txt("one2", 538, 168, "1", { fontSize: 12, color: MUTED }),
       txt("note", 80, 290, "one user → many orders → many line items", {
         fontSize: 13,
         color: MUTED,
       }),
       txt("idx", 80, 314, "indexes: order(user_id), line_item(order_id)", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("uniq", 80, 338, "email UNIQUE · status ∈ {open, paid, void}", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("casc", 80, 362, "ON DELETE CASCADE line_item ← order", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1628,8 +1658,10 @@ const BUILDERS = {
       txt(`${id}-l`, 96, y - 8, label, { fontSize: 12, color: MUTED }),
     ];
     return doc("Scatter — distribution + correlation", [
+      ...tick("t25", 295, "25"),
       ...tick("t50", 270, "50"),
       ...tick("t100", 200, "100"),
+      ...tick("t150", 150, "150"),
       line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
       line("x-axis", 140, baseline, [[0, 0], [400, 0]], { stroke: INK }),
       txt("y-label", 78, 112, "errors", { fontSize: 13, color: MUTED }),
@@ -1640,8 +1672,11 @@ const BUILDERS = {
           ? dot(`p${i}`, x, y, 7, { fill: ACCENT, stroke: ACCENT })
           : dot(`p${i}`, x, y, 6)
       ),
+      // Novice cluster: the left side is the argument before practice pays off.
+      txt("novice", 168, 118, "novice cluster", { fontSize: 12, color: MUTED }),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
       txt("r2", 500, 220, "r ≈ −0.82", { fontSize: 12, color: MUTED }),
+      txt("p", 500, 196, "p < 0.01", { fontSize: 12, color: MUTED }),
       txt("out", 500, 300, "accent = last session", { fontSize: 12, color: MUTED }),
       txt("n", 140, baseline + 40, "n = 48 sessions · same cohort", { fontSize: 12, color: MUTED }),
       txt("range", 140, baseline + 64, "practice range: 2–40 hours · no weekend outliers", {
