@@ -607,6 +607,10 @@ const BUILDERS = {
       ),
       txt("h2-l", 620, 200, "PR review", { fontSize: 13, color: MUTED }),
       txt("sla", 680, 320, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
+      txt("goal", 200, 360, "goal: Sign-off same day as green tests", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   quadrant: () => {
