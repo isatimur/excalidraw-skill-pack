@@ -1741,6 +1741,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("cost-it", 80, 456, "ESB ops cost ≈ 4× SaaS CRM last FY", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
@@ -1868,6 +1872,10 @@ const BUILDERS = {
         ],
         { stroke: MUTED, dashed: true }
       ),
+      txt("compat", 500, 320, "compat: BACKWARD · reject breaking", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
