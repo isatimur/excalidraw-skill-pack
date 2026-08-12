@@ -1280,6 +1280,20 @@ const BUILDERS = {
       }),
       txt("s3-path", 60, 452, "s3://raw/events/", { fontSize: 11, color: MUTED }),
       txt("dbt-ver", 380, 100, "dbt 1.8", { fontSize: 11, color: MUTED }),
+      // Night window as a bar — 01:00–05:00 without a span is wallpaper.
+      rect("win-bar", 580, 400, 180, 20, "01:00–05:00", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      txt("win-bar-l", 580, 428, "night window", { fontSize: 11, color: MUTED }),
+      // Quarantine pile count as a box under the fail path.
+      rect("q-pile", 100, 310, 140, 40, "quarantine 1.1k", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
+      txt("q-pile-l", 100, 356, "last night rows", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -1941,6 +1955,20 @@ const BUILDERS = {
       txt("fb-l", 460, 460, "fail budget used 71% this week", { fontSize: 11, color: MUTED }),
       txt("headroom", 460, 484, "headroom 58ms to gate", { fontSize: 11, color: "#15803d" }),
       txt("suite-n", 460, 100, "checkout-load", { fontSize: 11, color: MUTED }),
+      // PASS chip beside proof — the gate result is a stamp, not only JSON pass:true.
+      rect("pass", 800, 180, 80, 40, "PASS", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 16,
+      }),
+      txt("pass-l", 800, 228, "required check", { fontSize: 11, color: "#15803d" }),
+      // Gate line on the mini history — 200ms is a mark on the sparkline.
+      line("gate-h", 450, 360, [[0, 0], [120, 0]], {
+        stroke: ACCENT,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("gate-h-l", 580, 352, "200ms gate", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -2520,7 +2548,7 @@ const BUILDERS = {
         dashed: true,
         strokeWidth: 1,
       }),
-      txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
+      txt("callout", 360, 48, "record quarter", { fontSize: 14, color: ACCENT }),
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
       txt("prior-l", 590, 280, "grey = prior year", { fontSize: 12, color: MUTED }),
       txt("yoy", 180, baseline + 56, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
@@ -2583,6 +2611,16 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("legend-b", 590, 300, "live vs prior", { fontSize: 11, color: MUTED }),
+      // Launch week pin on Q4 — Nov 3 is a mark on the category, not only a caption.
+      diamond("launch-d", 500, 48, 36, 32, ""),
+      txt("launch-d-l", 540, 54, "Nov 3", { fontSize: 11, color: ACCENT }),
+      // 2026 target as a floating goal tick above the chart.
+      line("tgt26", 140, 120, [[0, 0], [440, 0]], {
+        stroke: MUTED,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("tgt26-l", 590, 112, "2026 120k", { fontSize: 11, color: MUTED }),
     ]);
   },
   line: () => {
@@ -2695,6 +2733,19 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      // Rewrite duration bracket — 2wk is a span on the axis, not only a caption.
+      line("rw-br", rewriteX - 40, 100, [[0, 0], [80, 0]], {
+        stroke: MUTED,
+        strokeWidth: 1,
+      }),
+      line("rw-bl", rewriteX - 40, 96, [[0, 0], [0, 8]], { stroke: MUTED, strokeWidth: 1 }),
+      line("rw-br2", rewriteX + 40, 96, [[0, 0], [0, 8]], { stroke: MUTED, strokeWidth: 1 }),
+      // Last page event before rewrite — pages weren't zero forever.
+      ellipse("page-ev", at(2)[0] - 6, y(315) - 40, 14, 14, "", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+      }),
+      txt("page-ev-l", at(2)[0] + 12, y(315) - 44, "page", { fontSize: 11, color: ACCENT }),
     ]);
   },
   scatter: () => {
