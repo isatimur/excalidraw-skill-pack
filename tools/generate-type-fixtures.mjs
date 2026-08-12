@@ -368,6 +368,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("retry-n", 680, 340, "retries this week: 3", { fontSize: 11, color: ACCENT }),
+      txt("yes-ms", 100, 340, "merge path ~4 min", { fontSize: 11, color: MUTED }),
     ]);
   },
   sequence: () => {
@@ -1259,6 +1261,8 @@ const BUILDERS = {
       ),
       txt("m-rej-l", 200, 432, "DQ fail → Bronze re-ingest", { fontSize: 12, color: ACCENT }),
       txt("looker", 600, 432, "Looker workspace: BI only", { fontSize: 12, color: MUTED }),
+      txt("dq-rate", 330, 390, "DQ fail ≈ 0.08%", { fontSize: 11, color: ACCENT }),
+      txt("gold-n", 600, 390, "400 metrics · 12 marts", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -1681,6 +1685,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("day1", 530, 620, "day-1 cost: learn Excalidraw once", {
+        fontSize: 11,
+        color: MUTED,
+      }),
       txt("buyer", 250, 596, "buyer ask: \"can we edit the boxes?\" → editable", {
         fontSize: 12,
         color: "#15803d",
@@ -1861,6 +1869,8 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("throat-n", 440, 260, "~180 interfaces", { fontSize: 11, color: ACCENT }),
+      txt("batch-n", 80, 80, "nightly: 42 jobs", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.

@@ -248,6 +248,11 @@ const skeleton = {
       fontSize: 14,
       color: ACCENT,
     }),
+    txt("edge_note", 540, 548, "Client stays outside the VPC · edge excluded on purpose.", {
+      fontSize: 13,
+      color: MUTED,
+    }),
+    txt("slo_note", 948, 300, "p99 142", { fontSize: 12, color: ACCENT }),
   ],
 };
 
