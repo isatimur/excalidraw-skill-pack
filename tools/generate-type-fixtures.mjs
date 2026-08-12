@@ -1256,6 +1256,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("parity", 80, 482, "render/template.html is the Node↔Python parity pin", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1581,6 +1585,10 @@ const BUILDERS = {
       txt("rps", 60, 376, "budget: 2k RPS at edge · 400 RPS origin", {
         fontSize: 12,
         color: MUTED,
+      }),
+      txt("warm-hl", 500, 340, "cache hit > 92% last 7d", {
+        fontSize: 12,
+        color: ACCENT,
       }),
     ]);
   },
