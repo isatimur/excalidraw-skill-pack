@@ -998,6 +998,7 @@ const BUILDERS = {
       { id: "edit", ask: "Edit a box", before: "re-run the exporter", after: "drag it in Excalidraw" },
       { id: "review", ask: "Review a change", before: "eyeball two PNGs", after: "diff the source" },
       { id: "rebrand", ask: "Re-theme", before: "recolour by hand", after: "pass --theme dark" },
+      { id: "open", ask: "Open later", before: "hope the PNG is enough", after: "open the .excalidraw" },
     ];
     const cellW = 250;
     return doc("Comparison — before / after contrast", [
@@ -1005,7 +1006,7 @@ const BUILDERS = {
       txt("h-after", 540, 118, "Editable source", { fontSize: 16, color: "#15803d" }),
       line("h-rule", 100, 146, [[0, 0], [700, 0]], { strokeWidth: 1, stroke: GRID }),
       ...rows.flatMap((row, i) => {
-        const y = 166 + i * 74;
+        const y = 160 + i * 68;
         return [
           txt(`${row.id}-ask`, 100, y + 16, row.ask, { fontSize: 14, color: MUTED }),
           rect(`${row.id}-b`, 250, y, cellW, 52, row.before, { labelSize: 15, fill: "#f1f5f9" }),
@@ -1016,7 +1017,7 @@ const BUILDERS = {
           }),
         ];
       }),
-      txt("verdict", 250, 400, "editable wins on every question that matters after day one", {
+      txt("verdict", 250, 440, "editable wins on every question that matters after day one", {
         fontSize: 13,
         color: "#15803d",
       }),
