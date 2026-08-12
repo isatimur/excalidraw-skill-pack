@@ -1365,10 +1365,10 @@ const BUILDERS = {
     };
     const ghost = (id, x, value) => {
       const top = baseline - value * perUnit;
-      return rect(id, x + 8, top, 44, value * perUnit, "", {
-        fill: PAPER,
+      // Left of the live bar so YoY peeks out instead of hiding under the fill.
+      return rect(id, x - 18, top, 28, value * perUnit, "", {
+        fill: "#e2e8f0",
         stroke: MUTED,
-        strokeWidth: 1,
       });
     };
     const tick = (id, value) => [
@@ -1399,7 +1399,7 @@ const BUILDERS = {
       txt("avg-l", 590, baseline - avg * perUnit - 8, `avg ${avg}`, { fontSize: 12, color: MUTED }),
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
-      txt("prior-l", 590, 280, "outline = prior year", { fontSize: 12, color: MUTED }),
+      txt("prior-l", 590, 280, "grey = prior year", { fontSize: 12, color: MUTED }),
       txt("yoy", 180, baseline + 40, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
     ]);
   },
