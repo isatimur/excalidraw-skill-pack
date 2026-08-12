@@ -1844,6 +1844,13 @@ const BUILDERS = {
       ...bar("b2", 280, 65, "Q2"),
       ...bar("b3", 380, 55, "Q3"),
       ...bar("b4", 480, 101, "Q4", true),
+      // Q4 split: paid rides on organic — the launch mix is the claim.
+      rect("b4-paid", 480, baseline - 101 * perUnit, 60, 41 * perUnit, "", {
+        fill: "#9a3412",
+        stroke: "#9a3412",
+      }),
+      txt("paid-l", 550, baseline - 101 * perUnit + 8, "paid 41", { fontSize: 11, color: ACCENT }),
+      txt("org-l", 550, baseline - 60 * perUnit, "organic 60", { fontSize: 11, color: MUTED }),
       // Per-bar YoY deltas: the ghost alone shows prior; the delta names the bet.
       txt("d1", 188, baseline + 36, "+6", { fontSize: 11, color: MUTED }),
       txt("d2", 288, baseline + 36, "+13", { fontSize: 11, color: MUTED }),
