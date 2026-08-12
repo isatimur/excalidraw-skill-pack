@@ -564,6 +564,10 @@ const BUILDERS = {
       txt("crit", 160, 140, "critical path", { fontSize: 12, color: MUTED }),
       txt("block", 680, 248, "blocked\non Build", { fontSize: 12, color: ACCENT }),
       txt("ms", 640, 340, "go-live W8", { fontSize: 13, color: "#15803d" }),
+      txt("conf", 640, 364, "confidence: low until Build closes", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   swimlane: () => {
