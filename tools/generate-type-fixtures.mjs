@@ -337,7 +337,7 @@ const BUILDERS = {
     // free text — bound labels land on the line and, at Cascadia width, collide.
     // Cache miss is the argument: the write still hits DB.
     const cx = { client: 120, api: 320, cache: 520, db: 720 };
-    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 300]], { dashed: true });
+    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 330]], { dashed: true });
     return doc("Sequence — messages over time", [
       rect("client", cx.client - 60, 110, 120, 48, "Client"),
       rect("api", cx.api - 60, 110, 120, 48, "API"),
@@ -363,12 +363,14 @@ const BUILDERS = {
       txt("m4-l", cx.api + 140, 328, "INSERT", { fontSize: 13, color: MUTED }),
       path("m5", cx.db, 400, [[0, 0], [cx.api - cx.db + 8, 0]], "", { dashed: true, stroke: MUTED }),
       txt("m5-l", cx.api + 140, 378, "1 row", { fontSize: 13, color: MUTED }),
-      path("m6", cx.api, 450, [[0, 0], [cx.client - cx.api + 8, 0]], "", {
+      path("m5b", cx.api, 430, [[0, 0], [cx.cache - cx.api - 8, 0]], ""),
+      txt("m5b-l", cx.api + 48, 408, "SET order", { fontSize: 13, color: MUTED }),
+      path("m6", cx.api, 470, [[0, 0], [cx.client - cx.api + 8, 0]], "", {
         dashed: true,
         stroke: MUTED,
       }),
-      txt("m6-l", cx.client + 28, 428, "201 Created", { fontSize: 13, color: MUTED }),
-      txt("budget", 100, 490, "cache miss forces the write · happy path", {
+      txt("m6-l", cx.client + 28, 448, "201 Created", { fontSize: 13, color: MUTED }),
+      txt("budget", 100, 510, "cache miss forces the write · then warm the cache", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -809,12 +811,16 @@ const BUILDERS = {
       arrow("m2", silver, gold, ""),
       txt("m1-l", 258, 118, "dedupe + types", { fontSize: 13, color: MUTED }),
       txt("m2-l", 518, 118, "aggregate", { fontSize: 13, color: MUTED }),
-      txt("b-own", 60, 252, "owned by ingest", { fontSize: 12, color: MUTED }),
-      txt("s-own", 330, 252, "owned by analytics eng", { fontSize: 12, color: MUTED }),
-      txt("g-own", 600, 252, "owned by BI", { fontSize: 12, color: ACCENT }),
+      txt("b-own", 60, 252, "owned by ingest · ~12M rows/day", { fontSize: 12, color: MUTED }),
+      txt("s-own", 330, 252, "owned by analytics eng · typed", { fontSize: 12, color: MUTED }),
+      txt("g-own", 600, 252, "owned by BI · mart-ready", { fontSize: 12, color: ACCENT }),
       txt("tier-note", 60, 290, "each tier is a contract: raw → conformed → mart", {
         fontSize: 13,
         color: MUTED,
+      }),
+      txt("gate", 60, 318, "Gold is the only tier Looker may query", {
+        fontSize: 13,
+        color: ACCENT,
       }),
     ]);
   },
@@ -1402,6 +1408,7 @@ const BUILDERS = {
           : dot(`p${i}`, x, y, 6)
       ),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
+      txt("r2", 500, 220, "r ≈ −0.82", { fontSize: 12, color: MUTED }),
       txt("n", 140, baseline + 40, "n = 48 sessions · same cohort", { fontSize: 12, color: MUTED }),
     ]);
   },
