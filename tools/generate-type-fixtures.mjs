@@ -312,6 +312,24 @@ const BUILDERS = {
       txt("api-n", 280, 264, "3 replicas", { fontSize: 11, color: MUTED }),
       txt("client-ver", 40, 180, "iOS + Web", { fontSize: 11, color: MUTED }),
       txt("pg-ver", 690, 100, "Postgres 16", { fontSize: 11, color: MUTED }),
+      // CDN lives at the edge — naming it in a caption without a box is wallpaper.
+      rect("cdn-box", 40, 88, 120, 36, "CDN", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 14,
+      }),
+      txt("cdn-ttl", 40, 64, "TTL 60s · edge", { fontSize: 11, color: MUTED }),
+      elbow(
+        "cdn-api",
+        [
+          [160, 106],
+          [220, 106],
+          [220, apiCy],
+          [api.x - 8, apiCy],
+        ],
+        { stroke: MUTED, dashed: true }
+      ),
+      txt("cdn-l", 168, 84, "cache miss → API", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -561,6 +579,24 @@ const BUILDERS = {
       txt("draft-age", 100, 138, "oldest Draft 2d", { fontSize: 11, color: MUTED }),
       txt("reject-n", 220, 340, "rejects this wk: 2", { fontSize: 11, color: ACCENT }),
       txt("archive-n", 660, 360, "+4 this month", { fontSize: 11, color: MUTED }),
+      // redesign is a real state — caption-only "→ redesign ticket" is wallpaper.
+      rect("redesign", 380, 480, 140, 44, "Redesign", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
+      elbow(
+        "t6",
+        [
+          [draft.x + draft.w / 2, draft.y + draft.h + 8],
+          [draft.x + draft.w / 2, 460],
+          [450, 460],
+          [450, 472],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("t6-l", 260, 448, "×2 reject →", { fontSize: 11, color: ACCENT }),
+      txt("redesign-n", 530, 492, "open: 1 ticket", { fontSize: 11, color: ACCENT }),
     ]);
   },
   er: () => {
@@ -1293,7 +1329,6 @@ const BUILDERS = {
       txt("q-n", 220, 340, "queue depth < 40", { fontSize: 11, color: MUTED }),
       txt("warm-pct", 360, 340, "warm fills 7% of SETs", { fontSize: 11, color: MUTED }),
       txt("az-n", 520, 128, "Service A · AZ-a", { fontSize: 11, color: MUTED }),
-      txt("miss", 670, 312, "miss → origin", { fontSize: 11, color: MUTED }),
       txt("path", 150, 152, "edge → Gateway → API", { fontSize: 11, color: MUTED }),
       txt("svc-a-n", 436, 188, "2 pods", { fontSize: 11, color: MUTED }),
       txt("client-n", 40, 248, "mobile + web", { fontSize: 11, color: MUTED }),
@@ -1302,6 +1337,22 @@ const BUILDERS = {
       txt("cache-sz", 670, 340, "~2GB", { fontSize: 11, color: MUTED }),
       txt("warm-age", 360, 360, "warm every 5m", { fontSize: 11, color: MUTED }),
       txt("client-tls", 40, 176, "mTLS off", { fontSize: 11, color: MUTED }),
+      // Miss path exits Service A — "miss → origin" as caption alone is wallpaper.
+      rect("origin", 720, 280, 100, 36, "Origin", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 14,
+      }),
+      elbow(
+        "n5",
+        [
+          [cache.x + cache.w + 8, cache.y + cache.h / 2],
+          [712, cache.y + cache.h / 2],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("n5-l", 690, 260, "miss", { fontSize: 11, color: ACCENT }),
+      txt("origin-n", 720, 324, "DB read", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -1493,6 +1544,17 @@ const BUILDERS = {
       txt("load-n", 170, 392, "theme loader", { fontSize: 11, color: MUTED }),
       txt("dark-why", 528, 392, "accent = curated", { fontSize: 11, color: ACCENT }),
       txt("html-n", 334, 456, "shared template", { fontSize: 11, color: MUTED }),
+      // Omitted package drawn dashed — exclusion is structural, not only captioned.
+      rect("mcp", 900, 210, 120, 44, "mcp-server/", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      txt("mcp-l", 900, 190, "omitted L1", { fontSize: 11, color: MUTED }),
+      line("omit-rail", 720, 234, [[0, 0], [172, 0]], {
+        stroke: MUTED,
+        dashed: true,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1622,6 +1684,19 @@ const BUILDERS = {
       txt("lens-n", 520, 394, "= product set", { fontSize: 11, color: ACCENT }),
       txt("speed-n", 60, 250, "|S|=40", { fontSize: 11, color: MUTED }),
       txt("qual-n", 640, 250, "|Q|=35", { fontSize: 11, color: MUTED }),
+      // Killed exclusives are a pile — the tax isn't only a ratio caption.
+      rect("killed", 60, 360, 120, 48, "killed ×9", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
+      txt("killed-l", 60, 416, "Speed-only this Q", { fontSize: 11, color: ACCENT }),
+      rect("held", 640, 360, 120, 48, "held ×6", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 14,
+      }),
+      txt("held-l", 640, 416, "Quality-only parked", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -2062,6 +2137,26 @@ const BUILDERS = {
       txt("dash-n", 766, 268, "12 boards", { fontSize: 11, color: MUTED }),
       txt("stream-n", 410, 248, "topic orders", { fontSize: 11, color: MUTED }),
       txt("kafka-ver", 268, 158, "Kafka 3.6", { fontSize: 11, color: MUTED }),
+      // DLQ re-enters Stream — poison without a loop is a dead end, not a flow.
+      elbow(
+        "df-re",
+        [
+          [268 + 66, 356],
+          [268 + 66, 380],
+          [210, 380],
+          [210, 232],
+          [stream.x - 8, 232],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("df-re-l", 120, 372, "reprocess", { fontSize: 11, color: ACCENT }),
+      // Schema Registry sits on the mask hop — contract before warehouse.
+      rect("schema", 430, 280, 120, 36, "Schema Reg", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      txt("schema-n", 430, 324, "BACKWARD", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
