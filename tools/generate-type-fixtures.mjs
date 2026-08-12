@@ -949,6 +949,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Gate-pending chip until 2 green MCP releases.
+      rect("gate-chip", 440, 60, 120, 28, "gate pending", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   gantt: () => {
@@ -1184,6 +1190,12 @@ const BUILDERS = {
       rect("page0-chip", 700, 440, 120, 28, "pages wk: 0", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // WIP limit chip — 1 Spec in Eng.
+      rect("wip-chip", 200, 440, 140, 28, "WIP Spec: 1", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -1561,6 +1573,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Quarantine page threshold chip.
+      rect("page-q", 580, 460, 160, 28, "page if >1% ×2n", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -1627,6 +1645,12 @@ const BUILDERS = {
         labelSize: 14,
       }),
       txt("ci-fail-l", 700, 408, "PR #4821", { fontSize: 11, color: ACCENT }),
+      // Domain accent chip — 9 pkgs under discussion.
+      rect("dom-chip", 700, 440, 120, 28, "9 domain pkgs", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -1849,6 +1873,22 @@ const BUILDERS = {
       ),
       txt("looker-e-l", 720, 120, "BI query", { fontSize: 11, color: ACCENT }),
       txt("looker-deny", 800, 220, "no Silver access", { fontSize: 11, color: ACCENT }),
+      // Gold-only query gate chip.
+      rect("gold-only", 800, 260, 120, 28, "Gold only", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // DQ fail rate chip on the reject loop.
+      rect("dq-chip", 330, 460, 120, 28, "DQ 0.08%", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Freshness bar — Gold ≤ T+1.
+      line("fresh-bar", 600, 460, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("fresh-fill", 600, 460, [[0, 0], [120, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("fresh-bar-l", 600, 472, "Gold ≤ T+1", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -2364,6 +2404,12 @@ const BUILDERS = {
       rect("inv-chip", 640, 400, 140, 28, "invert-check", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Capex weight chip — Strategy is 10%.
+      rect("capex", 640, 440, 120, 28, "strat 10%", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
