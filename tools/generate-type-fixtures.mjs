@@ -1295,6 +1295,7 @@ const BUILDERS = {
       txt("api-ver", 460, 248, "API v3", { fontSize: 11, color: MUTED }),
       txt("cache-sz", 670, 340, "~2GB", { fontSize: 11, color: MUTED }),
       txt("warm-age", 360, 360, "warm every 5m", { fontSize: 11, color: MUTED }),
+      txt("client-tls", 40, 176, "mTLS off", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -1484,6 +1485,7 @@ const BUILDERS = {
       txt("skill-n", 40, 456, "SKILL.md = agent prompt", { fontSize: 11, color: MUTED }),
       txt("load-n", 170, 392, "theme loader", { fontSize: 11, color: MUTED }),
       txt("dark-why", 528, 392, "accent = curated", { fontSize: 11, color: ACCENT }),
+      txt("html-n", 334, 456, "shared template", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1569,6 +1571,7 @@ const BUILDERS = {
       txt("ceo-span", 480, 100, "span=2", { fontSize: 11, color: MUTED }),
       txt("eng-mgr", 40, 220, "1 Eng manager", { fontSize: 11, color: MUTED }),
       txt("prod-mgr", 680, 220, "1 PM", { fontSize: 11, color: MUTED }),
+      txt("plat-ic", 140, 400, "3 ICs · vacant lead", { fontSize: 11, color: ACCENT }),
     ]);
   },
   venn: () => {
@@ -2049,6 +2052,7 @@ const BUILDERS = {
       txt("wh-n", 566, 268, "Snowflake", { fontSize: 11, color: MUTED }),
       txt("dash-n", 766, 268, "12 boards", { fontSize: 11, color: MUTED }),
       txt("stream-n", 410, 248, "topic orders", { fontSize: 11, color: MUTED }),
+      txt("kafka-ver", 268, 158, "Kafka 3.6", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
@@ -2184,6 +2188,7 @@ const BUILDERS = {
       txt("eng-scope", 780, 238, "Eng write: PII only", { fontSize: 11, color: ACCENT }),
       txt("admin-n", 780, 296, "Admin = break-glass", { fontSize: 11, color: ACCENT }),
       txt("intern-n", 780, 360, "Intern: agg only", { fontSize: 11, color: MUTED }),
+      txt("analyst-n", 780, 180, "Analyst: read×2", { fontSize: 11, color: MUTED }),
     ]);
   },
   bar: () => {
@@ -2439,6 +2444,10 @@ const BUILDERS = {
       txt("r3-v", at(2)[0] - 10, at(2)[1] - 16, "315", { fontSize: 11, color: MUTED }),
       txt("r2-v", at(1)[0] - 10, at(1)[1] - 16, "345", { fontSize: 11, color: MUTED }),
       txt("prior-end", atP(5)[0] + 8, atP(5)[1] - 12, "310", { fontSize: 11, color: MUTED }),
+      txt("series-n", 160, baseline + 168, "series: current vs prior year", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   scatter: () => {
