@@ -438,6 +438,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Required checks chip.
+      rect("req-chip", 500, 100, 140, 28, "required checks", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   sequence: () => {
@@ -545,6 +551,12 @@ const BUILDERS = {
       txt("miss-bar-l", 760, 532, "miss 7%", { fontSize: 11, color: ACCENT }),
       // Idempotency TTL chip.
       rect("ttl-chip", 100, 600, 140, 28, "idem TTL 24h", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // DB busy chip on INSERT hop.
+      rect("db-chip", 720, 380, 100, 28, "DB 110ms", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -877,6 +889,12 @@ const BUILDERS = {
       line("frz-bar", 400, axisY + 190, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("frz-fill", 400, axisY + 190, [[0, 0], [22, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("frz-bar-l", 400, axisY + 202, "freeze 3mo buffer", { fontSize: 11, color: ACCENT }),
+      // MCP live stamp at now.
+      rect("mcp-live-chip", 640, 100, 100, 28, "MCP live", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   gantt: () => {
@@ -2444,6 +2462,12 @@ const BUILDERS = {
       line("orig-bar", 60, 400, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("orig-fill", 60, 400, [[0, 0], [32, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("orig-bar-l", 60, 412, "origin 400 / edge 2k RPS", { fontSize: 11, color: MUTED }),
+      // App p99 chip.
+      rect("p99-chip", 840, 120, 110, 28, "App p99 62ms", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
