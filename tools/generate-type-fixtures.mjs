@@ -525,6 +525,10 @@ const BUILDERS = {
         labelSize: 12,
       }),
       txt("warm-badge-l", 520, 160, "<40ms · no DB", { fontSize: 11, color: "#15803d" }),
+      // Miss rate bar — 7% is a fill beside the miss path.
+      line("miss-bar", 760, 520, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("miss-fill", 760, 520, [[0, 0], [7, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("miss-bar-l", 760, 532, "miss 7%", { fontSize: 11, color: ACCENT }),
     ]);
   },
   state: () => {
@@ -931,6 +935,10 @@ const BUILDERS = {
       rect("fte-d", 60, 360, 70, 28, "Sam 1", { fill: PAPER, stroke: MUTED, labelSize: 12 }),
       rect("fte-e", 60, 396, 70, 28, "Eng 3", { fill: "#fef3c7", stroke: ACCENT, labelSize: 12 }),
       rect("fte-o", 60, 432, 70, 28, "Ops 1", { fill: PAPER, stroke: MUTED, labelSize: 12 }),
+      // Build burn bar — 38/60 days.
+      line("burn-bar", 290, 440, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("burn-fill", 290, 440, [[0, 0], [114, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("burn-bar-l", 290, 452, "burn 38/60d", { fontSize: 11, color: ACCENT }),
     ]);
   },
   swimlane: () => {
@@ -1541,6 +1549,10 @@ const BUILDERS = {
       line("rps-bar", 220, 360, [[0, 0], [140, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("rps-fill", 220, 360, [[0, 0], [96, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("rps-bar-l", 220, 372, "~2.4k RPS", { fontSize: 11, color: MUTED }),
+      // Warm share of SETs — 7% is a small fill under Worker.
+      line("warm-bar", 360, 380, [[0, 0], [140, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("warm-fill", 360, 380, [[0, 0], [10, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("warm-bar-l", 360, 392, "warm 7% SETs", { fontSize: 11, color: ACCENT }),
     ]);
   },
   medallion: () => {
@@ -1875,6 +1887,10 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("sre-card-l", 320, 448, "priority hire", { fontSize: 11, color: ACCENT }),
+      // Headcount mix bar — 21 under CEO.
+      line("hc-bar", 504, 280, [[0, 0], [156, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("hc-fill", 504, 280, [[0, 0], [156, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("hc-bar-l", 504, 292, "21 headcount", { fontSize: 11, color: MUTED }),
     ]);
   },
   venn: () => {
