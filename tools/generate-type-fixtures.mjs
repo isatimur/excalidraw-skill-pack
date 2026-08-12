@@ -1799,6 +1799,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("lag", 536, 380, "ingest lag SLO < 2 min", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -1919,6 +1923,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("next-audit", 100, 512, "next access review: 2026-03-01", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("ticket", 450, 512, "open: SEC-441 break-glass log", {
         fontSize: 12,
         color: MUTED,
       }),
