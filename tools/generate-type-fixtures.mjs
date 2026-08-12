@@ -928,6 +928,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Product sku chip.
+      rect("sku-chip", 660, 440, 140, 28, "sku UNIQUE", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1071,6 +1077,12 @@ const BUILDERS = {
       }),
       // Productize phase chip.
       rect("prod-ph", 360, 480, 140, 28, "productize 9mo", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // PMM owner chip — clear of v2 pack free text.
+      rect("pmm", 40, 220, 100, 28, "PMM owns", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2380,6 +2392,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Stripe sibling chip.
+      rect("stripe-chip", 792, 400, 100, 28, "stripe/", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2820,6 +2838,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Exec owner chip.
+      rect("exec-own", 80, 280, 120, 28, "exec owns", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   evidence: () => {
@@ -2939,6 +2963,12 @@ const BUILDERS = {
       }),
       // Staging date chip.
       rect("date-chip", 800, 380, 140, 28, "2026-02-14", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // k6 source chip.
+      rect("k6-chip", 800, 420, 100, 28, "k6 · stg", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -4188,6 +4218,12 @@ const BUILDERS = {
       rect("slope-chip", 740, 500, 120, 28, "−2.1 err/h", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Novice zone chip.
+      rect("nov-chip", 80, 80, 120, 28, "novice zone", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
