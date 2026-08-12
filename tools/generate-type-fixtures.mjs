@@ -870,6 +870,7 @@ const BUILDERS = {
       txt("handoff-ms", 360, 200, "handoff < 15m", { fontSize: 11, color: MUTED }),
       txt("scope-n", 312, 100, "scope locked", { fontSize: 11, color: MUTED }),
       txt("test-n", 530, 248, "e2e suite", { fontSize: 11, color: MUTED }),
+      txt("impl-n", 360, 320, "PR #4821", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -957,6 +958,7 @@ const BUILDERS = {
       txt("mcp-roi", 486, 208, "ROI lag 2q", { fontSize: 11, color: MUTED }),
       txt("parity-why", 316, 200, "blocks bad PNG", { fontSize: 11, color: MUTED }),
       txt("drop-why", 560, 360, "no PM request", { fontSize: 11, color: MUTED }),
+      txt("fill-why", 260, 360, "backlog only", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1270,6 +1272,7 @@ const BUILDERS = {
       txt("svc-a-n", 436, 188, "2 pods", { fontSize: 11, color: MUTED }),
       txt("client-n", 40, 248, "mobile + web", { fontSize: 11, color: MUTED }),
       txt("gw-rps", 220, 152, "p50 18ms", { fontSize: 11, color: MUTED }),
+      txt("api-ver", 460, 248, "API v3", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -2275,6 +2278,10 @@ const BUILDERS = {
         fontSize: 11,
         color: ACCENT,
       }),
+      txt("q1-base", 160, baseline + 200, "Q1 = year base", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   line: () => {
@@ -2376,6 +2383,10 @@ const BUILDERS = {
       txt("r6-ok", at(5)[0] + 16, at(5)[1] + 4, "ok", { fontSize: 11, color: "#15803d" }),
       txt("rewrite-cost", rewriteX - 40, 116, "2wk rewrite", { fontSize: 11, color: MUTED }),
       txt("pages", 630, y(180) + 28, "0 pages this wk", { fontSize: 11, color: "#15803d" }),
+      txt("sla-met", 400, y(168) - 4, "5 releases under", {
+        fontSize: 11,
+        color: "#15803d",
+      }),
     ]);
   },
   scatter: () => {
@@ -2457,6 +2468,7 @@ const BUILDERS = {
       txt("slope", 500, 388, "slope ≈ −2.1 err/h", { fontSize: 11, color: MUTED }),
       txt("nov-n", 168, 200, "n=11 novice", { fontSize: 11, color: MUTED }),
       txt("exp-n", 420, 248, "n=37 practiced", { fontSize: 11, color: MUTED }),
+      txt("fit", 170, 300, "fit R²≈0.67", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
