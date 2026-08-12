@@ -765,6 +765,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("ex", 140, 404, "bad: postgres.ts imports pricing.ts", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -1085,6 +1089,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("n", 460, 310, "n = 12 runs · same build SHA", { fontSize: 12, color: MUTED }),
+      txt("ci", 460, 334, "CI job: load-checkout · required check", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
