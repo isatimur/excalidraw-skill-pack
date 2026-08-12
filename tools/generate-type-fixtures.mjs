@@ -649,6 +649,8 @@ const BUILDERS = {
       }),
       txt("mvp-d", 170, axisY - 72, "Mar '24", { fontSize: 11, color: MUTED }),
       txt("thm-d", 340, axisY - 72, "Sep '24", { fontSize: 11, color: MUTED }),
+      txt("mcp-d", 500, axisY - 72, "Jun '25", { fontSize: 11, color: ACCENT }),
+      txt("aud-d", 660, axisY - 72, "TBD", { fontSize: 11, color: MUTED }),
     ]);
   },
   gantt: () => {
@@ -1109,6 +1111,7 @@ const BUILDERS = {
         labelSize: 14,
       }),
       txt("svc-b-l", 40, 90, "out of nest", { fontSize: 11, color: MUTED }),
+      txt("gw-ver", 220, 176, "v2 gateway", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
