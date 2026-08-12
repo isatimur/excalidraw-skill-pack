@@ -690,6 +690,8 @@ const BUILDERS = {
       ),
       txt("write-l", 300, 168, "write", { fontSize: 12, color: ACCENT }),
       txt("read-l", 430, 168, "read", { fontSize: 12, color: ACCENT }),
+      txt("pub-l", 430, 280, "seed", { fontSize: 12, color: ACCENT }),
+      txt("rev-l", 250, 280, "log", { fontSize: 12, color: ACCENT }),
       txt("hub-note", 80, 380, "hub accumulates; the loop never starts from empty", {
         fontSize: 13,
         color: MUTED,
@@ -1329,7 +1331,7 @@ const BUILDERS = {
       cell("c31", 300, 282, "write", true),
       cell("c32", 450, 282, "write", true),
       txt("leg", 100, 350, "orange = write · white = read-only", { fontSize: 13, color: MUTED }),
-      txt("claim", 300, 350, "Analyst never touches PII write path", { fontSize: 13, color: ACCENT }),
+      txt("claim", 100, 380, "Analyst never touches PII write path", { fontSize: 13, color: ACCENT }),
     ]);
   },
   bar: () => {
