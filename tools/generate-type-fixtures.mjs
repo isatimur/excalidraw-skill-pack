@@ -1518,12 +1518,6 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
-      // Do-now quadrant chip.
-      rect("now-q", 152, 100, 100, 28, "do now", {
-        fill: "#fef3c7",
-        stroke: ACCENT,
-        labelSize: 12,
-      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1814,7 +1808,7 @@ const BUILDERS = {
         labelSize: 12,
       }),
       // dbt models chip.
-      rect("dbt", 500, 100, 120, 28, "dbt models", {
+      rect("dbt", 700, 100, 120, 28, "dbt models", {
         fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 12,

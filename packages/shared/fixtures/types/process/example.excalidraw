@@ -1456,7 +1456,7 @@
     {
       "id": "tnkiET_rIKaLuJG_5V5Yz",
       "type": "rectangle",
-      "x": 500,
+      "x": 700,
       "y": 100,
       "width": 120,
       "height": 28,
@@ -1822,7 +1822,7 @@
     {
       "id": "TkBhICJ5vZhsprZjlg8dI",
       "type": "text",
-      "x": 528.2840423583984,
+      "x": 728.2840423583984,
       "y": 106.5,
       "width": 63.431915283203125,
       "height": 15,
