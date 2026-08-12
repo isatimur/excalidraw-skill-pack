@@ -821,6 +821,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Approve rate stamp.
+      rect("apr92", 660, 460, 120, 28, "approve 92%", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1244,6 +1250,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Design owner stamp.
+      rect("sam-own", 60, 480, 100, 28, "Design Sam", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1392,6 +1404,12 @@ const BUILDERS = {
       }),
       // Spec age chip.
       rect("spec-age", 360, 520, 100, 28, "Spec 6h", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // QA ownership stamp on Test lane.
+      rect("qa-on", 530, 480, 100, 28, "QA on-call", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2124,6 +2142,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Warm SET share stamp.
+      rect("warm-sets", 220, 480, 120, 28, "warm SETs", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2430,6 +2454,12 @@ const BUILDERS = {
       }),
       // Stripe sibling chip.
       rect("stripe-chip", 792, 400, 100, 28, "stripe/", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Off-tree pack stamp beside whiteboard exclusion.
+      rect("off-tree", 900, 460, 120, 28, "off-tree", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -4420,6 +4450,12 @@ const BUILDERS = {
       // Reach score chip.
       rect("reach-n", 80, 460, 100, 28, "Reach 100", {
         fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Speed score stamp.
+      rect("speed-n", 80, 420, 100, 28, "Speed 112", {
+        fill: "#fed7aa",
         stroke: ACCENT,
         labelSize: 12,
       }),
