@@ -1200,6 +1200,10 @@ const BUILDERS = {
         fontSize: 13,
         color: "#15803d",
       }),
+      txt("day0", 250, 544, "day zero still needs a PNG; day two needs the source", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
