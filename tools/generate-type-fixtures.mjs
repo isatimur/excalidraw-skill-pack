@@ -875,6 +875,7 @@ const BUILDERS = {
       txt("scope-n", 312, 100, "scope locked", { fontSize: 11, color: MUTED }),
       txt("test-n", 530, 248, "e2e suite", { fontSize: 11, color: MUTED }),
       txt("impl-n", 360, 320, "PR #4821", { fontSize: 11, color: MUTED }),
+      txt("sign-n", 700, 100, "PM sign-off", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   quadrant: () => {
@@ -963,6 +964,7 @@ const BUILDERS = {
       txt("parity-why", 316, 200, "blocks bad PNG", { fontSize: 11, color: MUTED }),
       txt("drop-why", 560, 360, "no PM request", { fontSize: 11, color: MUTED }),
       txt("fill-why", 260, 360, "backlog only", { fontSize: 11, color: MUTED }),
+      txt("plan-q", 470, 140, "plan Q3", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1279,6 +1281,7 @@ const BUILDERS = {
       txt("client-n", 40, 248, "mobile + web", { fontSize: 11, color: MUTED }),
       txt("gw-rps", 220, 152, "p50 18ms", { fontSize: 11, color: MUTED }),
       txt("api-ver", 460, 248, "API v3", { fontSize: 11, color: MUTED }),
+      txt("cache-sz", 670, 340, "~2GB", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -2294,6 +2297,10 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      txt("freeze-d", 400, baseline + 200, "freeze 2026-01-08", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   line: () => {
@@ -2399,6 +2406,7 @@ const BUILDERS = {
         fontSize: 11,
         color: "#15803d",
       }),
+      txt("r3-v", at(2)[0] - 10, at(2)[1] - 16, "315", { fontSize: 11, color: MUTED }),
     ]);
   },
   scatter: () => {
@@ -2481,6 +2489,7 @@ const BUILDERS = {
       txt("nov-n", 168, 200, "n=11 novice", { fontSize: 11, color: MUTED }),
       txt("exp-n", 420, 248, "n=37 practiced", { fontSize: 11, color: MUTED }),
       txt("fit", 170, 300, "fit R²≈0.67", { fontSize: 11, color: MUTED }),
+      txt("out-n", 450, 280, "1 residual", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
