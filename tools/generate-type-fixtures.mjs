@@ -388,6 +388,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Worker concurrency stamp.
+      rect("conc8", 690, 500, 100, 28, "conc 8", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -990,6 +996,12 @@ const BUILDERS = {
       }),
       // Order FK stamp.
       rect("ord-fk", 370, 500, 120, 28, "Order FK", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Line-item crow feet stamp.
+      rect("lines-m", 560, 540, 140, 28, "lines many", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3253,6 +3265,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Platform owner stamp.
+      rect("plat-own", 60, 500, 120, 28, "platform OC", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -3906,6 +3924,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Unity catalog stamp on lakehouse.
+      rect("unity", 310, 480, 120, 28, "Unity Cat", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -4246,6 +4270,12 @@ const BUILDERS = {
       rect("tgt120", 700, 436, 120, 28, "2026 120k", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Q4 share stamp twin.
+      rect("q4-38", 700, 472, 110, 28, "Q4 38% YTD", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -4606,6 +4636,12 @@ const BUILDERS = {
       rect("tgt40", 740, 360, 110, 28, "err floor 40", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Last session hours stamp.
+      rect("hrs38", 740, 400, 110, 28, "38h practiced", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
