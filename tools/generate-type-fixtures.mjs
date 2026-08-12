@@ -379,6 +379,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("timeout", 100, 534, "budget: < 250ms end-to-end on miss path", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   state: () => {
