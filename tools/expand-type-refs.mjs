@@ -88,7 +88,7 @@ const META = {
     layout: "Axes as free-floating labels. Items as ellipses or small rectangles in quadrants.",
     pattern: "Light quadrant grid optional; accent only the hero item.",
     routing: "Label axes with what increases/decreases on each dimension, and name each quadrant with the verdict it carries (`do now`, `drop`).",
-    avoid: "Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty, which dodges the decision the chart exists to force.",
+    avoid: "Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty; a drop item with no reason to stay dropped.",
     budget: "≤8 positioned items.",
   },
   loop: {

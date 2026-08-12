@@ -12,7 +12,7 @@ Light quadrant grid optional; accent only the hero item.
 Label axes with what increases/decreases on each dimension, and name each quadrant with the verdict it carries (`do now`, `drop`).
 
 ## Anti-patterns
-Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty, which dodges the decision the chart exists to force.
+Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty; a drop item with no reason to stay dropped.
 
 ## Budget
 ≤8 positioned items.

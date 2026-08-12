@@ -970,6 +970,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("count", 80, 434, "9 nodes · dark/ is the curated accent", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
