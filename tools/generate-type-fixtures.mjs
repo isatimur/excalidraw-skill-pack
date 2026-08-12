@@ -939,6 +939,7 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("mem-size", 380, 188, "~1.2k notes", { fontSize: 11, color: ACCENT }),
+      txt("write-rate", 300, 248, "+18%/wk", { fontSize: 11, color: ACCENT }),
     ]);
   },
   process: () => {
@@ -1372,6 +1373,10 @@ const BUILDERS = {
       }),
       txt("vacant", 300, 360, "vacant lead", { fontSize: 11, color: ACCENT }),
       txt("span", 140, 516, "span of control: CEO 2 · Eng 1 · Product 1", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("ratio", 140, 540, "IC:manager ≈ 6:1 Eng · 4:1 Product", {
         fontSize: 12,
         color: MUTED,
       }),
