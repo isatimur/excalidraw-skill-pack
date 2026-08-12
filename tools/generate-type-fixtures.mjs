@@ -2333,6 +2333,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Eng headcount chip.
+      rect("eng-hc", 40, 280, 100, 28, "Eng 12", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2426,6 +2432,12 @@ const BUILDERS = {
       // Quality set size chip.
       rect("q-chip", 640, 500, 100, 28, "|Q|=35", {
         fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Held pile age chip.
+      rect("held-age", 780, 440, 120, 28, "held this Q", {
+        fill: "#e2e8f0",
         stroke: MUTED,
         labelSize: 12,
       }),
@@ -3292,6 +3304,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Deny count chip.
+      rect("deny-n", 640, 600, 120, 28, "5 deny cells", {
+        fill: "#fee2e2",
+        stroke: "#b91c1c",
+        labelSize: 12,
+      }),
     ]);
   },
   bar: () => {
@@ -3482,6 +3500,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // YTD total chip.
+      rect("ytd-chip", 700, 292, 110, 28, "YTD 265k", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   line: () => {
@@ -3653,6 +3677,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Cadence chip.
+      rect("cad-chip", 300, baseline + 220, 120, 28, "cadence 3wk", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   scatter: () => {
@@ -3779,6 +3809,12 @@ const BUILDERS = {
       // Residual count chip.
       rect("res-chip", 620, 460, 120, 28, "1 residual", {
         fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Fit R² chip.
+      rect("r2-chip", 620, 500, 100, 28, "R²≈0.67", {
+        fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
       }),
