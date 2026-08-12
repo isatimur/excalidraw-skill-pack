@@ -462,6 +462,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Merge-path duration chip on the yes branch.
+      rect("merge-chip", 280, 600, 140, 28, "merge ~4 min", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   sequence: () => {
@@ -1210,6 +1216,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Same-day sign-off goal chip.
+      rect("goal-sw", 360, 480, 160, 28, "same-day sign-off", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   quadrant: () => {
@@ -1472,6 +1484,12 @@ const BUILDERS = {
       }),
       // Freeze Publish chip when skip×2.
       rect("frz-chip", 680, 300, 120, 28, "Publish freeze", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Skip counter chip.
+      rect("skip-chip", 680, 340, 120, 28, "skip ×2", {
         fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 12,
@@ -2231,6 +2249,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // IC:manager ratio chip.
+      rect("ratio-chip", 620, 480, 140, 28, "IC:mgr 6:1", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2539,6 +2563,12 @@ const BUILDERS = {
       rect("flake-chip", 60, 460, 120, 28, "flake 0/12", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Run count chip.
+      rect("n-chip", 200, 460, 100, 28, "n = 12", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3606,6 +3636,12 @@ const BUILDERS = {
       rect("p-chip", 620, 110, 100, 28, "p < 0.01", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Cohort size chip.
+      rect("n48", 620, 420, 100, 28, "n = 48", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
