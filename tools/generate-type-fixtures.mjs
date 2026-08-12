@@ -1298,6 +1298,10 @@ const BUILDERS = {
         fontSize: 13,
         color: ACCENT,
       }),
+      txt("opt", 80, 384, "option under study: strangler around inventory only", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
