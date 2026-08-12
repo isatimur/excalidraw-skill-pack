@@ -432,9 +432,9 @@ const BUILDERS = {
     ]);
   },
   er: () => {
-    const user = { id: "user", x: 80, y: 140, w: 170, h: 110 };
-    const order = { id: "order", x: 370, y: 140, w: 170, h: 110 };
-    const item = { id: "item", x: 660, y: 140, w: 170, h: 110 };
+    const user = { id: "user", x: 80, y: 140, w: 170, h: 120 };
+    const order = { id: "order", x: 370, y: 140, w: 170, h: 120 };
+    const item = { id: "item", x: 660, y: 140, w: 170, h: 120 };
     // Pure lines for the shaft — hydrated arrows still grow a tip even when
     // endArrowhead is null, which paints over the crow's foot.
     const shaft = (id, from, to) => {
@@ -453,8 +453,8 @@ const BUILDERS = {
     ];
     return doc("ER — entities + cardinality", [
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid PK\nemail"),
-      rect(order.id, order.x, order.y, order.w, order.h, "Order\nid PK\nuser_id FK\ncreated_at"),
-      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nid PK\norder_id FK\nqty", {
+      rect(order.id, order.x, order.y, order.w, order.h, "Order\nid PK\nuser_id FK\nstatus\ncreated_at"),
+      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nid PK\norder_id FK\nqty\nsku", {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
@@ -464,11 +464,11 @@ const BUILDERS = {
       ...foot("f2", item.x, item.y + item.h / 2),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
       txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
-      txt("note", 80, 280, "one user → many orders → many line items", {
+      txt("note", 80, 290, "one user → many orders → many line items", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("idx", 80, 304, "indexes: order(user_id), line_item(order_id)", {
+      txt("idx", 80, 314, "indexes: order(user_id), line_item(order_id)", {
         fontSize: 12,
         color: MUTED,
       }),
