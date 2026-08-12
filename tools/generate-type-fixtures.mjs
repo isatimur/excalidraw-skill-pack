@@ -400,6 +400,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // WAL stamp.
+      rect("wal", 690, 580, 100, 28, "WAL ship", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -1972,6 +1978,12 @@ const BUILDERS = {
       rect("ship-e", 360, 480, 100, 28, "ship edge", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Write spoke stamp — clear of Slack/Notion caption.
+      rect("write-e", 80, 280, 100, 28, "write", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -3880,6 +3892,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // COBOL jobs stamp — clear of nightly caption.
+      rect("cobol", 80, 400, 120, 28, "COBOL jobs", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
@@ -4791,6 +4809,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Rewrite pin stamp — clear of index-rewrite caption.
+      rect("rw-pin", 40, baseline + 250, 100, 28, "rewrite", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   scatter: () => {
@@ -4956,6 +4980,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Cohort stamp — clear of axis labels.
+      rect("cohort", 620, 80, 140, 28, "onboarding Q4", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   radar: () => {
@@ -5103,6 +5133,12 @@ const BUILDERS = {
       rect("cost60", 320, 540, 100, 28, "Cost 60", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Taste score stamp.
+      rect("taste80", 440, 540, 100, 28, "Taste 80", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
