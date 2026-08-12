@@ -531,6 +531,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("queue-d", 240, 220, "queue depth 1", { fontSize: 11, color: MUTED }),
+      txt("live-age", 810, 168, "oldest Live 14d", { fontSize: 11, color: MUTED }),
     ]);
   },
   er: () => {
@@ -605,6 +607,11 @@ const BUILDERS = {
       txt("sku-note", 660, 400, "sku resolves via Product", {
         fontSize: 11,
         color: ACCENT,
+      }),
+      txt("rows", 370, 280, "~2M Order rows", { fontSize: 11, color: MUTED }),
+      txt("fk-chk", 80, 540, "FK check: line_item.sku → product.sku enforced", {
+        fontSize: 12,
+        color: MUTED,
       }),
     ]);
   },
@@ -1495,6 +1502,12 @@ const BUILDERS = {
       }),
       txt("tax", 640, 280, "tax paid in exclusives", { fontSize: 11, color: MUTED }),
       txt("dual", 60, 280, "dual-owned ships only", { fontSize: 11, color: MUTED }),
+      txt("excl-a", 60, 320, "exclusive ≈ 28", { fontSize: 11, color: MUTED }),
+      txt("excl-b", 640, 320, "exclusive ≈ 23", { fontSize: 11, color: MUTED }),
+      txt("tax-pct", 200, 536, "tax ≈ 51 exclusive / 12 overlap ≈ 4.3×", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -1549,6 +1562,12 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("cut", 80, 490, "cut: Depth bet deferred to next quarter", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      // Width cue: Strategy apex is a point — the band count is the argument.
+      txt("width", 520, 370, "base : apex ≈ 60×", { fontSize: 11, color: MUTED }),
     ]);
   },
   evidence: () => {
@@ -1900,6 +1919,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("vol-df", 90, 268, "~40k msg/min", { fontSize: 11, color: MUTED }),
+      txt("dlq-n", 268, 368, "DLQ depth < 20", { fontSize: 11, color: ACCENT }),
     ]);
   },
   "dp-integration": () => {
@@ -2228,6 +2249,11 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      txt("prior-min", 630, y(310) + 12, "prior never <SLA", {
+        fontSize: 11,
+        color: MUTED,
+      }),
+      txt("r5-v", at(4)[0] - 10, at(4)[1] - 16, "168", { fontSize: 11, color: MUTED }),
     ]);
   },
   scatter: () => {
