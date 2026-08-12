@@ -894,6 +894,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("cycle", 80, 476, "median cycle: Capture→Publish 5 days", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   process: () => {
@@ -988,6 +992,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("pin", 140, 452, "Infra packages never import Domain — CI fails the PR", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("pkgs", 140, 476, "pkgs: app/ · domain/ · infra/ mirror the three bands", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1304,6 +1312,7 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("vacant", 300, 360, "vacant lead", { fontSize: 11, color: ACCENT }),
     ]);
   },
   venn: () => {
