@@ -1527,6 +1527,22 @@ const BUILDERS = {
       txt("gold-n", 600, 390, "400 metrics · 12 marts", { fontSize: 11, color: MUTED }),
       txt("bronze-lag", 60, 456, "ingest lag p95 3m", { fontSize: 11, color: MUTED }),
       txt("silver-keys", 330, 300, "dim_user keys", { fontSize: 11, color: MUTED }),
+      // Looker sits outside Gold — only marts may be queried.
+      rect("looker-box", 800, 160, 120, 48, "Looker", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 14,
+      }),
+      elbow(
+        "looker-e",
+        [
+          [gold.x + gold.w + 8, gold.y + gold.h / 2],
+          [792, gold.y + gold.h / 2],
+        ],
+        { stroke: ACCENT }
+      ),
+      txt("looker-e-l", 720, 120, "BI query", { fontSize: 11, color: ACCENT }),
+      txt("looker-deny", 800, 220, "no Silver access", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -2969,6 +2985,23 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("speed-now", vertex(112, 0)[0] - 10, vertex(112, 0)[1] - 18, "112", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
+      // Depth gap stem from now to target ring — −48 is a distance, not only a caption.
+      line(
+        "depth-gap",
+        vertex(52, 4)[0],
+        vertex(52, 4)[1],
+        [
+          [
+            vertex(100, 4)[0] - vertex(52, 4)[0],
+            vertex(100, 4)[1] - vertex(52, 4)[1],
+          ],
+        ],
+        { stroke: ACCENT, dashed: true, strokeWidth: 1 }
+      ),
+      txt("depth-gap-l", vertex(76, 4)[0] + 8, vertex(76, 4)[1] + 4, "−48", {
         fontSize: 11,
         color: ACCENT,
       }),

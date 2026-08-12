@@ -291,6 +291,12 @@ const skeleton_doc = {
       "editable source wins after day one — PNG is the receipt, not the product",
       { fontSize: 13, color: ACCENT }
     ),
+    rect("win_chip", 900, 840, 140, 44, "6/6 editable", {
+      fill: "#dcfce7",
+      stroke: "#15803d",
+      labelSize: 14,
+    }),
+    txt("win_chip_l", 900, 892, "matched questions", { fontSize: 11, color: "#15803d" }),
   ],
 };
 

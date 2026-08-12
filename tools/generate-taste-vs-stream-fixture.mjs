@@ -253,6 +253,19 @@ const skeleton = {
       color: MUTED,
     }),
     txt("slo_note", 948, 300, "p99 142", { fontSize: 12, color: ACCENT }),
+    // Edge CDN outside VPC — exclusion is a box, not only edge_note.
+    rect("r_cdn", 540, 236, 100, 40, "CDN", {
+      fill: PAPER,
+      stroke: MUTED,
+      labelSize: 14,
+    }),
+    txt("cdn_l", 540, 216, "edge · TTL 60s", { fontSize: 11, color: MUTED }),
+    // PASS stamp on proof — the gate result is visible.
+    rect("r_pass", 1010, 430, 70, 36, "PASS", {
+      fill: "#dcfce7",
+      stroke: "#15803d",
+      labelSize: 14,
+    }),
   ],
 };
 
