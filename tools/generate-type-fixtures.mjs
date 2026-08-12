@@ -342,6 +342,10 @@ const BUILDERS = {
       line("conc-bar", 690, 390, [[0, 0], [80, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("conc-fill", 690, 390, [[0, 0], [64, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("conc-bar-l", 690, 402, "conc 8", { fontSize: 11, color: MUTED }),
+      // API replicas fill — 3.
+      line("rep-bar", 260, 280, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("rep-fill", 260, 280, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("rep-bar-l", 260, 292, "3 API replicas", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -1309,6 +1313,12 @@ const BUILDERS = {
         fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 13,
+      }),
+      // Capture throughput chip.
+      rect("cap-chip", 520, 440, 120, 28, "~40 notes/wk", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
       }),
     ]);
   },
@@ -2905,6 +2915,12 @@ const BUILDERS = {
       line("paid-bar", 550, 240, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("paid-fill", 550, 240, [[0, 0], [41, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("paid-bar-l", 550, 252, "paid 41%", { fontSize: 11, color: ACCENT }),
+      // Goal clearance chip — +11k over goal.
+      rect("goal-chip", 700, 148, 110, 28, "+11k goal", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   line: () => {
@@ -3042,6 +3058,12 @@ const BUILDERS = {
       txt("imp-bar-l", 160, baseline + 202, "−64.5% R1→R6", { fontSize: 11, color: ACCENT }),
       // Pages this week — 0 is a green chip under alert.
       rect("page0", 630, y(180) + 48, 90, 28, "0 pages", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Safe-band width under alert — hold span as a chip.
+      rect("hold-chip", at(5)[0] - 20, y(142) + 40, 80, 28, "hold OK", {
         fill: "#dcfce7",
         stroke: "#15803d",
         labelSize: 12,
