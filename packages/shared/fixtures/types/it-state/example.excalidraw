@@ -60,17 +60,13 @@
       "index": "a1",
       "roundness": null,
       "seed": 957778807,
-      "version": 3,
+      "version": 2,
       "versionNonce": 441080546,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
           "id": "f2S2kfhg5hfAMkrgG8vhl"
-        },
-        {
-          "id": "6g2k9yCEzWo8DhNzMFzEM",
-          "type": "arrow"
         }
       ],
       "updated": 1767225600000,
@@ -97,17 +93,13 @@
       "index": "a2",
       "roundness": null,
       "seed": 1247030130,
-      "version": 3,
+      "version": 2,
       "versionNonce": 861631920,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
           "id": "3H7VGDpq8nE3oKez2GWh3"
-        },
-        {
-          "id": "4wce7_441zySM8bxinxzB",
-          "type": "arrow"
         }
       ],
       "updated": 1767225600000,
@@ -134,21 +126,13 @@
       "index": "a3",
       "roundness": null,
       "seed": 597710205,
-      "version": 5,
+      "version": 3,
       "versionNonce": 824313618,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
           "id": "IqHEmuAG14ud0MJbteUSJ"
-        },
-        {
-          "id": "6g2k9yCEzWo8DhNzMFzEM",
-          "type": "arrow"
-        },
-        {
-          "id": "4wce7_441zySM8bxinxzB",
-          "type": "arrow"
         },
         {
           "id": "mpyd0IGSaf-PWd0yc1s_i",
@@ -199,10 +183,10 @@
     {
       "id": "6g2k9yCEzWo8DhNzMFzEM",
       "type": "arrow",
-      "x": 230,
+      "x": 238,
       "y": 162,
-      "width": 203.22839443633828,
-      "height": 53.226484257136214,
+      "width": 194,
+      "height": 55,
       "angle": 0,
       "strokeColor": "#1e3a5f",
       "backgroundColor": "transparent",
@@ -216,7 +200,7 @@
       "index": "a5",
       "roundness": null,
       "seed": 799433350,
-      "version": 4,
+      "version": 2,
       "versionNonce": 1424563289,
       "isDeleted": false,
       "boundElements": null,
@@ -226,24 +210,24 @@
       "points": [
         [
           0.5,
-          0.5
+          0
         ],
         [
-          202.72839443633828,
-          52.726484257136214
+          82,
+          0
+        ],
+        [
+          82,
+          55
+        ],
+        [
+          193.5,
+          55
         ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "hy2WBukIgU37kBRK1nQGH",
-        "focus": -0.3803596127247573,
-        "gap": 1
-      },
-      "endBinding": {
-        "elementId": "ccsmAOtUj_i-chjoadB3D",
-        "focus": -0.3803596127247573,
-        "gap": 6.771605563661751
-      },
+      "startBinding": null,
+      "endBinding": null,
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -251,10 +235,10 @@
     {
       "id": "4wce7_441zySM8bxinxzB",
       "type": "arrow",
-      "x": 230,
+      "x": 238,
       "y": 272,
-      "width": 203.22839443633828,
-      "height": 53.226484257136214,
+      "width": 194,
+      "height": 55,
       "angle": 0,
       "strokeColor": "#1e3a5f",
       "backgroundColor": "transparent",
@@ -268,7 +252,7 @@
       "index": "a6",
       "roundness": null,
       "seed": 1965803996,
-      "version": 4,
+      "version": 2,
       "versionNonce": 1421944226,
       "isDeleted": false,
       "boundElements": null,
@@ -278,24 +262,24 @@
       "points": [
         [
           0.5,
-          -0.5
+          0
         ],
         [
-          202.72839443633828,
-          -52.726484257136214
+          82,
+          0
+        ],
+        [
+          82,
+          -55
+        ],
+        [
+          193.5,
+          -55
         ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "tj-vHoyixJJqg-wrjQcfs",
-        "focus": 0.3803596127247586,
-        "gap": 1
-      },
-      "endBinding": {
-        "elementId": "ccsmAOtUj_i-chjoadB3D",
-        "focus": 0.3803596127247571,
-        "gap": 6.771605563661751
-      },
+      "startBinding": null,
+      "endBinding": null,
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -355,7 +339,7 @@
     {
       "id": "ZbbD6x7U6MYP9Npqd7I_R",
       "type": "text",
-      "x": 280,
+      "x": 250,
       "y": 140,
       "width": 99.0234375,
       "height": 15.6,
@@ -392,7 +376,7 @@
     {
       "id": "LNkrkmyR4mUv6TVdLfe2U",
       "type": "text",
-      "x": 300,
+      "x": 250,
       "y": 268,
       "width": 68.5546875,
       "height": 15.6,

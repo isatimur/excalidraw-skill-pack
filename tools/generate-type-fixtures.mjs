@@ -301,13 +301,15 @@ function stabilize(type, document) {
 
 const BUILDERS = {
   architecture: () => {
-    // Both dependencies fan out from the API, so they sit on separate rows: a single
-    // row would route the queue arrow through Postgres and stack the two edge labels.
+    // Both dependencies fan out from the API on separate rows. Elbows keep the
+    // fan orthogonal — edgeAnchor would draw diagonals into Postgres/Queue.
     // Client sits outside the VPC — a boundary that contains everything is just a frame.
     const client = { id: "client", x: 40, y: 200, w: 120, h: 48 };
     const api = { id: "api", x: 260, y: 196, w: 140, h: 56 };
     const db = { id: "db", x: 520, y: 120, w: 160, h: 56 };
     const queue = { id: "queue", x: 520, y: 268, w: 160, h: 56 };
+    const apiRight = api.x + api.w;
+    const apiCy = api.y + api.h / 2;
     return doc("Architecture — components + boundaries", [
       zone("zone", 220, 88, 520, 280, ""),
       txt("zone-label", 236, 96, "Production VPC", { fontSize: 14, color: MUTED }),
@@ -315,12 +317,22 @@ const BUILDERS = {
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(queue.id, queue.x, queue.y, queue.w, queue.h, "Queue"),
-      arrow("a0", client, api, ""),
-      arrow("a1", api, db, ""),
-      arrow("a2", api, queue, ""),
-      txt("a0-l", 168, 178, "POST /orders", { fontSize: 13, color: MUTED }),
-      txt("a1-l", 400, 140, "read/write", { fontSize: 13, color: MUTED }),
-      txt("a2-l", 408, 280, "publish", { fontSize: 13, color: MUTED }),
+      arrow("a0", client, api, "", { from: "right", to: "left" }),
+      elbow("a1", [
+        [apiRight + 8, apiCy],
+        [apiRight + 48, apiCy],
+        [apiRight + 48, db.y + db.h / 2],
+        [db.x - 8, db.y + db.h / 2],
+      ]),
+      elbow("a2", [
+        [apiRight + 8, apiCy],
+        [apiRight + 48, apiCy],
+        [apiRight + 48, queue.y + queue.h / 2],
+        [queue.x - 8, queue.y + queue.h / 2],
+      ]),
+      txt("a0-l", 148, 178, "POST /orders", { fontSize: 13, color: MUTED }),
+      txt("a1-l", 430, 140, "read/write", { fontSize: 13, color: MUTED }),
+      txt("a2-l", 438, 280, "publish", { fontSize: 13, color: MUTED }),
       txt("note", 40, 280, "edge stays out", { fontSize: 12, color: MUTED }),
     ]);
   },
@@ -681,14 +693,15 @@ const BUILDERS = {
   nested: () => {
     // Gateway is the edge of Platform; Service A nests API+Cache. Client stays out
     // so the Platform boundary excludes something — same rule as architecture VPC.
+    // Align Gateway and API on one row so the route stays a pure horizontal.
     const client = { id: "client", x: 40, y: 220, w: 120, h: 44 };
     const gateway = { id: "gateway", x: 220, y: 220, w: 140, h: 44 };
-    const api = { id: "api", x: 460, y: 190, w: 200, h: 44 };
-    const cache = { id: "cache", x: 460, y: 250, w: 200, h: 36 };
+    const api = { id: "api", x: 460, y: 220, w: 200, h: 44 };
+    const cache = { id: "cache", x: 460, y: 276, w: 200, h: 36 };
     return doc("Nested — hierarchy by containment", [
       zone("outer", 190, 110, 520, 230, ""),
       txt("outer-l", 206, 120, "Platform", { fontSize: 14, color: MUTED }),
-      zone("inner", 420, 150, 270, 160, ""),
+      zone("inner", 420, 150, 270, 180, ""),
       txt("inner-l", 436, 160, "Service A", { fontSize: 14, color: MUTED }),
       rect(client.id, client.x, client.y, client.w, client.h, "Client", {
         fill: PAPER,
@@ -701,11 +714,11 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 15,
       }),
-      arrow("n0", client, gateway, ""),
-      arrow("n1", gateway, api, ""),
+      arrow("n0", client, gateway, "", { from: "right", to: "left" }),
+      arrow("n1", gateway, api, "", { from: "right", to: "left" }),
       txt("n0-l", 150, 196, "HTTPS", { fontSize: 13, color: MUTED }),
       txt("n1-l", 370, 196, "route", { fontSize: 13, color: MUTED }),
-      txt("note", 40, 290, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
+      txt("note", 40, 300, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -966,6 +979,8 @@ const BUILDERS = {
     const app = { id: "app", x: 460, y: 208, w: 132, h: 48 };
     const db = { id: "db", x: 660, y: 160, w: 132, h: 48 };
     const cache = { id: "cache", x: 660, y: 262, w: 132, h: 48 };
+    const appRight = app.x + app.w;
+    const appCy = app.y + app.h / 2;
     return doc("High-level — end-to-end on one cluster", [
       zone("cluster", 420, 120, 412, 232, ""),
       txt("cluster-l", 436, 130, "Production cluster", { fontSize: 14, color: MUTED }),
@@ -974,14 +989,24 @@ const BUILDERS = {
       rect(app.id, app.x, app.y, app.w, app.h, "App"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(cache.id, cache.x, cache.y, cache.w, cache.h, "Redis"),
-      arrow("hl1", browser, cdn, ""),
-      arrow("hl2", cdn, app, ""),
-      arrow("hl3", app, db, ""),
-      arrow("hl4", app, cache, ""),
+      arrow("hl1", browser, cdn, "", { from: "right", to: "left" }),
+      arrow("hl2", cdn, app, "", { from: "right", to: "left" }),
+      elbow("hl3", [
+        [appRight + 8, appCy],
+        [appRight + 40, appCy],
+        [appRight + 40, db.y + db.h / 2],
+        [db.x - 8, db.y + db.h / 2],
+      ]),
+      elbow("hl4", [
+        [appRight + 8, appCy],
+        [appRight + 40, appCy],
+        [appRight + 40, cache.y + cache.h / 2],
+        [cache.x - 8, cache.y + cache.h / 2],
+      ]),
       txt("hl1-l", 168, 186, "HTTPS", { fontSize: 13, color: MUTED }),
       txt("hl2-l", 348, 186, "edge cache", { fontSize: 13, color: MUTED }),
-      txt("hl3-l", 580, 148, "SQL", { fontSize: 13, color: MUTED }),
-      txt("hl4-l", 580, 268, "GET", { fontSize: 13, color: MUTED }),
+      txt("hl3-l", 600, 148, "SQL", { fontSize: 13, color: MUTED }),
+      txt("hl4-l", 600, 268, "GET", { fontSize: 13, color: MUTED }),
       txt("note", 60, 280, "origin stays inside; edge stays out", { fontSize: 13, color: MUTED }),
     ]);
   },
@@ -990,6 +1015,8 @@ const BUILDERS = {
     const as400 = { id: "as400", x: 80, y: 240, w: 150, h: 64 };
     const esb = { id: "esb", x: 440, y: 185, w: 150, h: 64 };
     const saas = { id: "saas", x: 780, y: 185, w: 150, h: 64 };
+    const railX = 320;
+    const esbCy = esb.y + esb.h / 2;
     return doc("IT current-state — legacy landscape", [
       rect(mainframe.id, mainframe.x, mainframe.y, mainframe.w, mainframe.h, "Mainframe\nCOBOL jobs"),
       rect(as400.id, as400.x, as400.y, as400.w, as400.h, "AS/400\ninventory"),
@@ -1002,11 +1029,21 @@ const BUILDERS = {
         fill: "#dcfce7",
         stroke: "#15803d",
       }),
-      arrow("i1", mainframe, esb, ""),
-      arrow("i2", as400, esb, ""),
-      arrow("i3", esb, saas, ""),
-      txt("i1-l", 280, 140, "nightly batch", { fontSize: 13, color: MUTED }),
-      txt("i2-l", 300, 268, "flat file", { fontSize: 13, color: MUTED }),
+      elbow("i1", [
+        [mainframe.x + mainframe.w + 8, mainframe.y + mainframe.h / 2],
+        [railX, mainframe.y + mainframe.h / 2],
+        [railX, esbCy],
+        [esb.x - 8, esbCy],
+      ]),
+      elbow("i2", [
+        [as400.x + as400.w + 8, as400.y + as400.h / 2],
+        [railX, as400.y + as400.h / 2],
+        [railX, esbCy],
+        [esb.x - 8, esbCy],
+      ]),
+      arrow("i3", esb, saas, "", { from: "right", to: "left" }),
+      txt("i1-l", 250, 140, "nightly batch", { fontSize: 13, color: MUTED }),
+      txt("i2-l", 250, 268, "flat file", { fontSize: 13, color: MUTED }),
       txt("i3-l", 630, 164, "REST", { fontSize: 13, color: MUTED }),
       txt("find", 80, 330, "finding: every modernization path still hits the ESB", {
         fontSize: 13,
@@ -1032,9 +1069,9 @@ const BUILDERS = {
       arrow("df1", ingest, stream, ""),
       arrow("df2", stream, warehouse, ""),
       arrow("df3", warehouse, dash, ""),
-      txt("df1-l", 200, 186, "Kafka", { fontSize: 12, color: MUTED }),
-      txt("df2-l", 430, 186, "masked", { fontSize: 13, color: MUTED }),
-      txt("df3-l", 700, 186, "Looker", { fontSize: 12, color: MUTED }),
+      txt("df1-l", 210, 158, "Kafka", { fontSize: 12, color: MUTED }),
+      txt("df2-l", 430, 158, "masked", { fontSize: 13, color: MUTED }),
+      txt("df3-l", 700, 158, "Looker", { fontSize: 12, color: MUTED }),
       txt("cut", 380, 320, "the cut is the argument: who may see raw PII", {
         fontSize: 13,
         color: ACCENT,
@@ -1052,6 +1089,9 @@ const BUILDERS = {
       { id: "c-bi", x: 594, y: 142, w: 156, h: 44, label: "Dashboards" },
       { id: "c-ml", x: 594, y: 230, w: 156, h: 44, label: "ML features" },
     ];
+    const railIn = 280;
+    const railOut = 540;
+    const coreCy = core.y + core.h / 2;
     return doc("DP integration — sources → core → consumers", [
       ...sources.map((s) => rect(s.id, s.x, s.y, s.w, s.h, s.label)),
       rect(core.id, core.x, core.y, core.w, core.h, "Lakehouse\nDelta + Unity", {
@@ -1059,11 +1099,25 @@ const BUILDERS = {
         stroke: ACCENT,
       }),
       ...consumers.map((c) => rect(c.id, c.x, c.y, c.w, c.h, c.label)),
-      ...sources.map((s, i) => arrow(`in${i}`, s, core, "")),
-      ...consumers.map((c, i) => arrow(`out${i}`, core, c, "")),
-      txt("in-l", 250, 112, "CDC / batch", { fontSize: 12, color: MUTED }),
-      txt("out-l", 520, 120, "SQL / features", { fontSize: 12, color: MUTED }),
-      txt("core-note", 330, 280, "one write path; many readers", { fontSize: 13, color: ACCENT }),
+      ...sources.map((s, i) =>
+        elbow(`in${i}`, [
+          [s.x + s.w + 8, s.y + s.h / 2],
+          [railIn, s.y + s.h / 2],
+          [railIn, coreCy],
+          [core.x - 8, coreCy],
+        ])
+      ),
+      ...consumers.map((c, i) =>
+        elbow(`out${i}`, [
+          [core.x + core.w + 8, coreCy],
+          [railOut, coreCy],
+          [railOut, c.y + c.h / 2],
+          [c.x - 8, c.y + c.h / 2],
+        ])
+      ),
+      txt("in-l", 250, 100, "CDC / batch", { fontSize: 12, color: MUTED }),
+      txt("out-l", 520, 112, "SQL / features", { fontSize: 12, color: MUTED }),
+      txt("core-note", 330, 290, "one write path; many readers", { fontSize: 13, color: ACCENT }),
     ]);
   },
   "dp-security-matrix": () => {
