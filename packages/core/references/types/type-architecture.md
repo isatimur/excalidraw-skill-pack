@@ -6,13 +6,13 @@
 Group by tier or trust boundary. Primary flow left→right. One accent on the primary store. Put at least one actor outside the zone so the boundary excludes something.
 
 ## Excalidraw pattern
-Draft `excalidraw-skeleton`. Dashed zone for VPC/trust; free zone label at top-left. Rectangles for deployable components. Free text for edge labels above shafts.
+Draft `excalidraw-skeleton`. Dashed zone for VPC/trust; free zone label at top-left. Rectangles for deployable components. Free text for edge labels above shafts. Queue→Worker consume plus Worker→store writeback so the publish story closes.
 
 ## Connectors & routing
 Orthogonal `points` only. Solid for data; dashed for control. Bridge the less important arrow at crossings.
 
 ## Anti-patterns
-Microservice wallpaper, unnamed arrows, a zone that contains everything, bound labels jammed onto short shafts, a Queue with no consumer.
+Microservice wallpaper, unnamed arrows, a zone that contains everything, bound labels jammed onto short shafts, a Queue with no consumer, a Worker with no ack/UPDATE.
 
 ## Budget
 5–9 primary components; one evidence card per critical boundary.

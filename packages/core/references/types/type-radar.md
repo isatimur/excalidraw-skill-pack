@@ -6,13 +6,13 @@
 Web/spoke grid with one polygon or labeled axes.
 
 ## Excalidraw pattern
-Ellipse as boundary; axis labels outside.
+Ellipse as boundary; axis labels outside; this-quarter fill + last-quarter dashed + target ring so the bet is visible.
 
 ## Connectors & routing
 Consistent axis order clockwise.
 
 ## Anti-patterns
-More than 8 axes.
+More than 8 axes; comparing quarters with no target.
 
 ## Budget
 ≤6 axes.

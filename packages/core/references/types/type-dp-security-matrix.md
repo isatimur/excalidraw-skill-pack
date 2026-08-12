@@ -6,13 +6,13 @@
 Grid as labeled rows; columns as datasets. Use table if >4×4.
 
 ## Excalidraw pattern
-Wide rectangles per row or ASCII-style grid with monospace labels.
+Wide rectangles per cell; white=read, orange=write, red=deny. Include a least-privilege row (Intern) and a secrets column so deny-by-default is visible, not captioned.
 
 ## Connectors & routing
 N/A
 
 ## Anti-patterns
-Redrawing a spreadsheet with 20 columns.
+Redrawing a spreadsheet with 20 columns; a matrix with only read/write and no deny cells.
 
 ## Budget
 ≤6 roles × 4 datasets.
