@@ -567,6 +567,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Headroom chip — budget leftover after miss path.
+      rect("head-chip", 520, 600, 140, 28, "110ms headroom", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -907,6 +913,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Slip-risk chip on Audit — ±6wk is a stamp.
+      rect("slip-chip", 700, 140, 110, 28, "±6wk slip", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   gantt: () => {
@@ -1130,6 +1142,12 @@ const BUILDERS = {
       rect("red-chip", 420, 420, 100, 28, "reds ×1", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Pages this week — 0 is a green stamp.
+      rect("page0-chip", 700, 440, 120, 28, "pages wk: 0", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -1950,6 +1968,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Omitted packs count — mcp-server + install stay off-tree.
+      rect("omit-chip", 780, 500, 120, 28, "omit ×2 packs", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2077,6 +2101,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Vacant age chip — open 47d is a stamp.
+      rect("vac-age", 500, 480, 100, 28, "open 47d", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2146,6 +2176,12 @@ const BUILDERS = {
       // Ship-gate dual-owner chip.
       rect("dual-chip", 320, 440, 160, 28, "dual-owned ships", {
         fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Exclusive tax chip — Speed-only + Quality-only.
+      rect("tax-chip", 520, 560, 140, 28, "tax ×15 killed", {
+        fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 12,
       }),
