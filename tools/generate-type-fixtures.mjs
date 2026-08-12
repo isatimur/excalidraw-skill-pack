@@ -513,6 +513,14 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("median", 380, 138, "median 4h in Review", {
+        fontSize: 11,
+        color: MUTED,
+      }),
+      txt("rate", 100, 452, "submit rate ≈ 4 / week · approve rate 92%", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   er: () => {
@@ -1141,6 +1149,9 @@ const BUILDERS = {
       }),
       txt("svc-b-l", 40, 90, "out of nest", { fontSize: 11, color: MUTED }),
       txt("gw-ver", 220, 176, "v2 gateway", { fontSize: 11, color: MUTED }),
+      txt("ttl", 670, 288, "TTL 5m", { fontSize: 11, color: ACCENT }),
+      txt("rps", 220, 248, "~2.4k RPS", { fontSize: 11, color: MUTED }),
+      txt("hit", 670, 176, "hit 93%", { fontSize: 11, color: ACCENT }),
     ]);
   },
   medallion: () => {
@@ -2057,6 +2068,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("share", 550, 124, "Q4 = 38% of YTD", { fontSize: 11, color: ACCENT }),
+      txt("cum", 590, baseline - 50 * perUnit - 8, "YTD 265", { fontSize: 11, color: MUTED }),
     ]);
   },
   line: () => {
@@ -2169,6 +2182,15 @@ const BUILDERS = {
       // Residual above the trend — named so it isn't mistaken for noise.
       dot("res", 300, 140, 5, { fill: MUTED, stroke: MUTED }),
       txt("res-l", 310, 124, "residual", { fontSize: 11, color: MUTED }),
+      // Stem down to the fit: residual is a distance, not a lonely outlier.
+      line("res-stem", 300, 145, [[0, 0], [0, 56]], { stroke: MUTED, dashed: true, strokeWidth: 1 }),
+      // Practice hour ticks: the x claim needs units, not only a caption.
+      ...[200, 300, 400].map((x, i) =>
+        line(`xh${i}`, x, baseline, [[0, 0], [0, 6]], { strokeWidth: 1, stroke: MUTED })
+      ),
+      txt("xh0", 188, baseline + 8, "10h", { fontSize: 11, color: MUTED }),
+      txt("xh1", 288, baseline + 8, "20h", { fontSize: 11, color: MUTED }),
+      txt("xh2", 388, baseline + 8, "30h", { fontSize: 11, color: MUTED }),
       // Novice cluster: the left side is the argument before practice pays off.
       txt("novice", 168, 118, "novice cluster", { fontSize: 12, color: MUTED }),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
@@ -2189,6 +2211,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("method", 500, 364, "OLS · robust SE", { fontSize: 11, color: MUTED }),
+      txt("target-sc", 140, baseline + 112, "target: <40 errors after 30h practice", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   radar: () => {
