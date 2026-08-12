@@ -1100,6 +1100,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Today marker chip.
+      rect("today-chip", 420, 480, 100, 28, "today W5", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -2140,6 +2146,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Core leaves chip.
+      rect("core-chip", 40, 500, 120, 28, "2 core leaves", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2283,6 +2295,12 @@ const BUILDERS = {
       rect("ratio-chip", 620, 480, 140, 28, "IC:mgr 6:1", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Priority hire chip beside SRE card.
+      rect("hire-chip", 320, 520, 140, 28, "priority hire", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2807,6 +2825,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Origin-only-on-miss chip.
+      rect("miss-only", 60, 440, 160, 28, "origin on miss", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
@@ -3032,6 +3056,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Reprocess chip on DLQ loop.
+      rect("repr-chip", 120, 420, 120, 28, "reprocess ✓", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -3132,6 +3162,12 @@ const BUILDERS = {
       rect("lag-chip", 310, 400, 140, 28, "lag OK · 4m", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Hourly reverse-ETL chip.
+      rect("hourly", 580, 380, 140, 28, "ETL hourly", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
