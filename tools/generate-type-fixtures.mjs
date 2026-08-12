@@ -474,6 +474,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Canary percent already stamped — add SHA chip.
+      rect("sha-chip", 500, 140, 140, 28, "SHA abc12ef", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   sequence: () => {
@@ -1741,6 +1747,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Infra adapter chip.
+      rect("infra-chip", 700, 480, 120, 28, "6 adapters", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -1900,6 +1912,12 @@ const BUILDERS = {
       rect("p99-nest", 40, 500, 120, 28, "p99 < 40ms", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Queue depth chip under Worker.
+      rect("q-nest", 220, 440, 120, 28, "queue < 40", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2178,6 +2196,12 @@ const BUILDERS = {
       }),
       // Core leaves chip.
       rect("core-chip", 40, 500, 120, 28, "2 core leaves", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // L0 depth chip.
+      rect("l0-chip", 480, 60, 80, 28, "L0 root", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2677,6 +2701,12 @@ const BUILDERS = {
       rect("req-ev", 800, 300, 120, 28, "required ✓", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Suite name chip.
+      rect("suite-chip", 800, 340, 140, 28, "checkout-load", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3215,6 +3245,12 @@ const BUILDERS = {
       // Hourly reverse-ETL chip.
       rect("hourly", 580, 380, 140, 28, "ETL hourly", {
         fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Schema Registry chip already above — stamp compat.
+      rect("bw-chip", 500, 400, 120, 28, "BACKWARD", {
+        fill: "#e2e8f0",
         stroke: MUTED,
         labelSize: 12,
       }),
