@@ -796,6 +796,18 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("enum-l", 80, 384, "Order.status", { fontSize: 11, color: MUTED }),
+      // Cascade rule chip — delete path is enforceable.
+      rect("casc-chip", 370, 420, 160, 28, "CASCADE lines", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Scale chip — ~2M orders/yr.
+      rect("vol-chip", 560, 420, 140, 28, "~2M orders/yr", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1018,6 +1030,12 @@ const BUILDERS = {
       txt("burn-bar-l", 290, 452, "burn 38/60d", { fontSize: 11, color: ACCENT }),
       // Confidence chip — low until Build closes.
       rect("conf-chip", 640, 420, 140, 28, "confidence: low", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Hard-cut chip at W10.
+      rect("hard-chip", 740, 380, 110, 28, "W10 hard cut", {
         fill: "#fee2e2",
         stroke: ACCENT,
         labelSize: 12,
@@ -1728,6 +1746,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Page-on-drop chip — hit-rate alert ownership.
+      rect("page-chip", 40, 460, 140, 28, "page on hit↓", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2389,6 +2413,12 @@ const BUILDERS = {
       txt("flake-bar-l", 60, 432, "flake 0 / 12", { fontSize: 11, color: "#15803d" }),
       // Headroom chip — 58ms to gate.
       rect("hr-chip", 800, 260, 120, 32, "58ms headroom", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Flake stamp — 0/12 is green.
+      rect("flake-chip", 60, 460, 120, 28, "flake 0/12", {
         fill: "#dcfce7",
         stroke: "#15803d",
         labelSize: 12,
@@ -3142,6 +3172,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Record quarter stamp on Q4.
+      rect("rec-chip", 700, 220, 120, 28, "record Q4", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   line: () => {
@@ -3410,6 +3446,12 @@ const BUILDERS = {
       rect("r-chip", 500, 110, 100, 28, "r ≈ −0.82", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Significance chip — p < 0.01.
+      rect("p-chip", 620, 110, 100, 28, "p < 0.01", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
