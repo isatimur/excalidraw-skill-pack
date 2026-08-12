@@ -352,6 +352,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // CDN TTL chip at the edge.
+      rect("cdn-chip", 40, 440, 120, 28, "CDN TTL 60s", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -448,6 +454,12 @@ const BUILDERS = {
       rect("req-chip", 500, 100, 140, 28, "required checks", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Fix-path duration chip on the no branch.
+      rect("fix-chip", 500, 440, 140, 28, "fix ~12 min", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2131,6 +2143,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Span-of-control chip under CEO.
+      rect("span-chip", 480, 60, 100, 28, "span = 2", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2818,6 +2836,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Compat chip — BACKWARD contract.
+      rect("compat-chip", 430, 440, 120, 28, "BACKWARD", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -2910,6 +2934,12 @@ const BUILDERS = {
       }),
       // Reverse ETL proof chip.
       rect("retl", 580, 340, 140, 28, "not a dead end", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Lag SLO green chip — 4m under 15m.
+      rect("lag-chip", 310, 400, 140, 28, "lag OK · 4m", {
         fill: "#dcfce7",
         stroke: "#15803d",
         labelSize: 12,
@@ -3335,6 +3365,12 @@ const BUILDERS = {
       rect("under-n", 400, y(168) + 20, 120, 28, "5 under SLA", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Prior year never cleared SLA — contrast stamp.
+      rect("prior-chip", 630, baseline + 220, 140, 28, "prior never <SLA", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
