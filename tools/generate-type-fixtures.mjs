@@ -502,8 +502,8 @@ const BUILDERS = {
       }),
     ];
     return doc("Timeline — events on an axis", [
-      line("axis", 120, axisY, [[0, 0], [620, 0]], { stroke: INK }),
-      ...[200, 280, 360, 440, 520, 600, 680].map((x, i) => tick(`tk${i}`, x)),
+      line("axis", 120, axisY, [[0, 0], [660, 0]], { stroke: INK }),
+      ...[200, 280, 360, 440, 520, 600, 680, 760].map((x, i) => tick(`tk${i}`, x)),
       ...events.flatMap((e) => [
         dot(e.id, e.x, axisY, e.accent ? 7 : 6, e.accent ? { fill: ACCENT, stroke: ACCENT } : {}),
         line(`${e.id}-stem`, e.x, axisY - 28, [[0, 0], [0, 22]], {
@@ -526,6 +526,9 @@ const BUILDERS = {
       ...bracket("ph1", 200, 360, "build packs · 6mo"),
       ...bracket("ph2", 360, 520, "productize · 9mo", axisY + 88),
       ...bracket("ph3", 520, 680, "harden · 4mo", axisY + 56),
+      // Future stub past Audit: the axis claims a destination, not an open end.
+      line("next", 760, axisY - 6, [[0, 0], [0, 12]], { strokeWidth: 1, stroke: MUTED }),
+      txt("next-l", 740, axisY - 28, "v2?", { fontSize: 12, color: MUTED }),
       txt("story", 120, 120, "from shippable MVP to a taste gate that blocks bad diagrams", {
         fontSize: 13,
         color: MUTED,
@@ -533,6 +536,10 @@ const BUILDERS = {
       txt("risk", 120, 144, "risk: Audit slips if MCP app stays the forever now", {
         fontSize: 12,
         color: ACCENT,
+      }),
+      txt("gate", 120, 168, "Audit = check-type-labels · types-regression must stay green", {
+        fontSize: 12,
+        color: MUTED,
       }),
     ]);
   },
@@ -640,6 +647,10 @@ const BUILDERS = {
       txt("q-tr", 528, 130, "plan for", { fontSize: 14, color: MUTED }),
       txt("q-bl", 152, 376, "fill-in", { fontSize: 14, color: MUTED }),
       txt("q-br", 566, 376, "drop", { fontSize: 14, color: MUTED }),
+      txt("hi", 388, 124, "high", { fontSize: 11, color: MUTED }),
+      txt("lo", 388, 368, "low", { fontSize: 11, color: MUTED }),
+      txt("lo-e", 152, 248, "low", { fontSize: 11, color: MUTED }),
+      txt("hi-e", 600, 248, "high", { fontSize: 11, color: MUTED }),
       dot("p1", 258, 186, 7),
       txt("p1-l", 274, 176, "Themes", { fontSize: 15 }),
       dot("p2", 470, 158, 7, { fill: ACCENT, stroke: ACCENT }),
@@ -652,6 +663,17 @@ const BUILDERS = {
       txt("p4-l", 486, 320, "Slide export", { fontSize: 15, color: MUTED }),
       dot("p5", 300, 170, 7),
       txt("p5-l", 316, 160, "Parity tests", { fontSize: 14 }),
+      // Sprint pull: Themes moves deeper into do-now — motion is the decision.
+      elbow(
+        "pull",
+        [
+          [258, 186],
+          [220, 186],
+          [220, 160],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("pull-l", 152, 152, "this sprint", { fontSize: 11, color: ACCENT }),
       txt("claim", 140, 420, "Themes ship this sprint; MCP app is a quarter bet", {
         fontSize: 13,
         color: ACCENT,
@@ -1490,8 +1512,11 @@ const BUILDERS = {
       line(id, 140, baseline - value * perUnit, [[0, 0], [440, 0]], { strokeWidth: 1, stroke: GRID }),
       txt(`${id}-l`, 96, baseline - value * perUnit - 8, `${value}`, { fontSize: 13, color: MUTED }),
     ];
+    const goal = 90;
     return doc("Bar chart — categorical comparison", [
+      ...tick("t25", 25),
       ...tick("t50", 50),
+      ...tick("t75", 75),
       ...tick("t100", 100),
       line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
       line("x-axis", 140, baseline, [[0, 0], [440, 0]], { stroke: INK }),
@@ -1512,6 +1537,17 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("avg-l", 590, baseline - avg * perUnit - 8, `avg ${avg}`, { fontSize: 12, color: MUTED }),
+      // Goal band: clearing 90k is the plan; Q4 alone clears it.
+      line("goal", 140, baseline - goal * perUnit, [[0, 0], [440, 0]], {
+        stroke: ACCENT,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("goal-l", 590, baseline - goal * perUnit - 8, `goal ${goal}`, {
+        fontSize: 12,
+        color: ACCENT,
+      }),
+      txt("dip", 360, baseline - 55 * perUnit - 40, "Q3 dip", { fontSize: 12, color: MUTED }),
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
       txt("prior-l", 590, 280, "grey = prior year", { fontSize: 12, color: MUTED }),
@@ -1536,6 +1572,7 @@ const BUILDERS = {
     const rewriteX = 160 + 3.5 * 92;
     return doc("Line chart — trend over time", [
       ...tick("t200", 200),
+      ...tick("t300", 300),
       ...tick("t400", 400),
       line("y-axis", 140, 140, [[0, 0], [0, 180]], { stroke: INK }),
       line("x-axis", 140, baseline, [[0, 0], [480, 0]], { stroke: INK }),
@@ -1550,18 +1587,21 @@ const BUILDERS = {
         const [px, py] = at(i);
         return dot(`s${i}`, px, py, 5, { fill: ACCENT, stroke: ACCENT });
       }),
+      txt("start-v", at(0)[0] - 18, at(0)[1] - 16, "400", { fontSize: 12, color: MUTED }),
       line("rewrite", rewriteX, 150, [[0, 0], [0, baseline - 150]], {
         stroke: MUTED,
         dashed: true,
         strokeWidth: 1,
       }),
       txt("rewrite-l", rewriteX - 28, 132, "index rewrite", { fontSize: 12, color: MUTED }),
+      // Pre-rewrite zone: falling but still over SLA — rewrite is the cause, not drift.
+      txt("over", 200, y(300) - 4, "over SLA", { fontSize: 12, color: MUTED }),
       txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
       txt("note", 160, baseline + 40, "crossed under SLA after the index rewrite", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("delta", 160, baseline + 64, "−258ms from start · 6 releases", {
+      txt("delta", 160, baseline + 64, "−258ms from start · 6 releases · hold <180ms", {
         fontSize: 12,
         color: MUTED,
       }),
