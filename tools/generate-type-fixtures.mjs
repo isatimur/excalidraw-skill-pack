@@ -1588,6 +1588,10 @@ const BUILDERS = {
       txt("r2", 500, 220, "r ≈ −0.82", { fontSize: 12, color: MUTED }),
       txt("out", 500, 300, "accent = last session", { fontSize: 12, color: MUTED }),
       txt("n", 140, baseline + 40, "n = 48 sessions · same cohort", { fontSize: 12, color: MUTED }),
+      txt("range", 140, baseline + 64, "practice range: 2–40 hours · no weekend outliers", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   radar: () => {
