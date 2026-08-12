@@ -997,6 +997,9 @@ const BUILDERS = {
       }),
       txt("mem-size", 380, 188, "~1.2k notes", { fontSize: 11, color: ACCENT }),
       txt("write-rate", 300, 248, "+18%/wk", { fontSize: 11, color: ACCENT }),
+      txt("thru-c", 200, 80, "~40 notes/wk", { fontSize: 11, color: MUTED }),
+      txt("thru-p", 520, 80, "~12 drafts/wk", { fontSize: 11, color: MUTED }),
+      txt("thru-s", 520, 370, "~9 ships/wk", { fontSize: 11, color: MUTED }),
     ]);
   },
   process: () => {
@@ -1115,6 +1118,9 @@ const BUILDERS = {
       }),
       txt("import", 688, 120, "Next.js → Domain OK", { fontSize: 11, color: MUTED }),
       txt("import2", 24, 320, "infra ✗ Domain", { fontSize: 11, color: ACCENT }),
+      txt("mod-n", 640, 140, "12 handlers", { fontSize: 11, color: MUTED }),
+      txt("mod-d", 640, 228, "9 domain pkgs", { fontSize: 11, color: ACCENT }),
+      txt("mod-i", 640, 316, "6 infra adapters", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -1453,6 +1459,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("sre-pin", 140, 320, "SRE req #1", { fontSize: 11, color: ACCENT }),
+      txt("design-ask", 680, 360, "Design → Platform weekly", { fontSize: 11, color: MUTED }),
     ]);
   },
   venn: () => {
@@ -1604,6 +1612,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      // Fail-budget bar: remaining headroom vs the 200ms gate.
+      line("fb", 460, 448, [[0, 0], [116, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("fb-used", 460, 448, [[0, 0], [82, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("fb-l", 460, 460, "fail budget used 71% this week", { fontSize: 11, color: MUTED }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -2353,6 +2365,15 @@ const BUILDERS = {
       }),
       txt("gap", 520, 448, "biggest gap to target: Depth (−48)", {
         fontSize: 12,
+        color: ACCENT,
+      }),
+      txt("bet", 520, 472, "this quarter bet: close Depth gap first", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
+      // Depth vertex callout — the gap should sit on the axis it names.
+      txt("depth-now", vertex(52, 4)[0] - 36, vertex(52, 4)[1] + 8, "52", {
+        fontSize: 11,
         color: ACCENT,
       }),
     ]);
