@@ -282,6 +282,7 @@ const BUILDERS = {
       txt("a2-l", 438, 252, "publish", { fontSize: 13, color: MUTED }),
       txt("a3-l", 690, 300, "consume", { fontSize: 13, color: MUTED }),
       txt("note", 40, 280, "edge stays out", { fontSize: 12, color: MUTED }),
+      txt("trust", 40, 304, "TLS terminates at API", { fontSize: 12, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
