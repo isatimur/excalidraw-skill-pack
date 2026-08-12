@@ -714,6 +714,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("cadence", 80, 404, "cadence: weekly Review → Capture", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   process: () => {
@@ -829,6 +833,10 @@ const BUILDERS = {
       txt("n2-l", 670, 248, "hit", { fontSize: 13, color: ACCENT }),
       txt("n3-l", 250, 268, "enqueue", { fontSize: 12, color: MUTED }),
       txt("note", 40, 360, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
+      txt("sla", 40, 384, "p99 route < 40ms · cache hit rate > 90%", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   medallion: () => {
