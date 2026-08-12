@@ -310,6 +310,7 @@ const BUILDERS = {
       txt("pub-n", 690, 248, "topic: orders.v2", { fontSize: 11, color: MUTED }),
       txt("worker-n", 690, 372, "concurrency 8", { fontSize: 11, color: MUTED }),
       txt("api-n", 280, 264, "3 replicas", { fontSize: 11, color: MUTED }),
+      txt("client-ver", 40, 180, "iOS + Web", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -377,6 +378,7 @@ const BUILDERS = {
       txt("retry-n", 680, 340, "retries this week: 3", { fontSize: 11, color: ACCENT }),
       txt("yes-ms", 100, 340, "merge path ~4 min", { fontSize: 11, color: MUTED }),
       txt("no-ms", 500, 340, "fix path ~12 min", { fontSize: 11, color: ACCENT }),
+      txt("audit-tool", 100, 522, "tool: check-type-labels", { fontSize: 11, color: MUTED }),
     ]);
   },
   sequence: () => {
@@ -729,6 +731,7 @@ const BUILDERS = {
       }),
       txt("green-n", 500, 144, "2 green releases", { fontSize: 11, color: "#15803d" }),
       txt("mcp-live", 500, axisY + 40, "MCP live", { fontSize: 11, color: ACCENT }),
+      txt("mvp-ship", 170, axisY + 40, "shipped", { fontSize: 11, color: MUTED }),
     ]);
   },
   gantt: () => {
@@ -1473,6 +1476,7 @@ const BUILDERS = {
       txt("cli-n", 480, 456, "CLI entry → cli.ts", { fontSize: 11, color: MUTED }),
       txt("skill-n", 40, 456, "SKILL.md = agent prompt", { fontSize: 11, color: MUTED }),
       txt("load-n", 170, 392, "theme loader", { fontSize: 11, color: MUTED }),
+      txt("dark-why", 528, 392, "accent = curated", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1870,6 +1874,7 @@ const BUILDERS = {
       txt("redis-n", 800, 288, "hit 92%", { fontSize: 11, color: MUTED }),
       txt("https-n", 168, 268, "TLS 1.3", { fontSize: 11, color: MUTED }),
       txt("cluster-n", 436, 100, "3 nodes · k8s", { fontSize: 11, color: MUTED }),
+      txt("pg-sz", 800, 152, "primary 400GB", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
@@ -2413,6 +2418,7 @@ const BUILDERS = {
         color: "#15803d",
       }),
       txt("r3-v", at(2)[0] - 10, at(2)[1] - 16, "315", { fontSize: 11, color: MUTED }),
+      txt("r2-v", at(1)[0] - 10, at(1)[1] - 16, "345", { fontSize: 11, color: MUTED }),
     ]);
   },
   scatter: () => {
