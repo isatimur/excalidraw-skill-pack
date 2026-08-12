@@ -461,6 +461,7 @@ const BUILDERS = {
       txt("db-busy", cx.db + 12, 360, "DB 110ms", { fontSize: 11, color: MUTED }),
       txt("cache-ms", cx.cache + 12, 268, "GET 6ms", { fontSize: 11, color: MUTED }),
       txt("idemp", 100, 582, "idempotency-key TTL 24h", { fontSize: 11, color: MUTED }),
+      txt("miss-pct", 520, 558, "miss rate 7%", { fontSize: 11, color: ACCENT }),
     ]);
   },
   state: () => {
@@ -635,6 +636,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("pk-n", 80, 280, "4 PKs · 3 FKs", { fontSize: 11, color: MUTED }),
     ]);
   },
   timeline: () => {
@@ -1149,6 +1151,7 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      txt("s3-path", 60, 452, "s3://raw/events/", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -1337,6 +1340,7 @@ const BUILDERS = {
       txt("looker", 600, 432, "Looker workspace: BI only", { fontSize: 12, color: MUTED }),
       txt("dq-rate", 330, 390, "DQ fail ≈ 0.08%", { fontSize: 11, color: ACCENT }),
       txt("gold-n", 600, 390, "400 metrics · 12 marts", { fontSize: 11, color: MUTED }),
+      txt("bronze-lag", 60, 456, "ingest lag p95 3m", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
@@ -1723,6 +1727,7 @@ const BUILDERS = {
       line("fb", 460, 448, [[0, 0], [116, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("fb-used", 460, 448, [[0, 0], [82, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("fb-l", 460, 460, "fail budget used 71% this week", { fontSize: 11, color: MUTED }),
+      txt("headroom", 460, 484, "headroom 58ms to gate", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -1777,6 +1782,7 @@ const BUILDERS = {
         fontSize: 12,
         color: "#15803d",
       }),
+      txt("row-n", 100, 100, "6 matched questions", { fontSize: 11, color: MUTED }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
