@@ -658,7 +658,7 @@ const BUILDERS = {
         ],
         { stroke: ACCENT }
       ),
-      txt("fail-l", 512, 280, "row fails DQ", { fontSize: 13, color: ACCENT }),
+      txt("fail-l", 420, 280, "row fails DQ", { fontSize: 13, color: ACCENT }),
       txt("sla", 580, 260, "P95 < 40 min", { fontSize: 13, color: MUTED }),
     ]);
   },
@@ -676,7 +676,7 @@ const BUILDERS = {
       path("dep", 668, 120, [[0, 0], [0, 230]], "", { stroke: MUTED }),
       txt("dep-l", 688, 210, "depends on", { fontSize: 14, color: MUTED }),
       path("forbid", 80, 350, [[0, 0], [0, -230]], "", { stroke: ACCENT, dashed: true }),
-      txt("forbid-l", 40, 200, "✗ never", { fontSize: 13, color: ACCENT }),
+      txt("forbid-l", 24, 200, "✗ upward", { fontSize: 13, color: ACCENT }),
       txt("rule", 140, 380, "Infrastructure never imports Domain", {
         fontSize: 13,
         color: MUTED,
