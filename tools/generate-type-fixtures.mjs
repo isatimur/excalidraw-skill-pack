@@ -1030,6 +1030,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // User→Order cardinality stamp — clear of scale caption.
+      rect("u2o", 200, 540, 140, 28, "1:N orders", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   timeline: () => {
@@ -1707,6 +1713,12 @@ const BUILDERS = {
       // Drop decision stamp twin.
       rect("slide-drop", 640, 480, 140, 28, "Slide export↓", {
         fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Docs polish fill-in stamp — clear of claim captions.
+      rect("docs2d", 140, 540, 120, 28, "Docs 2d", {
+        fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
       }),
@@ -2680,6 +2692,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Core package stamp.
+      rect("core-pkg", 40, 540, 120, 28, "core pkg", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -3591,6 +3609,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // AZ failover stamp.
+      rect("az-fail", 460, 440, 140, 28, "AZ-a · AZ-b", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
@@ -4016,6 +4040,12 @@ const BUILDERS = {
       }),
       // Unity catalog stamp on lakehouse.
       rect("unity", 310, 480, 120, 28, "Unity Cat", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // CDC ingest stamp.
+      rect("cdc", 60, 460, 100, 28, "CDC path", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -4585,6 +4615,12 @@ const BUILDERS = {
       rect("r4-under", 580, baseline + 250, 120, 28, "R4 under", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Alert band stamp.
+      rect("alert180", 720, baseline + 250, 120, 28, "alert 180", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
