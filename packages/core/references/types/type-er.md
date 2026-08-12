@@ -12,7 +12,7 @@ Skeleton rectangles; relationship shafts as plain `line`s (hydrated arrows still
 Minimize crossing; stack related entities.
 
 ## Anti-patterns
-Full field lists when a table would be faster; default arrowheads covering crow's feet.
+Full field lists when a table would be faster; default arrowheads covering crow's feet; LineItem sku with no Product lookup.
 
 ## Budget
 ≤6 entities.

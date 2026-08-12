@@ -52,7 +52,7 @@ const META = {
     layout: "Entities as rectangles with key fields in bound labels. Crow's-foot marks on the N side; free `1:N` labels above the shaft.",
     pattern: "Skeleton rectangles; relationship shafts as plain `line`s (hydrated arrows still grow tips that paint over feet); crow's foot + one-bar drawn as short lines on the N edge.",
     routing: "Minimize crossing; stack related entities.",
-    avoid: "Full field lists when a table would be faster; default arrowheads covering crow's feet.",
+    avoid: "Full field lists when a table would be faster; default arrowheads covering crow's feet; LineItem sku with no Product lookup.",
     budget: "≤6 entities.",
   },
   timeline: {

@@ -1321,8 +1321,11 @@ const BUILDERS = {
       tier("t2", 194, 270, 84, 164, { stroke: INK, fill: FILL }),
       tier("t1", 278, 354, 170, 250, { stroke: INK, fill: "#eef2f7" }),
       txt("t3-l", 320, 138, "Strategy", { fontSize: 15, color: ACCENT }),
+      txt("t3-n", 318, 158, "3 bets", { fontSize: 11, color: ACCENT }),
       txt("t2-l", 300, 222, "Capabilities", { fontSize: 15 }),
+      txt("t2-n", 298, 242, "12 squads", { fontSize: 11, color: MUTED }),
       txt("t1-l", 290, 306, "Infrastructure", { fontSize: 15 }),
+      txt("t1-n", 288, 326, "60 eng", { fontSize: 11, color: MUTED }),
       // Leaders pin each callout to its band — floating copy isn't a pin.
       line("ld3", apex + 78, 148, [[0, 0], [40, 0]], { stroke: ACCENT, strokeWidth: 1 }),
       txt("t3-ex", apex + 126, 140, "which bets we fund", { fontSize: 13, color: ACCENT }),
@@ -1386,6 +1389,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("flake", 60, 358, "flake budget: ≤ 1 / 12 runs or check is yellow", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("link", 460, 358, "artifact: s3://load/checkout/2026-02-14/", {
         fontSize: 12,
         color: MUTED,
       }),
