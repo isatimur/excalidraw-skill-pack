@@ -1410,6 +1410,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("review-py", 80, 442, "quarterly review: invert check before funding new bets", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   evidence: () => {
@@ -1849,6 +1853,10 @@ const BUILDERS = {
       txt("glass", 100, 488, "break-glass: Admin only · logged · expires 4h", {
         fontSize: 12,
         color: ACCENT,
+      }),
+      txt("next-audit", 100, 512, "next access review: 2026-03-01", {
+        fontSize: 12,
+        color: MUTED,
       }),
     ]);
   },
