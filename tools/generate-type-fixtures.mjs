@@ -695,6 +695,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Terminal stamp on Archived — no path back.
+      rect("term-chip", 810, 400, 110, 28, "terminal", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1242,6 +1248,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Drop decision chip.
+      rect("drop-chip", 640, 400, 120, 28, "drop · no ask", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1372,6 +1384,12 @@ const BUILDERS = {
       rect("cap-chip", 520, 440, 120, 28, "~40 notes/wk", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Freeze Publish chip when skip×2.
+      rect("frz-chip", 680, 300, 120, 28, "Publish freeze", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -1686,6 +1704,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Miss share chip — 7% of traffic leaves the nest.
+      rect("miss-chip", 720, 380, 100, 28, "miss 7%", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -1883,16 +1907,15 @@ const BUILDERS = {
       }),
       // Accent stripe is curated; notion/stripe are published siblings.
       txt("pub", 528, 410, "published themes", { fontSize: 11, color: MUTED }),
-      txt("pin", 360, 456, "parity pin on template.html", { fontSize: 11, color: ACCENT }),
       txt("wb", 792, 400, "whiteboard/ not listed", { fontSize: 11, color: MUTED }),
       txt("loc", 80, 100, "~4.2k LOC across L1", { fontSize: 11, color: MUTED }),
       txt("leaf-n", 40, 392, "2 core leaves", { fontSize: 11, color: MUTED }),
       txt("theme-n", 660, 392, "3 theme packs", { fontSize: 11, color: ACCENT }),
-      txt("cli-n", 480, 456, "CLI entry → cli.ts", { fontSize: 11, color: MUTED }),
+      txt("cli-n", 480, 440, "CLI entry → cli.ts", { fontSize: 11, color: MUTED }),
       txt("skill-n", 40, 456, "SKILL.md = agent prompt", { fontSize: 11, color: MUTED }),
       txt("load-n", 170, 392, "theme loader", { fontSize: 11, color: MUTED }),
       txt("dark-why", 528, 392, "accent = curated", { fontSize: 11, color: ACCENT }),
-      txt("html-n", 334, 456, "shared template", { fontSize: 11, color: MUTED }),
+      txt("html-n", 334, 440, "shared template", { fontSize: 11, color: MUTED }),
       // Omitted package drawn dashed — exclusion is structural, not only captioned.
       rect("mcp", 900, 210, 120, 44, "mcp-server/", {
         fill: PAPER,
@@ -1918,6 +1941,12 @@ const BUILDERS = {
       // Curated accent stamp on dark/.
       rect("curated", 528, 470, 120, 28, "curated accent", {
         fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Parity pin chip on template.html.
+      rect("parity-chip", 334, 480, 132, 28, "parity pin", {
+        fill: "#fed7aa",
         stroke: ACCENT,
         labelSize: 12,
       }),
@@ -2227,6 +2256,12 @@ const BUILDERS = {
       rect("defer-n", 80, 200, 120, 28, "1 bet deferred", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Invert-check gate before funding — the pyramid's safety rule.
+      rect("inv-chip", 640, 400, 140, 28, "invert-check", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -3224,6 +3259,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Under-SLA count chip — 5 releases is the streak.
+      rect("under-n", 400, y(168) + 20, 120, 28, "5 under SLA", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   scatter: () => {
@@ -3435,6 +3476,12 @@ const BUILDERS = {
       txt("depth-gap-l", vertex(76, 4)[0] + 8, vertex(76, 4)[1] + 4, "−48", {
         fontSize: 11,
         color: ACCENT,
+      }),
+      // Depth-first bet chip — the quarter's priority is a stamp, not only a caption.
+      rect("depth-bet", 520, 496, 140, 28, "Depth first", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
       }),
     ]);
   },
