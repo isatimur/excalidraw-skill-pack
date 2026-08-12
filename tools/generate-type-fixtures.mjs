@@ -334,6 +334,10 @@ const BUILDERS = {
       line("qbar", 690, 280, [[0, 0], [80, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("qfill", 690, 280, [[0, 0], [24, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("qbar-l", 690, 288, "depth 30/100", { fontSize: 11, color: MUTED }),
+      // Replica lag bar beside Postgres — <2s is a fill.
+      line("repl-bar", 690, 200, [[0, 0], [80, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("repl-fill", 690, 200, [[0, 0], [16, 0]], { stroke: "#15803d", strokeWidth: 6 }),
+      txt("repl-bar-l", 690, 212, "lag 0.4s / 2s", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -913,6 +917,10 @@ const BUILDERS = {
         { stroke: ACCENT, dashed: true }
       ),
       txt("ship-dep-l", 500, 258, "FS", { fontSize: 11, color: ACCENT }),
+      // FTE chips under owners — capacity is countable seats.
+      rect("fte-d", 60, 360, 70, 28, "Sam 1", { fill: PAPER, stroke: MUTED, labelSize: 12 }),
+      rect("fte-e", 60, 396, 70, 28, "Eng 3", { fill: "#fef3c7", stroke: ACCENT, labelSize: 12 }),
+      rect("fte-o", 60, 432, 70, 28, "Ops 1", { fill: PAPER, stroke: MUTED, labelSize: 12 }),
     ]);
   },
   swimlane: () => {
@@ -1123,6 +1131,10 @@ const BUILDERS = {
       // Drop X on Slide export — the decision is a mark.
       line("drop-x1", 460, 320, [[0, 0], [20, 20]], { stroke: MUTED, strokeWidth: 2 }),
       line("drop-x2", 480, 320, [[0, 0], [-20, 20]], { stroke: MUTED, strokeWidth: 2 }),
+      // Do-now score bar — Themes 9/10 is a fill.
+      line("score-bar", 640, 240, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("score-fill", 640, 240, [[0, 0], [90, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("score-bar-l", 640, 252, "Themes 9/10", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1515,6 +1527,10 @@ const BUILDERS = {
       line("hit-bar", 460, 360, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("hit-fill", 460, 360, [[0, 0], [186, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("hit-bar-l", 460, 372, "hit rate 93%", { fontSize: 11, color: ACCENT }),
+      // RPS bar under Gateway — ~2.4k is a load mark.
+      line("rps-bar", 220, 360, [[0, 0], [140, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("rps-fill", 220, 360, [[0, 0], [96, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("rps-bar-l", 220, 372, "~2.4k RPS", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
