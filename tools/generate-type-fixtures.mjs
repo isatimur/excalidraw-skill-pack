@@ -1076,15 +1076,15 @@ const BUILDERS = {
   medallion: () => {
     // Wide gaps + free edge labels: "aggregate" is wider than a tight shaft can hold.
     // Under each tier: the concrete contract a reader can audit, not just a name.
-    const bronze = { id: "bronze", x: 60, y: 140, w: 180, h: 96 };
-    const silver = { id: "silver", x: 330, y: 140, w: 180, h: 96 };
-    const gold = { id: "gold", x: 600, y: 140, w: 180, h: 96 };
+    const bronze = { id: "bronze", x: 60, y: 140, w: 180, h: 112 };
+    const silver = { id: "silver", x: 330, y: 140, w: 180, h: 112 };
+    const gold = { id: "gold", x: 600, y: 140, w: 180, h: 112 };
     return doc("Medallion — bronze / silver / gold tiers", [
-      rect(bronze.id, bronze.x, bronze.y, bronze.w, bronze.h, "Bronze · raw\nevents_raw"),
-      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver · conformed\ndim_user", {
+      rect(bronze.id, bronze.x, bronze.y, bronze.w, bronze.h, "Bronze · raw\nevents_raw\n~12M/day"),
+      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver · conformed\ndim_user\n~2M keys", {
         fill: "#e2e8f0",
       }),
-      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold · mart\nmrt_revenue", {
+      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold · mart\nmrt_revenue\n~400 metrics", {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
@@ -1092,22 +1092,22 @@ const BUILDERS = {
       arrow("m2", silver, gold, ""),
       txt("m1-l", 258, 118, "dedupe + types", { fontSize: 13, color: MUTED }),
       txt("m2-l", 518, 118, "aggregate", { fontSize: 13, color: MUTED }),
-      txt("b-own", 60, 252, "owned by ingest · ~12M rows/day", { fontSize: 12, color: MUTED }),
-      txt("s-own", 330, 252, "owned by analytics eng · typed", { fontSize: 12, color: MUTED }),
-      txt("g-own", 600, 252, "owned by BI · mart-ready", { fontSize: 12, color: ACCENT }),
-      txt("tier-note", 60, 290, "each tier is a contract: raw → conformed → mart", {
+      txt("b-own", 60, 268, "owned by ingest · ~12M rows/day", { fontSize: 12, color: MUTED }),
+      txt("s-own", 330, 268, "owned by analytics eng · typed", { fontSize: 12, color: MUTED }),
+      txt("g-own", 600, 268, "owned by BI · mart-ready", { fontSize: 12, color: ACCENT }),
+      txt("tier-note", 60, 306, "each tier is a contract: raw → conformed → mart", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("gate", 60, 318, "Gold is the only tier Looker may query", {
+      txt("gate", 60, 334, "Gold is the only tier Looker may query", {
         fontSize: 13,
         color: ACCENT,
       }),
-      txt("sample", 60, 342, "sample: select * from mrt_revenue where day = current_date", {
+      txt("sample", 60, 358, "sample: select * from mrt_revenue where day = current_date", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("fresh", 60, 366, "freshness: Gold ≤ T+1 day · Silver ≤ T+6h", {
+      txt("fresh", 60, 382, "freshness: Gold ≤ T+1 day · Silver ≤ T+6h", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1116,13 +1116,13 @@ const BUILDERS = {
         "m-rej",
         [
           [silver.x + silver.w / 2, silver.y + silver.h + 8],
-          [silver.x + silver.w / 2, 400],
-          [bronze.x + bronze.w / 2, 400],
+          [silver.x + silver.w / 2, 420],
+          [bronze.x + bronze.w / 2, 420],
           [bronze.x + bronze.w / 2, bronze.y + bronze.h + 8],
         ],
         { stroke: ACCENT, dashed: true }
       ),
-      txt("m-rej-l", 200, 412, "DQ fail → Bronze re-ingest", { fontSize: 12, color: ACCENT }),
+      txt("m-rej-l", 200, 432, "DQ fail → Bronze re-ingest", { fontSize: 12, color: ACCENT }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
