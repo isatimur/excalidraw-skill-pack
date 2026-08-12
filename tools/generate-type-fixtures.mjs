@@ -1017,6 +1017,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("head", 140, 444, "21 people under CEO · Platform is the scarce resource", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   venn: () => {
