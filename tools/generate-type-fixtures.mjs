@@ -533,6 +533,12 @@ const BUILDERS = {
       line("miss-bar", 760, 520, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("miss-fill", 760, 520, [[0, 0], [7, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("miss-bar-l", 760, 532, "miss 7%", { fontSize: 11, color: ACCENT }),
+      // Idempotency TTL chip.
+      rect("ttl-chip", 100, 600, 140, 28, "idem TTL 24h", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -851,6 +857,10 @@ const BUILDERS = {
       line("act-bar", 120, axisY + 190, [[0, 0], [220, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("act-fill", 120, axisY + 190, [[0, 0], [190, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("act-bar-l", 120, axisY + 202, "19mo active / 22mo span", { fontSize: 11, color: ACCENT }),
+      // Freeze buffer fill — 3mo of 22.
+      line("frz-bar", 400, axisY + 190, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("frz-fill", 400, axisY + 190, [[0, 0], [22, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("frz-bar-l", 400, axisY + 202, "freeze 3mo buffer", { fontSize: 11, color: ACCENT }),
     ]);
   },
   gantt: () => {
@@ -1588,6 +1598,12 @@ const BUILDERS = {
       line("sz-bar", 670, 360, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("sz-fill", 670, 360, [[0, 0], [70, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("sz-bar-l", 670, 372, "~2GB cache", { fontSize: 11, color: MUTED }),
+      // Gateway p50 chip.
+      rect("p50-chip", 220, 400, 100, 28, "p50 18ms", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2719,6 +2735,10 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("deny-col-l", 740, 128, "deny column", { fontSize: 11, color: "#b91c1c" }),
+      // Deny cell count — 5 of 12 is a fill.
+      line("deny-bar", 450, 560, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("deny-fill", 450, 560, [[0, 0], [75, 0]], { stroke: "#b91c1c", strokeWidth: 6 }),
+      txt("deny-bar-l", 450, 572, "5 deny / 12 cells", { fontSize: 11, color: "#b91c1c" }),
     ]);
   },
   bar: () => {
