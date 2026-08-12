@@ -364,7 +364,7 @@ const BUILDERS = {
     // Lifelines hang from box centres. Message labels sit ABOVE the shaft as
     // free text — bound labels land on the line and, at Cascadia width, collide.
     const cx = { client: 160, api: 400, db: 640 };
-    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 260]], { dashed: true });
+    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 280]], { dashed: true });
     return doc("Sequence — messages over time", [
       rect("client", cx.client - 60, 110, 120, 48, "Client"),
       rect("api", cx.api - 60, 110, 120, 48, "API"),
@@ -380,6 +380,10 @@ const BUILDERS = {
       txt("m3-l", cx.api + 80, 288, "1 row", { fontSize: 14, color: MUTED }),
       path("m4", cx.api, 365, [[0, 0], [cx.client - cx.api + 8, 0]], "", { dashed: true, stroke: MUTED }),
       txt("m4-l", cx.client + 48, 343, "201 Created", { fontSize: 14, color: MUTED }),
+      txt("budget", 120, 460, "budget: 4 messages · happy path only", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   state: () => {
@@ -1028,7 +1032,13 @@ const BUILDERS = {
       arrow("df1", ingest, stream, ""),
       arrow("df2", stream, warehouse, ""),
       arrow("df3", warehouse, dash, ""),
+      txt("df1-l", 200, 186, "Kafka", { fontSize: 12, color: MUTED }),
       txt("df2-l", 430, 186, "masked", { fontSize: 13, color: MUTED }),
+      txt("df3-l", 700, 186, "Looker", { fontSize: 12, color: MUTED }),
+      txt("cut", 380, 320, "the cut is the argument: who may see raw PII", {
+        fontSize: 13,
+        color: ACCENT,
+      }),
     ]);
   },
   "dp-integration": () => {
