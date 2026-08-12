@@ -1059,7 +1059,11 @@ const BUILDERS = {
       txt("t2-ex", apex + 212, 224, "what we can ship", { fontSize: 13, color: MUTED }),
       line("ld1", apex + 250, 316, [[0, 0], [40, 0]], { stroke: MUTED, strokeWidth: 1 }),
       txt("t1-ex", apex + 298, 308, "what everything sits on", { fontSize: 13, color: MUTED }),
-      txt("invert", 80, 390, "invert it and strategy floats with nothing under it", {
+      txt("owners", 80, 370, "owners: exec / product / platform", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("invert", 80, 394, "invert it and strategy floats with nothing under it", {
         fontSize: 13,
         color: MUTED,
       }),
