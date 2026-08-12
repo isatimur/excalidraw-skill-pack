@@ -591,8 +591,11 @@ const BUILDERS = {
     ];
     return doc("Gantt — phases on a timeline", [
       ...week("w1", 220, "W1"),
+      ...week("w2", 290, "W2"),
       ...week("w3", 360, "W3"),
+      ...week("w4", 430, "W4"),
       ...week("w5", 500, "W5"),
+      ...week("w6", 570, "W6"),
       ...week("w7", 640, "W7"),
       txt("own1", 60, 168, "Design · Sam", { fontSize: 13, color: MUTED }),
       txt("own2", 60, 228, "Build · Eng", { fontSize: 13, color: MUTED }),
@@ -601,6 +604,10 @@ const BUILDERS = {
       // Build runs past Ship's start — the slip is the argument, so the bars must overlap.
       rect("p2", 290, 220, 300, 34, "renderer + fixtures", { fill: "#fef3c7" }),
       rect("p3", 470, 280, 200, 34, "docs + cutover", { fill: "#dcfce7", stroke: "#15803d" }),
+      // Progress ticks sit above the row so they never land on the bar fill.
+      txt("pct1", 370, 140, "100%", { fontSize: 11, color: MUTED }),
+      txt("pct2", 600, 200, "62%", { fontSize: 11, color: ACCENT }),
+      txt("pct3", 680, 310, "0%", { fontSize: 11, color: MUTED }),
       // Without a now-line a Gantt only says what the plan is, never whether it holds.
       line("today", 420, 132, [[0, 0], [0, 216]], { stroke: ACCENT, strokeWidth: 2 }),
       txt("today-l", 392, 112, "today", { fontSize: 13, color: ACCENT }),
@@ -873,6 +880,14 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("vol", 60, 280, "~12M rows/night · quarantine < 0.1%", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("own-q", 60, 380, "quarantine owner: on-call data eng", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -943,12 +958,27 @@ const BUILDERS = {
       txt("n1-l", 370, 176, "route", { fontSize: 13, color: MUTED }),
       txt("n2-l", 670, 248, "hit", { fontSize: 13, color: ACCENT }),
       txt("n3-l", 250, 268, "enqueue", { fontSize: 12, color: MUTED }),
+      // Worker warms Cache via Platform rail — Service A isn't a dead end.
+      elbow(
+        "n4",
+        [
+          [worker.x + worker.w + 8, worker.y + worker.h / 2],
+          [cache.x - 8, worker.y + worker.h / 2],
+          [cache.x - 8, cache.y + cache.h / 2],
+        ],
+        { stroke: MUTED, dashed: true }
+      ),
+      txt("n4-l", 360, 312, "warm SET", { fontSize: 12, color: MUTED }),
       txt("note", 40, 360, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
-      txt("sla", 40, 384, "p99 route < 40ms · cache hit rate > 90%", {
+      txt("excl", 40, 384, "Service B lives elsewhere — not in this nest", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("own", 40, 408, "owner: platform · page on hit-rate drop", {
+      txt("sla", 40, 408, "p99 route < 40ms · cache hit rate > 90%", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("own", 40, 432, "owner: platform · page on hit-rate drop", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1280,29 +1310,30 @@ const BUILDERS = {
       { id: "rebrand", ask: "Re-theme", before: "recolour by hand", after: "pass --theme dark" },
       { id: "open", ask: "Open later", before: "hope the PNG is enough", after: "open the .excalidraw" },
       { id: "ci", ask: "CI render", before: "no source to hydrate", after: "excalidraw-render in CI" },
+      { id: "share", ask: "Share w/ PM", before: "attach a stale PNG", after: "link the live file" },
     ];
     const cellW = 250;
     return doc("Comparison — same questions, two answers", [
-      txt("h-before", 250, 118, "Static export", { fontSize: 16, color: MUTED }),
-      txt("h-after", 540, 118, "Editable source", { fontSize: 16, color: "#15803d" }),
-      line("h-rule", 100, 146, [[0, 0], [700, 0]], { strokeWidth: 1, stroke: GRID }),
+      txt("h-before", 250, 100, "Static export", { fontSize: 16, color: MUTED }),
+      txt("h-after", 540, 100, "Editable source", { fontSize: 16, color: "#15803d" }),
+      line("h-rule", 100, 128, [[0, 0], [700, 0]], { strokeWidth: 1, stroke: GRID }),
       ...rows.flatMap((row, i) => {
-        const y = 160 + i * 68;
+        const y = 140 + i * 58;
         return [
-          txt(`${row.id}-ask`, 100, y + 16, row.ask, { fontSize: 14, color: MUTED }),
-          rect(`${row.id}-b`, 250, y, cellW, 52, row.before, { labelSize: 15, fill: "#f1f5f9" }),
-          rect(`${row.id}-a`, 530, y, cellW, 52, row.after, {
-            labelSize: 15,
+          txt(`${row.id}-ask`, 100, y + 14, row.ask, { fontSize: 14, color: MUTED }),
+          rect(`${row.id}-b`, 250, y, cellW, 46, row.before, { labelSize: 14, fill: "#f1f5f9" }),
+          rect(`${row.id}-a`, 530, y, cellW, 46, row.after, {
+            labelSize: 14,
             fill: "#dcfce7",
             stroke: "#15803d",
           }),
         ];
       }),
-      txt("verdict", 250, 520, "editable wins on every question that matters after day one", {
+      txt("verdict", 250, 500, "editable wins on every question that matters after day one", {
         fontSize: 13,
         color: "#15803d",
       }),
-      txt("day0", 250, 544, "day zero still needs a PNG; day two needs the source", {
+      txt("day0", 250, 524, "day zero still needs a PNG; day two needs the source", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1440,6 +1471,22 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("risk", 80, 408, "risk: ESB MTTD ~ 4h · no bypass without Change Board", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      // Dashed hope path that isn't real yet — naming the fantasy is the audit.
+      elbow(
+        "bypass",
+        [
+          [as400.x + as400.w + 8, as400.y + 8],
+          [780, as400.y + 8],
+          [780, saas.y + saas.h / 2],
+          [saas.x - 8, saas.y + saas.h / 2],
+        ],
+        { stroke: MUTED, dashed: true }
+      ),
+      txt("bypass-l", 560, 100, "hoped bypass (not live)", { fontSize: 12, color: MUTED }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
