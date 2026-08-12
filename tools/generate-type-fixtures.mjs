@@ -76,7 +76,8 @@ function ellipse(id, x, y, w, h, label, opts = {}) {
     strokeColor: opts.stroke ?? INK,
     backgroundColor: opts.fill ?? FILL,
     fillStyle: "solid",
-    strokeWidth: 2,
+    strokeWidth: opts.strokeWidth ?? 2,
+    strokeStyle: opts.dashed ? "dashed" : "solid",
     roughness: 0,
     label: label ? { text: label } : undefined,
   };
@@ -304,6 +305,8 @@ const BUILDERS = {
       txt("repl", 690, 152, "replica lag < 2s", { fontSize: 11, color: MUTED }),
       txt("cg", 690, 348, "cg: orders-v2", { fontSize: 11, color: MUTED }),
       txt("fail", 260, 168, "failover: API multi-AZ", { fontSize: 11, color: MUTED }),
+      txt("hc", 260, 264, "healthz /ready", { fontSize: 11, color: MUTED }),
+      txt("wal", 690, 176, "WAL shipping", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -444,6 +447,13 @@ const BUILDERS = {
       txt("ms4", 760, 344, "110ms", { fontSize: 11, color: MUTED }),
       txt("ms5", 760, 424, "8ms SET", { fontSize: 11, color: MUTED }),
       txt("sum-ms", 760, 510, "≈140ms miss path", { fontSize: 11, color: ACCENT }),
+      // Activation bar on API during the miss path — time spent, not just arrows.
+      rect("act", cx.api - 8, 240, 16, 200, "", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 1,
+      }),
+      txt("act-l", cx.api + 12, 330, "API busy", { fontSize: 11, color: MUTED }),
     ]);
   },
   state: () => {
@@ -914,6 +924,12 @@ const BUILDERS = {
       txt("et1", 288, 268, "15d", { fontSize: 10, color: MUTED }),
       txt("et2", 388, 268, "30d", { fontSize: 10, color: MUTED }),
       txt("et3", 488, 268, "45d", { fontSize: 10, color: MUTED }),
+      // Impact ticks on Y — effort alone is half the matrix.
+      ...[160, 200, 240].map((y, i) =>
+        line(`it${i}`, 374, y, [[0, 0], [12, 0]], { strokeWidth: 1, stroke: MUTED })
+      ),
+      txt("it0", 392, 154, "hi", { fontSize: 10, color: MUTED }),
+      txt("it1", 392, 232, "mid", { fontSize: 10, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1390,6 +1406,8 @@ const BUILDERS = {
       txt("pin", 360, 456, "parity pin on template.html", { fontSize: 11, color: ACCENT }),
       txt("wb", 792, 400, "whiteboard/ not listed", { fontSize: 11, color: MUTED }),
       txt("loc", 80, 100, "~4.2k LOC across L1", { fontSize: 11, color: MUTED }),
+      txt("leaf-n", 40, 392, "2 core leaves", { fontSize: 11, color: MUTED }),
+      txt("theme-n", 660, 392, "3 theme packs", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2140,6 +2158,12 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("dip", 360, baseline - 55 * perUnit - 40, "Q3 dip", { fontSize: 12, color: MUTED }),
+      // Dip stem: the trough is a measured drop, not a caption floating near a short bar.
+      line("dip-stem", 410, baseline - 55 * perUnit - 8, [[0, 0], [0, -24]], {
+        stroke: MUTED,
+        dashed: true,
+        strokeWidth: 1,
+      }),
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
       txt("prior-l", 590, 280, "grey = prior year", { fontSize: 12, color: MUTED }),
@@ -2314,6 +2338,7 @@ const BUILDERS = {
       txt("xh1", 288, baseline + 8, "20h", { fontSize: 11, color: MUTED }),
       txt("xh2", 388, baseline + 8, "30h", { fontSize: 11, color: MUTED }),
       // Novice cluster: the left side is the argument before practice pays off.
+      ellipse("nov-zone", 160, 130, 100, 70, "", { stroke: MUTED, strokeWidth: 1, dashed: true, fill: "transparent" }),
       txt("novice", 168, 118, "novice cluster", { fontSize: 12, color: MUTED }),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
       txt("r2", 500, 220, "r ≈ −0.82", { fontSize: 12, color: MUTED }),
