@@ -1494,6 +1494,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Impact axis chip.
+      rect("imp-chip", 80, 100, 100, 28, "Impact ↑", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1851,6 +1857,12 @@ const BUILDERS = {
       }),
       // Infra adapter chip.
       rect("infra-chip", 700, 480, 120, 28, "6 adapters", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Handler count chip.
+      rect("h12", 700, 520, 120, 28, "12 handlers", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2597,6 +2609,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Killed this Q chip.
+      rect("kill-q", 60, 540, 120, 28, "killed Q", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -3314,6 +3332,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Mask hop chip.
+      rect("mask-n", 430, 480, 120, 28, "mask hop", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -3430,6 +3454,12 @@ const BUILDERS = {
       }),
       // Source count chip.
       rect("src3", 60, 340, 120, 28, "3 sources", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Consumer count chip.
+      rect("con3", 580, 420, 120, 28, "3 consumers", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3915,6 +3945,12 @@ const BUILDERS = {
       rect("delta-chip", 440, baseline + 220, 120, 28, "−258ms", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Release count chip.
+      rect("rel6", 580, baseline + 220, 100, 28, "6 releases", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
