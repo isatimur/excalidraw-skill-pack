@@ -6,13 +6,13 @@
 Strict left→right transforms with concrete artifacts per stage. Accent the judgment stage.
 
 ## Excalidraw pattern
-Skeleton rectangles chained by arrows; free handoff labels; optional DQ quarantine branch.
+Skeleton rectangles chained by arrows; free handoff labels; DQ quarantine with dashed fix→retry back into the judgment stage.
 
 ## Connectors & routing
-One arrow per handoff; orthogonal drop for failure paths.
+One arrow per handoff; orthogonal drop for failure; dashed re-entry so quarantine is not a dump.
 
 ## Anti-patterns
-Checklist steps redrawn as bare verbs with no artifact.
+Checklist steps redrawn as bare verbs with no artifact; a quarantine that never returns.
 
 ## Budget
 ≤7 stages.

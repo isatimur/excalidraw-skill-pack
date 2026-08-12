@@ -1011,6 +1011,10 @@ const BUILDERS = {
       txt("b-ex", 640, 220, "perfect &\nlate", { fontSize: 13, color: MUTED }),
       line("leader", 400, 360, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
       txt("overlap", 344, 394, "ship it twice", { fontSize: 14, color: ACCENT }),
+      txt("claim", 200, 440, "overlap is the product; exclusives are the tax", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base

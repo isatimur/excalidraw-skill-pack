@@ -3,19 +3,19 @@
 **Best for:** legacy landscape, modernization snapshots.
 
 ## Layout conventions
-Legacy on left, target/SaaS on right; ESB/bridge in the middle as the accent finding.
+Legacy on left, targets on right; ESB/bridge in the middle as the accent finding.
 
 ## Excalidraw pattern
-Fan sources into the bus on an orthogonal rail; name the choke in a caption.
+Fan ≥3 sources into the bus on an orthogonal rail; fan ≥2 targets out; name the choke in a caption.
 
 ## Connectors & routing
-Shared vertical rail into the ESB — no converging diagonals.
+Shared vertical rails into/out of the ESB — no converging diagonals.
 
 ## Anti-patterns
-Wallpaper of apps with no single finding.
+Wallpaper of apps with no single finding; one lonely SaaS that understates the throat.
 
 ## Budget
-≤6 systems.
+≤8 systems.
 
 ## Example
 - Fixture: [`packages/shared/fixtures/types/it-state/example.excalidraw`](https://github.com/isatimur/excalidraw-skill-pack/blob/main/packages/shared/fixtures/types/it-state/example.excalidraw)
