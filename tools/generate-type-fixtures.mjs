@@ -303,19 +303,25 @@ const BUILDERS = {
   architecture: () => {
     // Both dependencies fan out from the API, so they sit on separate rows: a single
     // row would route the queue arrow through Postgres and stack the two edge labels.
-    const api = { id: "api", x: 120, y: 176, w: 140, h: 64 };
-    const db = { id: "db", x: 440, y: 112, w: 160, h: 64 };
-    const queue = { id: "queue", x: 440, y: 248, w: 160, h: 64 };
+    // Client sits outside the VPC — a boundary that contains everything is just a frame.
+    const client = { id: "client", x: 40, y: 200, w: 120, h: 48 };
+    const api = { id: "api", x: 260, y: 196, w: 140, h: 56 };
+    const db = { id: "db", x: 520, y: 120, w: 160, h: 56 };
+    const queue = { id: "queue", x: 520, y: 268, w: 160, h: 56 };
     return doc("Architecture — components + boundaries", [
-      zone("zone", 80, 88, 700, 248, ""),
-      txt("zone-label", 96, 96, "VPC", { fontSize: 14, color: MUTED }),
+      zone("zone", 220, 88, 520, 280, ""),
+      txt("zone-label", 236, 96, "Production VPC", { fontSize: 14, color: MUTED }),
+      rect(client.id, client.x, client.y, client.w, client.h, "Client", { fill: PAPER, stroke: MUTED }),
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(db.id, db.x, db.y, db.w, db.h, "Postgres", { fill: "#fef3c7", stroke: ACCENT }),
       rect(queue.id, queue.x, queue.y, queue.w, queue.h, "Queue"),
+      arrow("a0", client, api, ""),
       arrow("a1", api, db, ""),
       arrow("a2", api, queue, ""),
-      txt("a1-l", 300, 128, "read/write", { fontSize: 14, color: MUTED }),
-      txt("a2-l", 312, 268, "publish", { fontSize: 14, color: MUTED }),
+      txt("a0-l", 168, 178, "POST /orders", { fontSize: 13, color: MUTED }),
+      txt("a1-l", 400, 140, "read/write", { fontSize: 13, color: MUTED }),
+      txt("a2-l", 408, 280, "publish", { fontSize: 13, color: MUTED }),
+      txt("note", 40, 280, "edge stays out", { fontSize: 12, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -370,10 +376,15 @@ const BUILDERS = {
     ]);
   },
   state: () => {
-    const draft = { id: "draft", x: 100, y: 140, w: 140, h: 56 };
-    const review = { id: "review", x: 380, y: 140, w: 140, h: 56 };
-    const live = { id: "live", x: 660, y: 140, w: 140, h: 56 };
+    const draft = { id: "draft", x: 100, y: 160, w: 140, h: 56 };
+    const review = { id: "review", x: 380, y: 160, w: 140, h: 56 };
+    const live = { id: "live", x: 660, y: 160, w: 140, h: 56 };
     return doc("State machine — allowed transitions", [
+      ellipse("entry", 40, 172, 28, 28, "", { fill: INK, stroke: INK }),
+      arrow("t0", { id: "entry", x: 40, y: 172, w: 28, h: 28 }, draft, "", {
+        from: "right",
+        to: "left",
+      }),
       rect(draft.id, draft.x, draft.y, draft.w, draft.h, "Draft"),
       rect(review.id, review.x, review.y, review.w, review.h, "Review"),
       rect(live.id, live.x, live.y, live.w, live.h, "Live", {
@@ -382,20 +393,24 @@ const BUILDERS = {
       }),
       arrow("t1", draft, review, ""),
       arrow("t2", review, live, ""),
-      txt("t1-l", 268, 118, "submit", { fontSize: 14, color: MUTED }),
-      txt("t2-l", 548, 118, "approve", { fontSize: 14, color: MUTED }),
+      txt("t1-l", 268, 138, "submit", { fontSize: 14, color: MUTED }),
+      txt("t2-l", 548, 138, "approve", { fontSize: 14, color: MUTED }),
       // Rejection is the edge that makes it a machine, not a pipeline.
       elbow(
         "t3",
         [
           [review.x + review.w / 2, review.y + review.h + 8],
-          [review.x + review.w / 2, 280],
-          [draft.x + draft.w / 2, 280],
+          [review.x + review.w / 2, 300],
+          [draft.x + draft.w / 2, 300],
           [draft.x + draft.w / 2, draft.y + draft.h + 8],
         ],
         { stroke: ACCENT }
       ),
-      txt("t3-l", 220, 292, "reject", { fontSize: 14, color: ACCENT }),
+      txt("t3-l", 220, 312, "reject", { fontSize: 14, color: ACCENT }),
+      txt("rule", 380, 340, "no Draft → Live: every ship passes Review", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   er: () => {
@@ -574,6 +589,23 @@ const BUILDERS = {
       arrow("l2", synth, publish, "", { from: "bottom", to: "top" }),
       arrow("l3", publish, review, "", { from: "left", to: "right" }),
       arrow("l4", review, capture, "", { from: "top", to: "bottom" }),
+      txt("l1-l", 360, 90, "notes", { fontSize: 12, color: MUTED }),
+      txt("l2-l", 678, 200, "draft", { fontSize: 12, color: MUTED }),
+      txt("l3-l", 360, 340, "ship", { fontSize: 12, color: MUTED }),
+      txt("l4-l", 120, 200, "feedback", { fontSize: 12, color: MUTED }),
+      // Spokes: every station writes back into the shared memory.
+      path("spoke1", hub.x + hub.w / 2, hub.y, [[0, 0], [0, -28]], "", {
+        stroke: ACCENT,
+        dashed: true,
+      }),
+      path("spoke2", hub.x + hub.w / 2, hub.y + hub.h, [[0, 0], [0, 28]], "", {
+        stroke: ACCENT,
+        dashed: true,
+      }),
+      txt("hub-note", 80, 380, "hub accumulates; the loop never starts from empty", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   process: () => {
@@ -636,23 +668,33 @@ const BUILDERS = {
   // Boundary labels sit at the top-left edge: a centred container label lands on
   // whatever the boundary contains.
   nested: () => {
-    const api = { id: "api", x: 172, y: 196, w: 236, h: 44 };
-    const cache = { id: "cache", x: 172, y: 250, w: 236, h: 36 };
-    const gateway = { id: "gateway", x: 484, y: 196, w: 176, h: 44 };
+    // Gateway is the edge of Platform; Service A nests API+Cache. Client stays out
+    // so the Platform boundary excludes something — same rule as architecture VPC.
+    const client = { id: "client", x: 40, y: 220, w: 120, h: 44 };
+    const gateway = { id: "gateway", x: 220, y: 220, w: 140, h: 44 };
+    const api = { id: "api", x: 460, y: 190, w: 200, h: 44 };
+    const cache = { id: "cache", x: 460, y: 250, w: 200, h: 36 };
     return doc("Nested — hierarchy by containment", [
-      zone("outer", 100, 110, 600, 216, ""),
-      txt("outer-l", 116, 120, "Platform", { fontSize: 14, color: MUTED }),
-      zone("inner", 140, 158, 300, 140, ""),
-      txt("inner-l", 156, 168, "Service A", { fontSize: 14, color: MUTED }),
+      zone("outer", 190, 110, 520, 230, ""),
+      txt("outer-l", 206, 120, "Platform", { fontSize: 14, color: MUTED }),
+      zone("inner", 420, 150, 270, 160, ""),
+      txt("inner-l", 436, 160, "Service A", { fontSize: 14, color: MUTED }),
+      rect(client.id, client.x, client.y, client.w, client.h, "Client", {
+        fill: PAPER,
+        stroke: MUTED,
+      }),
+      rect(gateway.id, gateway.x, gateway.y, gateway.w, gateway.h, "Gateway"),
       rect(api.id, api.x, api.y, api.w, api.h, "API"),
       rect(cache.id, cache.x, cache.y, cache.w, cache.h, "Cache", {
         fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 15,
       }),
-      rect(gateway.id, gateway.x, gateway.y, gateway.w, gateway.h, "Gateway"),
+      arrow("n0", client, gateway, ""),
       arrow("n1", gateway, api, ""),
-      txt("n1-l", 420, 176, "route", { fontSize: 13, color: MUTED }),
+      txt("n0-l", 150, 196, "HTTPS", { fontSize: 13, color: MUTED }),
+      txt("n1-l", 370, 196, "route", { fontSize: 13, color: MUTED }),
+      txt("note", 40, 290, "Client stays outside Platform", { fontSize: 12, color: MUTED }),
     ]);
   },
   medallion: () => {
