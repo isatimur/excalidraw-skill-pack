@@ -1351,6 +1351,7 @@ const BUILDERS = {
     const baseline = 320;
     const perUnit = 1.6;
     const avg = 66;
+    const prior = [38, 52, 48, 78];
     const bar = (id, x, value, label, accent) => {
       const top = baseline - value * perUnit;
       return [
@@ -1362,6 +1363,14 @@ const BUILDERS = {
         }),
       ];
     };
+    const ghost = (id, x, value) => {
+      const top = baseline - value * perUnit;
+      return rect(id, x + 8, top, 44, value * perUnit, "", {
+        fill: PAPER,
+        stroke: MUTED,
+        strokeWidth: 1,
+      });
+    };
     const tick = (id, value) => [
       line(id, 140, baseline - value * perUnit, [[0, 0], [440, 0]], { strokeWidth: 1, stroke: GRID }),
       txt(`${id}-l`, 96, baseline - value * perUnit - 8, `${value}`, { fontSize: 13, color: MUTED }),
@@ -1372,6 +1381,11 @@ const BUILDERS = {
       line("y-axis", 140, 130, [[0, 0], [0, 190]], { stroke: INK }),
       line("x-axis", 140, baseline, [[0, 0], [440, 0]], { stroke: INK }),
       txt("y-unit", 96, 108, "signups (k)", { fontSize: 13, color: MUTED }),
+      // Prior-year ghosts behind bars: YoY is visible, not only captioned.
+      ghost("g1", 180, prior[0]),
+      ghost("g2", 280, prior[1]),
+      ghost("g3", 380, prior[2]),
+      ghost("g4", 480, prior[3]),
       ...bar("b1", 180, 44, "Q1"),
       ...bar("b2", 280, 65, "Q2"),
       ...bar("b3", 380, 55, "Q3"),
@@ -1385,6 +1399,7 @@ const BUILDERS = {
       txt("avg-l", 590, baseline - avg * perUnit - 8, `avg ${avg}`, { fontSize: 12, color: MUTED }),
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
+      txt("prior-l", 590, 280, "outline = prior year", { fontSize: 12, color: MUTED }),
       txt("yoy", 180, baseline + 40, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
     ]);
   },
