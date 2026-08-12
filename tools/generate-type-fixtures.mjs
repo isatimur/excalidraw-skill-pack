@@ -1658,6 +1658,10 @@ const BUILDERS = {
         { stroke: MUTED, dashed: true }
       ),
       txt("bypass-l", 560, 100, "hoped bypass (not live)", { fontSize: 12, color: MUTED }),
+      txt("age", 80, 432, "Mainframe ~28y · AS/400 ~19y · ESB ~11y · SaaS ~3y", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
@@ -2031,6 +2035,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("ci95", 500, 340, "95% CI on slope excludes 0", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("cohort", 140, baseline + 88, "cohort: eng onboarding class · 2025-Q4", {
         fontSize: 12,
         color: MUTED,
       }),
