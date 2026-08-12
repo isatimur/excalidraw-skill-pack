@@ -1567,6 +1567,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("buyer", 250, 596, "buyer ask: \"can we edit the boxes?\" → editable", {
+        fontSize: 12,
+        color: "#15803d",
+      }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
@@ -2071,6 +2075,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("hold", 630, y(142) + 16, "hold <180", { fontSize: 11, color: MUTED }),
     ]);
   },
   scatter: () => {
