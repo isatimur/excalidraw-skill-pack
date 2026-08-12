@@ -1069,6 +1069,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("rule", 200, 464, "never ship Speed-only or Quality-only builds", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
