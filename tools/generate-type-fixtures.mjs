@@ -437,9 +437,9 @@ const BUILDERS = {
     ]);
   },
   er: () => {
-    const user = { id: "user", x: 80, y: 140, w: 150, h: 72 };
-    const order = { id: "order", x: 370, y: 140, w: 150, h: 72 };
-    const item = { id: "item", x: 660, y: 140, w: 150, h: 72 };
+    const user = { id: "user", x: 80, y: 140, w: 170, h: 96 };
+    const order = { id: "order", x: 370, y: 140, w: 170, h: 96 };
+    const item = { id: "item", x: 660, y: 140, w: 170, h: 96 };
     // Crow's foot sits on the N-side edge. Arrow standoff stops short so the
     // arrowhead never paints over the three prongs.
     const foot = (id, edgeX, cy) => [
@@ -448,15 +448,22 @@ const BUILDERS = {
       line(`${id}-c`, edgeX - 16, cy + 11, [[0, 0], [16, -11]], { stroke: INK, strokeWidth: 2 }),
     ];
     return doc("ER — entities + cardinality", [
-      rect(user.id, user.x, user.y, user.w, user.h, "User\nid, email"),
-      rect(order.id, order.x, order.y, order.w, order.h, "Order\nid, total"),
-      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku, qty"),
+      rect(user.id, user.x, user.y, user.w, user.h, "User\nid PK\nemail"),
+      rect(order.id, order.x, order.y, order.w, order.h, "Order\nid PK\nuser_id FK"),
+      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku\nqty", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
       arrow("r1", user, order, "", { standoff: 20, endArrowhead: null }),
       arrow("r2", order, item, "", { standoff: 20, endArrowhead: null }),
       ...foot("f1", order.x, order.y + order.h / 2),
       ...foot("f2", item.x, item.y + item.h / 2),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
       txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
+      txt("note", 80, 260, "one user → many orders → many line items", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   timeline: () => {
