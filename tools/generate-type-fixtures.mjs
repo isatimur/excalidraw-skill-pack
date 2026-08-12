@@ -440,22 +440,31 @@ const BUILDERS = {
     const user = { id: "user", x: 80, y: 140, w: 170, h: 96 };
     const order = { id: "order", x: 370, y: 140, w: 170, h: 96 };
     const item = { id: "item", x: 660, y: 140, w: 170, h: 96 };
-    // Crow's foot sits on the N-side edge. Arrow standoff stops short so the
-    // arrowhead never paints over the three prongs.
+    // Pure lines for the shaft — hydrated arrows still grow a tip even when
+    // endArrowhead is null, which paints over the crow's foot.
+    const shaft = (id, from, to) => {
+      const y = from.y + from.h / 2;
+      return line(id, from.x + from.w + 4, y, [[0, 0], [to.x - 20 - (from.x + from.w + 4), 0]], {
+        stroke: INK,
+        strokeWidth: 2,
+      });
+    };
     const foot = (id, edgeX, cy) => [
-      line(`${id}-a`, edgeX - 16, cy - 11, [[0, 0], [16, 11]], { stroke: INK, strokeWidth: 2 }),
-      line(`${id}-b`, edgeX - 16, cy, [[0, 0], [16, 0]], { stroke: INK, strokeWidth: 2 }),
-      line(`${id}-c`, edgeX - 16, cy + 11, [[0, 0], [16, -11]], { stroke: INK, strokeWidth: 2 }),
+      line(`${id}-a`, edgeX - 18, cy - 12, [[0, 0], [18, 12]], { stroke: INK, strokeWidth: 2 }),
+      line(`${id}-b`, edgeX - 18, cy, [[0, 0], [18, 0]], { stroke: INK, strokeWidth: 2 }),
+      line(`${id}-c`, edgeX - 18, cy + 12, [[0, 0], [18, -12]], { stroke: INK, strokeWidth: 2 }),
+      // Mandatory one-side bar just before the fork.
+      line(`${id}-bar`, edgeX - 22, cy - 10, [[0, 0], [0, 20]], { stroke: INK, strokeWidth: 2 }),
     ];
     return doc("ER — entities + cardinality", [
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid PK\nemail"),
       rect(order.id, order.x, order.y, order.w, order.h, "Order\nid PK\nuser_id FK"),
-      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku\nqty", {
+      rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nid PK\norder_id FK", {
         fill: "#fef3c7",
         stroke: ACCENT,
       }),
-      arrow("r1", user, order, "", { standoff: 20, endArrowhead: null }),
-      arrow("r2", order, item, "", { standoff: 20, endArrowhead: null }),
+      shaft("r1", user, order),
+      shaft("r2", order, item),
       ...foot("f1", order.x, order.y + order.h / 2),
       ...foot("f2", item.x, item.y + item.h / 2),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
@@ -627,15 +636,31 @@ const BUILDERS = {
       txt("l2-l", 678, 200, "draft", { fontSize: 12, color: MUTED }),
       txt("l3-l", 360, 340, "ship", { fontSize: 12, color: MUTED }),
       txt("l4-l", 120, 200, "feedback", { fontSize: 12, color: MUTED }),
-      // Spokes: every station writes back into the shared memory.
-      path("spoke1", hub.x + hub.w / 2, hub.y, [[0, 0], [0, -28]], "", {
-        stroke: ACCENT,
-        dashed: true,
-      }),
-      path("spoke2", hub.x + hub.w / 2, hub.y + hub.h, [[0, 0], [0, 28]], "", {
-        stroke: ACCENT,
-        dashed: true,
-      }),
+      // Spokes land on station midlines — decorative stubs into empty air aren't a hub.
+      elbow(
+        "spoke-cap",
+        [
+          [hub.x + hub.w / 2, hub.y - 4],
+          [hub.x + hub.w / 2, capture.y + capture.h + 8],
+          [capture.x + capture.w + 8, capture.y + capture.h + 8],
+          [capture.x + capture.w + 8, capture.y + capture.h / 2],
+          [capture.x + capture.w + 4, capture.y + capture.h / 2],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      elbow(
+        "spoke-pub",
+        [
+          [hub.x + hub.w / 2, hub.y + hub.h + 4],
+          [hub.x + hub.w / 2, publish.y - 8],
+          [publish.x - 8, publish.y - 8],
+          [publish.x - 8, publish.y + publish.h / 2],
+          [publish.x - 4, publish.y + publish.h / 2],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("write-l", 300, 168, "write", { fontSize: 12, color: ACCENT }),
+      txt("read-l", 430, 280, "read", { fontSize: 12, color: ACCENT }),
       txt("hub-note", 80, 380, "hub accumulates; the loop never starts from empty", {
         fontSize: 13,
         color: MUTED,
@@ -916,11 +941,15 @@ const BUILDERS = {
       tier("t2", 194, 270, 84, 164, { stroke: INK, fill: FILL }),
       tier("t1", 278, 354, 170, 250, { stroke: INK, fill: "#eef2f7" }),
       txt("t3-l", 320, 138, "Strategy", { fontSize: 15, color: ACCENT }),
-      txt("t3-ex", 460, 148, "which bets we fund", { fontSize: 13, color: ACCENT }),
       txt("t2-l", 300, 222, "Capabilities", { fontSize: 15 }),
-      txt("t2-ex", 540, 222, "what we can ship", { fontSize: 13, color: MUTED }),
       txt("t1-l", 290, 306, "Infrastructure", { fontSize: 15 }),
-      txt("t1-ex", 620, 306, "what everything sits on", { fontSize: 13, color: MUTED }),
+      // Leaders pin each callout to its band — floating copy isn't a pin.
+      line("ld3", apex + 78, 148, [[0, 0], [40, 0]], { stroke: ACCENT, strokeWidth: 1 }),
+      txt("t3-ex", apex + 126, 140, "which bets we fund", { fontSize: 13, color: ACCENT }),
+      line("ld2", apex + 164, 232, [[0, 0], [40, 0]], { stroke: MUTED, strokeWidth: 1 }),
+      txt("t2-ex", apex + 212, 224, "what we can ship", { fontSize: 13, color: MUTED }),
+      line("ld1", apex + 250, 316, [[0, 0], [40, 0]], { stroke: MUTED, strokeWidth: 1 }),
+      txt("t1-ex", apex + 298, 308, "what everything sits on", { fontSize: 13, color: MUTED }),
       txt("invert", 80, 390, "invert it and strategy floats with nothing under it", {
         fontSize: 13,
         color: MUTED,
