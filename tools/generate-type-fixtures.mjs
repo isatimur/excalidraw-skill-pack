@@ -659,6 +659,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("buf", 160, 364, "buffer: W8–W9 soft launch · hard cut W10", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1301,6 +1305,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("decider", 200, 488, "ship gate: Design lead + Eng lead both say yes", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("sizes", 200, 512, "|Speed|≈40 · |Quality|≈35 · |overlap|≈12 this quarter", {
         fontSize: 12,
         color: MUTED,
       }),
