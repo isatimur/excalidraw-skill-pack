@@ -778,6 +778,7 @@ const BUILDERS = {
       txt("fail-l", 420, 372, "red → fix", { fontSize: 12, color: ACCENT }),
       txt("sla", 680, 320, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
       txt("wip", 360, 248, "WIP limit: 1 Spec in Eng", { fontSize: 11, color: MUTED }),
+      txt("age-s", 700, 118, "Spec age: 6h", { fontSize: 11, color: MUTED }),
       txt("goal", 200, 400, "goal: Sign-off same day as green tests", {
         fontSize: 12,
         color: MUTED,
@@ -1997,6 +1998,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("mix", 180, baseline + 128, "Q4 mix: 41% paid · 59% organic", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("target-q", 180, baseline + 152, "2026 target: 120k / quarter by Q4", {
         fontSize: 12,
         color: MUTED,
       }),
