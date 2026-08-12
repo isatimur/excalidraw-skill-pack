@@ -738,6 +738,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("kpi", 80, 428, "KPI: Memory writes/week trending up", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   process: () => {
