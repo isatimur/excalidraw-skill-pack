@@ -657,6 +657,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Idempotent POST stamp.
+      rect("idem", 100, 720, 120, 28, "idempotent", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -1426,6 +1432,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Eng SLA stamp.
+      rect("eng2d", 700, 480, 100, 28, "Eng ≤2d", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   quadrant: () => {
@@ -1588,6 +1600,12 @@ const BUILDERS = {
       rect("par-chip", 80, 400, 110, 28, "Parity 5d", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Themes effort stamp.
+      rect("thm3", 200, 60, 110, 28, "Themes 3d", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2687,6 +2705,10 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Vacant seat age fill bar under Platform.
+      line("vac-bar", 140, 520, [[0, 0], [156, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("vac-fill", 140, 520, [[0, 0], [117, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("vac-bar-l", 140, 532, "vacant 47d / 60d SLA", { fontSize: 11, color: ACCENT }),
     ]);
   },
   venn: () => {
@@ -2811,6 +2833,12 @@ const BUILDERS = {
       rect("union", 780, 540, 120, 28, "|S∪Q|≈63", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Intersection count stamp — clear of held-age chip.
+      rect("inter", 640, 540, 100, 28, "|∩|=12", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -3586,6 +3614,12 @@ const BUILDERS = {
       }),
       // Dashboard count stamp.
       rect("boards", 766, 340, 120, 28, "12 boards", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Orders topic stamp — clear of Kafka edge labels.
+      rect("ord-t", 766, 380, 120, 28, "orders topic", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
