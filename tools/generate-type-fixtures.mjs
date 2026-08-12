@@ -918,6 +918,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("mem-size", 380, 188, "~1.2k notes", { fontSize: 11, color: ACCENT }),
     ]);
   },
   process: () => {
@@ -1268,6 +1269,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Accent stripe is curated; notion/stripe are published siblings.
+      txt("pub", 528, 410, "published themes", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
