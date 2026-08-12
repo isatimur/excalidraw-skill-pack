@@ -1343,6 +1343,10 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("vacant", 300, 360, "vacant lead", { fontSize: 11, color: ACCENT }),
+      txt("span", 140, 516, "span of control: CEO 2 · Eng 1 · Product 1", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   venn: () => {
@@ -1375,6 +1379,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("tax", 640, 280, "tax paid in exclusives", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
