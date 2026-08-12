@@ -6,7 +6,7 @@
 Single dominant direction. Ellipse for start/end, diamond for decisions, rectangle for actions. Side-exit the diamond then drop — never diagonal through air.
 
 ## Excalidraw pattern
-Prefer skeleton: `ellipse` trigger, `diamond` decision, `rectangle` action. Free text for Yes/No beside the elbows. Dashed Fix→audit retry so reject is a loop, not a dead end. Merge lands in Deploy (canary) so yes has a destination.
+Prefer skeleton: `ellipse` trigger, `diamond` decision, `rectangle` action. Free text for Yes/No beside the elbows. Dashed Fix→audit retry so reject is a loop, not a dead end. Merge lands in Deploy (canary) so yes has a destination. Stamp fix-path duration and required checks as chips.
 
 ## Connectors & routing
 Orthogonal arrow paths; never diagonal through nodes.

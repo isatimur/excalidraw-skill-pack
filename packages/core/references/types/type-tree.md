@@ -6,7 +6,7 @@
 Root top-center; children fan below on a shared rail. Orthogonal connectors. Show enough mid-nodes that depth reads as grammar.
 
 ## Excalidraw pattern
-Root rectangle; mid packages on one rail; leaf forks under each; one accent leaf.
+Root rectangle; mid packages on one rail; leaf forks under each; one accent leaf. Draw omitted packages (mcp-server/, install/, whiteboard/) as dashed off-tree boxes so exclusion is structural.
 
 ## Connectors & routing
 Single parent per child; shared H rail then V drops — never diagonal spokes.

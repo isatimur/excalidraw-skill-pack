@@ -6,7 +6,7 @@
 States as rectangles; transitions labeled with the event. Entry dot into the first state. Highlight terminal/live with theme success fill.
 
 ## Excalidraw pattern
-Skeleton rectangles + free labels on transitions. Rejection is an orthogonal under-loop, not a diagonal. Cap reject count; name the approver and Review SLA away from the terminal rule so captions don't collide. Redesign is a real state after reject×2 — not only a caption.
+Skeleton rectangles + free labels on transitions. Rejection is an orthogonal under-loop, not a diagonal. Cap reject count; name the approver and Review SLA away from the terminal rule so captions don't collide. Redesign is a real state after reject×2 — not only a caption; stamp terminal + redesign open as chips.
 
 ## Connectors & routing
 Prefer left→right progression; ban illegal shortcuts in a caption.

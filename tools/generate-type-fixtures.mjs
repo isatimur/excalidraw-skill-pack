@@ -719,6 +719,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Redesign open chip.
+      rect("rd-chip", 680, 520, 120, 28, "redesign ×1", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1300,6 +1306,12 @@ const BUILDERS = {
       rect("drop-chip", 640, 400, 120, 28, "drop · no ask", {
         fill: "#e2e8f0",
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Themes do-now chip.
+      rect("themes-chip", 140, 100, 120, 28, "Themes 9/10", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -1961,7 +1973,6 @@ const BUILDERS = {
       }),
       // Accent stripe is curated; notion/stripe are published siblings.
       txt("pub", 528, 410, "published themes", { fontSize: 11, color: MUTED }),
-      txt("wb", 792, 400, "whiteboard/ not listed", { fontSize: 11, color: MUTED }),
       txt("loc", 80, 100, "~4.2k LOC across L1", { fontSize: 11, color: MUTED }),
       txt("leaf-n", 40, 392, "2 core leaves", { fontSize: 11, color: MUTED }),
       txt("theme-n", 660, 392, "3 theme packs", { fontSize: 11, color: ACCENT }),
@@ -2010,6 +2021,13 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // whiteboard/ also off-list — third exclusion.
+      rect("wb-box", 900, 380, 120, 36, "whiteboard/", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      txt("wb-box-l", 900, 424, "not listed", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2224,6 +2242,12 @@ const BUILDERS = {
       // Exclusive tax chip — Speed-only + Quality-only.
       rect("tax-chip", 520, 560, 140, 28, "tax ×15 killed", {
         fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Product-set chip under lens.
+      rect("prod-chip", 360, 480, 120, 28, "product n=12", {
+        fill: "#fed7aa",
         stroke: ACCENT,
         labelSize: 12,
       }),
@@ -2623,6 +2647,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Redis hit chip beside Cache.
+      rect("redis-chip", 800, 320, 100, 28, "Redis 92%", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
@@ -3020,6 +3050,12 @@ const BUILDERS = {
       txt("deny-bar-l", 450, 572, "5 deny / 12 cells", { fontSize: 11, color: "#b91c1c" }),
       // Intern least-privilege chip.
       rect("intern-chip", 780, 400, 120, 28, "least privilege", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Next access review chip.
+      rect("rev-chip", 450, 600, 160, 28, "review 2026-03-01", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,

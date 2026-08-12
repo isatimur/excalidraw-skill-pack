@@ -6,7 +6,7 @@
 Group by tier or trust boundary. Primary flow left→right. One accent on the primary store. Put at least one actor outside the zone so the boundary excludes something.
 
 ## Excalidraw pattern
-Draft `excalidraw-skeleton`. Dashed zone for VPC/trust; free zone label at top-left. Rectangles for deployable components. Free text for edge labels above shafts. Queue→Worker consume plus Worker→store writeback so the publish story closes. Pin replica lag, consumer group, queue depth, and multi-AZ failover next to the boxes they measure. CDN (or edge) sits outside the VPC as a real box with a miss path into API.
+Draft `excalidraw-skeleton`. Dashed zone for VPC/trust; free zone label at top-left. Rectangles for deployable components. Free text for edge labels above shafts. Queue→Worker consume plus Worker→store writeback so the publish story closes. Pin replica lag, consumer group, queue depth, and multi-AZ failover next to the boxes they measure. CDN (or edge) sits outside the VPC as a real box with a miss path into API; stamp TTL on a chip, not only a caption.
 
 ## Connectors & routing
 Orthogonal `points` only. Solid for data; dashed for control. Bridge the less important arrow at crossings.
