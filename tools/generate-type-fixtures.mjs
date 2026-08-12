@@ -1284,6 +1284,10 @@ const BUILDERS = {
         fontSize: 13,
         color: ACCENT,
       }),
+      txt("policy", 66, 320, "policy: PII stays in Kafka ACL", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "dp-integration": () => {
