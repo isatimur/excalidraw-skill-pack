@@ -1202,6 +1202,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Eng FTE already — stamp Build owner.
+      rect("build-own", 290, 480, 120, 28, "Build · Eng", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   swimlane: () => {
@@ -1344,6 +1350,12 @@ const BUILDERS = {
       }),
       // Brief age chip.
       rect("brief-chip", 200, 480, 100, 28, "Brief 2h", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Spec age chip.
+      rect("spec-age", 360, 520, 100, 28, "Spec 6h", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2040,6 +2052,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // AZ-a chip.
+      rect("aza", 700, 100, 80, 28, "AZ-a", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2326,10 +2344,16 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
-      // Accent leaf chip.
+      // Dark leaf chip.
       rect("dark-chip", 528, 500, 100, 28, "dark/ leaf", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Notion sibling chip.
+      rect("notion-chip", 660, 440, 100, 28, "notion/", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3562,6 +3586,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Analyst read chip.
+      rect("an-read", 780, 480, 120, 28, "Analyst R×2", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   bar: () => {
@@ -3762,6 +3792,12 @@ const BUILDERS = {
       rect("q3-chip", 250, baseline + 220, 120, 28, "Q3 pause", {
         fill: "#e2e8f0",
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Paid share chip.
+      rect("paid-chip", 700, 328, 110, 28, "paid 41%", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
