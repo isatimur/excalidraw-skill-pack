@@ -698,7 +698,14 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("pk-n", 80, 280, "4 PKs · 3 FKs", { fontSize: 11, color: MUTED }),
-      txt("status-enum", 370, 280, "status enum", { fontSize: 11, color: MUTED }),
+      txt("status-enum", 370, 300, "status enum", { fontSize: 11, color: MUTED }),
+      // Status enum as a chip — open/paid/void is a closed set, not only a caption.
+      rect("enum", 80, 320, 160, 56, "open · paid · void", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      txt("enum-l", 80, 384, "Order.status", { fontSize: 11, color: MUTED }),
     ]);
   },
   timeline: () => {
@@ -1341,6 +1348,25 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("domain-n", 640, 250, "orders · pricing", { fontSize: 11, color: ACCENT }),
+      // Bad upward import drawn as a dashed arrow — the forbid path needs a shaft.
+      elbow(
+        "bad",
+        [
+          [120, 322],
+          [100, 322],
+          [100, 234],
+          [140, 234],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("bad-l", 24, 250, "bad import", { fontSize: 11, color: ACCENT }),
+      // CI fail chip — boundary lint is a gate.
+      rect("ci-fail", 700, 360, 120, 40, "CI FAIL", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
+      txt("ci-fail-l", 700, 408, "PR #4821", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -2228,6 +2254,17 @@ const BUILDERS = {
       txt("throat-n", 440, 260, "~180 interfaces", { fontSize: 11, color: ACCENT }),
       txt("batch-n", 80, 80, "nightly: 42 jobs", { fontSize: 11, color: MUTED }),
       txt("saas-n", 780, 110, "Salesforce", { fontSize: 11, color: MUTED }),
+      // Change Board gate on the hoped bypass — not live until approved.
+      diamond("cb", 560, 60, 48, 40, ""),
+      txt("cb-l", 552, 48, "CAB", { fontSize: 11, color: ACCENT }),
+      txt("cb-n", 620, 72, "required", { fontSize: 11, color: MUTED }),
+      // Strangler scope chip around inventory — option under study is a box.
+      rect("strangle", 80, 480, 200, 40, "strangler: AS/400", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      txt("strangle-l", 80, 528, "study only · not funded", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.

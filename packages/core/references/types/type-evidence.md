@@ -6,13 +6,13 @@
 Claim box opposite evidence artifact. Free `proves` label. Gate caption under the claim.
 
 ## Excalidraw pattern
-Evidence as a dated monospace JSON/snippet rectangle with source line above.
+Evidence as a dated monospace JSON/snippet rectangle with source line above. PASS stamp beside proof; 200ms gate mark on the mini p99 history; fail-budget bar for headroom.
 
 ## Connectors & routing
 Evidence points at claim, not decorative placement.
 
 ## Anti-patterns
-Placeholder lorem; a single metric with no suite, RPS, or pass mark.
+Placeholder lorem; a single metric with no suite, RPS, or pass mark; a pass:true in JSON with no visible PASS chip.
 
 ## Budget
 1–3 claims per diagram.
