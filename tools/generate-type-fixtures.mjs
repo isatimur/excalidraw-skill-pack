@@ -293,6 +293,9 @@ const BUILDERS = {
       txt("note", 40, 280, "edge stays out", { fontSize: 12, color: MUTED }),
       txt("trust", 40, 304, "TLS terminates at API", { fontSize: 12, color: MUTED }),
       txt("cdn", 40, 328, "CDN not in VPC · metrics from API", { fontSize: 12, color: MUTED }),
+      txt("az", 40, 352, "API AZ-a · Postgres AZ-b · Worker AZ-a", { fontSize: 12, color: MUTED }),
+      // Data pocket callout sits right of Postgres — not on its bound label.
+      txt("data-l", 690, 128, "data subnet", { fontSize: 12, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -908,6 +911,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("alert", 60, 404, "page if quarantine > 1% for 2 consecutive nights", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -1397,6 +1404,10 @@ const BUILDERS = {
       txt("day0", 250, 524, "day zero still needs a PNG; day two needs the source", {
         fontSize: 12,
         color: MUTED,
+      }),
+      txt("score", 250, 548, "6/6 questions favor editable after day one", {
+        fontSize: 12,
+        color: "#15803d",
       }),
     ]);
   },
