@@ -1715,6 +1715,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("parts", 430, 360, "Kafka: 24 partitions · ACL deny analysts", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -1975,6 +1979,7 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("rewrite-l", rewriteX - 28, 132, "index rewrite", { fontSize: 12, color: MUTED }),
+      txt("cross", rewriteX + 8, y(200) + 12, "R4 crosses", { fontSize: 11, color: ACCENT }),
       // Pre-rewrite zone: falling but still over SLA — rewrite is the cause, not drift.
       txt("over", 200, y(300) - 4, "over SLA", { fontSize: 12, color: MUTED }),
       txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
