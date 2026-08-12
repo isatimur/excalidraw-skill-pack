@@ -1143,6 +1143,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("owner", 60, 334, "owner: platform · on-call page if red", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
