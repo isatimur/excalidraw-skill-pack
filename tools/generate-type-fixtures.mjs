@@ -1477,6 +1477,12 @@ const BUILDERS = {
       line("dq-bar", 320, 400, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("dq-fill", 320, 400, [[0, 0], [8, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("dq-bar-l", 320, 412, "DQ 0.08% / 0.1%", { fontSize: 11, color: ACCENT }),
+      // P95 SLA chip.
+      rect("p95-chip", 780, 340, 120, 28, "P95 < 40 min", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -2705,6 +2711,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Warehouse engine chip.
+      rect("wh-chip", 766, 300, 120, 28, "Snowflake", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -2875,6 +2887,12 @@ const BUILDERS = {
       line("deny-bar", 450, 560, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("deny-fill", 450, 560, [[0, 0], [75, 0]], { stroke: "#b91c1c", strokeWidth: 6 }),
       txt("deny-bar-l", 450, 572, "5 deny / 12 cells", { fontSize: 11, color: "#b91c1c" }),
+      // Intern least-privilege chip.
+      rect("intern-chip", 780, 400, 120, 28, "least privilege", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   bar: () => {
@@ -3311,6 +3329,12 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("ci-band", 500, 148, "±1 SE band", { fontSize: 11, color: MUTED }),
+      // Correlation chip.
+      rect("r-chip", 500, 110, 100, 28, "r ≈ −0.82", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   radar: () => {
