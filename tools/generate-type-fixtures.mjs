@@ -828,6 +828,8 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("retry", 530, 320, "retry ≤2 then page", { fontSize: 11, color: ACCENT }),
+      txt("brief-age", 200, 118, "Brief age: 2h", { fontSize: 11, color: MUTED }),
+      txt("red-n", 420, 400, "reds this week: 1", { fontSize: 11, color: ACCENT }),
     ]);
   },
   quadrant: () => {
@@ -895,6 +897,14 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("sum", 528, 420, "pulled: 3+5=8d", { fontSize: 11, color: MUTED }),
+      // Effort ticks: days on the axis, not only under each point.
+      ...[200, 300, 400, 500].map((x, i) =>
+        line(`et${i}`, x, 260, [[0, 0], [0, 6]], { strokeWidth: 1, stroke: MUTED })
+      ),
+      txt("et0", 188, 268, "5d", { fontSize: 10, color: MUTED }),
+      txt("et1", 288, 268, "15d", { fontSize: 10, color: MUTED }),
+      txt("et2", 388, 268, "30d", { fontSize: 10, color: MUTED }),
+      txt("et3", 488, 268, "45d", { fontSize: 10, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1057,6 +1067,14 @@ const BUILDERS = {
       txt("last", 580, 380, "last run: green · 31 min", {
         fontSize: 12,
         color: "#15803d",
+      }),
+      txt("q-count", 320, 370, "~1.1k rows quarantined last night", {
+        fontSize: 11,
+        color: MUTED,
+      }),
+      txt("dbt-n", 380, 118, "142 models · 3 failing tests", {
+        fontSize: 11,
+        color: ACCENT,
       }),
     ]);
   },
@@ -2101,6 +2119,20 @@ const BUILDERS = {
       }),
       txt("share", 550, 124, "Q4 = 38% of YTD", { fontSize: 11, color: ACCENT }),
       txt("cum", 590, baseline - 50 * perUnit - 8, "YTD 265", { fontSize: 11, color: MUTED }),
+      // YoY delta stems beside the chart: each quarter's lift off prior year.
+      ...[44, 65, 55, 101].map((v, i) =>
+        line(
+          `spark${i}`,
+          700 + i * 18,
+          baseline - prior[i] * perUnit,
+          [[0, 0], [0, -(v - prior[i]) * perUnit]],
+          {
+            stroke: i === 3 ? ACCENT : MUTED,
+            strokeWidth: 2,
+          }
+        )
+      ),
+      txt("spark-l", 700, 108, "Δ YoY", { fontSize: 11, color: MUTED }),
     ]);
   },
   line: () => {
@@ -2257,6 +2289,9 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      // Target floor as a line: <40 after 30h is measurable on the chart.
+      line("err-tgt", 140, 270, [[0, 0], [400, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
+      txt("err-tgt-l", 550, 262, "target 40", { fontSize: 11, color: ACCENT }),
     ]);
   },
   radar: () => {
