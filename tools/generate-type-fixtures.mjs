@@ -374,15 +374,27 @@ const BUILDERS = {
         { stroke: ACCENT, dashed: true }
       ),
       txt("retry-l", 680, 300, "again", { fontSize: 13, color: ACCENT }),
-      txt("rule", 100, 450, "taste gate blocks merge until the PNG reads clean", {
+      // Merge lands in Deploy — yes without a destination is a dead end.
+      rect("deploy", 100, 450, 160, 44, "Deploy prod", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 14,
+      }),
+      arrow("a3", yes, { id: "deploy", x: 100, y: 450, w: 160, h: 44 }, "", {
+        from: "bottom",
+        to: "top",
+      }),
+      txt("a3-l", 270, 460, "green checks", { fontSize: 11, color: "#15803d" }),
+      txt("deploy-n", 270, 484, "canary 10%", { fontSize: 11, color: MUTED }),
+      txt("rule", 100, 520, "taste gate blocks merge until the PNG reads clean", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("ci", 100, 474, "CI: check-type-labels · types-regression", {
+      txt("ci", 100, 544, "CI: check-type-labels · types-regression", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("owner", 100, 498, "taste gate owner: Design lead on-call", {
+      txt("owner", 100, 568, "taste gate owner: Design lead on-call", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -397,7 +409,7 @@ const BUILDERS = {
       txt("retry-n", 680, 340, "retries this week: 3", { fontSize: 11, color: ACCENT }),
       txt("yes-ms", 100, 340, "merge path ~4 min", { fontSize: 11, color: MUTED }),
       txt("no-ms", 500, 340, "fix path ~12 min", { fontSize: 11, color: ACCENT }),
-      txt("audit-tool", 100, 522, "tool: check-type-labels", { fontSize: 11, color: MUTED }),
+      txt("audit-tool", 100, 592, "tool: check-type-labels", { fontSize: 11, color: MUTED }),
     ]);
   },
   sequence: () => {
@@ -781,6 +793,12 @@ const BUILDERS = {
       txt("mcp-live", 500, axisY + 40, "MCP live", { fontSize: 11, color: ACCENT }),
       txt("mvp-ship", 170, axisY + 40, "shipped", { fontSize: 11, color: MUTED }),
       txt("audit-tbd", 660, axisY + 40, "gate open", { fontSize: 11, color: MUTED }),
+      // Two green MCP release ticks before the go gate — the rule is countable.
+      ellipse("g1", 500, 100, 18, 18, "", { fill: "#dcfce7", stroke: "#15803d" }),
+      ellipse("g2", 530, 100, 18, 18, "", { fill: "#dcfce7", stroke: "#15803d" }),
+      txt("g1-l", 498, 84, "R1", { fontSize: 10, color: "#15803d" }),
+      txt("g2-l", 528, 84, "R2", { fontSize: 10, color: "#15803d" }),
+      line("g-rail", 548, 109, [[0, 0], [32, 0]], { stroke: "#15803d", strokeWidth: 1 }),
     ]);
   },
   gantt: () => {
@@ -1055,6 +1073,15 @@ const BUILDERS = {
       txt("plan-q", 470, 140, "plan Q3", { fontSize: 11, color: ACCENT }),
       txt("themes-why", 274, 210, "tokens ready", { fontSize: 11, color: MUTED }),
       txt("docs-why", 260, 350, "nice-to-have", { fontSize: 11, color: MUTED }),
+      // Capacity bucket — spare 0d is a filled bar, not only a caption.
+      rect("cap-box", 640, 160, 110, 64, "sprint 8d\nused 8 · spare 0", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Drop X on Slide export — the decision is a mark.
+      line("drop-x1", 460, 320, [[0, 0], [20, 20]], { stroke: MUTED, strokeWidth: 2 }),
+      line("drop-x2", 480, 320, [[0, 0], [-20, 20]], { stroke: MUTED, strokeWidth: 2 }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1157,6 +1184,17 @@ const BUILDERS = {
       txt("hub-age", 380, 268, "oldest note 11mo", { fontSize: 11, color: MUTED }),
       txt("cap-src", 200, 168, "Slack + Notion", { fontSize: 11, color: MUTED }),
       txt("syn-tool", 678, 120, "LLM draft", { fontSize: 11, color: MUTED }),
+      // Skip counter feeds the freeze — skip×2 without a counter is wallpaper.
+      rect("skip", 80, 110, 100, 40, "skips: 0", {
+        fill: PAPER,
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
+      txt("skip-l", 80, 88, "Review skips", { fontSize: 11, color: ACCENT }),
+      // Memory fill bar under hub — ~1.2k notes is a level, not only a caption.
+      line("mem-bar", 360, 270, [[0, 0], [148, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("mem-fill", 360, 270, [[0, 0], [110, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("mem-pct", 360, 280, "Memory 74% full", { fontSize: 11, color: ACCENT }),
     ]);
   },
   process: () => {
@@ -2048,6 +2086,22 @@ const BUILDERS = {
       txt("cluster-n", 436, 100, "3 nodes · k8s", { fontSize: 11, color: MUTED }),
       txt("pg-sz", 800, 152, "primary 400GB", { fontSize: 11, color: MUTED }),
       txt("worker-jobs", 460, 340, "queue depth 12", { fontSize: 11, color: MUTED }),
+      // Metrics scrape from App — "not from CDN" needs a scraper outside the edge.
+      rect("metrics", 60, 120, 120, 36, "Prometheus", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      elbow(
+        "scrape",
+        [
+          [180, 138],
+          [420, 138],
+          [420, app.y - 8],
+        ],
+        { stroke: MUTED, dashed: true }
+      ),
+      txt("scrape-l", 200, 120, "scrape App only", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
@@ -2367,6 +2421,20 @@ const BUILDERS = {
       txt("admin-n", 780, 296, "Admin = break-glass", { fontSize: 11, color: ACCENT }),
       txt("intern-n", 780, 360, "Intern: agg only", { fontSize: 11, color: MUTED }),
       txt("analyst-n", 780, 180, "Analyst: read×2", { fontSize: 11, color: MUTED }),
+      // Break-glass ticket is a card — SEC-441 without a box is wallpaper.
+      rect("bg", 100, 540, 200, 48, "SEC-441 · 4h", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
+      txt("bg-l", 100, 596, "break-glass open · Admin", { fontSize: 11, color: ACCENT }),
+      // Deny column highlight for secrets — the red column is the argument.
+      line("deny-col", 600, 152, [[0, 0], [0, 226]], {
+        stroke: "#b91c1c",
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("deny-col-l", 740, 128, "deny column", { fontSize: 11, color: "#b91c1c" }),
     ]);
   },
   bar: () => {
