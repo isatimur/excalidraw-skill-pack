@@ -540,6 +540,7 @@ const BUILDERS = {
         ],
         { stroke: MUTED }
       ),
+      txt("crit", 160, 140, "critical path", { fontSize: 12, color: MUTED }),
       txt("ms", 640, 320, "go-live W8", { fontSize: 13, color: "#15803d" }),
     ]);
   },
@@ -615,6 +616,8 @@ const BUILDERS = {
       // decision a positioning chart exists to force.
       dot("p4", 470, 330, 7, { fill: MUTED, stroke: MUTED }),
       txt("p4-l", 486, 320, "Slide export", { fontSize: 15, color: MUTED }),
+      dot("p5", 300, 170, 7),
+      txt("p5-l", 316, 160, "Parity tests", { fontSize: 14 }),
       txt("claim", 140, 420, "Themes ship this sprint; MCP app is a quarter bet", {
         fontSize: 13,
         color: ACCENT,
@@ -1166,15 +1169,21 @@ const BUILDERS = {
     ]);
   },
   "it-state": () => {
-    const mainframe = { id: "mainframe", x: 80, y: 130, w: 150, h: 64 };
-    const as400 = { id: "as400", x: 80, y: 240, w: 150, h: 64 };
+    const mainframe = { id: "mainframe", x: 80, y: 110, w: 150, h: 56 };
+    const as400 = { id: "as400", x: 80, y: 190, w: 150, h: 56 };
+    const files = { id: "files", x: 80, y: 270, w: 150, h: 56 };
     const esb = { id: "esb", x: 440, y: 185, w: 150, h: 64 };
-    const saas = { id: "saas", x: 780, y: 185, w: 150, h: 64 };
+    const saas = { id: "saas", x: 780, y: 140, w: 150, h: 56 };
+    const warehouse = { id: "warehouse", x: 780, y: 230, w: 150, h: 56 };
     const railX = 320;
     const esbCy = esb.y + esb.h / 2;
     return doc("IT current-state — legacy landscape", [
       rect(mainframe.id, mainframe.x, mainframe.y, mainframe.w, mainframe.h, "Mainframe\nCOBOL jobs"),
       rect(as400.id, as400.x, as400.y, as400.w, as400.h, "AS/400\ninventory"),
+      rect(files.id, files.x, files.y, files.w, files.h, "File share\nCSV dumps", {
+        fill: "#e2e8f0",
+        labelSize: 15,
+      }),
       // Everything funnels through one bus: that is the finding, so it carries the accent.
       rect(esb.id, esb.x, esb.y, esb.w, esb.h, "ESB\nsingle throat", {
         fill: "#fed7aa",
@@ -1184,6 +1193,7 @@ const BUILDERS = {
         fill: "#dcfce7",
         stroke: "#15803d",
       }),
+      rect(warehouse.id, warehouse.x, warehouse.y, warehouse.w, warehouse.h, "Warehouse"),
       elbow("i1", [
         [mainframe.x + mainframe.w + 8, mainframe.y + mainframe.h / 2],
         [railX, mainframe.y + mainframe.h / 2],
@@ -1196,11 +1206,30 @@ const BUILDERS = {
         [railX, esbCy],
         [esb.x - 8, esbCy],
       ]),
-      arrow("i3", esb, saas, "", { from: "right", to: "left" }),
-      txt("i1-l", 250, 140, "nightly batch", { fontSize: 13, color: MUTED }),
-      txt("i2-l", 250, 268, "flat file", { fontSize: 13, color: MUTED }),
-      txt("i3-l", 630, 164, "REST", { fontSize: 13, color: MUTED }),
-      txt("find", 80, 330, "finding: every modernization path still hits the ESB", {
+      elbow("i2b", [
+        [files.x + files.w + 8, files.y + files.h / 2],
+        [railX, files.y + files.h / 2],
+        [railX, esbCy],
+        [esb.x - 8, esbCy],
+      ]),
+      elbow("i3", [
+        [esb.x + esb.w + 8, esbCy],
+        [720, esbCy],
+        [720, saas.y + saas.h / 2],
+        [saas.x - 8, saas.y + saas.h / 2],
+      ]),
+      elbow("i4", [
+        [esb.x + esb.w + 8, esbCy],
+        [720, esbCy],
+        [720, warehouse.y + warehouse.h / 2],
+        [warehouse.x - 8, warehouse.y + warehouse.h / 2],
+      ]),
+      txt("i1-l", 250, 120, "nightly batch", { fontSize: 13, color: MUTED }),
+      txt("i2-l", 250, 200, "flat file", { fontSize: 13, color: MUTED }),
+      txt("i2b-l", 250, 280, "drop folder", { fontSize: 13, color: MUTED }),
+      txt("i3-l", 640, 148, "REST", { fontSize: 13, color: MUTED }),
+      txt("i4-l", 640, 248, "CDC", { fontSize: 13, color: MUTED }),
+      txt("find", 80, 360, "finding: every modernization path still hits the ESB", {
         fontSize: 13,
         color: ACCENT,
       }),
@@ -1464,6 +1493,10 @@ const BUILDERS = {
       txt("find", 520, 320, "Reach + Taste up; Cost traded down", {
         fontSize: 13,
         color: ACCENT,
+      }),
+      txt("cost-note", 520, 350, "lower Cost score = cheaper to run", {
+        fontSize: 12,
+        color: MUTED,
       }),
     ]);
   },
