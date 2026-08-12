@@ -877,6 +877,10 @@ const BUILDERS = {
         fontSize: 13,
         color: ACCENT,
       }),
+      txt("sample", 60, 342, "sample: select * from mrt_revenue where day = current_date", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
