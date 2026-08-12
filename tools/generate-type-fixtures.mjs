@@ -768,6 +768,8 @@ const BUILDERS = {
       line("ms-tick", 710, 300, [[0, 0], [0, 12]], { stroke: "#15803d", strokeWidth: 2 }),
       txt("done-d", 160, 412, "Design closed W3", { fontSize: 11, color: MUTED }),
       txt("burn", 290, 412, "Build burn 38d of 60", { fontSize: 11, color: ACCENT }),
+      txt("w8", 690, 388, "W8 go-live", { fontSize: 11, color: "#15803d" }),
+      txt("overlap-g", 420, 200, "overlap W4–W5", { fontSize: 11, color: ACCENT }),
     ]);
   },
   swimlane: () => {
@@ -849,6 +851,8 @@ const BUILDERS = {
       txt("retry", 530, 320, "retry ≤2 then page", { fontSize: 11, color: ACCENT }),
       txt("brief-age", 200, 118, "Brief age: 2h", { fontSize: 11, color: MUTED }),
       txt("red-n", 420, 400, "reds this week: 1", { fontSize: 11, color: ACCENT }),
+      txt("green", 700, 188, "last green: 09:14", { fontSize: 11, color: "#15803d" }),
+      txt("handoff-ms", 360, 200, "handoff < 15m", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -1224,6 +1228,8 @@ const BUILDERS = {
       txt("hit", 670, 176, "hit 93%", { fontSize: 11, color: ACCENT }),
       txt("q-n", 220, 340, "queue depth < 40", { fontSize: 11, color: MUTED }),
       txt("warm-pct", 360, 340, "warm fills 7% of SETs", { fontSize: 11, color: MUTED }),
+      txt("az-n", 520, 128, "Service A · AZ-a", { fontSize: 11, color: MUTED }),
+      txt("miss", 670, 312, "miss → origin", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {

@@ -284,6 +284,13 @@ const skeleton_doc = {
       "29 types · brand onboarding · taste gate · evidence artifacts · dual renderer · multi-agent install",
       { fontSize: 14, color: MUTED }
     ),
+    txt(
+      "footer2",
+      64,
+      876,
+      "editable source wins after day one — PNG is the receipt, not the product",
+      { fontSize: 13, color: ACCENT }
+    ),
   ],
 };
 

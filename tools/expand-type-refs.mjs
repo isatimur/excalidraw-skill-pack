@@ -32,9 +32,9 @@ const META = {
     title: "Sequence",
     best: "messages over time, protocol flows, OAuth handshakes.",
     layout: "Participants as top-row boxes; time flows downward. Group related messages.",
-    pattern: "Skeleton rectangles for lifelines. Free-floating text for message labels placed ABOVE the shaft — bound labels collide at Cascadia width. Time ticks (t0…) beside the stack; per-hop ms on the right so the e2e budget is additive, not vibes. A cache-miss return (dashed, accent) before the write makes the path an argument; caption the warm-hit budget separately.",
+    pattern: "Skeleton rectangles for lifelines. Free-floating text for message labels placed ABOVE the shaft — bound labels collide at Cascadia width. Time ticks (t0…) beside the stack; per-hop ms on the right so the e2e budget is additive, not vibes. Thin activation bar on the busy participant during the miss path. A cache-miss return (dashed, accent) before the write makes the path an argument; caption the warm-hit budget separately.",
     routing: "Horizontal arrows for requests; return messages offset vertically and dashed.",
-    avoid: "Mixing architecture boxes with sequence timing; a four-message wallpaper with no miss/fail branch; no time axis; a 250ms budget with no hop times.",
+    avoid: "Mixing architecture boxes with sequence timing; a four-message wallpaper with no miss/fail branch; no time axis; a 250ms budget with no hop times; a long miss path with no activation mark.",
     budget: "≤5 participants; ≤12 messages per diagram.",
   },
   state: {
@@ -257,9 +257,9 @@ const META = {
     title: "Scatter plot",
     best: "distribution, correlation clusters.",
     layout: "Ellipses as points; optional trend callout.",
-    pattern: "Small ellipses; accent last session; dashed residual stem from outlier to fit; practice-hour ticks on X; name r/p and the target error floor after N hours.",
+    pattern: "Small ellipses; accent last session; dashed residual stem from outlier to fit; dashed novice-cluster ellipse on the left; practice-hour ticks on X; target error floor as a dashed horizontal; name r/p and the target after N hours.",
     routing: "Label axes with measured dimensions.",
-    avoid: "Dense point clouds (aggregate or table); a residual named in prose with no stem to the fit.",
+    avoid: "Dense point clouds (aggregate or table); a residual named in prose with no stem to the fit; a novice cluster that is only a caption.",
     budget: "≤12 points.",
   },
   radar: {

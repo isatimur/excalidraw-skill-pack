@@ -6,13 +6,13 @@
 Ellipses as points; optional trend callout.
 
 ## Excalidraw pattern
-Small ellipses; accent last session; dashed residual stem from outlier to fit; practice-hour ticks on X; name r/p and the target error floor after N hours.
+Small ellipses; accent last session; dashed residual stem from outlier to fit; dashed novice-cluster ellipse on the left; practice-hour ticks on X; target error floor as a dashed horizontal; name r/p and the target after N hours.
 
 ## Connectors & routing
 Label axes with measured dimensions.
 
 ## Anti-patterns
-Dense point clouds (aggregate or table); a residual named in prose with no stem to the fit.
+Dense point clouds (aggregate or table); a residual named in prose with no stem to the fit; a novice cluster that is only a caption.
 
 ## Budget
 ≤12 points.
