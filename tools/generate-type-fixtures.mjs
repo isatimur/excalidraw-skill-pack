@@ -1058,6 +1058,12 @@ const BUILDERS = {
       line("mins-bar", 360, 380, [[0, 0], [240, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("mins-fill", 360, 380, [[0, 0], [137, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("mins-bar-l", 360, 392, "Impl 240 of 420 stage-min", { fontSize: 11, color: ACCENT }),
+      // Handoff SLA chip — <15m.
+      rect("ho-sla", 520, 440, 120, 32, "handoff <15m", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   quadrant: () => {
@@ -1288,6 +1294,12 @@ const BUILDERS = {
         labelSize: 1,
       }),
       txt("cycle-bar-l", 420, 424, "cycle 5d median", { fontSize: 11, color: MUTED }),
+      // Write-rate trend chip — +18%/wk.
+      rect("wr-chip", 300, 440, 110, 32, "+18%/wk", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
     ]);
   },
   process: () => {
@@ -1387,6 +1399,10 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("q-pile-l", 100, 356, "last night rows", { fontSize: 11, color: ACCENT }),
+      // DQ fail rate bar — 0.1% ceiling.
+      line("dq-bar", 320, 400, [[0, 0], [160, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("dq-fill", 320, 400, [[0, 0], [8, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("dq-bar-l", 320, 412, "DQ 0.08% / 0.1%", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -2075,6 +2091,10 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 13,
       }),
+      // Infra eng capacity bar — 60 eng.
+      line("eng-bar", 290, 360, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("eng-fill", 290, 360, [[0, 0], [180, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("eng-bar-l", 290, 372, "60 eng base", { fontSize: 11, color: MUTED }),
     ]);
   },
   evidence: () => {
