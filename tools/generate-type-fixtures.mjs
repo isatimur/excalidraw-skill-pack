@@ -346,6 +346,12 @@ const BUILDERS = {
       line("rep-bar", 260, 280, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("rep-fill", 260, 280, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
       txt("rep-bar-l", 260, 292, "3 API replicas", { fontSize: 11, color: MUTED }),
+      // Healthz chip.
+      rect("hz-chip", 40, 400, 120, 28, "healthz /ready", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -1112,6 +1118,12 @@ const BUILDERS = {
       rect("ho-sla", 520, 440, 120, 32, "handoff <15m", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Red count chip.
+      rect("red-chip", 420, 420, 100, 28, "reds ×1", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2096,6 +2108,12 @@ const BUILDERS = {
       line("tax-bar", 200, 560, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("tax-fill", 200, 560, [[0, 0], [172, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("tax-bar-l", 200, 572, "tax 4.3× exclusives", { fontSize: 11, color: ACCENT }),
+      // Ship-gate dual-owner chip.
+      rect("dual-chip", 320, 440, 160, 28, "dual-owned ships", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
