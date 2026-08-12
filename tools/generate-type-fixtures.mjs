@@ -803,6 +803,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("lint", 140, 428, "enforced by eslint-plugin-boundaries", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
