@@ -1221,6 +1221,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("reqs", 140, 492, "Platform open reqs: 2 · Eng open reqs: 0", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   venn: () => {
@@ -1725,6 +1729,11 @@ const BUILDERS = {
       ...bar("b2", 280, 65, "Q2"),
       ...bar("b3", 380, 55, "Q3"),
       ...bar("b4", 480, 101, "Q4", true),
+      // Per-bar YoY deltas: the ghost alone shows prior; the delta names the bet.
+      txt("d1", 188, baseline + 36, "+6", { fontSize: 11, color: MUTED }),
+      txt("d2", 288, baseline + 36, "+13", { fontSize: 11, color: MUTED }),
+      txt("d3", 388, baseline + 36, "+7", { fontSize: 11, color: MUTED }),
+      txt("d4", 488, baseline + 36, "+23", { fontSize: 11, color: ACCENT }),
       // Average line: Q4's claim is "above the year", not only "tallest bar".
       line("avg", 140, baseline - avg * perUnit, [[0, 0], [440, 0]], {
         stroke: MUTED,
@@ -1746,8 +1755,8 @@ const BUILDERS = {
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
       txt("delta", 540, 148, "+35 vs avg", { fontSize: 12, color: ACCENT }),
       txt("prior-l", 590, 280, "grey = prior year", { fontSize: 12, color: MUTED }),
-      txt("yoy", 180, baseline + 40, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
-      txt("launch", 180, baseline + 64, "launch week: Nov 3 · paid + organic", {
+      txt("yoy", 180, baseline + 56, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
+      txt("launch", 180, baseline + 80, "launch week: Nov 3 · paid + organic · YTD 265k", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1783,6 +1792,9 @@ const BUILDERS = {
         return dot(`s${i}`, px, py, 5, { fill: ACCENT, stroke: ACCENT });
       }),
       txt("start-v", at(0)[0] - 18, at(0)[1] - 16, "400", { fontSize: 12, color: MUTED }),
+      ...readings.map((_, i) =>
+        txt(`rel${i}`, at(i)[0] - 8, baseline + 28, `R${i + 1}`, { fontSize: 11, color: MUTED })
+      ),
       line("rewrite", rewriteX, 150, [[0, 0], [0, baseline - 150]], {
         stroke: MUTED,
         dashed: true,
@@ -1792,11 +1804,11 @@ const BUILDERS = {
       // Pre-rewrite zone: falling but still over SLA — rewrite is the cause, not drift.
       txt("over", 200, y(300) - 4, "over SLA", { fontSize: 12, color: MUTED }),
       txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
-      txt("note", 160, baseline + 40, "crossed under SLA after the index rewrite", {
+      txt("note", 160, baseline + 48, "crossed under SLA after the index rewrite", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("delta", 160, baseline + 64, "−258ms from start · 6 releases · hold <180ms", {
+      txt("delta", 160, baseline + 72, "−258ms from start · 6 releases · hold <180ms", {
         fontSize: 12,
         color: MUTED,
       }),
