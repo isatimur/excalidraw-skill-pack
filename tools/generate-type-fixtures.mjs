@@ -458,6 +458,7 @@ const BUILDERS = {
       txt("act-l", cx.api + 12, 330, "API busy", { fontSize: 11, color: MUTED }),
       txt("db-busy", cx.db + 12, 360, "DB 110ms", { fontSize: 11, color: MUTED }),
       txt("cache-ms", cx.cache + 12, 268, "GET 6ms", { fontSize: 11, color: MUTED }),
+      txt("idemp", 100, 582, "idempotency-key TTL 24h", { fontSize: 11, color: MUTED }),
     ]);
   },
   state: () => {
@@ -951,6 +952,7 @@ const BUILDERS = {
       txt("ask", 486, 360, "no buyer ask", { fontSize: 11, color: MUTED }),
       txt("score-q", 528, 444, "do-now score: Themes 9/10", { fontSize: 11, color: ACCENT }),
       txt("mcp-roi", 486, 208, "ROI lag 2q", { fontSize: 11, color: MUTED }),
+      txt("parity-why", 316, 200, "blocks bad PNG", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1256,6 +1258,7 @@ const BUILDERS = {
       txt("miss", 670, 312, "miss → origin", { fontSize: 11, color: MUTED }),
       txt("path", 150, 152, "edge → Gateway → API", { fontSize: 11, color: MUTED }),
       txt("svc-a-n", 436, 188, "2 pods", { fontSize: 11, color: MUTED }),
+      txt("client-n", 40, 248, "mobile + web", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -2247,6 +2250,10 @@ const BUILDERS = {
       }),
       txt("q4-vs", 550, 172, "Q4 vs goal +11k", { fontSize: 11, color: ACCENT }),
       txt("prior-tot", 590, baseline + 36, "prior YTD 216", { fontSize: 11, color: MUTED }),
+      txt("goal-gap", 590, baseline - goal * perUnit + 12, "gap closed Q4", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
     ]);
   },
   line: () => {
@@ -2346,6 +2353,7 @@ const BUILDERS = {
         color: ACCENT,
       }),
       txt("r6-ok", at(5)[0] + 16, at(5)[1] + 4, "ok", { fontSize: 11, color: "#15803d" }),
+      txt("rewrite-cost", rewriteX - 40, 116, "2wk rewrite", { fontSize: 11, color: MUTED }),
     ]);
   },
   scatter: () => {
@@ -2425,6 +2433,7 @@ const BUILDERS = {
       txt("err-tgt-l", 550, 262, "target 40", { fontSize: 11, color: ACCENT }),
       txt("last-h", 460, 248, "38h practiced", { fontSize: 11, color: ACCENT }),
       txt("slope", 500, 388, "slope ≈ −2.1 err/h", { fontSize: 11, color: MUTED }),
+      txt("nov-n", 168, 200, "n=11 novice", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
