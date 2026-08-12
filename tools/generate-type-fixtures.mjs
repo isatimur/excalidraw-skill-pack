@@ -1217,6 +1217,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("decider", 200, 488, "ship gate: Design lead + Eng lead both say yes", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -1254,6 +1258,10 @@ const BUILDERS = {
       }),
       txt("invert", 80, 394, "invert it and strategy floats with nothing under it", {
         fontSize: 13,
+        color: MUTED,
+      }),
+      txt("spend", 80, 418, "budget weight: 10% / 30% / 60% headcount", {
+        fontSize: 12,
         color: MUTED,
       }),
     ]);
@@ -1296,6 +1304,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("owner", 60, 334, "owner: platform · on-call page if red", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("flake", 60, 358, "flake budget: ≤ 1 / 12 runs or check is yellow", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1510,11 +1522,30 @@ const BUILDERS = {
       txt("df1-l", 210, 158, "Kafka", { fontSize: 12, color: MUTED }),
       txt("df2-l", 430, 158, "masked", { fontSize: 13, color: MUTED }),
       txt("df3-l", 700, 158, "Looker", { fontSize: 12, color: MUTED }),
-      txt("cut", 380, 320, "the cut is the argument: who may see raw PII", {
+      // DLQ sits under Stream — failures don't leak into the scoped zone.
+      rect("dlq", 268, 320, 132, 36, "DLQ", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 15,
+      }),
+      elbow(
+        "df-dlq",
+        [
+          [stream.x + stream.w / 2, stream.y + stream.h + 6],
+          [stream.x + stream.w / 2, 312],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("dlq-l", 410, 328, "poison → reprocess", { fontSize: 12, color: ACCENT }),
+      txt("cut", 536, 320, "the cut is who may see raw PII", {
         fontSize: 13,
         color: ACCENT,
       }),
-      txt("policy", 66, 320, "policy: PII stays in Kafka ACL", {
+      txt("policy", 66, 380, "policy: PII stays in Kafka ACL · mask at Stream→WH", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("ret", 66, 404, "retention: raw 7d · warehouse 2y · dashboards live", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1802,6 +1833,8 @@ const BUILDERS = {
       hexagon("ring-outer", even(120), { strokeWidth: 1, stroke: GRID }),
       hexagon("ring-mid", even(80), { strokeWidth: 1, stroke: GRID }),
       hexagon("ring-inner", even(40), { strokeWidth: 1, stroke: GRID }),
+      // Target ring: the quarter's bet, not just last vs now.
+      hexagon("target", even(100), { strokeWidth: 1, stroke: MUTED, dashed: true }),
       ...[0, 1, 2].map((i) => {
         const [x1, y1] = vertex(120, i);
         const [x2, y2] = vertex(120, i + 3);
@@ -1819,16 +1852,18 @@ const BUILDERS = {
       txt("key-now-label", 558, 206, "This quarter", { fontSize: 13, color: INK }),
       line("key-before", 520, 248, [[0, 0], [28, 0]], { dashed: true }),
       txt("key-before-label", 558, 240, "Last quarter", { fontSize: 13, color: MUTED }),
-      txt("key-note", 520, 280, "0–120 per axis", { fontSize: 12, color: MUTED }),
-      txt("find", 520, 320, "Reach + Taste up; Cost traded down", {
+      line("key-tgt", 520, 282, [[0, 0], [28, 0]], { dashed: true, stroke: MUTED }),
+      txt("key-tgt-label", 558, 274, "Target ≥ 100", { fontSize: 12, color: MUTED }),
+      txt("key-note", 520, 310, "0–120 per axis", { fontSize: 12, color: MUTED }),
+      txt("find", 520, 346, "Reach + Taste up; Cost traded down", {
         fontSize: 13,
         color: ACCENT,
       }),
-      txt("cost-note", 520, 350, "lower Cost score = cheaper to run", {
+      txt("cost-note", 520, 376, "lower Cost score = cheaper to run", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("taste-note", 520, 374, "Taste is the product differentiator this quarter", {
+      txt("taste-note", 520, 400, "Taste is the product differentiator this quarter", {
         fontSize: 12,
         color: ACCENT,
       }),
