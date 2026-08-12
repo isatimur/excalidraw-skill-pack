@@ -358,6 +358,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Topic chip beside Queue.
+      rect("topic-chip", 690, 420, 120, 28, "orders.v2", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -595,6 +601,12 @@ const BUILDERS = {
       rect("miss-sum", 720, 560, 140, 28, "miss ≈140ms", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Budget chip.
+      rect("bud-chip", 100, 640, 140, 28, "budget 250ms", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -846,6 +858,12 @@ const BUILDERS = {
       }),
       // PK/FK count chip.
       rect("pk-chip", 80, 400, 120, 28, "4 PK · 3 FK", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Avg lines chip.
+      rect("avg-chip", 370, 460, 140, 28, "avg 3.2 lines", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -1380,6 +1398,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Sprint capacity chip.
+      rect("spr-chip", 640, 320, 110, 28, "sprint 8d", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1521,6 +1545,12 @@ const BUILDERS = {
       // Skip counter chip.
       rect("skip-chip", 680, 340, 120, 28, "skip ×2", {
         fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Hub notes chip.
+      rect("hub-n", 200, 200, 120, 28, "~1.2k notes", {
+        fill: "#fef3c7",
         stroke: ACCENT,
         labelSize: 12,
       }),
@@ -2700,6 +2730,12 @@ const BUILDERS = {
         labelSize: 14,
       }),
       txt("score-chip-l", 800, 548, "after day one", { fontSize: 11, color: "#15803d" }),
+      // Preferred column chip.
+      rect("pref-chip", 700, 60, 140, 28, "editable wins", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
