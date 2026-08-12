@@ -456,6 +456,7 @@ const BUILDERS = {
       }),
       txt("act-l", cx.api + 12, 330, "API busy", { fontSize: 11, color: MUTED }),
       txt("db-busy", cx.db + 12, 360, "DB 110ms", { fontSize: 11, color: MUTED }),
+      txt("cache-ms", cx.cache + 12, 268, "GET 6ms", { fontSize: 11, color: MUTED }),
     ]);
   },
   state: () => {
@@ -548,6 +549,7 @@ const BUILDERS = {
       txt("queue-d", 240, 220, "queue depth 1", { fontSize: 11, color: MUTED }),
       txt("live-age", 810, 168, "oldest Live 14d", { fontSize: 11, color: MUTED }),
       txt("arch-n", 810, 320, "Archived +48 lifetime", { fontSize: 11, color: MUTED }),
+      txt("draft-age", 100, 138, "oldest Draft 2d", { fontSize: 11, color: MUTED }),
     ]);
   },
   er: () => {
@@ -1249,6 +1251,7 @@ const BUILDERS = {
       txt("az-n", 520, 128, "Service A · AZ-a", { fontSize: 11, color: MUTED }),
       txt("miss", 670, 312, "miss → origin", { fontSize: 11, color: MUTED }),
       txt("path", 150, 152, "edge → Gateway → API", { fontSize: 11, color: MUTED }),
+      txt("svc-a-n", 436, 188, "2 pods", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -2237,6 +2240,7 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("q4-vs", 550, 172, "Q4 vs goal +11k", { fontSize: 11, color: ACCENT }),
+      txt("prior-tot", 590, baseline + 36, "prior YTD 216", { fontSize: 11, color: MUTED }),
     ]);
   },
   line: () => {
@@ -2335,6 +2339,7 @@ const BUILDERS = {
         fontSize: 11,
         color: ACCENT,
       }),
+      txt("r6-ok", at(5)[0] + 16, at(5)[1] + 4, "ok", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   scatter: () => {
@@ -2413,6 +2418,7 @@ const BUILDERS = {
       line("err-tgt", 140, 270, [[0, 0], [400, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
       txt("err-tgt-l", 550, 262, "target 40", { fontSize: 11, color: ACCENT }),
       txt("last-h", 460, 248, "38h practiced", { fontSize: 11, color: ACCENT }),
+      txt("slope", 500, 388, "slope ≈ −2.1 err/h", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
