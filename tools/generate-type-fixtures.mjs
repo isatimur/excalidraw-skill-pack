@@ -421,16 +421,16 @@ const BUILDERS = {
         from: "right",
         to: "left",
       }),
-      rect(draft.id, draft.x, draft.y, draft.w, draft.h, "Draft"),
-      rect(review.id, review.x, review.y, review.w, review.h, "Review"),
-      rect(live.id, live.x, live.y, live.w, live.h, "Live", {
+      rect(draft.id, draft.x, draft.y, draft.w, draft.h, "Draft · 3"),
+      rect(review.id, review.x, review.y, review.w, review.h, "Review · 1"),
+      rect(live.id, live.x, live.y, live.w, live.h, "Live · 12", {
         fill: "#dcfce7",
         stroke: "#15803d",
       }),
-      rect(archived.id, archived.x, archived.y, archived.w, archived.h, "Archived", {
+      rect(archived.id, archived.x, archived.y, archived.w, archived.h, "Archived · 48", {
         fill: "#e2e8f0",
         stroke: MUTED,
-        labelSize: 15,
+        labelSize: 14,
       }),
       arrow("t1", draft, review, ""),
       arrow("t2", review, live, ""),
@@ -728,16 +728,21 @@ const BUILDERS = {
       txt("hi-e", 600, 248, "high", { fontSize: 11, color: MUTED }),
       dot("p1", 258, 186, 7),
       txt("p1-l", 274, 176, "Themes", { fontSize: 15 }),
+      txt("p1-e", 274, 196, "3d", { fontSize: 11, color: MUTED }),
       dot("p2", 470, 158, 7, { fill: ACCENT, stroke: ACCENT }),
       txt("p2-l", 486, 148, "MCP app", { fontSize: 15, color: ACCENT }),
+      txt("p2-e", 486, 168, "45d", { fontSize: 11, color: ACCENT }),
       dot("p3", 244, 320, 7),
       txt("p3-l", 260, 310, "Docs polish", { fontSize: 15 }),
+      txt("p3-e", 260, 330, "2d", { fontSize: 11, color: MUTED }),
       // The empty quadrant is the one worth filling: naming what to drop is the
       // decision a positioning chart exists to force.
       dot("p4", 470, 330, 7, { fill: MUTED, stroke: MUTED }),
       txt("p4-l", 486, 320, "Slide export", { fontSize: 15, color: MUTED }),
+      txt("p4-e", 486, 340, "20d", { fontSize: 11, color: MUTED }),
       dot("p5", 300, 170, 7),
       txt("p5-l", 316, 160, "Parity tests", { fontSize: 14 }),
+      txt("p5-e", 316, 180, "5d", { fontSize: 11, color: MUTED }),
       // Sprint pull: Themes moves deeper into do-now — motion is the decision.
       elbow(
         "pull",
@@ -1077,6 +1082,7 @@ const BUILDERS = {
       rect(a1.id, a1.x, a1.y, a1.w, a1.h, "SKILL.md", { labelSize: 15 }),
       rect(a2.id, a2.x, a2.y, a2.w, a2.h, "loader.ts", { labelSize: 15 }),
       rect(b1.id, b1.x, b1.y, b1.w, b1.h, "cli.ts", { labelSize: 15 }),
+      rect("b2", 334, 400, 132, 40, "template.html", { labelSize: 14 }),
       rect(c1.id, c1.x, c1.y, c1.w, c1.h, "dark/", {
         fill: "#fef3c7",
         stroke: ACCENT,
@@ -1127,6 +1133,10 @@ const BUILDERS = {
         [a2.x + a2.w / 2, a2.y - 8],
       ]),
       arrow("t5", mid, b1, "", { from: "bottom", to: "top" }),
+      arrow("t5b", b1, { id: "b2", x: 334, y: 400, w: 132, h: 40 }, "", {
+        from: "bottom",
+        to: "top",
+      }),
       line(
         "trunk-c",
         right.x + right.w / 2,
@@ -1149,15 +1159,15 @@ const BUILDERS = {
         [c2.x + c2.w / 2, leafRailY],
         [c2.x + c2.w / 2, c2.y - 8],
       ]),
-      txt("note", 80, 410, "depth is the grammar: three packages, one accent leaf", {
+      txt("note", 80, 460, "depth is the grammar: three packages, one accent leaf", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("count", 80, 434, "9 nodes · dark/ is the curated accent", {
+      txt("count", 80, 484, "10 nodes · dark/ is the curated accent", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("omit", 80, 458, "mcp-server/ omitted — not a published theme pack", {
+      txt("omit", 80, 508, "mcp-server/ omitted — not a published theme pack", {
         fontSize: 12,
         color: MUTED,
       }),
