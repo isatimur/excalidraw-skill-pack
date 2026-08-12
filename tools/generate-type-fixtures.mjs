@@ -352,6 +352,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("pr", 100, 72, "PR #4821 · feat/beat-official-excalidraw-mcp", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   sequence: () => {
@@ -1756,6 +1760,18 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      rect("reg", 310, 90, 170, 36, "Schema Registry", {
+        fill: "#e2e8f0",
+        labelSize: 14,
+      }),
+      elbow(
+        "reg-l",
+        [
+          [core.x + core.w / 2, core.y - 8],
+          [core.x + core.w / 2, 126],
+        ],
+        { stroke: MUTED, dashed: true }
+      ),
     ]);
   },
   "dp-security-matrix": () => {
