@@ -954,6 +954,7 @@ const BUILDERS = {
       txt("score-q", 528, 444, "do-now score: Themes 9/10", { fontSize: 11, color: ACCENT }),
       txt("mcp-roi", 486, 208, "ROI lag 2q", { fontSize: 11, color: MUTED }),
       txt("parity-why", 316, 200, "blocks bad PNG", { fontSize: 11, color: MUTED }),
+      txt("drop-why", 560, 360, "no PM request", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1053,6 +1054,7 @@ const BUILDERS = {
       line("frz-p", 520, 300, [[0, 0], [148, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
       txt("frz-p-l", 560, 288, "freeze if skip×2", { fontSize: 11, color: ACCENT }),
       txt("rev-n", 200, 370, "~6 reviews/wk", { fontSize: 11, color: MUTED }),
+      txt("hub-age", 380, 268, "oldest note 11mo", { fontSize: 11, color: MUTED }),
     ]);
   },
   process: () => {
@@ -1265,6 +1267,7 @@ const BUILDERS = {
       txt("path", 150, 152, "edge → Gateway → API", { fontSize: 11, color: MUTED }),
       txt("svc-a-n", 436, 188, "2 pods", { fontSize: 11, color: MUTED }),
       txt("client-n", 40, 248, "mobile + web", { fontSize: 11, color: MUTED }),
+      txt("gw-rps", 220, 152, "p50 18ms", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -2262,6 +2265,10 @@ const BUILDERS = {
         fontSize: 11,
         color: ACCENT,
       }),
+      txt("paid-pct", 550, baseline - 80 * perUnit, "paid share ↑", {
+        fontSize: 11,
+        color: ACCENT,
+      }),
     ]);
   },
   line: () => {
@@ -2362,6 +2369,7 @@ const BUILDERS = {
       }),
       txt("r6-ok", at(5)[0] + 16, at(5)[1] + 4, "ok", { fontSize: 11, color: "#15803d" }),
       txt("rewrite-cost", rewriteX - 40, 116, "2wk rewrite", { fontSize: 11, color: MUTED }),
+      txt("pages", 630, y(180) + 28, "0 pages this wk", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   scatter: () => {
@@ -2442,6 +2450,7 @@ const BUILDERS = {
       txt("last-h", 460, 248, "38h practiced", { fontSize: 11, color: ACCENT }),
       txt("slope", 500, 388, "slope ≈ −2.1 err/h", { fontSize: 11, color: MUTED }),
       txt("nov-n", 168, 200, "n=11 novice", { fontSize: 11, color: MUTED }),
+      txt("exp-n", 420, 248, "n=37 practiced", { fontSize: 11, color: MUTED }),
     ]);
   },
   radar: () => {
