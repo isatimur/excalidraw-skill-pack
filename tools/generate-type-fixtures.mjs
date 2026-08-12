@@ -459,6 +459,10 @@ const BUILDERS = {
         fontSize: 13,
         color: MUTED,
       }),
+      txt("idx", 80, 304, "indexes: order(user_id), line_item(order_id)", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   timeline: () => {
@@ -502,9 +506,9 @@ const BUILDERS = {
       txt("t1", 710, axisY + 40, "2026", { fontSize: 13, color: MUTED }),
       line("now", 520, axisY + 48, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
       txt("now-l", 500, axisY + 78, "now", { fontSize: 12, color: ACCENT }),
-      ...bracket("ph1", 200, 360, "build packs"),
-      ...bracket("ph2", 360, 520, "productize", axisY + 88),
-      ...bracket("ph3", 520, 680, "harden", axisY + 56),
+      ...bracket("ph1", 200, 360, "build packs · 6mo"),
+      ...bracket("ph2", 360, 520, "productize · 9mo", axisY + 88),
+      ...bracket("ph3", 520, 680, "harden · 4mo", axisY + 56),
       txt("story", 120, 120, "from shippable MVP to a taste gate that blocks bad diagrams", {
         fontSize: 13,
         color: MUTED,
