@@ -370,6 +370,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Postgres version chip.
+      rect("pg16", 690, 60, 120, 28, "Postgres 16", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -482,6 +488,12 @@ const BUILDERS = {
       }),
       // Canary percent already stamped — add SHA chip.
       rect("sha-chip", 500, 140, 140, 28, "SHA abc12ef", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // PR number chip.
+      rect("pr-chip", 280, 640, 120, 28, "PR #4821", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -619,6 +631,12 @@ const BUILDERS = {
       rect("bud-chip", 100, 640, 140, 28, "budget 250ms", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // 201 Created chip.
+      rect("created", 100, 680, 120, 28, "201 Created", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -1041,6 +1059,12 @@ const BUILDERS = {
       }),
       // Build packs phase chip.
       rect("build-ph", 200, 480, 120, 28, "build 6mo", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Productize phase chip.
+      rect("prod-ph", 360, 480, 140, 28, "productize 9mo", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2835,6 +2859,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Staging date chip.
+      rect("date-chip", 800, 380, 140, 28, "2026-02-14", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -3395,6 +3425,12 @@ const BUILDERS = {
       // Schema Registry chip already above — stamp compat.
       rect("bw-chip", 500, 400, 120, 28, "BACKWARD", {
         fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Source count chip.
+      rect("src3", 60, 340, 120, 28, "3 sources", {
+        fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
       }),
