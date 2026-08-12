@@ -723,6 +723,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // POST hop stamp.
+      rect("post-h", 120, 760, 100, 28, "POST hop", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -1261,6 +1267,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Span months stamp.
+      rect("span22", 120, 560, 140, 28, "22mo span", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   gantt: () => {
@@ -1422,6 +1434,12 @@ const BUILDERS = {
       rect("ship-b", 470, 520, 100, 28, "Ship bar", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Design phase stamp.
+      rect("des-ph", 160, 520, 120, 28, "Design W1–3", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -1786,6 +1804,12 @@ const BUILDERS = {
       rect("docs2d", 140, 540, 120, 28, "Docs 2d", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Capacity spare stamp.
+      rect("spare0", 640, 520, 100, 28, "spare 0d", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2243,6 +2267,12 @@ const BUILDERS = {
       rect("pg-inf", 700, 640, 120, 28, "Postgres", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Domain accent stamp.
+      rect("dom-acc", 140, 60, 140, 28, "Domain accent", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
@@ -2814,6 +2844,12 @@ const BUILDERS = {
       }),
       // Render leaf stamp.
       rect("rend", 334, 500, 120, 28, "renderer", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // MCP omit stamp twin.
+      rect("mcp-omit", 900, 500, 120, 28, "mcp omit", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
