@@ -1223,6 +1223,10 @@ const BUILDERS = {
       txt("hl5-l", 500, 248, "jobs", { fontSize: 12, color: MUTED }),
       txt("hl6-l", 580, 260, "SET", { fontSize: 12, color: MUTED }),
       txt("note", 60, 280, "origin stays inside; edge stays out", { fontSize: 13, color: MUTED }),
+      txt("obs", 60, 304, "metrics scraped from App · not from CDN", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "it-state": () => {
