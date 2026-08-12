@@ -887,6 +887,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Approve edge stamp — clear of submit free label.
+      rect("apr-e", 520, 60, 100, 28, "approve →", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -1374,6 +1380,12 @@ const BUILDERS = {
       rect("buf-w", 640, 500, 120, 28, "buffer 2wk", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Ship bar stamp.
+      rect("ship-b", 470, 520, 100, 28, "Ship bar", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
@@ -1916,6 +1928,12 @@ const BUILDERS = {
       }),
       // Notes edge stamp.
       rect("notes-e", 360, 60, 100, 28, "notes edge", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Ship edge stamp — clear of Publish/Review row.
+      rect("ship-e", 360, 480, 100, 28, "ship edge", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3403,6 +3421,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Gate merge stamp.
+      rect("gate-m", 60, 540, 140, 28, "merge if p99<", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -4818,6 +4842,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Residual stamp.
+      rect("resid1", 740, 440, 110, 28, "1 residual", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   radar: () => {
@@ -4957,6 +4987,12 @@ const BUILDERS = {
       }),
       // Quality score stamp.
       rect("qual94", 200, 500, 100, 28, "Quality 94", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Cost score stamp.
+      rect("cost60", 320, 540, 100, 28, "Cost 60", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
