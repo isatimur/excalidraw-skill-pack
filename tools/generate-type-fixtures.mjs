@@ -1035,6 +1035,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("import", 688, 120, "Next.js → Domain OK", { fontSize: 11, color: MUTED }),
+      txt("import2", 24, 320, "infra ✗ Domain", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -2165,6 +2167,10 @@ const BUILDERS = {
       txt("scores", 520, 424, "now: Sp112 Q94 C60 R100 D52 T80", {
         fontSize: 11,
         color: MUTED,
+      }),
+      txt("gap", 520, 448, "biggest gap to target: Depth (−48)", {
+        fontSize: 12,
+        color: ACCENT,
       }),
     ]);
   },
