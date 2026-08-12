@@ -773,6 +773,12 @@ const BUILDERS = {
         stroke: "#15803d",
         labelSize: 12,
       }),
+      // Draft count chip.
+      rect("draft-n", 100, 100, 100, 28, "Draft · 3", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   er: () => {
@@ -888,6 +894,12 @@ const BUILDERS = {
       }),
       // Users scale chip.
       rect("user-n", 80, 440, 120, 28, "~50k users", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // UNIQUE email chip.
+      rect("email-u", 560, 500, 140, 28, "email UNIQUE", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -1735,6 +1747,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Rows/night chip.
+      rect("rows-n", 320, 440, 140, 28, "~12M rows/n", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -2447,6 +2465,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Design headcount chip.
+      rect("des-hc", 680, 320, 100, 28, "Design 4", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -2686,6 +2710,12 @@ const BUILDERS = {
       rect("reach-on", 470, 40, 100, 28, "Reach on", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Depth deferred already boxed — stamp next-Q.
+      rect("next-q", 80, 240, 120, 28, "next Q Depth", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3984,6 +4014,12 @@ const BUILDERS = {
       rect("r2-chip", 620, 500, 100, 28, "R²≈0.67", {
         fill: PAPER,
         stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Slope chip.
+      rect("slope-chip", 740, 500, 120, 28, "−2.1 err/h", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
         labelSize: 12,
       }),
     ]);
