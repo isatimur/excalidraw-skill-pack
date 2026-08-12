@@ -311,6 +311,7 @@ const BUILDERS = {
       txt("worker-n", 690, 372, "concurrency 8", { fontSize: 11, color: MUTED }),
       txt("api-n", 280, 264, "3 replicas", { fontSize: 11, color: MUTED }),
       txt("client-ver", 40, 180, "iOS + Web", { fontSize: 11, color: MUTED }),
+      txt("pg-ver", 690, 100, "Postgres 16", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -558,6 +559,7 @@ const BUILDERS = {
       txt("arch-n", 810, 320, "Archived +48 lifetime", { fontSize: 11, color: MUTED }),
       txt("draft-age", 100, 138, "oldest Draft 2d", { fontSize: 11, color: MUTED }),
       txt("reject-n", 220, 340, "rejects this wk: 2", { fontSize: 11, color: ACCENT }),
+      txt("archive-n", 660, 360, "+4 this month", { fontSize: 11, color: MUTED }),
     ]);
   },
   er: () => {
@@ -1566,6 +1568,7 @@ const BUILDERS = {
       txt("design-ask", 680, 360, "Design → Platform weekly", { fontSize: 11, color: MUTED }),
       txt("ceo-span", 480, 100, "span=2", { fontSize: 11, color: MUTED }),
       txt("eng-mgr", 40, 220, "1 Eng manager", { fontSize: 11, color: MUTED }),
+      txt("prod-mgr", 680, 220, "1 PM", { fontSize: 11, color: MUTED }),
     ]);
   },
   venn: () => {
@@ -1671,6 +1674,7 @@ const BUILDERS = {
       txt("width", 520, 370, "base : apex ≈ 60×", { fontSize: 11, color: MUTED }),
       txt("bets", 440, 148, "Taste · Reach", { fontSize: 11, color: ACCENT }),
       txt("defer", 440, 168, "Depth deferred", { fontSize: 11, color: MUTED }),
+      txt("infra-n", 290, 340, "60 eng under", { fontSize: 11, color: MUTED }),
     ]);
   },
   evidence: () => {
@@ -1882,6 +1886,7 @@ const BUILDERS = {
       txt("https-n", 168, 268, "TLS 1.3", { fontSize: 11, color: MUTED }),
       txt("cluster-n", 436, 100, "3 nodes · k8s", { fontSize: 11, color: MUTED }),
       txt("pg-sz", 800, 152, "primary 400GB", { fontSize: 11, color: MUTED }),
+      txt("worker-jobs", 460, 340, "queue depth 12", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
@@ -1979,6 +1984,7 @@ const BUILDERS = {
       }),
       txt("throat-n", 440, 260, "~180 interfaces", { fontSize: 11, color: ACCENT }),
       txt("batch-n", 80, 80, "nightly: 42 jobs", { fontSize: 11, color: MUTED }),
+      txt("saas-n", 780, 110, "Salesforce", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Scoping is the argument: the same pipeline, cut where one role's reach ends.
