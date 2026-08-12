@@ -1185,23 +1185,23 @@ const BUILDERS = {
       txt("read-l", 430, 168, "read", { fontSize: 12, color: ACCENT }),
       txt("pub-l", 430, 280, "seed", { fontSize: 12, color: ACCENT }),
       txt("rev-l", 250, 280, "log", { fontSize: 12, color: ACCENT }),
-      txt("hub-note", 80, 380, "hub accumulates; the loop never starts from empty", {
+      txt("hub-note", 80, 460, "hub accumulates; the loop never starts from empty", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("cadence", 80, 404, "cadence: weekly Review → Capture", {
+      txt("cadence", 80, 484, "cadence: weekly Review → Capture", {
         fontSize: 12,
         color: MUTED,
       }),
-      txt("kpi", 80, 428, "KPI: Memory writes/week trending up", {
+      txt("kpi", 80, 508, "KPI: Memory writes/week trending up", {
         fontSize: 12,
         color: ACCENT,
       }),
-      txt("kill", 80, 452, "skip Review twice → freeze Publish until catch-up", {
+      txt("kill", 80, 532, "skip Review twice → freeze Publish until catch-up", {
         fontSize: 12,
         color: ACCENT,
       }),
-      txt("cycle", 80, 476, "median cycle: Capture→Publish 5 days", {
+      txt("cycle", 80, 556, "median cycle: Capture→Publish 5 days", {
         fontSize: 12,
         color: MUTED,
       }),
@@ -1228,6 +1228,13 @@ const BUILDERS = {
       line("mem-bar", 360, 270, [[0, 0], [148, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("mem-fill", 360, 270, [[0, 0], [110, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("mem-pct", 360, 280, "Memory 74% full", { fontSize: 11, color: ACCENT }),
+      // Cycle time bar — median 5 days is a span under the loop.
+      rect("cycle-bar", 420, 400, 200, 16, "", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 1,
+      }),
+      txt("cycle-bar-l", 420, 424, "cycle 5d median", { fontSize: 11, color: MUTED }),
     ]);
   },
   process: () => {
@@ -1718,6 +1725,13 @@ const BUILDERS = {
         stroke: MUTED,
         dashed: true,
       }),
+      // install/ also omitted — meta-installer is not a theme pack.
+      rect("install", 900, 280, 120, 40, "install/", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 13,
+      }),
+      txt("install-l", 900, 328, "meta · omitted", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -1965,6 +1979,13 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Budget weight bars beside each tier — 10/30/60 is visual weight.
+      line("bw3", 520, 148, [[0, 0], [40, 0]], { stroke: ACCENT, strokeWidth: 8 }),
+      line("bw2", 520, 232, [[0, 0], [90, 0]], { stroke: MUTED, strokeWidth: 8 }),
+      line("bw1", 520, 316, [[0, 0], [150, 0]], { stroke: MUTED, strokeWidth: 8 }),
+      txt("bw3-l", 568, 140, "10%", { fontSize: 11, color: ACCENT }),
+      txt("bw2-l", 618, 224, "30%", { fontSize: 11, color: MUTED }),
+      txt("bw1-l", 678, 308, "60%", { fontSize: 11, color: MUTED }),
     ]);
   },
   evidence: () => {
@@ -2104,6 +2125,13 @@ const BUILDERS = {
       }),
       txt("row-n", 100, 100, "6 matched questions", { fontSize: 11, color: MUTED }),
       txt("col-win", 540, 80, "preferred →", { fontSize: 11, color: "#15803d" }),
+      // Score chip — 6/6 is a stamp, not only a caption.
+      rect("score-chip", 800, 500, 100, 40, "6/6 win", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 14,
+      }),
+      txt("score-chip-l", 800, 548, "after day one", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
@@ -2490,6 +2518,10 @@ const BUILDERS = {
       txt("lag-n", 310, 320, "lag p95 4m", { fontSize: 11, color: ACCENT }),
       txt("src-n", 60, 300, "3 sources · 3 consumers", { fontSize: 11, color: MUTED }),
       txt("etl-n", 580, 320, "reverse ETL hourly", { fontSize: 11, color: MUTED }),
+      // Ingest lag bar vs 15m SLO — lag p95 4m is a fill level.
+      line("lag-bar", 310, 360, [[0, 0], [170, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("lag-fill", 310, 360, [[0, 0], [45, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("lag-bar-l", 310, 372, "lag 4m / SLO 15m", { fontSize: 11, color: ACCENT }),
     ]);
   },
   "dp-security-matrix": () => {
