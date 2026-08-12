@@ -1588,6 +1588,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // PR review stamp.
+      rect("pr-rev", 620, 480, 100, 28, "PR review", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   quadrant: () => {
@@ -2105,6 +2111,12 @@ const BUILDERS = {
       rect("xfrm", 320, 480, 140, 28, "Transform 22m", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Ingest stage stamp.
+      rect("ing8", 60, 480, 120, 28, "Ingest 8m", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -3135,6 +3147,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Dual gate stamp twin.
+      rect("des-eng", 320, 560, 160, 28, "Design+Eng yes", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -3699,6 +3717,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Edge budget stamp.
+      rect("edge2k", 60, 560, 140, 28, "edge 2k RPS", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   "it-state": () => {
@@ -3990,6 +4014,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // DLQ stamp twin.
+      rect("dlq-n", 268, 460, 100, 28, "DLQ path", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-integration": () => {
@@ -4258,6 +4288,12 @@ const BUILDERS = {
       }),
       // Weekly audit stamp.
       rect("wk-audit", 450, 640, 140, 28, "audit weekly", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Mask at query stamp.
+      rect("mask-q", 300, 640, 140, 28, "mask at query", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
