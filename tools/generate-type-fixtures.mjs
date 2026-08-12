@@ -1395,7 +1395,7 @@ const BUILDERS = {
       txt("a-ex", 60, 220, "fast &\nwrong", { fontSize: 13, color: MUTED }),
       txt("b-ex", 640, 220, "perfect &\nlate", { fontSize: 13, color: MUTED }),
       line("leader", 400, 360, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
-      txt("overlap", 344, 394, "ship it twice", { fontSize: 14, color: ACCENT }),
+      txt("overlap", 320, 394, "ship it twice · n=12", { fontSize: 14, color: ACCENT }),
       txt("claim", 200, 440, "overlap is the product; exclusives are the tax", {
         fontSize: 13,
         color: MUTED,
@@ -1413,6 +1413,7 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("tax", 640, 280, "tax paid in exclusives", { fontSize: 11, color: MUTED }),
+      txt("dual", 60, 280, "dual-owned ships only", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -1462,6 +1463,10 @@ const BUILDERS = {
       txt("review-py", 80, 442, "quarterly review: invert check before funding new bets", {
         fontSize: 12,
         color: MUTED,
+      }),
+      txt("fund", 80, 466, "this quarter fund: Taste + Reach only", {
+        fontSize: 12,
+        color: ACCENT,
       }),
     ]);
   },
