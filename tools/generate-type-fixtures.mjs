@@ -411,6 +411,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("hit-path", 520, 534, "warm: GET → hit → 200 (no DB)", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   state: () => {
@@ -1039,6 +1043,13 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Service B is drawn outside so exclusion is visual, not only captioned.
+      rect("svc-b", 40, 110, 120, 36, "Service B", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 14,
+      }),
+      txt("svc-b-l", 40, 90, "out of nest", { fontSize: 11, color: MUTED }),
     ]);
   },
   medallion: () => {
@@ -1515,6 +1526,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("fail", 60, 352, "failover: App AZ-a · Postgres primary AZ-b", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("rps", 60, 376, "budget: 2k RPS at edge · 400 RPS origin", {
         fontSize: 12,
         color: MUTED,
       }),
