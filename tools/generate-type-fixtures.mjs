@@ -1832,7 +1832,9 @@ const BUILDERS = {
     const perMs = 0.4;
     const y = (ms) => baseline - ms * perMs;
     const readings = [400, 345, 315, 215, 168, 142];
+    const prior = [380, 360, 340, 330, 320, 310];
     const at = (i) => [160 + i * 92, y(readings[i])];
+    const atP = (i) => [160 + i * 92, y(prior[i])];
     const tick = (id, ms) => [
       line(id, 140, y(ms), [[0, 0], [480, 0]], { strokeWidth: 1, stroke: GRID }),
       txt(`${id}-l`, 74, y(ms) - 8, `${ms}ms`, { fontSize: 13, color: MUTED }),
@@ -1851,6 +1853,13 @@ const BUILDERS = {
       // SLA threshold: the chart's claim is crossing under, not just falling.
       line("sla", 140, y(200), [[0, 0], [480, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
       txt("sla-l", 630, y(200) - 8, "SLA 200ms", { fontSize: 12, color: ACCENT }),
+      // Prior year never crossed SLA — rewrite is the cause, not seasonality.
+      poly("prior", prior.map((_, i) => atP(i)), { stroke: MUTED, open: true, dashed: true, strokeWidth: 1 }),
+      ...prior.map((_, i) => {
+        const [px, py] = atP(i);
+        return dot(`p${i}`, px, py, 3, { fill: MUTED, stroke: MUTED });
+      }),
+      txt("prior-l", 630, y(310) - 8, "prior year", { fontSize: 11, color: MUTED }),
       poly("series", readings.map((_, i) => at(i)), { stroke: ACCENT, open: true }),
       ...readings.map((_, i) => {
         const [px, py] = at(i);
@@ -1918,6 +1927,9 @@ const BUILDERS = {
           ? dot(`p${i}`, x, y, 7, { fill: ACCENT, stroke: ACCENT })
           : dot(`p${i}`, x, y, 6)
       ),
+      // Residual above the trend — named so it isn't mistaken for noise.
+      dot("res", 300, 140, 5, { fill: MUTED, stroke: MUTED }),
+      txt("res-l", 310, 124, "residual", { fontSize: 11, color: MUTED }),
       // Novice cluster: the left side is the argument before practice pays off.
       txt("novice", 168, 118, "novice cluster", { fontSize: 12, color: MUTED }),
       txt("callout", 500, 260, "fewer errors\nwith practice", { fontSize: 13, color: ACCENT }),
