@@ -711,6 +711,10 @@ const BUILDERS = {
         fontSize: 11,
         color: MUTED,
       }),
+      txt("ph-sum", 120, axisY + 166, "phases: 6 + 9 + 4 = 19mo active · 3mo freeze buffer", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   gantt: () => {
@@ -934,6 +938,8 @@ const BUILDERS = {
       ),
       txt("it0", 392, 154, "hi", { fontSize: 10, color: MUTED }),
       txt("it1", 392, 232, "mid", { fontSize: 10, color: MUTED }),
+      // Buyer-ask gate: Slide export stays dropped until demand is named.
+      txt("ask", 486, 360, "no buyer ask", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -1029,6 +1035,9 @@ const BUILDERS = {
       txt("thru-c", 200, 80, "~40 notes/wk", { fontSize: 11, color: MUTED }),
       txt("thru-p", 520, 80, "~12 drafts/wk", { fontSize: 11, color: MUTED }),
       txt("thru-s", 520, 370, "~9 ships/wk", { fontSize: 11, color: MUTED }),
+      // Freeze mark on Publish when Review is skipped — the kill rule is visual.
+      line("frz-p", 520, 300, [[0, 0], [148, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
+      txt("frz-p-l", 560, 288, "freeze if skip×2", { fontSize: 11, color: ACCENT }),
     ]);
   },
   process: () => {
@@ -1798,6 +1807,8 @@ const BUILDERS = {
       }),
       txt("edge-hit", 240, 186, "edge hit 78%", { fontSize: 11, color: MUTED }),
       txt("p99-hl", 460, 140, "App p99 62ms", { fontSize: 11, color: ACCENT }),
+      txt("cdn-ttl", 240, 268, "CDN TTL 1h", { fontSize: 11, color: MUTED }),
+      txt("jobs-n", 460, 320, "jobs lag < 5s", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
@@ -2206,6 +2217,10 @@ const BUILDERS = {
         )
       ),
       txt("spark-l", 700, 108, "Δ YoY", { fontSize: 11, color: MUTED }),
+      txt("q3-cause", 250, baseline + 176, "Q3 cause: promo pause", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   line: () => {
@@ -2294,6 +2309,12 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("r5-v", at(4)[0] - 10, at(4)[1] - 16, "168", { fontSize: 11, color: MUTED }),
+      // Shade the under-alert band so hold isn't only a caption.
+      line("band-l", rewriteX, y(180), [[0, 0], [at(5)[0] - rewriteX + 20, 0]], {
+        stroke: "#86efac",
+        strokeWidth: 8,
+      }),
+      txt("band-l2", rewriteX + 8, y(180) + 12, "safe band", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   scatter: () => {
