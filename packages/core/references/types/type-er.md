@@ -6,7 +6,7 @@
 Entities as rectangles with key fields in bound labels. Crow's-foot marks on the N side; free `1:N` labels above the shaft.
 
 ## Excalidraw pattern
-Skeleton rectangles; `endArrowhead: null` so tips never paint over the feet.
+Skeleton rectangles; relationship shafts as plain `line`s (hydrated arrows still grow tips that paint over feet); crow's foot + one-bar drawn as short lines on the N edge.
 
 ## Connectors & routing
 Minimize crossing; stack related entities.

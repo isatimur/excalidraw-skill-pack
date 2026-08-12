@@ -50,7 +50,7 @@ const META = {
     title: "ER / data model",
     best: "entities, relationships, cardinality.",
     layout: "Entities as rectangles with key fields in bound labels. Crow's-foot marks on the N side; free `1:N` labels above the shaft.",
-    pattern: "Skeleton rectangles; `endArrowhead: null` so tips never paint over the feet.",
+    pattern: "Skeleton rectangles; relationship shafts as plain `line`s (hydrated arrows still grow tips that paint over feet); crow's foot + one-bar drawn as short lines on the N edge.",
     routing: "Minimize crossing; stack related entities.",
     avoid: "Full field lists when a table would be faster; default arrowheads covering crow's feet.",
     budget: "≤6 entities.",
