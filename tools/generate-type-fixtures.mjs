@@ -1073,6 +1073,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("hire", 140, 468, "next hire: Platform SRE · not another Product IC", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   venn: () => {
