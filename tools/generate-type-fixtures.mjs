@@ -1662,6 +1662,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Origin DB-read chip.
+      rect("orig-chip", 720, 340, 100, 28, "DB read", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2016,6 +2022,12 @@ const BUILDERS = {
       rect("reqs-chip", 320, 480, 140, 28, "open reqs: 2", {
         fill: "#fee2e2",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Design→Platform ask chip.
+      rect("ask-chip", 680, 400, 140, 28, "asks weekly", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2765,6 +2777,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 13,
       }),
+      // Reverse ETL proof chip.
+      rect("retl", 580, 340, 140, 28, "not a dead end", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
     ]);
   },
   "dp-security-matrix": () => {
@@ -3009,6 +3027,12 @@ const BUILDERS = {
       rect("goal-chip", 700, 148, 110, 28, "+11k goal", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // YoY lift chip.
+      rect("yoy-chip", 700, 184, 110, 28, "+30% YoY", {
+        fill: PAPER,
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
