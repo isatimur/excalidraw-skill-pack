@@ -23,6 +23,8 @@ jobs:
       - run: pnpm typecheck
       - name: Plugin skill in sync with core SKILL.md
         run: pnpm check:skill-sync
+      - name: Type fixture labels clear of shapes
+        run: pnpm check-type-labels
 
   python-lint:
     runs-on: ubuntu-latest
