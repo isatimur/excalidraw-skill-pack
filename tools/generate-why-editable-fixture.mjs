@@ -6,6 +6,7 @@
  */
 import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import { join } from "node:path";
+import { stabilize } from "./stabilize-excalidraw.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const OUT_DIR = join(ROOT, "packages", "shared", "fixtures", "competitive");
@@ -295,10 +296,11 @@ async function main() {
   await mkdir(WEB_DIR, { recursive: true });
 
   const full = await hydrateSkeleton(JSON.stringify(skeleton_doc));
+  const parsed = stabilize("why-editable-beats-static", JSON.parse(full));
   const jsonPath = join(OUT_DIR, "why-editable-beats-static.excalidraw");
-  await writeFile(jsonPath, JSON.stringify(JSON.parse(full), null, 2) + "\n");
+  await writeFile(jsonPath, JSON.stringify(parsed, null, 2) + "\n");
 
-  const png = await renderToPng(full, { theme: "default-sketchy", scale: 2, width: 1280 });
+  const png = await renderToPng(JSON.stringify(parsed), { theme: "default-sketchy", scale: 2, width: 1280 });
   const pngPath = join(OUT_DIR, "why-editable-beats-static.png");
   const webPath = join(WEB_DIR, "why-editable-beats-static.png");
   await writeFile(pngPath, png);
