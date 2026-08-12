@@ -628,6 +628,10 @@ const BUILDERS = {
       ),
       txt("t6-l", 260, 448, "×2 reject →", { fontSize: 11, color: ACCENT }),
       txt("redesign-n", 530, 492, "open: 1 ticket", { fontSize: 11, color: ACCENT }),
+      // Approve rate bar — 92% is a fill under the machine.
+      line("apr-bar", 660, 420, [[0, 0], [140, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("apr-fill", 660, 420, [[0, 0], [129, 0]], { stroke: "#15803d", strokeWidth: 6 }),
+      txt("apr-bar-l", 660, 432, "approve 92%", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   er: () => {
@@ -1015,6 +1019,10 @@ const BUILDERS = {
       ),
       txt("page-l", 680, 300, "×2 red →", { fontSize: 11, color: ACCENT }),
       txt("page-n", 700, 408, "pages this wk: 0", { fontSize: 11, color: MUTED }),
+      // Stage minutes as a mini bar under Eng — Impl 240 dominates.
+      line("mins-bar", 360, 380, [[0, 0], [240, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("mins-fill", 360, 380, [[0, 0], [137, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("mins-bar-l", 360, 392, "Impl 240 of 420 stage-min", { fontSize: 11, color: ACCENT }),
     ]);
   },
   quadrant: () => {
@@ -1893,6 +1901,12 @@ const BUILDERS = {
         labelSize: 14,
       }),
       txt("held-l", 640, 416, "Quality-only parked", { fontSize: 11, color: MUTED }),
+      // Overlap count stamp on the lens — n=12 is a chip, not only a caption.
+      rect("ov-n", 360, 220, 80, 36, "n=12", {
+        fill: "#fed7aa",
+        stroke: ACCENT,
+        labelSize: 14,
+      }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -2237,6 +2251,10 @@ const BUILDERS = {
         { stroke: MUTED, dashed: true }
       ),
       txt("scrape-l", 200, 120, "scrape App only", { fontSize: 11, color: MUTED }),
+      // Edge hit bar under CDN — 78% is a fill, not only a caption.
+      line("edge-bar", 240, 292, [[0, 0], [132, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("edge-fill", 240, 292, [[0, 0], [103, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("edge-bar-l", 240, 304, "edge hit 78%", { fontSize: 11, color: MUTED }),
     ]);
   },
   "it-state": () => {
