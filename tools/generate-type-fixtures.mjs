@@ -317,18 +317,30 @@ const BUILDERS = {
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
   // bindings during conversion, and an arrow that names a later element gets skewed.
   flowchart: () => {
-    const start = { id: "start", x: 280, y: 100, w: 120, h: 48 };
-    const decide = { id: "decide", x: 260, y: 190, w: 160, h: 80 };
-    const yes = { id: "yes", x: 100, y: 330, w: 140, h: 56 };
-    const no = { id: "no", x: 440, y: 330, w: 140, h: 56 };
+    // Exit the diamond on the sides, then drop — never a diagonal through air.
+    const start = { id: "start", x: 310, y: 100, w: 120, h: 48 };
+    const decide = { id: "decide", x: 290, y: 190, w: 160, h: 80 };
+    const yes = { id: "yes", x: 120, y: 360, w: 140, h: 56 };
+    const no = { id: "no", x: 480, y: 360, w: 140, h: 56 };
+    const dCy = decide.y + decide.h / 2;
     return doc("Flowchart — branching decisions", [
       ellipse(start.id, start.x, start.y, start.w, start.h, "Trigger"),
       diamond(decide.id, decide.x, decide.y, decide.w, decide.h, "Valid?"),
       rect(yes.id, yes.x, yes.y, yes.w, yes.h, "Process"),
       rect(no.id, no.x, no.y, no.w, no.h, "Reject", { fill: "#fed7aa", stroke: ACCENT }),
-      arrow("a0", start, decide, ""),
-      arrow("a1", decide, yes, "yes", { from: "left", to: "top" }),
-      arrow("a2", decide, no, "no", { from: "right", to: "top" }),
+      arrow("a0", start, decide, "", { from: "bottom", to: "top" }),
+      elbow("a1", [
+        [decide.x, dCy],
+        [yes.x + yes.w / 2, dCy],
+        [yes.x + yes.w / 2, yes.y - 8],
+      ]),
+      txt("a1-l", yes.x + yes.w / 2 - 14, dCy - 22, "yes", { fontSize: 14, color: MUTED }),
+      elbow("a2", [
+        [decide.x + decide.w, dCy],
+        [no.x + no.w / 2, dCy],
+        [no.x + no.w / 2, no.y - 8],
+      ]),
+      txt("a2-l", no.x + no.w / 2 - 10, dCy - 22, "no", { fontSize: 14, color: MUTED }),
     ]);
   },
   sequence: () => {
@@ -380,16 +392,34 @@ const BUILDERS = {
     ]);
   },
   timeline: () => {
+    const axisY = 260;
+    const events = [
+      { id: "e1", x: 200, label: "MVP", sub: "v0 ship", accent: false },
+      { id: "e2", x: 360, label: "Themes", sub: "brand packs", accent: false },
+      { id: "e3", x: 520, label: "MCP app", sub: "live now", accent: true },
+      { id: "e4", x: 680, label: "Audit", sub: "taste gate", accent: false },
+    ];
+    const tick = (id, x) => line(id, x, axisY - 6, [[0, 0], [0, 12]], { strokeWidth: 1, stroke: MUTED });
     return doc("Timeline — events on an axis", [
-      line("axis", 120, 250, [[0, 0], [520, 0]], { stroke: INK }),
-      dot("d1", 220, 250, 6),
-      dot("d2", 380, 250, 6),
-      dot("d3", 540, 250, 6, { fill: ACCENT, stroke: ACCENT }),
-      txt("e1", 196, 210, "MVP", { fontSize: 15 }),
-      txt("e2", 344, 210, "Themes", { fontSize: 15 }),
-      txt("e3", 506, 210, "MCP app", { fontSize: 15, color: ACCENT }),
-      txt("t0", 112, 266, "2024", { fontSize: 13, color: MUTED }),
-      txt("t1", 616, 266, "2026", { fontSize: 13, color: MUTED }),
+      line("axis", 120, axisY, [[0, 0], [620, 0]], { stroke: INK }),
+      ...[200, 280, 360, 440, 520, 600, 680].map((x, i) => tick(`tk${i}`, x)),
+      ...events.flatMap((e) => [
+        dot(e.id, e.x, axisY, e.accent ? 7 : 6, e.accent ? { fill: ACCENT, stroke: ACCENT } : {}),
+        line(`${e.id}-stem`, e.x, axisY - 28, [[0, 0], [0, 22]], {
+          strokeWidth: 1,
+          stroke: e.accent ? ACCENT : MUTED,
+        }),
+        txt(`${e.id}-l`, e.x - (e.label.length * 4), axisY - 52, e.label, {
+          fontSize: 15,
+          color: e.accent ? ACCENT : INK,
+        }),
+        txt(`${e.id}-s`, e.x - (e.sub.length * 3.2), axisY + 18, e.sub, {
+          fontSize: 12,
+          color: MUTED,
+        }),
+      ]),
+      txt("t0", 112, axisY + 40, "2024", { fontSize: 13, color: MUTED }),
+      txt("t1", 710, axisY + 40, "2026", { fontSize: 13, color: MUTED }),
     ]);
   },
   gantt: () => {
@@ -537,27 +567,89 @@ const BUILDERS = {
     ]);
   },
   medallion: () => {
-    const bronze = { id: "bronze", x: 100, y: 180, w: 150, h: 68 };
-    const silver = { id: "silver", x: 420, y: 180, w: 150, h: 68 };
-    const gold = { id: "gold", x: 740, y: 180, w: 150, h: 68 };
+    // Wide gaps + free edge labels: "aggregate" is wider than a tight shaft can hold.
+    const bronze = { id: "bronze", x: 80, y: 180, w: 160, h: 72 };
+    const silver = { id: "silver", x: 360, y: 180, w: 160, h: 72 };
+    const gold = { id: "gold", x: 640, y: 180, w: 160, h: 72 };
     return doc("Medallion — bronze / silver / gold tiers", [
       rect(bronze.id, bronze.x, bronze.y, bronze.w, bronze.h, "Bronze\nraw"),
-      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver\nconformed", { fill: "#e2e8f0" }),
-      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold\nmart", { fill: "#fef3c7", stroke: ACCENT }),
-      arrow("m1", bronze, silver, "clean"),
-      arrow("m2", silver, gold, "aggregate"),
+      rect(silver.id, silver.x, silver.y, silver.w, silver.h, "Silver\nconformed", {
+        fill: "#e2e8f0",
+      }),
+      rect(gold.id, gold.x, gold.y, gold.w, gold.h, "Gold\nmart", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
+      arrow("m1", bronze, silver, ""),
+      arrow("m2", silver, gold, ""),
+      txt("m1-l", 278, 158, "clean", { fontSize: 14, color: MUTED }),
+      txt("m2-l", 538, 158, "aggregate", { fontSize: 14, color: MUTED }),
+      txt("tier-note", 80, 280, "each tier is a contract: raw → conformed → mart", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
+  // Depth is the grammar: a two-level fork is an org chart without the routing.
+  // Orthogonal rails keep every edge pure H/V.
   tree: () => {
-    const root = { id: "root", x: 314, y: 100, w: 132, h: 48 };
-    const left = { id: "left", x: 144, y: 210, w: 132, h: 48 };
-    const right = { id: "right", x: 484, y: 210, w: 132, h: 48 };
+    const root = { id: "root", x: 334, y: 100, w: 132, h: 48 };
+    const left = { id: "left", x: 140, y: 220, w: 132, h: 48 };
+    const right = { id: "right", x: 528, y: 220, w: 132, h: 48 };
+    const a1 = { id: "a1", x: 80, y: 340, w: 120, h: 44 };
+    const a2 = { id: "a2", x: 220, y: 340, w: 120, h: 44 };
+    const b1 = { id: "b1", x: 528, y: 340, w: 132, h: 44 };
+    const railY = 184;
+    const leafRailY = 304;
     return doc("Tree — parent → children", [
       rect(root.id, root.x, root.y, root.w, root.h, "Root"),
       rect(left.id, left.x, left.y, left.w, left.h, "Branch A"),
       rect(right.id, right.x, right.y, right.w, right.h, "Branch B"),
-      arrow("t1", root, left, "", { from: "bottom", to: "top" }),
-      arrow("t2", root, right, "", { from: "bottom", to: "top" }),
+      rect(a1.id, a1.x, a1.y, a1.w, a1.h, "Leaf A1", { labelSize: 15 }),
+      rect(a2.id, a2.x, a2.y, a2.w, a2.h, "Leaf A2", { labelSize: 15 }),
+      rect(b1.id, b1.x, b1.y, b1.w, b1.h, "Leaf B1", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 15,
+      }),
+      // Root drops to a shared rail, then fans to children.
+      line("trunk", root.x + root.w / 2, root.y + root.h, [[0, 0], [0, railY - (root.y + root.h)]], {
+        stroke: INK,
+      }),
+      line(
+        "rail",
+        left.x + left.w / 2,
+        railY,
+        [[0, 0], [right.x + right.w / 2 - (left.x + left.w / 2), 0]],
+        { stroke: INK }
+      ),
+      elbow("t1", [
+        [left.x + left.w / 2, railY],
+        [left.x + left.w / 2, left.y - 8],
+      ]),
+      elbow("t2", [
+        [right.x + right.w / 2, railY],
+        [right.x + right.w / 2, right.y - 8],
+      ]),
+      line("trunk-a", left.x + left.w / 2, left.y + left.h, [[0, 0], [0, leafRailY - (left.y + left.h)]], {
+        stroke: INK,
+      }),
+      line(
+        "rail-a",
+        a1.x + a1.w / 2,
+        leafRailY,
+        [[0, 0], [a2.x + a2.w / 2 - (a1.x + a1.w / 2), 0]],
+        { stroke: INK }
+      ),
+      elbow("t3", [
+        [a1.x + a1.w / 2, leafRailY],
+        [a1.x + a1.w / 2, a1.y - 8],
+      ]),
+      elbow("t4", [
+        [a2.x + a2.w / 2, leafRailY],
+        [a2.x + a2.w / 2, a2.y - 8],
+      ]),
+      arrow("t5", right, b1, "", { from: "bottom", to: "top" }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
