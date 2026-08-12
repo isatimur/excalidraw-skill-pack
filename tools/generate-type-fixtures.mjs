@@ -960,7 +960,7 @@ const BUILDERS = {
       { id: "open", ask: "Open later", before: "hope the PNG is enough", after: "open the .excalidraw" },
     ];
     const cellW = 250;
-    return doc("Comparison — before / after contrast", [
+    return doc("Comparison — same questions, two answers", [
       txt("h-before", 250, 118, "Static export", { fontSize: 16, color: MUTED }),
       txt("h-after", 540, 118, "Editable source", { fontSize: 16, color: "#15803d" }),
       line("h-rule", 100, 146, [[0, 0], [700, 0]], { strokeWidth: 1, stroke: GRID }),
