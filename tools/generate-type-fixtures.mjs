@@ -309,6 +309,7 @@ const BUILDERS = {
       txt("wal", 690, 176, "WAL shipping", { fontSize: 11, color: MUTED }),
       txt("pub-n", 690, 248, "topic: orders.v2", { fontSize: 11, color: MUTED }),
       txt("worker-n", 690, 372, "concurrency 8", { fontSize: 11, color: MUTED }),
+      txt("api-n", 280, 264, "3 replicas", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -553,6 +554,7 @@ const BUILDERS = {
       txt("live-age", 810, 168, "oldest Live 14d", { fontSize: 11, color: MUTED }),
       txt("arch-n", 810, 320, "Archived +48 lifetime", { fontSize: 11, color: MUTED }),
       txt("draft-age", 100, 138, "oldest Draft 2d", { fontSize: 11, color: MUTED }),
+      txt("reject-n", 220, 340, "rejects this wk: 2", { fontSize: 11, color: ACCENT }),
     ]);
   },
   er: () => {
@@ -1547,6 +1549,7 @@ const BUILDERS = {
       txt("sre-pin", 140, 320, "SRE req #1", { fontSize: 11, color: ACCENT }),
       txt("design-ask", 680, 360, "Design → Platform weekly", { fontSize: 11, color: MUTED }),
       txt("ceo-span", 480, 100, "span=2", { fontSize: 11, color: MUTED }),
+      txt("eng-mgr", 40, 220, "1 Eng manager", { fontSize: 11, color: MUTED }),
     ]);
   },
   venn: () => {
@@ -1649,6 +1652,7 @@ const BUILDERS = {
       // Width cue: Strategy apex is a point — the band count is the argument.
       txt("width", 520, 370, "base : apex ≈ 60×", { fontSize: 11, color: MUTED }),
       txt("bets", 440, 148, "Taste · Reach", { fontSize: 11, color: ACCENT }),
+      txt("defer", 440, 168, "Depth deferred", { fontSize: 11, color: MUTED }),
     ]);
   },
   evidence: () => {
@@ -2016,6 +2020,7 @@ const BUILDERS = {
       txt("dlq-n", 268, 368, "DLQ depth < 20", { fontSize: 11, color: ACCENT }),
       txt("mask-n", 430, 248, "hash email+phone", { fontSize: 11, color: MUTED }),
       txt("wh-n", 566, 268, "Snowflake", { fontSize: 11, color: MUTED }),
+      txt("dash-n", 766, 268, "12 boards", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
@@ -2149,6 +2154,7 @@ const BUILDERS = {
       txt("cell-n", 600, 100, "12 cells · 5 deny", { fontSize: 11, color: MUTED }),
       txt("eng-scope", 780, 238, "Eng write: PII only", { fontSize: 11, color: ACCENT }),
       txt("admin-n", 780, 296, "Admin = break-glass", { fontSize: 11, color: ACCENT }),
+      txt("intern-n", 780, 360, "Intern: agg only", { fontSize: 11, color: MUTED }),
     ]);
   },
   bar: () => {
