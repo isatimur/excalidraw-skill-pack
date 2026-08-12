@@ -698,6 +698,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("risk-g", 160, 388, "risk: Build slip ≥ 1wk → cut docs scope", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
   swimlane: () => {
@@ -828,6 +832,10 @@ const BUILDERS = {
         color: MUTED,
       }),
       txt("mcp-plan", 486, 188, "Q3 start", { fontSize: 11, color: ACCENT }),
+      txt("days", 140, 492, "effort days labeled under each point", {
+        fontSize: 11,
+        color: MUTED,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
