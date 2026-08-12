@@ -516,6 +516,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Design on-call stamp.
+      rect("des-oc", 460, 680, 140, 28, "Design on-call", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   sequence: () => {
@@ -837,6 +843,12 @@ const BUILDERS = {
       rect("apr92", 660, 460, 120, 28, "approve 92%", {
         fill: "#dcfce7",
         stroke: "#15803d",
+        labelSize: 12,
+      }),
+      // Archived count stamp.
+      rect("arch48", 810, 440, 120, 28, "Archived · 48", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
         labelSize: 12,
       }),
     ]);
@@ -2226,6 +2238,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Platform boundary stamp — clear of zone title.
+      rect("plat-b", 40, 120, 120, 28, "Platform", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -3040,6 +3058,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Capabilities budget stamp.
+      rect("cap30", 640, 560, 120, 28, "capab 30%", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   evidence: () => {
@@ -3395,6 +3419,12 @@ const BUILDERS = {
       }),
       // TLS stamp on Client edge.
       rect("tls13", 60, 480, 100, 28, "TLS 1.3", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Edge hit stamp — below edge-hit bar caption.
+      rect("edge78", 240, 360, 120, 28, "edge hit 78%", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -4345,6 +4375,12 @@ const BUILDERS = {
       rect("sla200", 320, baseline + 250, 120, 28, "SLA 200ms", {
         fill: "#fef3c7",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // Final reading stamp.
+      rect("r6-142", 460, baseline + 250, 100, 28, "R6 142ms", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
