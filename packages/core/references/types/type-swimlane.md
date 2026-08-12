@@ -6,13 +6,13 @@
 Horizontal lanes per role/team. Steps flow left→right within and across lanes.
 
 ## Excalidraw pattern
-Dashed zone rectangles for lanes. Steps as rectangles; handoff arrows cross lane boundaries orthogonally. Dashed Test→Implement fail loop so red is a re-entry, not a dead end.
+Dashed zone rectangles for lanes. Steps as rectangles; handoff arrows cross lane boundaries orthogonally. Dashed Test→Implement fail loop so red is a re-entry, not a dead end. Stage minutes + retry cap make the SLA auditable.
 
 ## Connectors & routing
 Enter/exit lanes at lane centerlines.
 
 ## Anti-patterns
-More than 4 lanes (split diagrams); a Test step that never returns on failure.
+More than 4 lanes (split diagrams); a Test step that never returns on failure; an Eng SLA with no stage minutes.
 
 ## Budget
 ≤6 steps per lane.

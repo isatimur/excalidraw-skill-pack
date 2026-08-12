@@ -435,6 +435,13 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Per-hop budgets: ticks alone don't prove the 250ms claim.
+      txt("ms1", 760, 194, "12ms", { fontSize: 11, color: MUTED }),
+      txt("ms2", 760, 244, "6ms", { fontSize: 11, color: MUTED }),
+      txt("ms3", 760, 294, "4ms miss", { fontSize: 11, color: ACCENT }),
+      txt("ms4", 760, 344, "110ms", { fontSize: 11, color: MUTED }),
+      txt("ms5", 760, 424, "8ms SET", { fontSize: 11, color: MUTED }),
+      txt("sum-ms", 760, 510, "≈140ms miss path", { fontSize: 11, color: ACCENT }),
     ]);
   },
   state: () => {
@@ -1699,6 +1706,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("edge-hit", 240, 186, "edge hit 78%", { fontSize: 11, color: MUTED }),
+      txt("p99-hl", 460, 140, "App p99 62ms", { fontSize: 11, color: ACCENT }),
     ]);
   },
   "it-state": () => {

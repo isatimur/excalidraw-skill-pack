@@ -6,13 +6,13 @@
 Axes as free-floating labels. Items as ellipses or small rectangles in quadrants.
 
 ## Excalidraw pattern
-Light quadrant grid optional; accent only the hero item.
+Light quadrant grid optional; accent only the hero item. Effort days under each point; sprint pull elbow into do-now; spare capacity after the pull so the chart leaves a day instead of packing 8/8.
 
 ## Connectors & routing
 Label axes with what increases/decreases on each dimension, and name each quadrant with the verdict it carries (`do now`, `drop`).
 
 ## Anti-patterns
-Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty; a drop item with no reason to stay dropped.
+Exact numeric scores (use scatter or a table); leaving the unflattering quadrant empty; a drop item with no reason to stay dropped; capacity that exactly fills with no leftover callout.
 
 ## Budget
 ≤8 positioned items.

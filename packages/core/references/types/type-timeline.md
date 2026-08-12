@@ -6,13 +6,13 @@
 Horizontal axis with event markers above/below. Accent the pivotal event only. Phase brackets under the axis carry duration (months), not just dots.
 
 ## Excalidraw pattern
-Free-floating text + ellipse or line markers on the axis; bracket spans between milestones with duration labels.
+Free-floating text + ellipse or line markers on the axis; bracket spans between milestones with duration labels; freeze window before the taste gate so harden has a close date, not a forever now.
 
 ## Connectors & routing
 Chronological left→right.
 
 ## Anti-patterns
-Dense date tables redrawn as a diagram; milestones with no phase story; brackets without duration.
+Dense date tables redrawn as a diagram; milestones with no phase story; brackets without duration; an open-ended axis with no freeze or destination.
 
 ## Budget
 ≤8 milestones.
