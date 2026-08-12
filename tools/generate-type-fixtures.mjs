@@ -1632,6 +1632,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // Drop decision stamp twin.
+      rect("slide-drop", 640, 480, 140, 28, "Slide export↓", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
@@ -2244,6 +2250,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Service A nest stamp.
+      rect("svc-a", 720, 140, 100, 28, "Service A", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2566,6 +2578,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Themes pack count twin — dark leaf already.
+      rect("pack-cnt", 780, 540, 120, 28, "themes×3", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 12,
+      }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2763,6 +2781,12 @@ const BUILDERS = {
       line("vac-bar", 140, 520, [[0, 0], [156, 0]], { stroke: MUTED, strokeWidth: 6 }),
       line("vac-fill", 140, 520, [[0, 0], [117, 0]], { stroke: ACCENT, strokeWidth: 6 }),
       txt("vac-bar-l", 140, 532, "vacant 47d / 60d SLA", { fontSize: 11, color: ACCENT }),
+      // Eng manager stamp — clear of SRE pin caption.
+      rect("eng-mgr", 40, 360, 110, 28, "1 Eng mgr", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   venn: () => {
@@ -3199,6 +3223,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // 2k RPS claim stamp.
+      rect("rps2k", 800, 500, 100, 28, "2k RPS", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // One column per option, one row per question asked of both — a contrast only
@@ -3425,6 +3455,12 @@ const BUILDERS = {
       }),
       // Edge hit stamp — below edge-hit bar caption.
       rect("edge78", 240, 360, 120, 28, "edge hit 78%", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Prometheus scrape stamp.
+      rect("prom", 60, 520, 120, 28, "Prometheus", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
