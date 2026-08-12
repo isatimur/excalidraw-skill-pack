@@ -433,6 +433,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("sla-rev", 380, 404, "Review SLA: < 1 business day", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   er: () => {
