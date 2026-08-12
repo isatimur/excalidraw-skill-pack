@@ -466,12 +466,13 @@ const BUILDERS = {
       txt("own2", 60, 228, "Build · Eng", { fontSize: 13, color: MUTED }),
       txt("own3", 60, 288, "Ship · Ops", { fontSize: 13, color: MUTED }),
       rect("p1", 160, 160, 200, 34, "wireframes → tokens"),
-      rect("p2", 290, 220, 250, 34, "renderer + fixtures", { fill: "#fef3c7" }),
+      // Build runs past Ship's start — the slip is the argument, so the bars must overlap.
+      rect("p2", 290, 220, 300, 34, "renderer + fixtures", { fill: "#fef3c7" }),
       rect("p3", 470, 280, 200, 34, "docs + cutover", { fill: "#dcfce7", stroke: "#15803d" }),
       // Without a now-line a Gantt only says what the plan is, never whether it holds.
       line("today", 420, 132, [[0, 0], [0, 216]], { stroke: ACCENT, strokeWidth: 2 }),
       txt("today-l", 392, 112, "today", { fontSize: 13, color: ACCENT }),
-      txt("slip", 560, 248, "Build still open\nwhen Ship starts", { fontSize: 13, color: MUTED }),
+      txt("slip", 600, 248, "Build still open\nwhen Ship starts", { fontSize: 13, color: MUTED }),
       elbow(
         "dep",
         [
@@ -576,7 +577,7 @@ const BUILDERS = {
       txt("l2-l", 678, 200, "draft", { fontSize: 12, color: MUTED }),
       txt("l3-l", 360, 340, "ship", { fontSize: 12, color: MUTED }),
       txt("l4-l", 120, 200, "feedback", { fontSize: 12, color: MUTED }),
-      // Spokes land on station midlines — decorative stubs into empty air aren't a hub.
+      // Spokes land on every station — a hub that only touches half the loop is a lie.
       elbow(
         "spoke-cap",
         [
@@ -585,6 +586,15 @@ const BUILDERS = {
           [capture.x + capture.w + 8, capture.y + capture.h + 8],
           [capture.x + capture.w + 8, capture.y + capture.h / 2],
           [capture.x + capture.w + 4, capture.y + capture.h / 2],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      elbow(
+        "spoke-syn",
+        [
+          [hub.x + hub.w + 4, hub.y + hub.h / 2],
+          [synth.x - 8, hub.y + hub.h / 2],
+          [synth.x - 8, synth.y + synth.h + 4],
         ],
         { stroke: ACCENT, dashed: true }
       ),
@@ -599,8 +609,17 @@ const BUILDERS = {
         ],
         { stroke: ACCENT, dashed: true }
       ),
+      elbow(
+        "spoke-rev",
+        [
+          [hub.x - 4, hub.y + hub.h / 2],
+          [review.x + review.w + 8, hub.y + hub.h / 2],
+          [review.x + review.w + 8, review.y - 4],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
       txt("write-l", 300, 168, "write", { fontSize: 12, color: ACCENT }),
-      txt("read-l", 430, 280, "read", { fontSize: 12, color: ACCENT }),
+      txt("read-l", 430, 168, "read", { fontSize: 12, color: ACCENT }),
       txt("hub-note", 80, 380, "hub accumulates; the loop never starts from empty", {
         fontSize: 13,
         color: MUTED,

@@ -509,7 +509,7 @@
       "type": "rectangle",
       "x": 290,
       "y": 220,
-      "width": 250,
+      "width": 300,
       "height": 35,
       "angle": 0,
       "strokeColor": "#1e3a5f",
@@ -653,7 +653,7 @@
     {
       "id": "Xe9JjCC0PaFst3BOhBnq1",
       "type": "text",
-      "x": 560,
+      "x": 600,
       "y": 248,
       "width": 121.875,
       "height": 31.2,
@@ -808,7 +808,7 @@
     {
       "id": "O44YRnhLlEGKX8vRbakQx",
       "type": "text",
-      "x": 323.070068359375,
+      "x": 348.070068359375,
       "y": 225,
       "width": 183.85986328125,
       "height": 25,
