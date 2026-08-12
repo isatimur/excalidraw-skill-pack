@@ -508,6 +508,13 @@ const BUILDERS = {
       }),
       txt("deadline-l", 40, 496, "250ms budget", { fontSize: 11, color: ACCENT }),
       txt("headroom", 760, 480, "≈110ms headroom", { fontSize: 11, color: "#15803d" }),
+      // Warm-hit skip badge — the alternate path that avoids INSERT.
+      rect("warm-badge", 520, 180, 100, 32, "warm hit", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+        labelSize: 12,
+      }),
+      txt("warm-badge-l", 520, 160, "<40ms · no DB", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   state: () => {
@@ -1807,8 +1814,15 @@ const BUILDERS = {
         dashed: true,
         strokeWidth: 1,
       }),
-      txt("vacant-age", 310, 408, "open 47d", { fontSize: 11, color: ACCENT }),
+      txt("vacant-age", 480, 408, "open 47d", { fontSize: 11, color: ACCENT }),
       txt("plat-ic", 140, 444, "3 ICs · seat empty", { fontSize: 11, color: ACCENT }),
+      // SRE req #1 as a hiring card — next hire is a ticket, not only a caption.
+      rect("sre-card", 320, 400, 140, 40, "SRE req #1", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
+      txt("sre-card-l", 320, 448, "priority hire", { fontSize: 11, color: ACCENT }),
     ]);
   },
   venn: () => {
@@ -2389,6 +2403,13 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("schema-n", 430, 324, "BACKWARD", { fontSize: 11, color: MUTED }),
+      // ACL deny stamp on raw zone — analysts never touch Kafka.
+      rect("acl", 66, 300, 140, 36, "ACL deny", {
+        fill: "#fee2e2",
+        stroke: ACCENT,
+        labelSize: 13,
+      }),
+      txt("acl-l", 66, 344, "analysts blocked", { fontSize: 11, color: ACCENT }),
     ]);
   },
   "dp-integration": () => {
@@ -2822,6 +2843,12 @@ const BUILDERS = {
         stroke: ACCENT,
       }),
       txt("page-ev-l", at(2)[0] + 12, y(315) - 44, "page", { fontSize: 11, color: ACCENT }),
+      // Cross-under marker at R4 — the SLA win is a stamp on the reading.
+      ellipse("cross-mark", at(3)[0] - 8, y(200) - 8, 16, 16, "", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
+      }),
+      txt("cross-mark-l", at(3)[0] + 12, y(200) - 12, "under", { fontSize: 11, color: "#15803d" }),
     ]);
   },
   scatter: () => {
