@@ -525,6 +525,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("vol", 80, 386, "scale: ~50k users · ~2M orders/yr · avg 3.2 lines/order", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   timeline: () => {
@@ -586,6 +590,9 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Slip bar on Audit: risk isn't only a caption — it owns a span.
+      line("slip-h", 520, axisY - 70, [[0, 0], [160, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
+      txt("slip-l", 540, axisY - 88, "±6wk slip risk", { fontSize: 12, color: ACCENT }),
     ]);
   },
   gantt: () => {
@@ -1444,6 +1451,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("fail", 60, 352, "failover: App AZ-a · Postgres primary AZ-b", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   "it-state": () => {
@@ -1857,6 +1868,10 @@ const BUILDERS = {
       txt("out", 500, 300, "accent = last session", { fontSize: 12, color: MUTED }),
       txt("n", 140, baseline + 40, "n = 48 sessions · same cohort", { fontSize: 12, color: MUTED }),
       txt("range", 140, baseline + 64, "practice range: 2–40 hours · no weekend outliers", {
+        fontSize: 12,
+        color: MUTED,
+      }),
+      txt("ci95", 500, 340, "95% CI on slope excludes 0", {
         fontSize: 12,
         color: MUTED,
       }),
