@@ -330,6 +330,10 @@ const BUILDERS = {
         { stroke: MUTED, dashed: true }
       ),
       txt("cdn-l", 168, 84, "cache miss → API", { fontSize: 11, color: MUTED }),
+      // Queue depth bar — depth < 100 is a fill, not only a caption.
+      line("qbar", 690, 280, [[0, 0], [80, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("qfill", 690, 280, [[0, 0], [24, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("qbar-l", 690, 288, "depth 30/100", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -754,7 +758,7 @@ const BUILDERS = {
       ...bracket("ph3", 520, 680, "harden · 4mo", axisY + 56),
       // Future stub past Audit: the axis claims a destination, not an open end.
       line("next", 760, axisY - 6, [[0, 0], [0, 12]], { strokeWidth: 1, stroke: MUTED }),
-      txt("next-l", 740, axisY - 28, "v2?", { fontSize: 12, color: MUTED }),
+      // Destination diamond replaces the old "v2?" caption.
       txt("story", 120, 120, "from shippable MVP to a taste gate that blocks bad diagrams", {
         fontSize: 13,
         color: MUTED,
@@ -806,6 +810,9 @@ const BUILDERS = {
       txt("g1-l", 498, 84, "R1", { fontSize: 10, color: "#15803d" }),
       txt("g2-l", 528, 84, "R2", { fontSize: 10, color: "#15803d" }),
       line("g-rail", 548, 109, [[0, 0], [32, 0]], { stroke: "#15803d", strokeWidth: 1 }),
+      // v2 stub past Audit — destination is a diamond, not only "v2?" text.
+      diamond("v2", 740, 220, 40, 36, ""),
+      txt("v2-l", 780, 228, "v2 pack", { fontSize: 11, color: MUTED }),
     ]);
   },
   gantt: () => {
@@ -883,6 +890,18 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("hard-cut-l", 760, 112, "W10 hard", { fontSize: 11, color: ACCENT }),
+      // Build→Ship dependency elbow — FS isn't only "blocked on Build" text.
+      elbow(
+        "ship-dep",
+        [
+          [590, 254],
+          [590, 270],
+          [470, 270],
+          [470, 280],
+        ],
+        { stroke: ACCENT, dashed: true }
+      ),
+      txt("ship-dep-l", 500, 258, "FS", { fontSize: 11, color: ACCENT }),
     ]);
   },
   swimlane: () => {
@@ -1470,6 +1489,10 @@ const BUILDERS = {
       ),
       txt("n5-l", 690, 260, "miss", { fontSize: 11, color: ACCENT }),
       txt("origin-n", 720, 324, "DB read", { fontSize: 11, color: MUTED }),
+      // Hit-rate bar under Cache — 93% is a fill level, not only a caption.
+      line("hit-bar", 460, 360, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("hit-fill", 460, 360, [[0, 0], [186, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("hit-bar-l", 460, 372, "hit rate 93%", { fontSize: 11, color: ACCENT }),
     ]);
   },
   medallion: () => {
