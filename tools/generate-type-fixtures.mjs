@@ -370,6 +370,7 @@ const BUILDERS = {
     const draft = { id: "draft", x: 100, y: 160, w: 140, h: 56 };
     const review = { id: "review", x: 380, y: 160, w: 140, h: 56 };
     const live = { id: "live", x: 660, y: 160, w: 140, h: 56 };
+    const archived = { id: "archived", x: 660, y: 300, w: 140, h: 48 };
     return doc("State machine — allowed transitions", [
       ellipse("entry", 40, 172, 28, 28, "", { fill: INK, stroke: INK }),
       arrow("t0", { id: "entry", x: 40, y: 172, w: 28, h: 28 }, draft, "", {
@@ -382,10 +383,17 @@ const BUILDERS = {
         fill: "#dcfce7",
         stroke: "#15803d",
       }),
+      rect(archived.id, archived.x, archived.y, archived.w, archived.h, "Archived", {
+        fill: "#e2e8f0",
+        stroke: MUTED,
+        labelSize: 15,
+      }),
       arrow("t1", draft, review, ""),
       arrow("t2", review, live, ""),
+      arrow("t4", live, archived, "", { from: "bottom", to: "top" }),
       txt("t1-l", 268, 138, "submit", { fontSize: 14, color: MUTED }),
       txt("t2-l", 548, 138, "approve", { fontSize: 14, color: MUTED }),
+      txt("t4-l", 710, 248, "retire", { fontSize: 13, color: MUTED }),
       // Rejection is the edge that makes it a machine, not a pipeline.
       elbow(
         "t3",
@@ -398,7 +406,7 @@ const BUILDERS = {
         { stroke: ACCENT }
       ),
       txt("t3-l", 220, 312, "reject", { fontSize: 14, color: ACCENT }),
-      txt("rule", 380, 340, "no Draft → Live: every ship passes Review", {
+      txt("rule", 100, 380, "no Draft → Live: every ship passes Review", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -1298,6 +1306,8 @@ const BUILDERS = {
       line(id, 140, y(ms), [[0, 0], [480, 0]], { strokeWidth: 1, stroke: GRID }),
       txt(`${id}-l`, 74, y(ms) - 8, `${ms}ms`, { fontSize: 13, color: MUTED }),
     ];
+    // Rewrite lands between reading 3 and 4 — the claim is "after this, under SLA".
+    const rewriteX = 160 + 3.5 * 92;
     return doc("Line chart — trend over time", [
       ...tick("t200", 200),
       ...tick("t400", 400),
@@ -1314,6 +1324,12 @@ const BUILDERS = {
         const [px, py] = at(i);
         return dot(`s${i}`, px, py, 5, { fill: ACCENT, stroke: ACCENT });
       }),
+      line("rewrite", rewriteX, 150, [[0, 0], [0, baseline - 150]], {
+        stroke: MUTED,
+        dashed: true,
+        strokeWidth: 1,
+      }),
+      txt("rewrite-l", rewriteX - 28, 132, "index rewrite", { fontSize: 12, color: MUTED }),
       txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
       txt("note", 160, baseline + 40, "crossed under SLA after the index rewrite", {
         fontSize: 13,
