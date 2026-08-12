@@ -1607,6 +1607,10 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("taste-note", 520, 374, "Taste is the product differentiator this quarter", {
+        fontSize: 12,
+        color: ACCENT,
+      }),
     ]);
   },
 };
