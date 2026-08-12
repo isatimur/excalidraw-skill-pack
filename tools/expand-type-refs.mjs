@@ -151,7 +151,7 @@ const META = {
     layout: "Top-down hierarchy. Single reporting tree per diagram.",
     pattern: "Rectangles for roles; solid downward arrows for reporting, dashed for the routing the tree hides (who a team actually asks).",
     routing: "Center children under parent. Label every dashed edge with the ask.",
-    avoid: "Matrix reporting without annotation; a plain tree when the point was routing.",
+    avoid: "Matrix reporting without annotation; a plain tree when the point was routing; Product with no leaf while Eng has one.",
     budget: "≤10 nodes.",
   },
   venn: {

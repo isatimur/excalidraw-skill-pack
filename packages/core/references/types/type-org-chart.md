@@ -12,7 +12,7 @@ Rectangles for roles; solid downward arrows for reporting, dashed for the routin
 Center children under parent. Label every dashed edge with the ask.
 
 ## Anti-patterns
-Matrix reporting without annotation; a plain tree when the point was routing.
+Matrix reporting without annotation; a plain tree when the point was routing; Product with no leaf while Eng has one.
 
 ## Budget
 ≤10 nodes.

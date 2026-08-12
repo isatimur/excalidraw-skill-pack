@@ -206,7 +206,7 @@
         ],
         [
           0,
-          320
+          300
         ]
       ],
       "lastCommittedPoint": null,
@@ -249,7 +249,7 @@
         ],
         [
           0,
-          320
+          300
         ]
       ],
       "lastCommittedPoint": null,
@@ -292,7 +292,7 @@
         ],
         [
           0,
-          320
+          300
         ]
       ],
       "lastCommittedPoint": null,
@@ -335,7 +335,7 @@
         ],
         [
           0,
-          320
+          300
         ]
       ],
       "lastCommittedPoint": null,
@@ -834,7 +834,7 @@
       "id": "_2SxtiWZnGb_EWnCsfCQR",
       "type": "text",
       "x": 100,
-      "y": 500,
+      "y": 490,
       "width": 304.6875,
       "height": 15.6,
       "angle": 0,

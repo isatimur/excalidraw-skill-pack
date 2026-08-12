@@ -329,7 +329,7 @@ const BUILDERS = {
     // free text — bound labels land on the line and, at Cascadia width, collide.
     // Cache miss is the argument: the write still hits DB.
     const cx = { client: 120, api: 320, cache: 520, db: 720 };
-    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 320]], { dashed: true });
+    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 300]], { dashed: true });
     return doc("Sequence — messages over time", [
       rect("client", cx.client - 60, 110, 120, 48, "Client"),
       rect("api", cx.api - 60, 110, 120, 48, "API"),
@@ -360,7 +360,7 @@ const BUILDERS = {
         stroke: MUTED,
       }),
       txt("m6-l", cx.client + 28, 428, "201 Created", { fontSize: 13, color: MUTED }),
-      txt("budget", 100, 500, "cache miss forces the write · happy path", {
+      txt("budget", 100, 490, "cache miss forces the write · happy path", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -902,11 +902,12 @@ const BUILDERS = {
   // Solid lines are the reporting tree; the dashed one is the routing the title
   // promises — who Product actually asks, which the tree alone never shows.
   "org-chart": () => {
-    const ceo = { id: "ceo", x: 334, y: 100, w: 132, h: 48 };
-    const eng = { id: "eng", x: 140, y: 220, w: 156, h: 48 };
-    const prod = { id: "prod", x: 504, y: 220, w: 156, h: 48 };
+    const ceo = { id: "ceo", x: 334, y: 90, w: 132, h: 48 };
+    const eng = { id: "eng", x: 140, y: 210, w: 156, h: 48 };
+    const prod = { id: "prod", x: 504, y: 210, w: 156, h: 48 };
     const platform = { id: "platform", x: 140, y: 340, w: 156, h: 48 };
-    const railY = 184;
+    const design = { id: "design", x: 504, y: 340, w: 156, h: 48 };
+    const railY = 174;
     return doc("Org chart — ownership + routing", [
       rect(ceo.id, ceo.x, ceo.y, ceo.w, ceo.h, "CEO"),
       rect(eng.id, eng.x, eng.y, eng.w, eng.h, "Engineering\n12 people"),
@@ -914,6 +915,10 @@ const BUILDERS = {
       rect(platform.id, platform.x, platform.y, platform.w, platform.h, "Platform\n3 people", {
         fill: "#fef3c7",
         stroke: ACCENT,
+      }),
+      rect(design.id, design.x, design.y, design.w, design.h, "Design\n2 people", {
+        fill: "#e2e8f0",
+        labelSize: 15,
       }),
       line("trunk", ceo.x + ceo.w / 2, ceo.y + ceo.h, [[0, 0], [0, railY - (ceo.y + ceo.h)]], {
         stroke: INK,
@@ -934,20 +939,20 @@ const BUILDERS = {
         [prod.x + prod.w / 2, prod.y - 8],
       ]),
       arrow("o3", eng, platform, "", { from: "bottom", to: "top" }),
+      arrow("o4", prod, design, "", { from: "bottom", to: "top" }),
       elbow(
         "route",
         [
-          [prod.x + prod.w / 2, prod.y + prod.h + 8],
-          [prod.x + prod.w / 2, platform.y + platform.h / 2],
-          [platform.x + platform.w + 8, platform.y + platform.h / 2],
+          [design.x - 8, design.y + design.h / 2],
+          [platform.x + platform.w + 8, design.y + design.h / 2],
         ],
         { dashed: true, stroke: MUTED }
       ),
-      txt("route-l", 360, platform.y + platform.h / 2 + 14, "asks for capacity", {
+      txt("route-l", 320, design.y + design.h / 2 - 18, "asks for capacity", {
         fontSize: 13,
         color: MUTED,
       }),
-      txt("note", 360, 380, "solid = reports to · dashed = who they actually ask", {
+      txt("note", 140, 420, "solid = reports to · dashed = who they actually ask", {
         fontSize: 12,
         color: MUTED,
       }),
