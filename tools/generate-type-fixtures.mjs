@@ -1395,6 +1395,10 @@ const BUILDERS = {
       cell("c32", 450, 282, "write", true),
       txt("leg", 100, 350, "orange = write · white = read-only", { fontSize: 13, color: MUTED }),
       txt("claim", 100, 380, "Analyst never touches PII write path", { fontSize: 13, color: ACCENT }),
+      txt("deny", 100, 404, "deny-by-default · grants are explicit cells", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   bar: () => {
