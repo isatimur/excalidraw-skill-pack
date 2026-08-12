@@ -400,12 +400,20 @@ const BUILDERS = {
     const user = { id: "user", x: 80, y: 140, w: 150, h: 72 };
     const order = { id: "order", x: 370, y: 140, w: 150, h: 72 };
     const item = { id: "item", x: 660, y: 140, w: 150, h: 72 };
+    // Crow's foot on the N side — the mark that makes ER legible without reading "1:N".
+    const foot = (id, x, cy) => [
+      line(`${id}-a`, x, cy - 10, [[0, 0], [14, 10]], { stroke: INK, strokeWidth: 2 }),
+      line(`${id}-b`, x, cy, [[0, 0], [14, 0]], { stroke: INK, strokeWidth: 2 }),
+      line(`${id}-c`, x, cy + 10, [[0, 0], [14, -10]], { stroke: INK, strokeWidth: 2 }),
+    ];
     return doc("ER — entities + cardinality", [
       rect(user.id, user.x, user.y, user.w, user.h, "User\nid, email"),
       rect(order.id, order.x, order.y, order.w, order.h, "Order\nid, total"),
       rect(item.id, item.x, item.y, item.w, item.h, "LineItem\nsku, qty"),
-      arrow("r1", user, order, ""),
-      arrow("r2", order, item, ""),
+      arrow("r1", user, order, "", { standoff: 18 }),
+      arrow("r2", order, item, "", { standoff: 18 }),
+      ...foot("f1", order.x - 18, order.y + order.h / 2),
+      ...foot("f2", item.x - 18, item.y + item.h / 2),
       txt("r1-l", 278, 118, "1:N", { fontSize: 14, color: MUTED }),
       txt("r2-l", 568, 118, "1:N", { fontSize: 14, color: MUTED }),
     ]);
@@ -1034,8 +1042,11 @@ const BUILDERS = {
       }),
       hexagon("before", before, { dashed: true, strokeWidth: 2 }),
       ...labels.map((label, i) => {
-        const [x, y] = vertex(152, i);
-        return txt(`ax${i}`, x - label.length * 4, y - 8, label, { fontSize: 13, color: MUTED });
+        const [x, y] = vertex(148, i);
+        // Anchor each label outside its vertex so "Quality"/"Depth" never sit on the ring.
+        const ox = i === 0 ? -18 : i === 1 || i === 2 ? 8 : i === 3 ? -18 : -56;
+        const oy = i === 0 ? -22 : i === 3 ? 8 : -8;
+        return txt(`ax${i}`, x + ox, y + oy, label, { fontSize: 14, color: MUTED });
       }),
       line("key-now", 520, 214, [[0, 0], [28, 0]], { stroke: ACCENT, strokeWidth: 3 }),
       txt("key-now-label", 558, 206, "This quarter", { fontSize: 13, color: INK }),

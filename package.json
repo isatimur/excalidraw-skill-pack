@@ -40,6 +40,7 @@
     "build-type-specimen": "node tools/build-type-specimen.mjs",
     "generate-taste-vs-stream": "node tools/generate-taste-vs-stream-fixture.mjs",
     "generate-why-editable": "node tools/generate-why-editable-fixture.mjs",
+    "check-type-labels": "node tools/check-type-fixture-labels.mjs",
     "expand-type-refs": "node tools/expand-type-refs.mjs"
   },
   "devDependencies": {
