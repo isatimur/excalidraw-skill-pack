@@ -699,6 +699,12 @@ const BUILDERS = {
         stroke: ACCENT,
         labelSize: 12,
       }),
+      // API busy stamp.
+      rect("api-busy", 320, 640, 100, 28, "API busy", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   state: () => {
@@ -1032,6 +1038,12 @@ const BUILDERS = {
       }),
       // User→Order cardinality stamp — clear of scale caption.
       rect("u2o", 200, 540, 140, 28, "1:N orders", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Item→Product stamp.
+      rect("i2p", 660, 520, 140, 28, "N:1 Product", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -2155,6 +2167,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Postgres infra stamp — clear of rule captions.
+      rect("pg-inf", 700, 640, 120, 28, "Postgres", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   // Boundary labels sit at the top-left edge: a centred container label lands on
@@ -2364,6 +2382,12 @@ const BUILDERS = {
         stroke: MUTED,
         labelSize: 12,
       }),
+      // Gateway edge stamp — clear of Client/RPS captions.
+      rect("gw-edge", 220, 520, 120, 28, "Gateway", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
     ]);
   },
   medallion: () => {
@@ -2455,6 +2479,12 @@ const BUILDERS = {
       txt("fresh-bar-l", 600, 472, "Gold ≤ T+1", { fontSize: 11, color: ACCENT }),
       // Bronze ingest lag chip.
       rect("ing-lag", 60, 500, 120, 28, "lag p95 3m", {
+        fill: PAPER,
+        stroke: MUTED,
+        labelSize: 12,
+      }),
+      // Silver keys stamp.
+      rect("sil-keys", 330, 500, 120, 28, "~2M keys", {
         fill: PAPER,
         stroke: MUTED,
         labelSize: 12,
@@ -3740,6 +3770,12 @@ const BUILDERS = {
       rect("throat", 440, 400, 140, 28, "single throat", {
         fill: "#fed7aa",
         stroke: ACCENT,
+        labelSize: 12,
+      }),
+      // SaaS CRM stamp.
+      rect("saas-ok", 780, 320, 120, 28, "SaaS CRM", {
+        fill: "#dcfce7",
+        stroke: "#15803d",
         labelSize: 12,
       }),
     ]);
