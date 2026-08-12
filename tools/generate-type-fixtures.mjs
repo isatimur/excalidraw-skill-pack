@@ -828,6 +828,10 @@ const BUILDERS = {
       // v2 stub past Audit — destination is a diamond, not only "v2?" text.
       diamond("v2", 740, 220, 40, 36, ""),
       txt("v2-l", 780, 228, "v2 pack", { fontSize: 11, color: MUTED }),
+      // Active months fill — 19 of 22 is a bar under the axis story.
+      line("act-bar", 120, axisY + 190, [[0, 0], [220, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("act-fill", 120, axisY + 190, [[0, 0], [190, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("act-bar-l", 120, axisY + 202, "19mo active / 22mo span", { fontSize: 11, color: ACCENT }),
     ]);
   },
   gantt: () => {
@@ -1756,6 +1760,10 @@ const BUILDERS = {
         labelSize: 13,
       }),
       txt("install-l", 900, 328, "meta · omitted", { fontSize: 11, color: MUTED }),
+      // LOC bar across L1 — ~4.2k is a fill.
+      line("loc-bar", 80, 70, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("loc-fill", 80, 70, [[0, 0], [168, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      txt("loc-bar-l", 80, 82, "~4.2k LOC L1", { fontSize: 11, color: MUTED }),
     ]);
   },
   // Solid lines are the reporting tree; the dashed one is the routing the title
@@ -2784,6 +2792,10 @@ const BUILDERS = {
         strokeWidth: 1,
       }),
       txt("tgt26-l", 590, 112, "2026 120k", { fontSize: 11, color: MUTED }),
+      // YTD share of Q4 — 38% is a fill beside the callout.
+      line("share-bar", 550, 200, [[0, 0], [100, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("share-fill", 550, 200, [[0, 0], [38, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("share-bar-l", 550, 212, "Q4 38% YTD", { fontSize: 11, color: ACCENT }),
     ]);
   },
   line: () => {
@@ -2915,6 +2927,10 @@ const BUILDERS = {
         stroke: "#15803d",
       }),
       txt("cross-mark-l", at(3)[0] + 12, y(200) - 12, "under", { fontSize: 11, color: "#15803d" }),
+      // Improvement fill — −64.5% from R1 is a bar, not only a caption.
+      line("imp-bar", 160, baseline + 190, [[0, 0], [200, 0]], { stroke: MUTED, strokeWidth: 6 }),
+      line("imp-fill", 160, baseline + 190, [[0, 0], [129, 0]], { stroke: ACCENT, strokeWidth: 6 }),
+      txt("imp-bar-l", 160, baseline + 202, "−64.5% R1→R6", { fontSize: 11, color: ACCENT }),
     ]);
   },
   scatter: () => {
