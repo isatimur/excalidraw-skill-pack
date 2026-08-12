@@ -450,44 +450,66 @@ const BUILDERS = {
       ]),
       txt("t0", 112, axisY + 40, "2024", { fontSize: 13, color: MUTED }),
       txt("t1", 710, axisY + 40, "2026", { fontSize: 13, color: MUTED }),
+      line("now", 520, axisY + 48, [[0, 0], [0, 28]], { stroke: ACCENT, strokeWidth: 1 }),
+      txt("now-l", 500, axisY + 78, "now", { fontSize: 12, color: ACCENT }),
+      txt("story", 120, 120, "from shippable MVP to a taste gate that blocks bad diagrams", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   gantt: () => {
     const week = (id, x, label) => [
-      line(id, x, 140, [[0, 0], [0, 180]], { dashed: true, strokeWidth: 1 }),
+      line(id, x, 140, [[0, 0], [0, 200]], { dashed: true, strokeWidth: 1 }),
       txt(`${id}-l`, x - 12, 118, label, { fontSize: 13, color: MUTED }),
     ];
     return doc("Gantt — phases on a timeline", [
-      ...week("w1", 200, "W1"),
-      ...week("w3", 340, "W3"),
-      ...week("w5", 480, "W5"),
-      ...week("w7", 620, "W7"),
-      rect("p1", 140, 160, 200, 34, "Design"),
-      rect("p2", 270, 220, 250, 34, "Build", { fill: "#fef3c7" }),
-      rect("p3", 450, 280, 190, 34, "Ship", { fill: "#dcfce7", stroke: "#15803d" }),
+      ...week("w1", 220, "W1"),
+      ...week("w3", 360, "W3"),
+      ...week("w5", 500, "W5"),
+      ...week("w7", 640, "W7"),
+      txt("own1", 60, 168, "Design · Sam", { fontSize: 13, color: MUTED }),
+      txt("own2", 60, 228, "Build · Eng", { fontSize: 13, color: MUTED }),
+      txt("own3", 60, 288, "Ship · Ops", { fontSize: 13, color: MUTED }),
+      rect("p1", 160, 160, 200, 34, "wireframes → tokens"),
+      rect("p2", 290, 220, 250, 34, "renderer + fixtures", { fill: "#fef3c7" }),
+      rect("p3", 470, 280, 200, 34, "docs + cutover", { fill: "#dcfce7", stroke: "#15803d" }),
       // Without a now-line a Gantt only says what the plan is, never whether it holds.
-      line("today", 400, 132, [[0, 0], [0, 196]], { stroke: ACCENT, strokeWidth: 2 }),
-      txt("today-l", 372, 112, "today", { fontSize: 13, color: ACCENT }),
-      txt("slip", 560, 248, "Build runs past\nthe Ship start", { fontSize: 13, color: MUTED }),
+      line("today", 420, 132, [[0, 0], [0, 216]], { stroke: ACCENT, strokeWidth: 2 }),
+      txt("today-l", 392, 112, "today", { fontSize: 13, color: ACCENT }),
+      txt("slip", 560, 248, "Build still open\nwhen Ship starts", { fontSize: 13, color: MUTED }),
+      elbow(
+        "dep",
+        [
+          [360, 194],
+          [360, 212],
+        ],
+        { stroke: MUTED }
+      ),
+      txt("ms", 640, 320, "go-live W8", { fontSize: 13, color: "#15803d" }),
     ]);
   },
   swimlane: () => {
     // Orthogonal elbows only — a diagonal handoff through empty lane space
     // reads as a routing bug, not a cross-functional story.
-    const spec = { id: "spec", x: 220, y: 140, w: 130, h: 48 };
-    const impl = { id: "impl", x: 420, y: 270, w: 140, h: 48 };
+    const brief = { id: "brief", x: 200, y: 140, w: 120, h: 48 };
+    const spec = { id: "spec", x: 360, y: 140, w: 130, h: 48 };
+    const impl = { id: "impl", x: 420, y: 270, w: 150, h: 48 };
     const signoff = { id: "signoff", x: 650, y: 140, w: 140, h: 48 };
     return doc("Swimlane — cross-functional handoffs", [
       zone("lane1", 180, 110, 660, 100, ""),
       zone("lane2", 180, 240, 660, 100, ""),
       txt("lane1-l", 60, 150, "Product", { fontSize: 14, color: MUTED }),
       txt("lane2-l", 48, 280, "Engineering", { fontSize: 14, color: MUTED }),
+      rect(brief.id, brief.x, brief.y, brief.w, brief.h, "Brief"),
       rect(spec.id, spec.x, spec.y, spec.w, spec.h, "Spec"),
       rect(impl.id, impl.x, impl.y, impl.w, impl.h, "Implement"),
       rect(signoff.id, signoff.x, signoff.y, signoff.w, signoff.h, "Sign-off", {
         fill: "#dcfce7",
         stroke: "#15803d",
       }),
+      arrow("s0", brief, spec, "", { from: "right", to: "left" }),
+      txt("s0-l", 312, 118, "scope", { fontSize: 13, color: MUTED }),
       elbow(
         "h1",
         [
@@ -507,7 +529,8 @@ const BUILDERS = {
         ],
         {}
       ),
-      txt("h2-l", signoff.x - 40, 252, "review", { fontSize: 13, color: MUTED }),
+      txt("h2-l", signoff.x - 48, 252, "PR review", { fontSize: 13, color: MUTED }),
+      txt("sla", 650, 280, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -876,6 +899,10 @@ const BUILDERS = {
           }),
         ];
       }),
+      txt("verdict", 250, 400, "editable wins on every question that matters after day one", {
+        fontSize: 13,
+        color: "#15803d",
+      }),
     ]);
   },
   // The boundary earns its keep by leaving something out: browser and CDN sit
@@ -898,6 +925,11 @@ const BUILDERS = {
       arrow("hl2", cdn, app, ""),
       arrow("hl3", app, db, ""),
       arrow("hl4", app, cache, ""),
+      txt("hl1-l", 168, 186, "HTTPS", { fontSize: 13, color: MUTED }),
+      txt("hl2-l", 348, 186, "edge cache", { fontSize: 13, color: MUTED }),
+      txt("hl3-l", 580, 148, "SQL", { fontSize: 13, color: MUTED }),
+      txt("hl4-l", 580, 268, "GET", { fontSize: 13, color: MUTED }),
+      txt("note", 60, 280, "origin stays inside; edge stays out", { fontSize: 13, color: MUTED }),
     ]);
   },
   "it-state": () => {
@@ -953,18 +985,24 @@ const BUILDERS = {
     ];
     return doc("DP integration — sources → core → consumers", [
       ...sources.map((s) => rect(s.id, s.x, s.y, s.w, s.h, s.label)),
-      rect(core.id, core.x, core.y, core.w, core.h, "Lakehouse", { fill: "#fef3c7", stroke: ACCENT }),
+      rect(core.id, core.x, core.y, core.w, core.h, "Lakehouse\nDelta + Unity", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
       ...consumers.map((c) => rect(c.id, c.x, c.y, c.w, c.h, c.label)),
       ...sources.map((s, i) => arrow(`in${i}`, s, core, "")),
       ...consumers.map((c, i) => arrow(`out${i}`, core, c, "")),
+      txt("in-l", 250, 112, "CDC / batch", { fontSize: 12, color: MUTED }),
+      txt("out-l", 520, 120, "SQL / features", { fontSize: 12, color: MUTED }),
+      txt("core-note", 330, 280, "one write path; many readers", { fontSize: 13, color: ACCENT }),
     ]);
   },
   "dp-security-matrix": () => {
     const cell = (id, x, y, label, write) =>
       rect(id, x, y, 130, 44, label, write ? { fill: "#fed7aa", stroke: ACCENT } : { fill: PAPER, stroke: MUTED });
     return doc("DP security matrix — role × resource", [
-      txt("h1", 300, 128, "Dataset A", { fontSize: 14, color: MUTED }),
-      txt("h2", 470, 128, "Dataset B", { fontSize: 14, color: MUTED }),
+      txt("h1", 300, 128, "orders_pii", { fontSize: 14, color: MUTED }),
+      txt("h2", 470, 128, "agg_revenue", { fontSize: 14, color: MUTED }),
       line("h-rule", 100, 152, [[0, 0], [500, 0]], { strokeWidth: 1 }),
       line("v-rule", 280, 152, [[0, 0], [0, 168]], { strokeWidth: 1 }),
       txt("r1", 110, 180, "Analyst", { fontSize: 15 }),
@@ -976,6 +1014,8 @@ const BUILDERS = {
       cell("c22", 450, 224, "read", false),
       cell("c31", 300, 282, "write", true),
       cell("c32", 450, 282, "write", true),
+      txt("leg", 100, 350, "orange = write · white = read-only", { fontSize: 13, color: MUTED }),
+      txt("claim", 300, 350, "Analyst never touches PII write path", { fontSize: 13, color: ACCENT }),
     ]);
   },
   bar: () => {
@@ -1008,6 +1048,7 @@ const BUILDERS = {
       ...bar("b3", 380, 55, "Q3"),
       ...bar("b4", 480, 101, "Q4", true),
       txt("callout", 466, 100, "record quarter", { fontSize: 14, color: ACCENT }),
+      txt("yoy", 180, baseline + 40, "+30% YoY · theme pack launch in Q4", { fontSize: 13, color: MUTED }),
     ]);
   },
   line: () => {
@@ -1028,12 +1069,19 @@ const BUILDERS = {
       txt("y-unit", 74, 116, "p99 latency", { fontSize: 13, color: MUTED }),
       txt("x0", 146, baseline + 12, "2024", { fontSize: 13, color: MUTED }),
       txt("x1", 570, baseline + 12, "2026", { fontSize: 13, color: MUTED }),
+      // SLA threshold: the chart's claim is crossing under, not just falling.
+      line("sla", 140, y(200), [[0, 0], [480, 0]], { stroke: ACCENT, dashed: true, strokeWidth: 1 }),
+      txt("sla-l", 630, y(200) - 8, "SLA 200ms", { fontSize: 12, color: ACCENT }),
       poly("series", readings.map((_, i) => at(i)), { stroke: ACCENT, open: true }),
       ...readings.map((_, i) => {
         const [px, py] = at(i);
         return dot(`s${i}`, px, py, 5, { fill: ACCENT, stroke: ACCENT });
       }),
       txt("callout", 634, y(142) - 10, "142ms", { fontSize: 15, color: ACCENT }),
+      txt("note", 160, baseline + 40, "crossed under SLA after the index rewrite", {
+        fontSize: 13,
+        color: MUTED,
+      }),
     ]);
   },
   scatter: () => {
