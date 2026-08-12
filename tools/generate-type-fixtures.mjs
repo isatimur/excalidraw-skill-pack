@@ -994,6 +994,10 @@ const BUILDERS = {
         fontSize: 12,
         color: ACCENT,
       }),
+      txt("last", 580, 380, "last run: green · 31 min", {
+        fontSize: 12,
+        color: "#15803d",
+      }),
     ]);
   },
   // Equal widths, because tapering them says "pyramid". The one-way arrow is the
@@ -1155,6 +1159,7 @@ const BUILDERS = {
         { stroke: ACCENT, dashed: true }
       ),
       txt("m-rej-l", 200, 432, "DQ fail → Bronze re-ingest", { fontSize: 12, color: ACCENT }),
+      txt("looker", 600, 432, "Looker workspace: BI only", { fontSize: 12, color: MUTED }),
     ]);
   },
   // Depth is the grammar: a two-level fork is an org chart without the routing.
