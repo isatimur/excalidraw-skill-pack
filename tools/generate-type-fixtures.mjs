@@ -296,6 +296,10 @@ const BUILDERS = {
       txt("az", 40, 352, "API AZ-a · Postgres AZ-b · Worker AZ-a", { fontSize: 12, color: MUTED }),
       // Data pocket callout sits right of Postgres — not on its bound label.
       txt("data-l", 690, 128, "data subnet", { fontSize: 12, color: MUTED }),
+      txt("slo-a", 40, 376, "SLO: API p99 < 80ms · Worker lag < 30s", {
+        fontSize: 12,
+        color: MUTED,
+      }),
     ]);
   },
   // Shapes are declared before any arrow that binds to them: Excalidraw resolves
@@ -1502,6 +1506,10 @@ const BUILDERS = {
       txt("score", 250, 548, "6/6 questions favor editable after day one", {
         fontSize: 12,
         color: "#15803d",
+      }),
+      txt("cost", 250, 572, "regen cost: static ≈ hours · editable ≈ minutes", {
+        fontSize: 12,
+        color: MUTED,
       }),
     ]);
   },
