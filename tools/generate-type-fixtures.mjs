@@ -784,6 +784,7 @@ const BUILDERS = {
       txt("overlap-g", 420, 200, "overlap W4–W5", { fontSize: 11, color: ACCENT }),
       txt("ftes", 60, 340, "FTEs: Sam 1 · Eng 3 · Ops 1", { fontSize: 11, color: MUTED }),
       txt("dep-n", 360, 180, "FS: Design → Build", { fontSize: 11, color: MUTED }),
+      txt("ship-own", 470, 320, "Ops owns cutover", { fontSize: 11, color: MUTED }),
     ]);
   },
   swimlane: () => {
@@ -868,6 +869,7 @@ const BUILDERS = {
       txt("green", 700, 188, "last green: 09:14", { fontSize: 11, color: "#15803d" }),
       txt("handoff-ms", 360, 200, "handoff < 15m", { fontSize: 11, color: MUTED }),
       txt("scope-n", 312, 100, "scope locked", { fontSize: 11, color: MUTED }),
+      txt("test-n", 530, 248, "e2e suite", { fontSize: 11, color: MUTED }),
     ]);
   },
   quadrant: () => {
@@ -1536,6 +1538,7 @@ const BUILDERS = {
       }),
       txt("sre-pin", 140, 320, "SRE req #1", { fontSize: 11, color: ACCENT }),
       txt("design-ask", 680, 360, "Design → Platform weekly", { fontSize: 11, color: MUTED }),
+      txt("ceo-span", 480, 100, "span=2", { fontSize: 11, color: MUTED }),
     ]);
   },
   venn: () => {
@@ -1576,6 +1579,7 @@ const BUILDERS = {
         fontSize: 11,
         color: ACCENT,
       }),
+      txt("lens-n", 520, 394, "= product set", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Tiers are trapezoids, not stacked bars: the widening is what says the base
@@ -1636,6 +1640,7 @@ const BUILDERS = {
       }),
       // Width cue: Strategy apex is a point — the band count is the argument.
       txt("width", 520, 370, "base : apex ≈ 60×", { fontSize: 11, color: MUTED }),
+      txt("bets", 440, 148, "Taste · Reach", { fontSize: 11, color: ACCENT }),
     ]);
   },
   evidence: () => {
@@ -2001,6 +2006,7 @@ const BUILDERS = {
       txt("vol-df", 90, 268, "~40k msg/min", { fontSize: 11, color: MUTED }),
       txt("dlq-n", 268, 368, "DLQ depth < 20", { fontSize: 11, color: ACCENT }),
       txt("mask-n", 430, 248, "hash email+phone", { fontSize: 11, color: MUTED }),
+      txt("wh-n", 566, 268, "Snowflake", { fontSize: 11, color: MUTED }),
     ]);
   },
   "dp-integration": () => {
