@@ -479,6 +479,19 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      // Soft withdraw: Live can return to Draft only via change ticket.
+      elbow(
+        "t5",
+        [
+          [live.x + live.w + 8, live.y + live.h / 2],
+          [820, live.y + live.h / 2],
+          [820, 380],
+          [draft.x + draft.w / 2, 380],
+          [draft.x + draft.w / 2, draft.y + draft.h + 8],
+        ],
+        { stroke: MUTED, dashed: true }
+      ),
+      txt("t5-l", 740, 360, "change ticket", { fontSize: 12, color: MUTED }),
     ]);
   },
   er: () => {
@@ -2031,6 +2044,10 @@ const BUILDERS = {
       txt("taste-note", 520, 400, "Taste is the product differentiator this quarter", {
         fontSize: 12,
         color: ACCENT,
+      }),
+      txt("scores", 520, 424, "now: Sp112 Q94 C60 R100 D52 T80", {
+        fontSize: 11,
+        color: MUTED,
       }),
     ]);
   },
