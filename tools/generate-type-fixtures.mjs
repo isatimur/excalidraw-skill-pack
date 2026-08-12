@@ -631,6 +631,8 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("mvp-d", 170, axisY - 72, "Mar '24", { fontSize: 11, color: MUTED }),
+      txt("thm-d", 340, axisY - 72, "Sep '24", { fontSize: 11, color: MUTED }),
     ]);
   },
   gantt: () => {
@@ -808,6 +810,7 @@ const BUILDERS = {
         fontSize: 12,
         color: MUTED,
       }),
+      txt("mcp-plan", 486, 188, "Q3 start", { fontSize: 11, color: ACCENT }),
     ]);
   },
   // Stations on a rectangle so every edge is pure H or V — a diamond with
