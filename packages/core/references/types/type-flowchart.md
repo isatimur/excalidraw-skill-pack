@@ -6,13 +6,13 @@
 Single dominant direction. Ellipse for start/end, diamond for decisions, rectangle for actions. Side-exit the diamond then drop — never diagonal through air.
 
 ## Excalidraw pattern
-Prefer skeleton: `ellipse` trigger, `diamond` decision, `rectangle` action. Free text for Yes/No beside the elbows.
+Prefer skeleton: `ellipse` trigger, `diamond` decision, `rectangle` action. Free text for Yes/No beside the elbows. Dashed Fix→audit retry so reject is a loop, not a dead end.
 
 ## Connectors & routing
 Orthogonal arrow paths; never diagonal through nodes.
 
 ## Anti-patterns
-More than one decision diamond without merge; orphan branches.
+More than one decision diamond without merge; orphan reject branches that never re-enter.
 
 ## Budget
 ≤7 nodes for a single decision story.

@@ -327,24 +327,40 @@ const BUILDERS = {
   sequence: () => {
     // Lifelines hang from box centres. Message labels sit ABOVE the shaft as
     // free text — bound labels land on the line and, at Cascadia width, collide.
-    const cx = { client: 160, api: 400, db: 640 };
-    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 280]], { dashed: true });
+    // Cache miss is the argument: the write still hits DB.
+    const cx = { client: 120, api: 320, cache: 520, db: 720 };
+    const lifeline = (id, x) => line(id, x, 168, [[0, 0], [0, 320]], { dashed: true });
     return doc("Sequence — messages over time", [
       rect("client", cx.client - 60, 110, 120, 48, "Client"),
       rect("api", cx.api - 60, 110, 120, 48, "API"),
+      rect("cache", cx.cache - 60, 110, 120, 48, "Cache", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
       rect("db", cx.db - 60, 110, 120, 48, "DB"),
       lifeline("ll1", cx.client),
       lifeline("ll2", cx.api),
-      lifeline("ll3", cx.db),
+      lifeline("ll3", cx.cache),
+      lifeline("ll4", cx.db),
       path("m1", cx.client, 200, [[0, 0], [cx.api - cx.client - 8, 0]], ""),
-      txt("m1-l", cx.client + 48, 178, "POST /orders", { fontSize: 14, color: MUTED }),
-      path("m2", cx.api, 255, [[0, 0], [cx.db - cx.api - 8, 0]], ""),
-      txt("m2-l", cx.api + 72, 233, "INSERT", { fontSize: 14, color: MUTED }),
-      path("m3", cx.db, 310, [[0, 0], [cx.api - cx.db + 8, 0]], "", { dashed: true, stroke: MUTED }),
-      txt("m3-l", cx.api + 80, 288, "1 row", { fontSize: 14, color: MUTED }),
-      path("m4", cx.api, 365, [[0, 0], [cx.client - cx.api + 8, 0]], "", { dashed: true, stroke: MUTED }),
-      txt("m4-l", cx.client + 48, 343, "201 Created", { fontSize: 14, color: MUTED }),
-      txt("budget", 120, 460, "budget: 4 messages · happy path only", {
+      txt("m1-l", cx.client + 28, 178, "POST /orders", { fontSize: 13, color: MUTED }),
+      path("m2", cx.api, 250, [[0, 0], [cx.cache - cx.api - 8, 0]], ""),
+      txt("m2-l", cx.api + 48, 228, "GET order?", { fontSize: 13, color: MUTED }),
+      path("m3", cx.cache, 300, [[0, 0], [cx.api - cx.cache + 8, 0]], "", {
+        dashed: true,
+        stroke: ACCENT,
+      }),
+      txt("m3-l", cx.api + 56, 278, "miss", { fontSize: 13, color: ACCENT }),
+      path("m4", cx.api, 350, [[0, 0], [cx.db - cx.api - 8, 0]], ""),
+      txt("m4-l", cx.api + 140, 328, "INSERT", { fontSize: 13, color: MUTED }),
+      path("m5", cx.db, 400, [[0, 0], [cx.api - cx.db + 8, 0]], "", { dashed: true, stroke: MUTED }),
+      txt("m5-l", cx.api + 140, 378, "1 row", { fontSize: 13, color: MUTED }),
+      path("m6", cx.api, 450, [[0, 0], [cx.client - cx.api + 8, 0]], "", {
+        dashed: true,
+        stroke: MUTED,
+      }),
+      txt("m6-l", cx.client + 28, 428, "201 Created", { fontSize: 13, color: MUTED }),
+      txt("budget", 100, 500, "cache miss forces the write · happy path", {
         fontSize: 13,
         color: MUTED,
       }),
@@ -512,18 +528,24 @@ const BUILDERS = {
   swimlane: () => {
     // Orthogonal elbows only — a diagonal handoff through empty lane space
     // reads as a routing bug, not a cross-functional story.
+    // Test sits in Eng so the return to Product is a review, not a leap.
     const brief = { id: "brief", x: 200, y: 140, w: 120, h: 48 };
     const spec = { id: "spec", x: 360, y: 140, w: 130, h: 48 };
-    const impl = { id: "impl", x: 420, y: 270, w: 150, h: 48 };
-    const signoff = { id: "signoff", x: 650, y: 140, w: 140, h: 48 };
+    const impl = { id: "impl", x: 360, y: 270, w: 130, h: 48 };
+    const test = { id: "test", x: 530, y: 270, w: 120, h: 48 };
+    const signoff = { id: "signoff", x: 700, y: 140, w: 140, h: 48 };
     return doc("Swimlane — cross-functional handoffs", [
-      zone("lane1", 180, 110, 660, 100, ""),
-      zone("lane2", 180, 240, 660, 100, ""),
+      zone("lane1", 180, 110, 700, 100, ""),
+      zone("lane2", 180, 240, 700, 100, ""),
       txt("lane1-l", 60, 150, "Product", { fontSize: 14, color: MUTED }),
       txt("lane2-l", 48, 280, "Engineering", { fontSize: 14, color: MUTED }),
       rect(brief.id, brief.x, brief.y, brief.w, brief.h, "Brief"),
       rect(spec.id, spec.x, spec.y, spec.w, spec.h, "Spec"),
       rect(impl.id, impl.x, impl.y, impl.w, impl.h, "Implement"),
+      rect(test.id, test.x, test.y, test.w, test.h, "Test", {
+        fill: "#fef3c7",
+        stroke: ACCENT,
+      }),
       rect(signoff.id, signoff.x, signoff.y, signoff.w, signoff.h, "Sign-off", {
         fill: "#dcfce7",
         stroke: "#15803d",
@@ -534,23 +556,25 @@ const BUILDERS = {
         "h1",
         [
           [spec.x + spec.w / 2, spec.y + spec.h],
-          [spec.x + spec.w / 2, impl.y + impl.h / 2],
-          [impl.x - 8, impl.y + impl.h / 2],
+          [spec.x + spec.w / 2, impl.y - 8],
         ],
         {}
       ),
       txt("h1-l", spec.x + spec.w / 2 + 12, 220, "handoff", { fontSize: 13, color: MUTED }),
+      arrow("s1", impl, test, "", { from: "right", to: "left" }),
+      txt("s1-l", 470, 248, "unit + e2e", { fontSize: 12, color: MUTED }),
       elbow(
         "h2",
         [
-          [impl.x + impl.w + 8, impl.y + impl.h / 2],
-          [signoff.x + signoff.w / 2, impl.y + impl.h / 2],
+          [test.x + test.w / 2, test.y - 8],
+          [test.x + test.w / 2, 220],
+          [signoff.x + signoff.w / 2, 220],
           [signoff.x + signoff.w / 2, signoff.y + signoff.h + 8],
         ],
         {}
       ),
-      txt("h2-l", signoff.x - 48, 252, "PR review", { fontSize: 13, color: MUTED }),
-      txt("sla", 650, 280, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
+      txt("h2-l", 620, 200, "PR review", { fontSize: 13, color: MUTED }),
+      txt("sla", 680, 320, "≤ 2 days in Eng", { fontSize: 12, color: MUTED }),
     ]);
   },
   quadrant: () => {

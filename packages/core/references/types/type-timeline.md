@@ -3,16 +3,16 @@
 **Best for:** events on an axis, roadmap milestones.
 
 ## Layout conventions
-Horizontal axis with event markers above/below. Accent the pivotal event only.
+Horizontal axis with event markers above/below. Accent the pivotal event only. Phase brackets under the axis carry duration, not just dots.
 
 ## Excalidraw pattern
-Free-floating text + ellipse or line markers on the axis.
+Free-floating text + ellipse or line markers on the axis; bracket spans between milestones.
 
 ## Connectors & routing
 Chronological left→right.
 
 ## Anti-patterns
-Dense date tables redrawn as a diagram.
+Dense date tables redrawn as a diagram; milestones with no phase story.
 
 ## Budget
 ≤8 milestones.

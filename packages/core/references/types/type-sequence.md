@@ -6,13 +6,13 @@
 Participants as top-row boxes; time flows downward. Group related messages.
 
 ## Excalidraw pattern
-Skeleton rectangles for lifelines. Free-floating text for message labels placed ABOVE the shaft — bound labels collide at Cascadia width.
+Skeleton rectangles for lifelines. Free-floating text for message labels placed ABOVE the shaft — bound labels collide at Cascadia width. A cache-miss return (dashed, accent) before the write makes the path an argument.
 
 ## Connectors & routing
 Horizontal arrows for requests; return messages offset vertically and dashed.
 
 ## Anti-patterns
-Mixing architecture boxes with sequence timing.
+Mixing architecture boxes with sequence timing; a four-message wallpaper with no miss/fail branch.
 
 ## Budget
 ≤5 participants; ≤12 messages per diagram.

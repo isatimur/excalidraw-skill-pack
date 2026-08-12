@@ -6,10 +6,10 @@
 Outer zone contains inner zones/components. Free zone labels at top-left. Put an actor outside the outer zone.
 
 ## Excalidraw pattern
-Dashed zone rectangles; leaf components as solid rectangles inside. Gateway as the edge of the platform.
+Dashed zone rectangles; leaf components as solid rectangles inside. Gateway as the edge of the platform; Worker beside Service A; API→Cache hit inside the service.
 
 ## Connectors & routing
-Arrows only when crossing a boundary matters; free protocol labels above shafts.
+Arrows only when crossing a boundary matters; free protocol labels above shafts; keep Gateway/API on one row for a pure horizontal route.
 
 ## Anti-patterns
 Deep nesting >3 levels (split views); a Platform that contains the Client.
