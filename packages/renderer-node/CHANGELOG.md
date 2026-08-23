@@ -1,5 +1,12 @@
 # @excalidraw-skill-pack/render
 
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies [605511b]
+  - @excalidraw-skill-pack/core@0.2.4
+
 ## 0.3.2
 
 ### Patch Changes
