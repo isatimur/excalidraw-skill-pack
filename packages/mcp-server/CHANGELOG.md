@@ -1,5 +1,13 @@
 # @excalidraw-skill-pack/mcp-server
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [605511b]
+  - @excalidraw-skill-pack/core@0.2.4
+  - @excalidraw-skill-pack/render@0.3.3
+
 ## 0.1.6
 
 ### Patch Changes

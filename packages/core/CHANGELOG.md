@@ -1,5 +1,11 @@
 # @excalidraw-skill-pack/core
 
+## 0.2.4
+
+### Patch Changes
+
+- 605511b: Point agents at coexistence with the official Excalidraw MCP App (live canvas vs taste / audit / PNG).
+
 ## 0.2.3
 
 ### Patch Changes
